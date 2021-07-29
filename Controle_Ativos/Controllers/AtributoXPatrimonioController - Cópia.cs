@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 
 namespace Controle_Ativos.Controllers
 {
-    public class TipoPatrimonioController : Controller
+    public class AtributoXPatrimonioController : Controller
     {
-        private readonly ITipoPatrimonioRepositorio _repositorio;
+        private readonly IAtributoXPatrimonioRepositorio _repositorio;
 
-        public TipoPatrimonioController(ITipoPatrimonioRepositorio repositorio)
+        public AtributoXPatrimonioController(IAtributoXPatrimonioRepositorio repositorio)
         {
             _repositorio = repositorio;
         }
 
-        // GET: TipoPatrimonio
+        // GET: AtributoXPatrimonio
         public async Task<IActionResult> Index()
         {
             return View(_repositorio.ObterTodos());
         }
 
-        // GET: TipoPatrimonio/Details/5
+        // GET: AtributoXPatrimonio/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
@@ -40,18 +40,18 @@ namespace Controle_Ativos.Controllers
             return View(tabela);
         }
 
-        // GET: TipoPatrimonio/Create
+        // GET: AtributoXPatrimonio/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: TipoPatrimonio/Create
+        // POST: AtributoXPatrimonio/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TipoPatrimonio tabela)
+        public async Task<IActionResult> Create(AtributoXPatrimonio tabela)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace Controle_Ativos.Controllers
             return View(tabela);
         }
 
-        // GET: TipoPatrimonio/Edit/5
+        // GET: AtributoXPatrimonio/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
@@ -79,12 +79,12 @@ namespace Controle_Ativos.Controllers
             return View(tabela);
         }
 
-        // POST: TipoPatrimonio/Edit/5
+        // POST: AtributoXPatrimonio/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, TipoPatrimonio tabela)
+        public async Task<IActionResult> Edit(Guid id, AtributoXPatrimonio tabela)
         {
             if (id != tabela.Id)
             {
@@ -99,7 +99,7 @@ namespace Controle_Ativos.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TipoPatrimonioExists(tabela.Id))
+                    if (!AtributoXPatrimonioExists(tabela.Id))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@ namespace Controle_Ativos.Controllers
             return View(tabela);
         }
 
-        // GET: TipoPatrimonio/Delete/5
+        // GET: AtributoXPatrimonio/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
@@ -131,7 +131,7 @@ namespace Controle_Ativos.Controllers
             return View(tabela);
         }
 
-        // POST: TipoPatrimonio/Delete/5
+        // POST: AtributoXPatrimonio/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -140,7 +140,7 @@ namespace Controle_Ativos.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TipoPatrimonioExists(Guid id)
+        private bool AtributoXPatrimonioExists(Guid id)
         {
             return _repositorio.ExisteRegistro(id);
         }
