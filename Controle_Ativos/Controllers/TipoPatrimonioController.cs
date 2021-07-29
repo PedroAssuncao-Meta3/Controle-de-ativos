@@ -51,7 +51,7 @@ namespace Controle_Ativos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Cliente tabela)
+        public async Task<IActionResult> Create(TipoPatrimonio tabela)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace Controle_Ativos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Cliente tabela)
+        public async Task<IActionResult> Edit(Guid id, TipoPatrimonio tabela)
         {
             if (id != tabela.Id)
             {

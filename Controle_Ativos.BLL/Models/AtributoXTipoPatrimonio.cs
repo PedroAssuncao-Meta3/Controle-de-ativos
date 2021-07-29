@@ -10,7 +10,7 @@ namespace Controle_Ativos.BLL.Models
 
         public Guid AtributoId { get; set; }
 
-        public Atributo Atributo { get; set; }]
+        public Atributo Atributo { get; set; }
         
         
         public Guid TipoPatrimonioId { get; set; }

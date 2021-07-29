@@ -12,5 +12,7 @@ namespace Controle_Ativos.BLL.Models
 
 
         public List<AtributoXTipoPatrimonio> AtributoXTipoPatrimonio { get; set; } = new List<AtributoXTipoPatrimonio>();
+
+        public List<Patrimonio> Patrimonio { get; set; } = new List<Patrimonio>();
     }
 }
