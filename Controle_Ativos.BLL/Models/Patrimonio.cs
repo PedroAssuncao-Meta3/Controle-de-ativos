@@ -20,11 +20,8 @@ namespace Controle_Ativos.BLL.Models
         public int Ativo { get; set; }
 
         public List<MovimentacaoPatrimonio> MovimentacaoPatrimonios { get; set; } = new List<MovimentacaoPatrimonio>();
-        
 
-        public Guid TipoPatrimonioId { get; set; }
-
-        public TipoPatrimonio TipoPatrimonio { get; set; }
+        public List<AtributoXPatrimonio> AtributoXPatrimonio { get; set; } = new List<AtributoXPatrimonio>();
 
     }
 }

@@ -36,6 +36,7 @@ namespace Controle_Ativos
             services.AddScoped<IAtributoRepositorio, AtributoRepositorio>();
             services.AddScoped<ITipoPatrimonioRepositorio, TipoPatrimonioRepositorio>();
             services.AddScoped<IAtributoXTipoPatrimonioRepositorio, AtributoXTipoPatrimonioRepositorio>();
+            services.AddScoped<IAtributoXPatrimonioRepositorio, AtributoXPatrimonioRepositorio>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

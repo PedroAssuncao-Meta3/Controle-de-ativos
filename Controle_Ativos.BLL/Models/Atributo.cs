@@ -11,6 +11,7 @@ namespace Controle_Ativos.BLL.Models
         public string Descricao { get; set; }
 
 
+        public List<AtributoXPatrimonio> AtributoXPatrimonio { get; set; } = new List<AtributoXPatrimonio>();
         public List<AtributoXTipoPatrimonio> AtributoXTipoPatrimonio { get; set; } = new List<AtributoXTipoPatrimonio>();
     }
 }
