@@ -12,6 +12,12 @@ namespace Controle_Ativos.Data.Contexto
 
         public DbSet<Colaborador> Colaborador { get; set; }
 
+        public DbSet<Patrimonio> Patrimonio { get; set; }
+
+        public DbSet<MovimentacaoPatrimonio> MovimentacaoPatrimonio { get; set; }
+
+        public DbSet<TipoMovimento> TipoMovimento { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Força o tamanho especifico para colunas mão mapeadas
