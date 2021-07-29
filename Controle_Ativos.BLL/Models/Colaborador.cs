@@ -15,9 +15,11 @@ namespace Controle_Ativos.BLL.Models
         public string Telefone { get; set; }
         public string Endereço { get; set; }
 
-
+        
         public Guid ClienteId { get; set; }
 
         public Cliente Cliente { get; set; }
+
+        public List<TipoMovimento> TipoMovimentos { get; set; } = new List<TipoMovimento>();
     }
 }
