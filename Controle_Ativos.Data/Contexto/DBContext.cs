@@ -8,7 +8,7 @@ namespace Controle_Ativos.Data.Contexto
     {
         public DBContexto(DbContextOptions<DBContexto> options) : base(options) { }
 
-        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
 
         public DbSet<Colaborador> Colaborador { get; set; }
 
@@ -17,6 +17,20 @@ namespace Controle_Ativos.Data.Contexto
         public DbSet<MovimentacaoPatrimonio> MovimentacaoPatrimonio { get; set; }
 
         public DbSet<TipoMovimento> TipoMovimento { get; set; }
+        
+        public DbSet<TipoPatrimonio> TipoPatrimonio { get; set; }
+
+        public DbSet<Atributo> Atributo { get; set; }
+        
+        public DbSet<AtributoXPatrimonio> AtributoXPatrimonio { get; set; }
+
+        public DbSet<AtributoXTipoPatrimonio> AtributoXTipoPatrimonio { get; set; }
+
+
+
+
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

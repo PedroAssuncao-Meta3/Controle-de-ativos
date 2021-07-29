@@ -20,6 +20,6 @@ namespace Controle_Ativos.BLL.Models
 
         public Cliente Cliente { get; set; }
 
-        public List<TipoMovimento> TipoMovimentos { get; set; } = new List<TipoMovimento>();
+        public List<MovimentacaoPatrimonio> MovimentacaoPatrimonios { get; set; } = new List<MovimentacaoPatrimonio>();
     }
 }
