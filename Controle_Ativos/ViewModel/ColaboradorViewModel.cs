@@ -20,7 +20,7 @@ namespace Controle_Ativos.ViewModel
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [Display(Name = "CPF")]
-        [StringLength(14, ErrorMessage = "O campo {0} precisa ter {1} caracteres", MinimumLength = 4)]
+        [StringLength(14, ErrorMessage = "O campo {0} precisa ter {1} caracteres", MinimumLength = 14)]
         public string CPF { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
