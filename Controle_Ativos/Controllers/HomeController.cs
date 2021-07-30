@@ -23,11 +23,27 @@ namespace Controle_Ativos.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Icons()
         {
             return View();
         }
-        public IActionResult Cadastro()
+        public IActionResult Map()
+        {
+            return View();
+        }
+        public IActionResult Notifications()
+        {
+            return View();
+        }
+        public IActionResult Tables()
+        {
+            return View();
+        }
+        public IActionResult Typography()
+        {
+            return View();
+        }
+        public IActionResult User()
         {
             return View();
         }
