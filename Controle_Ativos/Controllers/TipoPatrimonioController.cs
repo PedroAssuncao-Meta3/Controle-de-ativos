@@ -1,25 +1,31 @@
-﻿using Controle_Ativos.BLL.Interfaces;
+﻿using AutoMapper;
+using Controle_Ativos.BLL.Interfaces;
 using Controle_Ativos.BLL.Models;
+using Controle_Ativos.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Controle_Ativos.Controllers
 {
     public class TipoPatrimonioController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly ITipoPatrimonioRepositorio _repositorio;
 
-        public TipoPatrimonioController(ITipoPatrimonioRepositorio repositorio)
+        public TipoPatrimonioController(IMapper mapper, ITipoPatrimonioRepositorio repositorio)
         {
             _repositorio = repositorio;
+            _mapper = mapper;
         }
 
         // GET: TipoPatrimonio
         public async Task<IActionResult> Index()
         {
-            return View(_repositorio.ObterTodos());
+            var registros = _mapper.Map<List<TipoPatrimonioViewModel>>(_repositorio.ObterTodos());
+            return View(registros);
         }
 
         // GET: TipoPatrimonio/Details/5
@@ -37,13 +43,14 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(tabela);
+            return View(_mapper.Map<TipoPatrimonioViewModel>(tabela));
         }
 
         // GET: TipoPatrimonio/Create
         public IActionResult Create()
         {
-            return View();
+            var registro = new TipoPatrimonioViewModel();
+            return View(registro);
         }
 
         // POST: TipoPatrimonio/Create
@@ -51,15 +58,15 @@ namespace Controle_Ativos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TipoPatrimonio tabela)
+        public async Task<IActionResult> Create(TipoPatrimonioViewModel registro)
         {
             if (ModelState.IsValid)
             {
-                tabela.Id = Guid.NewGuid();
+                var tabela = _mapper.Map<TipoPatrimonio>(registro);
                 _repositorio.Adicionar(tabela);
                 return RedirectToAction(nameof(Index));
             }
-            return View(tabela);
+            return View(registro);
         }
 
         // GET: TipoPatrimonio/Edit/5
@@ -71,12 +78,13 @@ namespace Controle_Ativos.Controllers
             }
 
             var tabela = _repositorio.ObterPorId(id);
-
+           
             if (tabela == null)
             {
                 return NotFound();
             }
-            return View(tabela);
+
+            return View(_mapper.Map<TipoPatrimonioViewModel>(tabela));
         }
 
         // POST: TipoPatrimonio/Edit/5
@@ -84,15 +92,16 @@ namespace Controle_Ativos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, TipoPatrimonio tabela)
+        public async Task<IActionResult> Edit(Guid id, TipoPatrimonioViewModel registro)
         {
-            if (id != tabela.Id)
+            if (id != registro.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                var tabela = _mapper.Map<TipoPatrimonio>(registro);
                 try
                 {
                     _repositorio.Atualizar(tabela);
@@ -110,7 +119,7 @@ namespace Controle_Ativos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(tabela);
+            return View(registro);
         }
 
         // GET: TipoPatrimonio/Delete/5
@@ -128,7 +137,7 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(tabela);
+            return View(_mapper.Map<TipoPatrimonioViewModel>(tabela));
         }
 
         // POST: TipoPatrimonio/Delete/5
@@ -144,5 +153,6 @@ namespace Controle_Ativos.Controllers
         {
             return _repositorio.ExisteRegistro(id);
         }
+
     }
 }

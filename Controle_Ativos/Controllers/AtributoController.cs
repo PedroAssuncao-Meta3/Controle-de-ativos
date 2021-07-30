@@ -1,25 +1,31 @@
-﻿using Controle_Ativos.BLL.Interfaces;
+﻿using AutoMapper;
+using Controle_Ativos.BLL.Interfaces;
 using Controle_Ativos.BLL.Models;
+using Controle_Ativos.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Controle_Ativos.Controllers
 {
     public class AtributoController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly IAtributoRepositorio _repositorio;
 
-        public AtributoController(IAtributoRepositorio repositorio)
+        public AtributoController(IMapper mapper, IAtributoRepositorio repositorio)
         {
             _repositorio = repositorio;
+            _mapper = mapper;
         }
 
         // GET: Atributo
         public async Task<IActionResult> Index()
         {
-            return View(_repositorio.ObterTodos());
+            var registros = _mapper.Map<List<AtributoViewModel>>(_repositorio.ObterTodos());
+            return View(registros);
         }
 
         // GET: Atributo/Details/5
@@ -37,29 +43,32 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(tabela);
+            return View(_mapper.Map<AtributoViewModel>(tabela));
         }
 
         // GET: Atributo/Create
         public IActionResult Create()
         {
-            return View();
+            var registro = new AtributoViewModel();
+            return View(registro);
+
         }
+
 
         // POST: Atributo/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Atributo tabela)
+        public async Task<IActionResult> Create(AtributoViewModel registro)
         {
             if (ModelState.IsValid)
             {
-                tabela.Id = Guid.NewGuid();
+                var tabela = _mapper.Map<Atributo>(registro);
                 _repositorio.Adicionar(tabela);
                 return RedirectToAction(nameof(Index));
             }
-            return View(tabela);
+            return View(registro);
         }
 
         // GET: Atributo/Edit/5
@@ -71,12 +80,13 @@ namespace Controle_Ativos.Controllers
             }
 
             var tabela = _repositorio.ObterPorId(id);
-
+           
             if (tabela == null)
             {
                 return NotFound();
             }
-            return View(tabela);
+
+            return View(_mapper.Map<AtributoViewModel>(tabela));
         }
 
         // POST: Atributo/Edit/5
@@ -84,15 +94,16 @@ namespace Controle_Ativos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Atributo tabela)
+        public async Task<IActionResult> Edit(Guid id, AtributoViewModel registro)
         {
-            if (id != tabela.Id)
+            if (id != registro.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                var tabela = _mapper.Map<Atributo>(registro);
                 try
                 {
                     _repositorio.Atualizar(tabela);
@@ -110,7 +121,7 @@ namespace Controle_Ativos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(tabela);
+            return View(registro);
         }
 
         // GET: Atributo/Delete/5
@@ -128,7 +139,7 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(tabela);
+            return View(_mapper.Map<AtributoViewModel>(tabela));
         }
 
         // POST: Atributo/Delete/5
@@ -144,5 +155,6 @@ namespace Controle_Ativos.Controllers
         {
             return _repositorio.ExisteRegistro(id);
         }
+
     }
 }

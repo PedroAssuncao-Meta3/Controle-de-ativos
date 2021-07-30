@@ -7,5 +7,9 @@ namespace Controle_Ativos.BLL.Interfaces
 {
     public interface IMovimentacaoPatrimonioRepositorio : IRepositorio<MovimentacaoPatrimonio>
     {
+        List<Colaborador> RecuperaListaColaborador();
+        List<TipoMovimento> RecuperaListaTipoMovimentacao();
+        List<Patrimonio> RecuperaListaPatrimonio();
+
     }
 }
