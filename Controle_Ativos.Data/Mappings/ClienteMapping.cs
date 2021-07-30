@@ -14,7 +14,7 @@ namespace Controle_Ativos.Data.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(200)");
 
-            // 1 : N => Cliente : Colaborador
+            
             builder.HasMany(pai => pai.Colaboradores)
                 .WithOne(filho => filho.Cliente)
                 .HasForeignKey(filho => filho.ClienteId);

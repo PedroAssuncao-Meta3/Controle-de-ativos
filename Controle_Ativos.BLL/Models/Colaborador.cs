@@ -13,6 +13,7 @@ namespace Controle_Ativos.BLL.Models
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Telefone { get; set; }
+        public string Celular { get; set; }
         public string Endereço { get; set; }
 
         
@@ -20,6 +21,6 @@ namespace Controle_Ativos.BLL.Models
 
         public Cliente Cliente { get; set; }
 
-        public List<TipoMovimento> TipoMovimentos { get; set; } = new List<TipoMovimento>();
+        public List<MovimentacaoPatrimonio> MovimentacaoPatrimonios { get; set; } = new List<MovimentacaoPatrimonio>();
     }
 }

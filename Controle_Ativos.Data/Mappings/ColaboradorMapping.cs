@@ -18,6 +18,28 @@ namespace Controle_Ativos.Data.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(14)");
 
+            builder.Property(tab => tab.Cargo)
+                .IsRequired()
+                .HasColumnType("varchar(200)");
+            
+            builder.Property(tab => tab.Email)
+                .HasColumnType("varchar(200)");
+
+            builder.Property(tab => tab.Telefone)
+                .HasColumnType("varchar(50)");
+          
+            builder.Property(tab => tab.Celular)
+                .HasColumnType("varchar(50)");
+
+            builder.Property(tab => tab.Endereço)
+                .HasColumnType("varchar(200)");
+
+             builder.HasMany(pai => pai.MovimentacaoPatrimonios)
+                .WithOne(filho => filho.Colaborador)
+                .HasForeignKey(filho => filho.ColaboradorId);
+
+
+
             builder.ToTable("Colaboradores");
         }
     }

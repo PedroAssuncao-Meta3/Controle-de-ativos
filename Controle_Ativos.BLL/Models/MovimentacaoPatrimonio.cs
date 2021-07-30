@@ -6,9 +6,9 @@ namespace Controle_Ativos.BLL.Models
 {
     public class MovimentacaoPatrimonio : Entidade
     {
-        public DateTime DataIncio { get; set; }
+        public DateTime DataIncio { get; set; } = DateTime.Now;
 
-        public DateTime DataFechamento { get; set; }
+        public DateTime? DataFechamento { get; set; }
 
         public string Observacao { get; set; }
 
