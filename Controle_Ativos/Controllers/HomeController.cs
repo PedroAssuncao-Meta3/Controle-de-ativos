@@ -34,6 +34,18 @@ namespace Controle_Ativos.Controllers
         {
             return View();
         }
+        public IActionResult Tables()
+        {
+            return View();
+        }
+        public IActionResult Typography()
+        {
+            return View();
+        }
+        public IActionResult Notifications()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
