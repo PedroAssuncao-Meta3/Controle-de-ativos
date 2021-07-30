@@ -12,27 +12,11 @@ namespace Controle_Ativos.Data.Mappings
 
             builder.Property(tab => tab.Descricao)
                 .IsRequired()
-                .HasColumnType("varchar(200)");
-            
-            builder.Property(tab => tab.DataAquisicao)
-                .IsRequired()
-                .HasColumnType("Date()");//DATE TA CERTO?
-            
-            builder.Property(tab => tab.DataSaida)
-               .HasColumnType("Date()");
+                .HasColumnType("varchar(200)");            
 
             builder.Property(tab => tab.NumeroPatrimonio)
                 .IsRequired()
                 .HasColumnType("varchar(200)");
-
-            builder.Property(tab => tab.Valor)
-                .IsRequired()
-                .HasColumnType("varchar(200)");//QUAL TIPO PRA VALOR MONETARIO
-
-            builder.Property(tab => tab.Ativo)
-                .IsRequired()
-                .HasColumnType("bit");
-
 
             builder.HasMany(pai => pai.MovimentacaoPatrimonios)
                 .WithOne(filho => filho.Patrimonio)
@@ -41,7 +25,6 @@ namespace Controle_Ativos.Data.Mappings
             builder.HasMany(pai => pai.AtributoXPatrimonio)
                 .WithOne(filho => filho.Patrimonio)
                 .HasForeignKey(filho => filho.PatrimonioId);
-
 
             builder.ToTable("Patrimonio");
         }

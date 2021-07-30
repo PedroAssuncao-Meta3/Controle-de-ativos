@@ -25,11 +25,11 @@ namespace Controle_Ativos.Data.Mappings
             builder.Property(tab => tab.Email)
                 .HasColumnType("varchar(200)");
 
-            builder.Property(tab => tab.DataNascimento)
-                .HasColumnType("Date()");
-            
             builder.Property(tab => tab.Telefone)
-                .HasColumnType("varchar(200)");
+                .HasColumnType("varchar(50)");
+          
+            builder.Property(tab => tab.Celular)
+                .HasColumnType("varchar(50)");
 
             builder.Property(tab => tab.Endereço)
                 .HasColumnType("varchar(200)");

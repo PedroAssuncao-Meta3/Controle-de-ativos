@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Controle_Ativos.Controllers
 {
-    public class ClientesController : Controller
+    public class ClienteController : Controller
     {
         private readonly IClienteRepositorio _repositorio;
 
-        public ClientesController(IClienteRepositorio repositorio)
+        public ClienteController(IClienteRepositorio repositorio)
         {
             _repositorio = repositorio;
         }

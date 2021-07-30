@@ -17,7 +17,7 @@ namespace Controle_Ativos.Data.Mappings
             
             builder.HasMany(pai => pai.MovimentacaoPatrimonios)
                 .WithOne(filho => filho.TipoMovimento)
-                .HasForeignKey(filho => filho.TipoMovimento);
+                .HasForeignKey(filho => filho.TipoMovimentoId);
 
             builder.ToTable("TipoMovimento");
         }

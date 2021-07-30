@@ -10,19 +10,10 @@ namespace Controle_Ativos.Data.Mappings
         {
             builder.HasKey(tab => tab.Id);
 
-            builder.Property(tab => tab.DataIncio)
-                .IsRequired()
-                .HasColumnType("Date()");
-
-            builder.Property(tab => tab.DataFechamento)
-                .HasColumnType("Date()");
-
             builder.Property(tab => tab.Observacao)
-               .HasColumnType("varchar(200)");
-
-            
-
-            builder.ToTable("MovimentaçaoPatrimonio");
+               .HasColumnType("varchar(1000)");
+                       
+            builder.ToTable("MovimentacaoPatrimonio");
         }
     }
 }

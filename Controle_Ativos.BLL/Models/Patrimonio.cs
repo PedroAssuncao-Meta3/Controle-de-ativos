@@ -9,15 +9,15 @@ namespace Controle_Ativos.BLL.Models
         
         public string Descricao { get; set; }
 
-        public DateTime DataAquisicao { get; set; }
+        public DateTime? DataAquisicao { get; set; }
 
-        public DateTime DataSaida { get; set; }
+        public DateTime? DataSaida { get; set; }
 
         public string NumeroPatrimonio { get; set; }
 
-        public double Valor { get; set; }
-
-        public int Ativo { get; set; }
+        public double Valor { get; set; } = 0;
+        
+        public bool Ativo { get; set; } = true;
 
         public Guid TipoPatrimonioId { get; set; }
 

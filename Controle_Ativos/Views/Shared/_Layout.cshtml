@@ -21,8 +21,29 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Dashboard</a>
+                            <a href="#" title="Package Info" data-filter-tags="package info">
+                                <i class="fal fa-cogs"></i>
+                                <span class="nav-link-text" data-i18n="nav.theme_settings">Cadastro</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a id="itemCliente" class="dropdown-item" asp-area="" asp-controller="Cliente" asp-action="Index">
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings">Cliente</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="itemColaborador" class="dropdown-item" asp-area="" asp-controller="Colaborador" asp-action="Index">
+                                        <span class="nav-link-text" data-i18n="nav.theme_settings">Colaborador</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Create">Cadastrar</a>

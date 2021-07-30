@@ -13,6 +13,7 @@ namespace Controle_Ativos.BLL.Models
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Telefone { get; set; }
+        public string Celular { get; set; }
         public string Endereço { get; set; }
 
         

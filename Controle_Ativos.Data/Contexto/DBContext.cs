@@ -8,23 +8,23 @@ namespace Controle_Ativos.Data.Contexto
     {
         public DBContexto(DbContextOptions<DBContexto> options) : base(options) { }
 
-        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
 
-        public DbSet<Colaborador> Colaborador { get; set; }
+        public DbSet<Colaborador> Colaboradores { get; set; }
 
-        public DbSet<Patrimonio> Patrimonio { get; set; }
+        public DbSet<Patrimonio> Patrimonios { get; set; }
 
-        public DbSet<MovimentacaoPatrimonio> MovimentacaoPatrimonio { get; set; }
+        public DbSet<MovimentacaoPatrimonio> MovimentacoesPatrimonios { get; set; }
 
-        public DbSet<TipoMovimento> TipoMovimento { get; set; }
+        public DbSet<TipoMovimento> TiposMovimento { get; set; }
         
-        public DbSet<TipoPatrimonio> TipoPatrimonio { get; set; }
+        public DbSet<TipoPatrimonio> TiposPatrimonio { get; set; }
 
-        public DbSet<Atributo> Atributo { get; set; }
+        public DbSet<Atributo> Atributos { get; set; }
         
-        public DbSet<AtributoXPatrimonio> AtributoXPatrimonio { get; set; }
+        public DbSet<AtributoXPatrimonio> AtributosXPatrimonios { get; set; }
 
-        public DbSet<AtributoXTipoPatrimonio> AtributoXTipoPatrimonio { get; set; }
+        public DbSet<AtributoXTipoPatrimonio> AtributosXTiposPatrimonio { get; set; }
 
 
 
