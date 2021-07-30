@@ -1,25 +1,31 @@
-﻿using Controle_Ativos.BLL.Interfaces;
+﻿using AutoMapper;
+using Controle_Ativos.BLL.Interfaces;
 using Controle_Ativos.BLL.Models;
+using Controle_Ativos.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Controle_Ativos.Controllers
 {
     public class PatrimonioController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly IPatrimonioRepositorio _repositorio;
 
-        public PatrimonioController(IPatrimonioRepositorio repositorio)
+        public PatrimonioController(IMapper mapper, IPatrimonioRepositorio repositorio)
         {
             _repositorio = repositorio;
+            _mapper = mapper;
         }
 
         // GET: Patrimonio
         public async Task<IActionResult> Index()
         {
-            return View(_repositorio.ObterTodos());
+            var registros = _mapper.Map<List<PatrimonioViewModel>>(_repositorio.ObterTodos());
+            return View(registros);
         }
 
         // GET: Patrimonio/Details/5
@@ -37,13 +43,14 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(tabela);
+            return View(_mapper.Map<PatrimonioViewModel>(tabela));
         }
 
         // GET: Patrimonio/Create
         public IActionResult Create()
         {
-            return View();
+            var registro = new PatrimonioViewModel();
+            return View(registro);
         }
 
         // POST: Patrimonio/Create
@@ -51,15 +58,15 @@ namespace Controle_Ativos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Patrimonio tabela)
+        public async Task<IActionResult> Create(PatrimonioViewModel registro)
         {
             if (ModelState.IsValid)
             {
-                tabela.Id = Guid.NewGuid();
+                var tabela = _mapper.Map<Patrimonio>(registro);
                 _repositorio.Adicionar(tabela);
                 return RedirectToAction(nameof(Index));
             }
-            return View(tabela);
+            return View(registro);
         }
 
         // GET: Patrimonio/Edit/5
@@ -71,12 +78,13 @@ namespace Controle_Ativos.Controllers
             }
 
             var tabela = _repositorio.ObterPorId(id);
-
+           
             if (tabela == null)
             {
                 return NotFound();
             }
-            return View(tabela);
+
+            return View(_mapper.Map<PatrimonioViewModel>(tabela));
         }
 
         // POST: Patrimonio/Edit/5
@@ -84,15 +92,16 @@ namespace Controle_Ativos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Patrimonio tabela)
+        public async Task<IActionResult> Edit(Guid id, PatrimonioViewModel registro)
         {
-            if (id != tabela.Id)
+            if (id != registro.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                var tabela = _mapper.Map<Patrimonio>(registro);
                 try
                 {
                     _repositorio.Atualizar(tabela);
@@ -110,7 +119,7 @@ namespace Controle_Ativos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(tabela);
+            return View(registro);
         }
 
         // GET: Patrimonio/Delete/5
@@ -128,7 +137,7 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(tabela);
+            return View(_mapper.Map<PatrimonioViewModel>(tabela));
         }
 
         // POST: Patrimonio/Delete/5
@@ -144,5 +153,6 @@ namespace Controle_Ativos.Controllers
         {
             return _repositorio.ExisteRegistro(id);
         }
+
     }
 }
