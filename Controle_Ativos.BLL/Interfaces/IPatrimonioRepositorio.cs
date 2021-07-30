@@ -7,5 +7,6 @@ namespace Controle_Ativos.BLL.Interfaces
 {
     public interface IPatrimonioRepositorio : IRepositorio<Patrimonio>
     {
+        List<TipoPatrimonio> RecuperaListaTipoPatrimonio();
     }
 }

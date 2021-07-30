@@ -50,6 +50,7 @@ namespace Controle_Ativos.Controllers
         public IActionResult Create()
         {
             var registro = new PatrimonioViewModel();
+            registro.TipoPatrimonios = _mapper.Map<List<TipoPatrimonioViewModel>>(_repositorio.RecuperaListaTipoPatrimonio());
             return View(registro);
         }
 

@@ -12,6 +12,14 @@ namespace Controle_Ativos.Data.Repositorio
     {
         public AtributoXPatrimonioRepositorio(DBContexto context) : base(context) { }
 
-        
+        public List<Patrimonio> RecuperaListaPatrimonio()
+        {
+            return Db.Patrimonios.ToList();
+        }
+
+        public List<Atributo> RecuperaListaAtributo()
+        {
+            return Db.Atributos.ToList();
+        }
     }
 }

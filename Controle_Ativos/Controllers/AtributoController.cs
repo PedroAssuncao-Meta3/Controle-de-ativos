@@ -51,7 +51,9 @@ namespace Controle_Ativos.Controllers
         {
             var registro = new AtributoViewModel();
             return View(registro);
+
         }
+
 
         // POST: Atributo/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

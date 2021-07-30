@@ -1,28 +1,34 @@
-﻿using Controle_Ativos.BLL.Interfaces;
+﻿using AutoMapper;
+using Controle_Ativos.BLL.Interfaces;
 using Controle_Ativos.BLL.Models;
+using Controle_Ativos.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Controle_Ativos.Controllers
 {
-    public class AtributoXPatrimonioController : Controller
+    public class TipoMovimentacaoController : Controller
     {
-        private readonly IAtributoXPatrimonioRepositorio _repositorio;
+        private readonly IMapper _mapper;
+        private readonly ITipoMovimentacaoRepositorio _repositorio;
 
-        public AtributoXPatrimonioController(IAtributoXPatrimonioRepositorio repositorio)
+        public TipoMovimentacaoController(IMapper mapper, ITipoMovimentacaoRepositorio repositorio)
         {
             _repositorio = repositorio;
+            _mapper = mapper;
         }
 
-        // GET: AtributoXPatrimonio
+        // GET: TipoMovimentacao
         public async Task<IActionResult> Index()
         {
-            return View(_repositorio.ObterTodos());
+            var registros = _mapper.Map<List<TipoMovimentacaoViewModel>>(_repositorio.ObterTodos());
+            return View(registros);
         }
 
-        // GET: AtributoXPatrimonio/Details/5
+        // GET: TipoMovimentacao/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
@@ -37,32 +43,33 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(tabela);
+            return View(_mapper.Map<TipoMovimentacaoViewModel>(tabela));
         }
 
-        // GET: AtributoXPatrimonio/Create
+        // GET: TipoMovimentacao/Create
         public IActionResult Create()
         {
-            return View();
+            var registro = new TipoMovimentacaoViewModel();
+            return View(registro);
         }
 
-        // POST: AtributoXPatrimonio/Create
+        // POST: TipoMovimentacao/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AtributoXPatrimonio tabela)
+        public async Task<IActionResult> Create(TipoMovimentacaoViewModel registro)
         {
             if (ModelState.IsValid)
             {
-                tabela.Id = Guid.NewGuid();
+                var tabela = _mapper.Map<TipoMovimento>(registro);
                 _repositorio.Adicionar(tabela);
                 return RedirectToAction(nameof(Index));
             }
-            return View(tabela);
+            return View(registro);
         }
 
-        // GET: AtributoXPatrimonio/Edit/5
+        // GET: TipoMovimentacao/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
@@ -71,35 +78,37 @@ namespace Controle_Ativos.Controllers
             }
 
             var tabela = _repositorio.ObterPorId(id);
-
+           
             if (tabela == null)
             {
                 return NotFound();
             }
-            return View(tabela);
+
+            return View(_mapper.Map<TipoMovimentacaoViewModel>(tabela));
         }
 
-        // POST: AtributoXPatrimonio/Edit/5
+        // POST: TipoMovimentacao/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, AtributoXPatrimonio tabela)
+        public async Task<IActionResult> Edit(Guid id, TipoMovimentacaoViewModel registro)
         {
-            if (id != tabela.Id)
+            if (id != registro.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                var tabela = _mapper.Map<TipoMovimento>(registro);
                 try
                 {
                     _repositorio.Atualizar(tabela);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AtributoXPatrimonioExists(tabela.Id))
+                    if (!TipoMovimentacaoExists(tabela.Id))
                     {
                         return NotFound();
                     }
@@ -110,10 +119,10 @@ namespace Controle_Ativos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(tabela);
+            return View(registro);
         }
 
-        // GET: AtributoXPatrimonio/Delete/5
+        // GET: TipoMovimentacao/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
@@ -128,10 +137,10 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(tabela);
+            return View(_mapper.Map<TipoMovimentacaoViewModel>(tabela));
         }
 
-        // POST: AtributoXPatrimonio/Delete/5
+        // POST: TipoMovimentacao/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -140,9 +149,10 @@ namespace Controle_Ativos.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AtributoXPatrimonioExists(Guid id)
+        private bool TipoMovimentacaoExists(Guid id)
         {
             return _repositorio.ExisteRegistro(id);
         }
+
     }
 }

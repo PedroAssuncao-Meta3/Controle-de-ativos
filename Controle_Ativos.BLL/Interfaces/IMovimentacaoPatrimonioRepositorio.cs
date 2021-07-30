@@ -11,6 +11,5 @@ namespace Controle_Ativos.BLL.Interfaces
         List<TipoMovimento> RecuperaListaTipoMovimentacao();
         List<Patrimonio> RecuperaListaPatrimonio();
 
-
     }
 }

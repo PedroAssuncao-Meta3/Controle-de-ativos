@@ -32,7 +32,13 @@ namespace Controle_Ativos.ViewModel
         [Required(ErrorMessage = "Please select yes or no")]
         public bool Ativo { get; set; }
 
-        
+        public Guid TipoPatrimonioId { get; set; }
+
+        public TipoPatrimonioViewModel TipoPatrimonio { get; set; }
+
+        public List<TipoPatrimonioViewModel> TipoPatrimonios { get; set; } = new List<TipoPatrimonioViewModel>();
+
+
 
     }
 }
