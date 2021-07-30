@@ -22,6 +22,11 @@ namespace Controle_Ativos.BLL.Models
         public List<MovimentacaoPatrimonio> MovimentacaoPatrimonios { get; set; } = new List<MovimentacaoPatrimonio>();
 
         public List<AtributoXPatrimonio> AtributoXPatrimonio { get; set; } = new List<AtributoXPatrimonio>();
+        
+
+        public Guid TipoPatrimonioId { get; set; }
+
+        public TipoPatrimonio TipoPatrimonio { get; set; }
 
     }
 }
