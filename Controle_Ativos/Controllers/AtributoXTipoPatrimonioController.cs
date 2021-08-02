@@ -56,6 +56,7 @@ namespace Controle_Ativos.Controllers
 
         }
 
+    
 
         // POST: AtributoXTipoPatrimonio/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
