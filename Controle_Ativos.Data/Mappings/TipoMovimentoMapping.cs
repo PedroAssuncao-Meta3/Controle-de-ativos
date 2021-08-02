@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Controle_Ativos.Data.Mappings
 {
-    public class TipoMovimentoMapping : IEntityTypeConfiguration<TipoMovimento>
+    public class TipoMovimentoMapping : IEntityTypeConfiguration<TipoMovimentacao>
     {
-        public void Configure(EntityTypeBuilder<TipoMovimento> builder)
+        public void Configure(EntityTypeBuilder<TipoMovimentacao> builder)
         {
             builder.HasKey(tab => tab.Id);
 

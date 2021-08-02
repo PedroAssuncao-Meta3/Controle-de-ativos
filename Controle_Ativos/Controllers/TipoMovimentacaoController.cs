@@ -24,8 +24,8 @@ namespace Controle_Ativos.Controllers
         // GET: TipoMovimentacao
         public async Task<IActionResult> Index()
         {
-            var registros = _mapper.Map<List<TipoMovimentoViewModel>>(_repositorio.ObterTodos());
-            return View(registros);
+
+            return View(_repositorio.ObterTodos());
         }
 
         // GET: TipoMovimentacao/Details/5
@@ -62,7 +62,7 @@ namespace Controle_Ativos.Controllers
         {
             if (ModelState.IsValid)
             {
-                var tabela = _mapper.Map<TipoMovimento>(registro);
+                var tabela = _mapper.Map<TipoMovimentacao>(registro);
                 _repositorio.Adicionar(tabela);
                 return RedirectToAction(nameof(Index));
             }
@@ -101,7 +101,7 @@ namespace Controle_Ativos.Controllers
 
             if (ModelState.IsValid)
             {
-                var tabela = _mapper.Map<TipoMovimento>(registro);
+                var tabela = _mapper.Map<TipoMovimentacao>(registro);
                 try
                 {
                     _repositorio.Atualizar(tabela);

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Controle_Ativos.BLL.Models
 {
-    public class TipoMovimento : Entidade
+    public class TipoMovimentacao : Entidade
     {
         public string Descricao { get; set; }
 

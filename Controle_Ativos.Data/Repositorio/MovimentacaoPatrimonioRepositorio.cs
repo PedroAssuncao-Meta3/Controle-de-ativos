@@ -17,7 +17,7 @@ namespace Controle_Ativos.Data.Repositorio
             return Db.Colaboradores.ToList();
         }
 
-        public List<TipoMovimento> RecuperaListaTipoMovimentacao()
+        public List<TipoMovimentacao> RecuperaListaTipoMovimentacao()
         {
             return Db.TiposMovimento.ToList();
         }
