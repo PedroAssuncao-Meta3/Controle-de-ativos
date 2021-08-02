@@ -1,11 +1,20 @@
 ﻿@model IEnumerable<Controle_Ativos.ViewModel.ColaboradorViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Colaboradores";
+}
+
+@section Scripts{
+    <script src="~/js/Datagrid/datatables.bundle.js"></script>
+}
 <head>
     <title>
-        Typography
+        Colaborador
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!-- CSS Files -->
     <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class="container-fluid">
@@ -13,16 +22,14 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h3 class="card-title ">TABELA COLABORADOR</h3>
+                        <h3 class="card-title ">Tabela Colaboradores</h3>
                         <p>
                             <a asp-action="Create">Novo Registro</a>
-                            <a asp-action="Edit">Edit</a>
-                            <a asp-action="Details">Details</a>
                         </p>
-                    </div>
+                    </div> 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="tblIndex">
                                 <thead>
                                     <tr>
                                         <th>
@@ -87,9 +94,15 @@
                                                 @Html.DisplayFor(modelItem => item.Cliente.Nome)
                                             </td>
                                             <td>
-                                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">
+                                                    <i class="material-icons">edit</i>
+                                                </a>
+                                                <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">
+                                                    <i class="material-icons">plagiarism</i>
+                                                </a>
+                                                <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
                                             </td>
                                         </tr>
                                     }
@@ -277,6 +290,19 @@
                     }, 1000);
 
                 });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $("document").ready(function () {
+            $("#tblIndex").DataTable({
+                responsive: true,
+                searching: true,
+                ordering: false,
+                "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
+                "language": {
+                    url: "../../lib/datatables/locale/pt-br.js"
+                }
             });
         });
     </script>
