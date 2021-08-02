@@ -1,28 +1,40 @@
-﻿using Controle_Ativos.BLL.Interfaces;
+﻿using AutoMapper;
+using Controle_Ativos.BLL.Interfaces;
 using Controle_Ativos.BLL.Models;
+using Controle_Ativos.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Controle_Ativos.Controllers
 {
     public class ClienteController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly IClienteRepositorio _repositorio;
 
-        public ClienteController(IClienteRepositorio repositorio)
+        public ClienteController(IMapper mapper, IClienteRepositorio repositorio)
         {
             _repositorio = repositorio;
+            _mapper = mapper;
         }
 
-        // GET: Clientes
+        // GET: Cliente
         public async Task<IActionResult> Index()
         {
-            return View(_repositorio.ObterTodos());
+            var registros = _mapper.Map<List<ClienteViewModel>>(_repositorio.ObterTodos());
+            return View(registros);
         }
 
-        // GET: Clientes/Details/5
+        public async Task<IActionResult> BuscarPorNome()
+        {
+            var registros = _mapper.Map<List<ClienteViewModel>>(_repositorio.BuscarPorNome());
+            return View(registros);
+        }
+
+        // GET: Cliente/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
             if (id == null)
@@ -30,39 +42,42 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            var cliente = _repositorio.ObterPorId(id);
+            var tabela = _repositorio.ObterPorId(id);
 
-            if (cliente == null)
+            if (tabela == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            return View(_mapper.Map<ClienteViewModel>(tabela));
         }
 
-        // GET: Clientes/Create
+        // GET: Cliente/Create
         public IActionResult Create()
         {
-            return View();
+            var registro = new ClienteViewModel();
+            return View(registro);
+
         }
 
-        // POST: Clientes/Create
+
+        // POST: Cliente/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Id")] Cliente cliente)
+        public async Task<IActionResult> Create(ClienteViewModel registro)
         {
             if (ModelState.IsValid)
             {
-                cliente.Id = Guid.NewGuid();
-                _repositorio.Adicionar(cliente);
+                var tabela = _mapper.Map<Cliente>(registro);
+                _repositorio.Adicionar(tabela);
                 return RedirectToAction(nameof(Index));
             }
-            return View(cliente);
+            return View(registro);
         }
 
-        // GET: Clientes/Edit/5
+        // GET: Cliente/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
             if (id == null)
@@ -70,36 +85,38 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            var cliente = _repositorio.ObterPorId(id);
-
-            if (cliente == null)
+            var tabela = _repositorio.ObterPorId(id);
+           
+            if (tabela == null)
             {
                 return NotFound();
             }
-            return View(cliente);
+
+            return View(_mapper.Map<ClienteViewModel>(tabela));
         }
 
-        // POST: Clientes/Edit/5
+        // POST: Cliente/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Nome,Id")] Cliente cliente)
+        public async Task<IActionResult> Edit(Guid id, ClienteViewModel registro)
         {
-            if (id != cliente.Id)
+            if (id != registro.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                var tabela = _mapper.Map<Cliente>(registro);
                 try
                 {
-                    _repositorio.Atualizar(cliente);
+                    _repositorio.Atualizar(tabela);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClienteExists(cliente.Id))
+                    if (!ClienteExists(tabela.Id))
                     {
                         return NotFound();
                     }
@@ -110,10 +127,10 @@ namespace Controle_Ativos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(cliente);
+            return View(registro);
         }
 
-        // GET: Clientes/Delete/5
+        // GET: Cliente/Delete/5
         public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null)
@@ -121,17 +138,17 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            var cliente = _repositorio.ObterPorId(id);
+            var tabela = _repositorio.ObterPorId(id);
 
-            if (cliente == null)
+            if (tabela == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            return View(_mapper.Map<ClienteViewModel>(tabela));
         }
 
-        // POST: Clientes/Delete/5
+        // POST: Cliente/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
@@ -144,5 +161,6 @@ namespace Controle_Ativos.Controllers
         {
             return _repositorio.ExisteRegistro(id);
         }
+
     }
 }

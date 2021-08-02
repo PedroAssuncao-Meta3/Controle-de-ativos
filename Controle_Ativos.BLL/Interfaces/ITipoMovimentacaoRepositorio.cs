@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Controle_Ativos.BLL.Interfaces
 {
-    public interface ITipoMovimentoRepositorio : IRepositorio<TipoMovimento>
+    public interface ITipoMovimentacaoRepositorio : IRepositorio<TipoMovimento>
     {
     }
 }

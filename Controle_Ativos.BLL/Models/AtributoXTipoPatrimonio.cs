@@ -16,5 +16,10 @@ namespace Controle_Ativos.BLL.Models
         public Guid TipoPatrimonioId { get; set; }
 
         public TipoPatrimonio TipoPatrimonio{ get; set; }
+    
+    
+    
+    
+    
     }
 }

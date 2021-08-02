@@ -70,6 +70,7 @@ namespace Controle_Ativos.Controllers
             return View(registro);
         }
 
+
         // GET: Colaborador/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
