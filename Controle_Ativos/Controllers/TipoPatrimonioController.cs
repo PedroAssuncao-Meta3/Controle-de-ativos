@@ -24,8 +24,7 @@ namespace Controle_Ativos.Controllers
         // GET: TipoPatrimonio
         public async Task<IActionResult> Index()
         {
-            var registros = _mapper.Map<List<TipoPatrimonioViewModel>>(_repositorio.ObterTodos());
-            return View(registros);
+            return View((_repositorio.ObterTodos()));
         }
 
         // GET: TipoPatrimonio/Details/5
