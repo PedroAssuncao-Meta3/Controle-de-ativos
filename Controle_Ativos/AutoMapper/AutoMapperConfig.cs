@@ -20,6 +20,7 @@ namespace Controle_Ativos.AutoMapper
         {
             CreateMap<Colaborador, ColaboradorViewModel>().ReverseMap();
             CreateMap<Cliente, ClienteViewModel>().ReverseMap();
+            CreateMap<TipoPatrimonio, TipoPatrimonioViewModel>().ReverseMap();
         }
     }
 }
