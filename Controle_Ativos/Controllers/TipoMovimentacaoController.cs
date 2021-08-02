@@ -24,7 +24,7 @@ namespace Controle_Ativos.Controllers
         // GET: TipoMovimentacao
         public async Task<IActionResult> Index()
         {
-            var registros = _mapper.Map<List<TipoMovimentacaoViewModel>>(_repositorio.ObterTodos());
+            var registros = _mapper.Map<List<TipoMovimentoViewModel>>(_repositorio.ObterTodos());
             return View(registros);
         }
 
@@ -43,13 +43,13 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(_mapper.Map<TipoMovimentacaoViewModel>(tabela));
+            return View(_mapper.Map<TipoMovimentoViewModel>(tabela));
         }
 
         // GET: TipoMovimentacao/Create
         public IActionResult Create()
         {
-            var registro = new TipoMovimentacaoViewModel();
+            var registro = new TipoMovimentoViewModel();
             return View(registro);
         }
 
@@ -58,7 +58,7 @@ namespace Controle_Ativos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TipoMovimentacaoViewModel registro)
+        public async Task<IActionResult> Create(TipoMovimentoViewModel registro)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(_mapper.Map<TipoMovimentacaoViewModel>(tabela));
+            return View(_mapper.Map<TipoMovimentoViewModel>(tabela));
         }
 
         // POST: TipoMovimentacao/Edit/5
@@ -92,7 +92,7 @@ namespace Controle_Ativos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, TipoMovimentacaoViewModel registro)
+        public async Task<IActionResult> Edit(Guid id, TipoMovimentoViewModel registro)
         {
             if (id != registro.Id)
             {
@@ -137,7 +137,7 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(_mapper.Map<TipoMovimentacaoViewModel>(tabela));
+            return View(_mapper.Map<TipoMovimentoViewModel>(tabela));
         }
 
         // POST: TipoMovimentacao/Delete/5

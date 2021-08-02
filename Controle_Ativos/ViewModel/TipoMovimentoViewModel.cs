@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Controle_Ativos.ViewModel
 {
-    public class TipoMovimentacaoViewModel
+    public class TipoMovimentoViewModel
     {
         
             [Key]
