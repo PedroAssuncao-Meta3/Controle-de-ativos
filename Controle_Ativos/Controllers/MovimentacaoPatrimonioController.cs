@@ -1,25 +1,31 @@
-﻿using Controle_Ativos.BLL.Interfaces;
+﻿using AutoMapper;
+using Controle_Ativos.BLL.Interfaces;
 using Controle_Ativos.BLL.Models;
+using Controle_Ativos.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Controle_Ativos.Controllers
 {
     public class MovimentacaoPatrimonioController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly IMovimentacaoPatrimonioRepositorio _repositorio;
 
-        public MovimentacaoPatrimonioController(IMovimentacaoPatrimonioRepositorio repositorio)
+        public MovimentacaoPatrimonioController(IMapper mapper, IMovimentacaoPatrimonioRepositorio repositorio)
         {
             _repositorio = repositorio;
+            _mapper = mapper;
         }
 
         // GET: MovimentacaoPatrimonio
         public async Task<IActionResult> Index()
         {
-            return View(_repositorio.ObterTodos());
+            var registros = _mapper.Map<List<MovimentacaoPatrimonioViewModel>>(_repositorio.ObterTodos());
+            return View(registros);
         }
 
         // GET: MovimentacaoPatrimonio/Details/5
@@ -37,29 +43,35 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(tabela);
+            return View(_mapper.Map<MovimentacaoPatrimonioViewModel>(tabela));
         }
 
         // GET: MovimentacaoPatrimonio/Create
         public IActionResult Create()
         {
-            return View();
+            var registro = new MovimentacaoPatrimonioViewModel();
+            registro.Colaboradores = _mapper.Map<List<ColaboradorViewModel>>(_repositorio.RecuperaListaColaborador());
+            registro.Patrimonios = _mapper.Map<List<PatrimonioViewModel>>(_repositorio.RecuperaListaPatrimonio());
+            registro.TipoMovimentacoes = _mapper.Map<List<TipoMovimentacaoViewModel>>(_repositorio.RecuperaListaTipoMovimentacao());
+            return View(registro);
+
         }
+
 
         // POST: MovimentacaoPatrimonio/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(MovimentacaoPatrimonio tabela)
+        public async Task<IActionResult> Create(MovimentacaoPatrimonioViewModel registro)
         {
             if (ModelState.IsValid)
             {
-                tabela.Id = Guid.NewGuid();
+                var tabela = _mapper.Map<MovimentacaoPatrimonio>(registro);
                 _repositorio.Adicionar(tabela);
                 return RedirectToAction(nameof(Index));
             }
-            return View(tabela);
+            return View(registro);
         }
 
         // GET: MovimentacaoPatrimonio/Edit/5
@@ -71,12 +83,13 @@ namespace Controle_Ativos.Controllers
             }
 
             var tabela = _repositorio.ObterPorId(id);
-
+           
             if (tabela == null)
             {
                 return NotFound();
             }
-            return View(tabela);
+
+            return View(_mapper.Map<MovimentacaoPatrimonioViewModel>(tabela));
         }
 
         // POST: MovimentacaoPatrimonio/Edit/5
@@ -84,15 +97,16 @@ namespace Controle_Ativos.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, MovimentacaoPatrimonio tabela)
+        public async Task<IActionResult> Edit(Guid id, MovimentacaoPatrimonioViewModel registro)
         {
-            if (id != tabela.Id)
+            if (id != registro.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                var tabela = _mapper.Map<MovimentacaoPatrimonio>(registro);
                 try
                 {
                     _repositorio.Atualizar(tabela);
@@ -110,7 +124,7 @@ namespace Controle_Ativos.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(tabela);
+            return View(registro);
         }
 
         // GET: MovimentacaoPatrimonio/Delete/5
@@ -128,7 +142,7 @@ namespace Controle_Ativos.Controllers
                 return NotFound();
             }
 
-            return View(tabela);
+            return View(_mapper.Map<MovimentacaoPatrimonioViewModel>(tabela));
         }
 
         // POST: MovimentacaoPatrimonio/Delete/5
@@ -144,5 +158,6 @@ namespace Controle_Ativos.Controllers
         {
             return _repositorio.ExisteRegistro(id);
         }
+
     }
 }

@@ -42,6 +42,6 @@ namespace Controle_Ativos.ViewModel
 
         public List<ClienteViewModel> Clientes { get; set; } = new List<ClienteViewModel>();
 
-        //public List<MovimentacaoPatrimonio> MovimentacaoPatrimonios { get; set; } = new List<MovimentacaoPatrimonio>();
+        
     }
 }
