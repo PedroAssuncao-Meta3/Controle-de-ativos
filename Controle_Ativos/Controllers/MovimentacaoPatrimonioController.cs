@@ -52,7 +52,7 @@ namespace Controle_Ativos.Controllers
             var registro = new MovimentacaoPatrimonioViewModel();
             registro.Colaboradores = _mapper.Map<List<ColaboradorViewModel>>(_repositorio.RecuperaListaColaborador());
             registro.Patrimonios = _mapper.Map<List<PatrimonioViewModel>>(_repositorio.RecuperaListaPatrimonio());
-            registro.TipoMovimentacoes = _mapper.Map<List<TipoMovimentacaoViewModel>>(_repositorio.RecuperaListaTipoMovimentacao());
+            registro.TipoMovimentacoes = _mapper.Map<List<TipoMovimentoViewModel>>(_repositorio.RecuperaListaTipoMovimentacao());
             return View(registro);
 
         }

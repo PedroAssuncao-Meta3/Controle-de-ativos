@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html>
+<html lang="pt-br">
 
 <head>
     <!-- Required meta tags -->
@@ -13,9 +13,9 @@
     <link href="~/assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
 </head>
 
-<body class="dark-edition">
+<body id="body" class=light-edition>
     <div class="wrapper ">
-        <div class="sidebar" data-color="purple" data-background-color="black" data-image="./assets/img/sidebar-2.jpg">
+        <div class="sidebar" data-color="purple" data-background-color="white" data-image="./assets/img/sidebar-2.jpg">
             <!--
                 Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -71,9 +71,45 @@
                         </a>
                     </li>
                     <li class="nav-item ">
+                        <a class="dropdown-item" asp-area="" asp-controller="TipoMovimentacao" asp-action="Index">
+                            <i class="material-icons">library_books</i>
+                            <p>Tipo Movimentacao</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
                         <a class="dropdown-item" asp-area="" asp-controller="TipoPatrimonio" asp-action="Index">
-                            <i class="material-icons">bubble_chart</i>
-                            <p>Biscoito</p>
+                            <i class="material-icons">library_books</i>
+                            <p>Tipo Patrimonio</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="dropdown-item" asp-area="" asp-controller="Patrimonio" asp-action="Index">
+                            <i class="material-icons">library_books</i>
+                            <p>Patrimonio</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="dropdown-item" asp-area="" asp-controller="MovimentacaoPatrimonio" asp-action="Index">
+                            <i class="material-icons">library_books</i>
+                            <p>Movimentação Patrimonio</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="dropdown-item" asp-area="" asp-controller="AtributoXTipoPatrimonio" asp-action="Index">
+                            <i class="material-icons">library_books</i>
+                            <p>Atributo X TipoPatrimonio</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="dropdown-item" asp-area="" asp-controller="AtributoXPatrimonio" asp-action="Index">
+                            <i class="material-icons">library_books</i>
+                            <p>Atributo X Patrimonio</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="dropdown-item" asp-area="" asp-controller="Atributo" asp-action="Index">
+                            <i class="material-icons">library_books</i>
+                            <p>Atributo</p>
                         </a>
                     </li>
                     <li class="nav-item ">
@@ -89,11 +125,11 @@
                         </a>
                     </li>
                     <!-- <li class="nav-item active-pro ">
-        <a class="nav-link" href="./upgrade.html">
-            <i class="material-icons">unarchive</i>
-            <p>Upgrade to PRO</p>
-        </a>
-    </li> -->
+                        <a class="nav-link" href="./upgrade.html">
+                            <i class="material-icons">unarchive</i>
+                            <p>Upgrade to PRO</p>
+                        </a>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -116,6 +152,9 @@
                                         User
                                     </p>
                                 </a>
+                            </li>
+                            <li class="nav-item">
+                                <button type="button" name="dark_light" onclick="toggleDarkLight()" title="Toggle dark/light mode">🌛</button>
                             </li>
                             <!-- your navbar here -->
                         </ul>
@@ -315,5 +354,5 @@
     </script>
     @RenderSection("Scripts", required: false)
 </body>
-
 </html>
+<script src="~/js/darkmode.js"></script>

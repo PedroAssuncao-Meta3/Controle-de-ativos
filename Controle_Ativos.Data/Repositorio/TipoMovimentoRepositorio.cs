@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Controle_Ativos.Data.Repositorio
 {
-    public class TipoMovimentacaoRepositorio : Repositorio<TipoMovimento>, ITipoMovimentacaoRepositorio
+    public class TipoMovimentacaoRepositorio : Repositorio<TipoMovimentacao>, ITipoMovimentacaoRepositorio
     {
         public TipoMovimentacaoRepositorio(DBContexto context) : base(context) { }
     }

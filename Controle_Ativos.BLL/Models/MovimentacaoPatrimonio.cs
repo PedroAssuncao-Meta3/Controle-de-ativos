@@ -27,7 +27,7 @@ namespace Controle_Ativos.BLL.Models
 
         public Guid TipoMovimentoId { get; set; }
 
-        public TipoMovimento TipoMovimento { get; set; }
+        public TipoMovimentacao TipoMovimento { get; set; }
 
 
         // Falta a foreign key do  contrato

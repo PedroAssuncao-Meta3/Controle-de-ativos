@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Controle_Ativos.ViewModel.MovimentacaoPatrimonioViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DataIncio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFechamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Colaborador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Patrimonio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoMovimento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataIncio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataFechamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Colaborador.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patrimonio.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoMovimento.Descricao)
+            </td>
+            <td>
+                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">
+                    <i class="material-icons">edit</i>
+                </a>
+                <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">
+                    <i class="material-icons">plagiarism</i>
+                </a>
+                <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">
+                    <i class="material-icons">delete</i>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
