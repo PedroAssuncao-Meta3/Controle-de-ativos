@@ -55,13 +55,13 @@
                 @Html.DisplayFor(modelItem => item.TipoMovimento.Descricao)
             </td>
             <td>
-                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">
+                <a class="button" asp-action="Edit" asp-route-id="@item.Id">
                     <i class="material-icons">edit</i>
                 </a>
-                <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">
+                <a class="button" asp-action="Details" asp-route-id="@item.Id">
                     <i class="material-icons">plagiarism</i>
                 </a>
-                <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">
+                <a class="button" asp-action="Delete" asp-route-id="@item.Id">
                     <i class="material-icons">delete</i>
                 </a>
             </td>

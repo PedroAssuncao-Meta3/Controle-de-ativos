@@ -34,7 +34,7 @@
     right: 0;
     width: 64px;
     background: rgba(0,0,0,.3);
-    z-index: 3;
+    z-index: 1031;
     border-radius: 8px 0 0 8px;
     text-align: center;
 }
@@ -283,6 +283,7 @@
     opacity: 0;
     left: -303px !important;
     transform-origin: 100% 0;
+    display: block;
 }
 .fixed-plugin .dropdown.show .dropdown-menu{
     opacity: 1;
