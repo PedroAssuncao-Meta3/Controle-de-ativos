@@ -28,11 +28,6 @@ namespace Controle_Ativos.Controllers
             return View(registros);
         }
 
-        public async Task<IActionResult> BuscarPorNome()
-        {
-            var registros = _mapper.Map<List<ClienteViewModel>>(_repositorio.BuscarPorNome());
-            return View(registros);
-        }
 
         // GET: Cliente/Details/5
         public async Task<IActionResult> Details(Guid id)
