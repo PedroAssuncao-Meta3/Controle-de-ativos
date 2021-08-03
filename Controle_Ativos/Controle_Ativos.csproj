@@ -32,12 +32,10 @@
 
   <ItemGroup>
     <None Include="Views\Home\Icons.cshtml" />
-    <None Include="Views\Home\Map.cshtml" />
     <None Include="Views\Home\Notifications.cshtml" />
     <None Include="Views\Home\Tables.cshtml" />
     <None Include="Views\Home\Template.cshtml" />
     <None Include="Views\Home\Model.cshtml" />
-    <None Include="Views\Home\Typography.cshtml" />
     <None Include="Views\Home\User.cshtml" />
   </ItemGroup>
 
