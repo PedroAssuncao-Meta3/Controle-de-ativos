@@ -26,7 +26,7 @@ namespace Controle_Ativos.AutoMapper
             CreateMap<AtributoXPatrimonio, AtributoXPatrimonioViewModel>().ReverseMap();
             CreateMap<AtributoXTipoPatrimonio, AtributoXTipoPatrimonioViewModel>().ReverseMap();
             CreateMap<MovimentacaoPatrimonio, MovimentacaoPatrimonioViewModel>().ReverseMap();
-            CreateMap<TipoMovimentacao, TipoMovimentacaoViewModel>().ReverseMap();
+            CreateMap<TipoMovimentacao, TipoMovimentoViewModel>().ReverseMap();
         }
     }
 }
