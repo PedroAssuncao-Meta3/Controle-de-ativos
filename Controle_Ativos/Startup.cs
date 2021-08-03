@@ -33,6 +33,16 @@ namespace Controle_Ativos
 
             services.AddScoped<IColaboradorRepositorio, ColaboradorRepositorio>();
             services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
+            services.AddScoped<IAtributoRepositorio, AtributoRepositorio>();
+            services.AddScoped<ITipoPatrimonioRepositorio, TipoPatrimonioRepositorio>();
+            services.AddScoped<IAtributoXTipoPatrimonioRepositorio, AtributoXTipoPatrimonioRepositorio>();
+            services.AddScoped<IAtributoXPatrimonioRepositorio, AtributoXPatrimonioRepositorio>();
+            services.AddScoped<IPatrimonioRepositorio, PatrimonioRepositorio>();
+            services.AddScoped<IMovimentacaoPatrimonioRepositorio, MovimentacaoPatrimonioRepositorio>();
+            services.AddScoped<ITipoMovimentacaoRepositorio, TipoMovimentacaoRepositorio>();
+
+            services.AddAutoMapper(typeof(Startup));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -12,6 +12,10 @@ namespace Controle_Ativos.Data.Repositorio
     {
         public ColaboradorRepositorio(DBContexto context) : base(context) { }
 
+        public List<Cliente> RecuperaListaCliente()
+        {
+            return Db.Clientes.ToList();
+        }
 
     }
 }

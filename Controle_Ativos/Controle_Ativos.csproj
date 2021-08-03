@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Home\Model.cshtml" />
+    <Content Remove="Views\Home\Template.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.15">
       <PrivateAssets>all</PrivateAssets>
@@ -20,8 +27,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Home\img\" />
     <Folder Include="wwwroot\js\datagrid\dataTables\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\Icons.cshtml" />
+    <None Include="Views\Home\Map.cshtml" />
+    <None Include="Views\Home\Notifications.cshtml" />
+    <None Include="Views\Home\Tables.cshtml" />
+    <None Include="Views\Home\Template.cshtml" />
+    <None Include="Views\Home\Model.cshtml" />
+    <None Include="Views\Home\Typography.cshtml" />
+    <None Include="Views\Home\User.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +46,6 @@
     <ProjectReference Include="..\Controle_Ativos.Data\Controle_Ativos.Data.csproj" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

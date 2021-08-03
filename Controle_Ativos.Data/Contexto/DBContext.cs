@@ -10,7 +10,27 @@ namespace Controle_Ativos.Data.Contexto
 
         public DbSet<Cliente> Clientes { get; set; }
 
-        public DbSet<Colaborador> Colaborador { get; set; }
+        public DbSet<Colaborador> Colaboradores { get; set; }
+
+        public DbSet<Patrimonio> Patrimonios { get; set; }
+
+        public DbSet<MovimentacaoPatrimonio> MovimentacoesPatrimonios { get; set; }
+
+        public DbSet<TipoMovimentacao> TiposMovimento { get; set; }
+        
+        public DbSet<TipoPatrimonio> TiposPatrimonio { get; set; }
+
+        public DbSet<Atributo> Atributos { get; set; }
+        
+        public DbSet<AtributoXPatrimonio> AtributosXPatrimonios { get; set; }
+
+        public DbSet<AtributoXTipoPatrimonio> AtributosXTiposPatrimonio { get; set; }
+
+
+
+
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

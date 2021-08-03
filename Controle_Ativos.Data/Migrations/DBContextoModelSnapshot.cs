@@ -19,6 +19,67 @@ namespace Controle_Ativos.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.Atributo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Atributo");
+                });
+
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.AtributoXPatrimonio", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AtributoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Conteudo")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<Guid>("PatrimonioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AtributoId");
+
+                    b.HasIndex("PatrimonioId");
+
+                    b.ToTable("AtributoXPatrimonio");
+                });
+
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.AtributoXTipoPatrimonio", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AtributoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TipoPatrimonioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AtributoId");
+
+                    b.HasIndex("TipoPatrimonioId");
+
+                    b.ToTable("AtributoXTipoPatrimonio");
+                });
+
             modelBuilder.Entity("Controle_Ativos.BLL.Models.Cliente", b =>
                 {
                     b.Property<Guid>("Id")
@@ -44,12 +105,31 @@ namespace Controle_Ativos.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(14)");
 
+                    b.Property<string>("Cargo")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Celular")
+                        .HasColumnType("varchar(50)");
+
                     b.Property<Guid>("ClienteId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Endereço")
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(150)");
+
+                    b.Property<string>("Telefone")
+                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -58,11 +138,164 @@ namespace Controle_Ativos.Migrations
                     b.ToTable("Colaboradores");
                 });
 
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.MovimentacaoPatrimonio", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ColaboradorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DataFechamento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataIncio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Observacao")
+                        .HasColumnType("varchar(1000)");
+
+                    b.Property<Guid>("PatrimonioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TipoMovimentoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ColaboradorId");
+
+                    b.HasIndex("PatrimonioId");
+
+                    b.HasIndex("TipoMovimentoId");
+
+                    b.ToTable("MovimentacaoPatrimonio");
+                });
+
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.Patrimonio", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("DataAquisicao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DataSaida")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("NumeroPatrimonio")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<Guid>("TipoPatrimonioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Valor")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TipoPatrimonioId");
+
+                    b.ToTable("Patrimonio");
+                });
+
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.TipoMovimento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TipoMovimento");
+                });
+
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.TipoPatrimonio", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TipoPatrimonio");
+                });
+
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.AtributoXPatrimonio", b =>
+                {
+                    b.HasOne("Controle_Ativos.BLL.Models.Atributo", "Atributo")
+                        .WithMany("AtributoXPatrimonios")
+                        .HasForeignKey("AtributoId")
+                        .IsRequired();
+
+                    b.HasOne("Controle_Ativos.BLL.Models.Patrimonio", "Patrimonio")
+                        .WithMany("AtributoXPatrimonio")
+                        .HasForeignKey("PatrimonioId")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.AtributoXTipoPatrimonio", b =>
+                {
+                    b.HasOne("Controle_Ativos.BLL.Models.Atributo", "Atributo")
+                        .WithMany("AtributoXTipoPatrimonios")
+                        .HasForeignKey("AtributoId")
+                        .IsRequired();
+
+                    b.HasOne("Controle_Ativos.BLL.Models.TipoPatrimonio", "TipoPatrimonio")
+                        .WithMany("AtributoXTipoPatrimonio")
+                        .HasForeignKey("TipoPatrimonioId")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Controle_Ativos.BLL.Models.Colaborador", b =>
                 {
                     b.HasOne("Controle_Ativos.BLL.Models.Cliente", "Cliente")
                         .WithMany("Colaboradores")
                         .HasForeignKey("ClienteId")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.MovimentacaoPatrimonio", b =>
+                {
+                    b.HasOne("Controle_Ativos.BLL.Models.Colaborador", "Colaborador")
+                        .WithMany("MovimentacaoPatrimonios")
+                        .HasForeignKey("ColaboradorId")
+                        .IsRequired();
+
+                    b.HasOne("Controle_Ativos.BLL.Models.Patrimonio", "Patrimonio")
+                        .WithMany("MovimentacaoPatrimonios")
+                        .HasForeignKey("PatrimonioId")
+                        .IsRequired();
+
+                    b.HasOne("Controle_Ativos.BLL.Models.TipoMovimento", "TipoMovimento")
+                        .WithMany("MovimentacaoPatrimonios")
+                        .HasForeignKey("TipoMovimentoId")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.Patrimonio", b =>
+                {
+                    b.HasOne("Controle_Ativos.BLL.Models.TipoPatrimonio", "TipoPatrimonio")
+                        .WithMany("Patrimonio")
+                        .HasForeignKey("TipoPatrimonioId")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
