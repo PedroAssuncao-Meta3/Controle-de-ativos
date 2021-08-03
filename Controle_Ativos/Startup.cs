@@ -37,6 +37,9 @@ namespace Controle_Ativos
             services.AddScoped<ITipoPatrimonioRepositorio, TipoPatrimonioRepositorio>();
             services.AddScoped<IAtributoXTipoPatrimonioRepositorio, AtributoXTipoPatrimonioRepositorio>();
             services.AddScoped<IAtributoXPatrimonioRepositorio, AtributoXPatrimonioRepositorio>();
+            services.AddScoped<IPatrimonioRepositorio, PatrimonioRepositorio>();
+            services.AddScoped<IMovimentacaoPatrimonioRepositorio, MovimentacaoPatrimonioRepositorio>();
+            services.AddScoped<ITipoMovimentacaoRepositorio, TipoMovimentacaoRepositorio>();
 
             services.AddAutoMapper(typeof(Startup));
 
