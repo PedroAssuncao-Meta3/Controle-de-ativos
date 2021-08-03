@@ -8,7 +8,7 @@ namespace Controle_Ativos.BLL.Interfaces
     public interface IClienteRepositorio : IRepositorio<Cliente>
     {
         List<Cliente> BuscarPorNome(string nome);
-
-        
+       
     }
+    
 }

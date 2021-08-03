@@ -28,6 +28,7 @@ namespace Controle_Ativos.Controllers
             return View(registros);
         }
 
+
         // GET: Cliente/Details/5
         public async Task<IActionResult> Details(Guid id)
         {
@@ -50,7 +51,6 @@ namespace Controle_Ativos.Controllers
         public IActionResult Create()
         {
             var registro = new ClienteViewModel();
-           
             return View(registro);
 
         }
