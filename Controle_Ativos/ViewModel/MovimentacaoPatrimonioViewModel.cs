@@ -23,20 +23,20 @@ namespace Controle_Ativos.ViewModel
 
         [Display(Name = "Colaborador:")]
         public Guid ColaboradorId { get; set; }
-        public ClienteViewModel Colaborador { get; set; }
+        public ColaboradorViewModel Colaborador { get; set; }
 
         [Display(Name = "Patrimonio:")]
         public Guid PatrimonioId { get; set; }
-        public ClienteViewModel Patrimonio { get; set; }
+        public PatrimonioViewModel Patrimonio { get; set; }
         
         [Display(Name = "Tipo de Movimentação:")]
         public Guid TipoMovimentacaoId { get; set; }
-        public ClienteViewModel TipoMovimentacao { get; set; }
+        public TipoMovimentoViewModel TipoMovimento { get; set; }
         #endregion
         
         
         #region ListasFK
-        public List<TipoMovimentacaoViewModel> TipoMovimentacoes { get; set; } = new List<TipoMovimentacaoViewModel>();
+        public List<TipoMovimentoViewModel> TipoMovimentacoes { get; set; } = new List<TipoMovimentoViewModel>();
         public List<PatrimonioViewModel> Patrimonios { get; set; } = new List<PatrimonioViewModel>();
         public List<ColaboradorViewModel> Colaboradores { get; set; } = new List<ColaboradorViewModel>();
         #endregion

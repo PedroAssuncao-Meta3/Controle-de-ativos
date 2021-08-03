@@ -16,7 +16,7 @@ namespace Controle_Ativos.Data.Contexto
 
         public DbSet<MovimentacaoPatrimonio> MovimentacoesPatrimonios { get; set; }
 
-        public DbSet<TipoMovimento> TiposMovimento { get; set; }
+        public DbSet<TipoMovimentacao> TiposMovimento { get; set; }
         
         public DbSet<TipoPatrimonio> TiposPatrimonio { get; set; }
 

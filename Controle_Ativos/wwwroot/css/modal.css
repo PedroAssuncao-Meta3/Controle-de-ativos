@@ -1,7 +1,9 @@
 /* Fix for Bootstrap 3 with Angular UI Bootstrap */
 
-.modal { 
-	display: block;
+.modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 /* Custom dialog/modal headers */

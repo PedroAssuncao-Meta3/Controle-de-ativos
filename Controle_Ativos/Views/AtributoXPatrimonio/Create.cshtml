@@ -1,0 +1,45 @@
+﻿@model Controle_Ativos.ViewModel.AtributoXPatrimonioViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>AtributoXPatrimonio</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Conteudo" class="control-label"></label>
+                <input asp-for="Conteudo" class="form-control" />
+                <span asp-validation-for="Conteudo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AtributoId" class="control-label"></label>
+                <select asp-for="AtributoId" class="form-control" asp-items="@(new SelectList(Model.Atributos, "Id", "Descricao"))">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PatrimonioId" class="control-label"></label>
+                <select asp-for="PatrimonioId" class="form-control" asp-items="@(new SelectList(Model.Patrimonios, "Id", "Descricao"))">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
