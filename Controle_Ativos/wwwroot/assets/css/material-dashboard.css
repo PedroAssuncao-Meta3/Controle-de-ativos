@@ -3723,7 +3723,7 @@ tbody.collapse.show {
 .dropdown-item:active {
   color: #ffffff;
   text-decoration: none;
-  background-color: #2196f3;
+  background-color: #9c27b0;
 }
 
 .dropdown-item.disabled,
@@ -15423,9 +15423,9 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: #fff;
 }
 
-.sidebar[data-color="purple"] li.active>a {
-  background-color: #9c27b0;
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+.sidebar[data-color="purple"] a.active {
+  background-color: #9c27b0 !important;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4) !important;
 }
 
 .sidebar[data-color="azure"] li.active>a {
