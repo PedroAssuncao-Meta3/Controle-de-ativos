@@ -1,0 +1,134 @@
+﻿@{
+    ViewData["Title"] = "Relatório Tipo de Patrimônio X Atributos";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+<div class="fs-lg fw-300 p-5 bg-white border-faded rounded mb-g">
+    <h1 class="display-4" style="text-align:center; font-weight:bold">Relatório Catálogo de Dados</h1>
+
+    @*<div class="row">
+        <div id="divDadosBase" class="col-lg-12 col-xl-12">
+            <table id="tblDados" class='table m-0 table-bordered table-sm table-striped'>
+                <thead class="thead-themed">
+                    <tr>
+                        <th>
+                            Tipo de Patrimonio
+                        </th>
+                        <th>
+                            Atributo
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>*@
+
+    <div class="row">
+        <div id="divDadosGrupo" class="col-lg-12 col-xl-12">
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script src="~/lib/d3/d3.js"></script>
+
+    <script type="text/javascript">
+        $("#itemMenuRelatorios").addClass("active open");
+        $("#vwDataBaseReport").addClass("active open");
+
+        $("document").ready(function () {
+            geraGridDadosAgrupado('@Url.Action("GetData", "RelatorioTipoPatXAtributo")');
+        });
+
+        function geraGridDados(urlMetodo) {
+            $.ajax({
+                type: "get",
+                url: urlMetodo,
+                success: function (result) {
+
+                    $.each(result, function (c, data) {
+                        var table = $("#tblDados"),
+                            tbody = table.find("tbody");
+
+                        $(tbody).append("<tr><td>" +
+                            data.tipoPatrimonio + "</td><td>" +
+                            data.atributo + "</td>")
+                    });
+
+                    $("#tblDados").DataTable({
+                        responsive: true,
+                        searching: true,
+                        ordering: true,
+                        "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
+                        "language": {
+                            url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
+                        }
+                    });
+                }
+            });
+        }
+        function geraGridDadosAgrupado(urlMetodo) {
+
+            $.ajax({
+                type: "get",
+                url: urlMetodo,
+                timeout: 180000,
+                success: function (result) {
+                    nestData = d3.groups(result, d => d.tipoPatrimonio);
+                    divHierarquia = $("#divDadosGrupo");
+                    var contRow = 0;
+
+                    $.each(nestData, function (c, gpPatrimonio) {
+                        contRow = contRow + 1;
+
+                        $(divHierarquia).append('<div id="row' + contRow + '" class="row">' +
+
+
+                            '<div class="card">' +
+                            '   <h5 class="card-header">'+ gpPatrimonio[0] +'</h5>' +
+                            '   <div class="card-body">' +
+
+                            "       <div class='frame-wrap'>" +
+                            "           <table class='table m-0 table-bordered table-sm table-striped' id='tabela" + contRow + "'>" +
+                            "               <thead class='thead-themed'><tr>" +
+                            "                   <th>Atributo</th>" +
+                            "               </tr></thead>" +
+                            "               <tbody></tbody>" +
+                            "           </table>" +
+                            "       </div>" +
+
+                            '   </div>' +
+                            '</div>' +
+                            '</div>');
+                                                 
+
+                        $.each(gpPatrimonio[1], function (ccc, gpAtributo) {
+                                //Gera Tabela Hitlist
+                                var table = $("#tabela" + contRow),
+                                    tbody = table.find("tbody");
+
+                                $(tbody).append("<tr><td>" +
+                                    gpAtributo.atributo + "</td></tr>")
+                        });
+
+                        $("#tabela" + contRow).DataTable({
+                            responsive: true,
+                            searching: true,
+                            ordering: true,
+                            "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
+                            "language": {
+                                url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
+                            }
+                        });
+                    });
+                }
+            });
+        }
+
+    </script>
+}
