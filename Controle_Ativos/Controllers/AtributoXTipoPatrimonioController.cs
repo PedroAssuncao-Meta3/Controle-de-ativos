@@ -102,33 +102,7 @@ namespace Controle_Ativos.Controllers
                 //Persiste a lista de atributos
                 _repositorioAtributo.AdicionarLista(listaAtrib);
 
-                //var registroTP = new TipoPatrimonioViewModel();
-                //AtributoViewModel[] RegistroAtr = new AtributoViewModel[registro.Atributos.Count];
-                //registro.Atributos.CopyTo(RegistroAtr);
-                //registro.Atributos.Clear();
-
-                //registroTP = registro.TipoPatrimonio;
-
-                //for (int i = 0; i < RegistroAtr.Length; i++)
-                //{
-                //    var tabelaAtr = _mapper.Map<Atributo>(RegistroAtr[i]);
-                //    _repositorioAtributo.Adicionar(tabelaAtr);
-                //}
-
-                //registro.TipoPatrimonios = _mapper.Map<List<TipoPatrimonioViewModel>>(_repositorio.RecuperaListaTipoPatrimonio());
-                //var registroAux = _mapper.Map<List<AtributoViewModel>>(_repositorio.RecuperaListaAtributo());
-
-                //for (int i = 0; i < registroAux.Count; i++)
-                //{
-
-                //    var aux = registroAux.Where(x => x.Descricao == RegistroAtr[i].Descricao).First<AtributoViewModel>();
-                //    registro.Atributos.Add(aux);
-                //    registro.AtributoId = aux.Id;
-                //    registro.TipoPatrimonio = registro.TipoPatrimonios.Where(x => x.Id == tabelaTP.Id).First();
-                //    var tabela = _mapper.Map<AtributoXTipoPatrimonio>(registro);
-                //    _repositorio.Adicionar(tabela);
-
-                //}
+                
 
                 return RedirectToAction(nameof(Index));
             }
