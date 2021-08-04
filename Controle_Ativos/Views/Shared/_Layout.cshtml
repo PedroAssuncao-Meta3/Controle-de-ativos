@@ -10,10 +10,10 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- Material Kit CSS -->
-    <link href="~/assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+    <link href="~/assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
 
-<body id="body" class=light-edition>
+<body id="body" class="light-edition">
     <div class="wrapper ">
         <div class="sidebar" data-color="purple" data-background-color="white" data-image="./assets/img/sidebar-2.jpg">
             <!--
@@ -28,80 +28,74 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="nav-item active  ">
+                    <li class="nav-item active">
                         <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">
                             <i class="material-icons">dashboard</i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="User">
                             <i class="material-icons">person</i>
                             <p>User Profile</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Tables">
-                            <i class="material-icons">content_paste</i>
-                            <p>Table List</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a id="itemColaborador" class="dropdown-item" asp-area="" asp-controller="Colaborador" asp-action="Index">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">face</i>
                             <p>Tabela Colaborador</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="dropdown-item" asp-area="" asp-controller="Cliente" asp-action="Index">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">psychology</i>
                             <p>Tabela Cliente</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="dropdown-item" asp-area="" asp-controller="TipoMovimentacao" asp-action="Index">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">trending_up</i>
                             <p>Tipo Movimentacao</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="dropdown-item" asp-area="" asp-controller="TipoPatrimonio" asp-action="Index">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">explore</i>
                             <p>Tipo Patrimonio</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="dropdown-item" asp-area="" asp-controller="Patrimonio" asp-action="Index">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">task_alt</i>
                             <p>Patrimonio</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="dropdown-item" asp-area="" asp-controller="MovimentacaoPatrimonio" asp-action="Index">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">flutter_dash</i>
                             <p>Movimentação Patrimonio</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="dropdown-item" asp-area="" asp-controller="AtributoXTipoPatrimonio" asp-action="Index">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">book</i>
                             <p>Atributo X TipoPatrimonio</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="dropdown-item" asp-area="" asp-controller="AtributoXPatrimonio" asp-action="Index">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">sync_alt</i>
                             <p>Atributo X Patrimonio</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
+                    <li class="nav-item">
                         <a class="dropdown-item" asp-area="" asp-controller="Atributo" asp-action="Index">
-                            <i class="material-icons">content_paste</i>
+                            <i class="material-icons">contact_page</i>
                             <p>Atributo</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Notifications">
+                    <li class="nav-item">
+                        <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="User">
                             <i class="material-icons">logout</i>
                             <p>Logout</p>
                         </a>
@@ -136,7 +130,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <button type="button" name="dark_light" onclick="toggleDarkLight()" title="Toggle dark/light mode">🌛</button>
+                                <button type="button" name="dark_light" class="btn btn-outline-primary" onclick="toggleDarkLight()" title="Toggle dark/light mode">🌛</button>
                             </li>
                             <!-- your navbar here -->
                         </ul>
@@ -337,4 +331,5 @@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
-<script src="~/js/darkmode.js"></script>
+<script src="~/js/ativo.js"></script>
+<script src="~/js/darkmode.js"></script>   

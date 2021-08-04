@@ -3,39 +3,66 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">
-                    <i class="material-icons">edit</i>
-                </a>
-                <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">
-                    <i class="material-icons">plagiarism</i>
-                </a>
-                <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">
-                    <i class="material-icons">delete</i>
-                </a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<head>
+    <title>
+        Template
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!-- CSS Files -->
+    <link href="~/assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Tabela Template</h4>
+                        <p>
+                            <a type="button" class="btn btn-primary" asp-action="Create">Novo Registro</a>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Descricao)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Descricao)
+                                            </td>
+                                            <td>
+                                                <a class="button" asp-action="Edit" asp-route-id="@item.Id">
+                                                    <i class="material-icons">edit</i>
+                                                </a>
+                                                <a class="button" asp-action="Details" asp-route-id="@item.Id">
+                                                    <i class="material-icons">plagiarism</i>
+                                                </a>
+                                                <a class="button" asp-action="Delete" asp-route-id="@item.Id">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
+</body>
