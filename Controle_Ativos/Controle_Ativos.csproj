@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -7,6 +7,8 @@
   <ItemGroup>
     <Content Remove="Views\Home\Model.cshtml" />
     <Content Remove="Views\Home\Template.cshtml" />
+    <Content Remove="Views\Home\Teste.cshtml" />
+    <Content Remove="Views\Shared\_Layout - Cópia.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,12 +34,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Home\Icons.cshtml" />
-    <None Include="Views\Home\Notifications.cshtml" />
-    <None Include="Views\Home\Tables.cshtml" />
-    <None Include="Views\Home\Template.cshtml" />
-    <None Include="Views\Home\Model.cshtml" />
-    <None Include="Views\Home\User.cshtml" />
+    <None Include="Views\Apagar\Icons.cshtml" />
+    <None Include="Views\Apagar\Notifications.cshtml" />
+    <None Include="Views\Apagar\Tables.cshtml" />
+    <None Include="Views\Apagar\Teste.cshtml" />
+    <None Include="Views\Apagar\Template.cshtml" />
+    <None Include="Views\Apagar\Model.cshtml" />
+    <None Include="Views\Apagar\User.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

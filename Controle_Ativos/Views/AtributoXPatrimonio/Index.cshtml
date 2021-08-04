@@ -4,50 +4,98 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Conteudo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Atributo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patrimonio)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Conteudo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Atributo.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Patrimonio.Descricao)
-            </td>
-            <td>
-                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">
-                    <i class="material-icons">edit</i>
-                </a>
-                <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">
-                    <i class="material-icons">plagiarism</i>
-                </a>
-                <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">
-                    <i class="material-icons">delete</i>
-                </a>
-            </td>
-        </tr>
+@section Scripts{
+    @*<script src="~/js/Datagrid/datatables.bundle.js"></script>*@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
 }
-    </tbody>
-</table>
+<head>
+    <title>
+        AtributoXPatrimonio
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!-- CSS Files -->
+    <link href="~/assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Tabela AtributoXPatrimonio</h4>
+                        <p>
+                            <a type="button" class="btn btn-primary" asp-action="Create">Novo Registro</a>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Conteudo)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Atributo)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Patrimonio)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Conteudo)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Atributo.Descricao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Patrimonio.Descricao)
+                                            </td>
+                                            <td>
+                                                <a class="button" asp-action="Edit" asp-route-id="@item.Id">
+                                                    <i class="material-icons">edit</i>
+                                                </a>
+                                                <a class="button" asp-action="Details" asp-route-id="@item.Id">
+                                                    <i class="material-icons">plagiarism</i>
+                                                </a>
+                                                <a class="button" asp-action="Delete" asp-route-id="@item.Id">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
+    <script type="text/javascript">
+        $("document").ready(function () {
+            $("#tblIndex").DataTable({
+                responsive: true,
+                searching: true,
+                ordering: true,
+                "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
+                "language": {
+                    url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
+                }
+            });
+        });
+    </script>
+</body>
