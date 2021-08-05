@@ -5,19 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Colaborador\Component.razor" />
-    <Content Remove="Views\Colaborador\Details.cshtml" />
-    <Content Remove="Views\Colaborador\_Layout.cshtml" />
-    <Content Remove="Views\Colaborador\_ViewImports.cshtml" />
     <Content Remove="Views\Home\Model.cshtml" />
     <Content Remove="Views\Home\Template.cshtml" />
     <Content Remove="Views\Home\Teste.cshtml" />
+    <Content Remove="Views\Shared\_Layout - Cópia.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
-    <PackageReference Include="DotLiquid" Version="2.2.508" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.15">
       <PrivateAssets>all</PrivateAssets>
@@ -37,13 +34,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Home\Icons.cshtml" />
-    <None Include="Views\Home\Notifications.cshtml" />
-    <None Include="Views\Home\Tables.cshtml" />
-    <None Include="Views\Home\Teste.cshtml" />
-    <None Include="Views\Home\Template.cshtml" />
-    <None Include="Views\Home\Model.cshtml" />
-    <None Include="Views\Home\User.cshtml" />
+    <None Include="Views\Apagar\Icons.cshtml" />
+    <None Include="Views\Apagar\Notifications.cshtml" />
+    <None Include="Views\Apagar\Tables.cshtml" />
+    <None Include="Views\Apagar\Teste.cshtml" />
+    <None Include="Views\Apagar\Template.cshtml" />
+    <None Include="Views\Apagar\Model.cshtml" />
+    <None Include="Views\Apagar\User.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Controle_Ativos.Controllers
 {
@@ -14,10 +15,14 @@ namespace Controle_Ativos.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IAtributoXTipoPatrimonioRepositorio _repositorio;
+        private readonly IAtributoRepositorio _repositorioAtributo;
+        private readonly ITipoPatrimonioRepositorio _repositorioTipoPatrimonio;
 
-        public AtributoXTipoPatrimonioController(IMapper mapper, IAtributoXTipoPatrimonioRepositorio repositorio)
+        public AtributoXTipoPatrimonioController(IMapper mapper, IAtributoXTipoPatrimonioRepositorio repositorio, IAtributoRepositorio repositorioAtr, ITipoPatrimonioRepositorio repositorioTP)
         {
             _repositorio = repositorio;
+            _repositorioAtributo = repositorioAtr;
+            _repositorioTipoPatrimonio = repositorioTP;
             _mapper = mapper;
         }
 
@@ -50,8 +55,10 @@ namespace Controle_Ativos.Controllers
         public IActionResult Create()
         {
             var registro = new AtributoXTipoPatrimonioViewModel();
-            registro.TipoPatrimonios = _mapper.Map<List<TipoPatrimonioViewModel>>(_repositorio.RecuperaListaTipoPatrimonio());
-            registro.Atributos = _mapper.Map<List<AtributoViewModel>>(_repositorio.RecuperaListaAtributo());
+            registro.TipoPatrimonio = new TipoPatrimonioViewModel();
+            registro.Atributos.Add(new AtributoViewModel());
+
+
             return View(registro);
 
         }
@@ -67,8 +74,37 @@ namespace Controle_Ativos.Controllers
         {
             if (ModelState.IsValid)
             {
-                var tabela = _mapper.Map<AtributoXTipoPatrimonio>(registro);
-                _repositorio.Adicionar(tabela);
+
+                //Inserindo tipo de patrimonio
+                var tabelaTP = _mapper.Map<TipoPatrimonio>(registro.TipoPatrimonio);
+                tabelaTP.Id = Guid.NewGuid();//Gerando ID patrimonio         
+                _repositorioTipoPatrimonio.Adicionar(tabelaTP);
+
+                //Recupera a lista de atributos
+                var listaAtrib = _mapper.Map<List<Atributo>>(registro.Atributos);
+                
+                //Atribui o ID e patrimonio para cada atributo
+                listaAtrib.ForEach(atrib =>
+                {
+                    atrib.Id = Guid.NewGuid();
+                    atrib.AtributoXTipoPatrimonios = new List<AtributoXTipoPatrimonio>() { new AtributoXTipoPatrimonio() { TipoPatrimonioId = tabelaTP.Id } };
+                });
+
+                //foreach (var item in listaAtrib)
+                //{
+                //    var listaAtrxPat = new List<AtributoXTipoPatrimonio>();
+                //    var atrXPat = new AtributoXTipoPatrimonio();
+                //    atrXPat.TipoPatrimonioId = tabelaTP.Id;
+                //    listaAtrxPat.Add(atrXPat);
+                //    item.Id = Guid.NewGuid();
+                //    item.AtributoXTipoPatrimonios = listaAtrxPat;
+                //}
+                
+                //Persiste a lista de atributos
+                _repositorioAtributo.AdicionarLista(listaAtrib);
+
+                
+
                 return RedirectToAction(nameof(Index));
             }
             return View(registro);
@@ -83,7 +119,7 @@ namespace Controle_Ativos.Controllers
             }
 
             var tabela = _repositorio.ObterPorId(id);
-           
+
             if (tabela == null)
             {
                 return NotFound();
