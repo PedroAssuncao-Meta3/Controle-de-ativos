@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Colaborador\Component.razor" />
+    <Content Remove="Views\Colaborador\Details.cshtml" />
+    <Content Remove="Views\Colaborador\_Layout.cshtml" />
+    <Content Remove="Views\Colaborador\_ViewImports.cshtml" />
     <Content Remove="Views\Home\Model.cshtml" />
     <Content Remove="Views\Home\Template.cshtml" />
     <Content Remove="Views\Home\Teste.cshtml" />
@@ -13,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="DotLiquid" Version="2.2.508" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.15">
       <PrivateAssets>all</PrivateAssets>
