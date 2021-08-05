@@ -90,15 +90,15 @@ namespace Controle_Ativos.Controllers
                     atrib.AtributoXTipoPatrimonios = new List<AtributoXTipoPatrimonio>() { new AtributoXTipoPatrimonio() { TipoPatrimonioId = tabelaTP.Id } };
                 });
 
-                foreach (var item in listaAtrib)
-                {
-                    var listaAtrxPat = new List<AtributoXTipoPatrimonio>();
-                    var atrXPat = new AtributoXTipoPatrimonio();
-                    atrXPat.TipoPatrimonioId = tabelaTP.Id;
-                    listaAtrxPat.Add(atrXPat);
-                    item.Id = Guid.NewGuid();
-                    item.AtributoXTipoPatrimonios = listaAtrxPat;
-                }
+                //foreach (var item in listaAtrib)
+                //{
+                //    var listaAtrxPat = new List<AtributoXTipoPatrimonio>();
+                //    var atrXPat = new AtributoXTipoPatrimonio();
+                //    atrXPat.TipoPatrimonioId = tabelaTP.Id;
+                //    listaAtrxPat.Add(atrXPat);
+                //    item.Id = Guid.NewGuid();
+                //    item.AtributoXTipoPatrimonios = listaAtrxPat;
+                //}
                 
                 //Persiste a lista de atributos
                 _repositorioAtributo.AdicionarLista(listaAtrib);
