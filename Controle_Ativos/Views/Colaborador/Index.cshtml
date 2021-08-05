@@ -4,8 +4,12 @@
     ViewData["Title"] = "Lista de Colaboradores";
 }
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
 @section Scripts{
-    <script src="~/js/Datagrid/datatables.bundle.js"></script>
+    @*<script src="~/js/Datagrid/datatables.bundle.js"></script>*@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+   
 }
 
 <head>
@@ -24,7 +28,7 @@
                     <div class="card-header card-header-primary">
                         <h3 class="card-title ">Tabela Colaboradores</h3>
                         <p>
-                            <a type="button" class="btn btn-primary" asp-action="Create">Novo Registro</a> 
+                            <a type="button" class="btn btn-primary" asp-action="Create">Novo Registro</a>
                         </p>
                     </div>
                     <div class="card-body">
@@ -35,26 +39,27 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.Nome)
                                         </th>
-                                        <th>
+                                        @*<th>
                                             @Html.DisplayNameFor(model => model.CPF)
-                                        </th>
+                                        </th>*@
                                         <th>
                                             @Html.DisplayNameFor(model => model.Cargo)
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Email)
                                         </th>
-                                        <th>
+                                        @*<th>
                                             @Html.DisplayNameFor(model => model.DataNascimento)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Telefone)
-                                        </th>
+                                        </th>*@
+                                        @*
                                         <th>
                                             @Html.DisplayNameFor(model => model.Celular)
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Endereço)
+                                        </th>*@
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Telefone)
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Cliente)
@@ -69,26 +74,26 @@
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Nome)
                                             </td>
-                                            <td>
+                                            @*<td>
                                                 @Html.DisplayFor(modelItem => item.CPF)
-                                            </td>
+                                            </td>*@
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Cargo)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Email)
                                             </td>
-                                            <td>
+                                            @*<td>
                                                 @Html.DisplayFor(modelItem => item.DataNascimento)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Telefone)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Celular)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Endereço)
+                                            </td>*@
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Telefone)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Cliente.Nome)
@@ -124,10 +129,10 @@
             $("#tblIndex").DataTable({
                 responsive: true,
                 searching: true,
-                ordering: false,
+                ordering: true,
                 "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
                 "language": {
-                    
+                    url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
                 }
             });
         });

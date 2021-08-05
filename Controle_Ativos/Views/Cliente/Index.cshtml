@@ -3,23 +3,12 @@
 @{
     ViewData["Title"] = "Lista de Clientes";
 }
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 
 @section Scripts{
-    <script src="~/js/Datagrid/datatables.bundle.js"></script>
+    @*<script src="~/js/Datagrid/datatables.bundle.js"></script>*@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
-    <script type="text/javascript">
-        $("document").ready(function () {
-            $("#tblIndex").DataTable({
-                responsive: true,
-                searching: true,
-                ordering: false,
-                "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
-                "language": {
-                    url: "../../lib/datatables/locale/pt-br.js"
-                }
-            });
-        });
-    </script>
 }
 <head>
     <title>
@@ -37,7 +26,7 @@
                     <div class="card-header card-header-primary">
                         <h3 class="card-title ">Lista Clientes</h3>
                         <p>
-                            <a asp-action="Create">Create New</a>
+                            <a type="button" class="btn btn-primary" asp-action="Create">Novo Registro</a>
                         </p>
                     </div>
                     <div class="card-body">
@@ -82,5 +71,18 @@
     <script src="~/assets/js/core/jquery.min.js"></script>
     <script src="~/assets/js/core/popper.min.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="~/assets/js/material-dashboard.js?v=2.1.0"></script>  
+    <script src="~/assets/js/material-dashboard.js?v=2.1.0"></script>
+    <script type="text/javascript">
+        $("document").ready(function () {
+            $("#tblIndex").DataTable({
+                responsive: true,
+                searching: true,
+                ordering: true,
+                "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
+                "language": {
+                    url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
+                }
+            });
+        });
+    </script>
 </body>
