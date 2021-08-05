@@ -1,6 +1,7 @@
 ﻿using Controle_Ativos.BLL.Interfaces;
 using Controle_Ativos.BLL.Models;
 using Controle_Ativos.Data.Contexto;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,11 @@ namespace Controle_Ativos.Data.Repositorio
         {
             return Db.Atributos.ToList();
         }
-        
+
+        public override List<AtributoXTipoPatrimonio> ObterTodos()
+        {
+            return Db.AtributosXTiposPatrimonio.Include(X => X.Atributo).Include(x => x.TipoPatrimonio).ToList();
+        }
+
     }
 }
