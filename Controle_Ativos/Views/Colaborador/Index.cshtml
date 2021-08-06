@@ -6,21 +6,6 @@
 
 <link href="~/css/jquery.dataTables.css" rel="stylesheet" />
 
-@section Scripts{
-    @*<script src="~/js/Datagrid/datatables.bundle.js"></script>*@
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-    <script>
-        $(function () {
-            $(".details").click(function () {
-                var id = $(this).attr("data-id");
-                $("#modal").load("Details?id=" + id, function () {
-                    $("#modal").modal();
-                })
-            });
-        })
-    </script>
-}
-
 <head>
     <title>
         Lista Colaboradores
@@ -119,29 +104,46 @@
             </div>
         </div>
     </div>
+    <div id="modal" class="modal fade" role="dialog" />
+    @section Scripts{
+        @*<script src="~/js/Datagrid/datatables.bundle.js"></script>*@
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <script>
+            $(function () {
+                $(".details").click(function () {
+                    var id = $(this).attr("data-id");
+                    alert(id);
+                    $("#modal").load("Details?id=" + id, function () {
+                        $("#modal").modal();
+                    })
+                });
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Criar Registro</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal" id="modal">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                $(".edit").click(function () {
+                    var id = $(this).attr("data-id");
+                    alert(id);
+                    $("#modal").load("Edit?id=" + id, function () {
+                        $("#modal").modal();
+                    })
+                });
 
+                $(".delete").click(function () {
+                    var id = $(this).attr("data-id");
+                    alert(id);
+                    $("#modal").load("Delete?id=" + id, function () {
+                        $("#modal").modal();
+                    })
+                });
+
+                $(".create").click(function () {
+                    $("#modal").load("Create", function () {
+                        $("#modal").modal();
+                    })
+                });
+
+            })
+}
+        </script>
+    }
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../assets/js/core/popper.min.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
