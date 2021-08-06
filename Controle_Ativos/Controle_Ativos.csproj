@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Colaborador\.cshtml" />
     <Content Remove="Views\Home\Model.cshtml" />
     <Content Remove="Views\Home\Template.cshtml" />
     <Content Remove="Views\Home\Teste.cshtml" />

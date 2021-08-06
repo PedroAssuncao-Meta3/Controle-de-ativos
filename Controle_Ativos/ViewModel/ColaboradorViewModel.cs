@@ -42,6 +42,8 @@ namespace Controle_Ativos.ViewModel
 
         public List<ClienteViewModel> Clientes { get; set; } = new List<ClienteViewModel>();
 
+       
+
         
     }
 }
