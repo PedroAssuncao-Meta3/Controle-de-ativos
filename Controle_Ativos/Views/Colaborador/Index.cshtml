@@ -124,6 +124,7 @@
     <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
     <script type="text/javascript">
         $("document").ready(function () {
+            $(".loadingWrapper").hide();
             $("#tblIndex").DataTable({
                 responsive: true,
                 searching: true,
@@ -133,6 +134,7 @@
                     url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
                 }
             });
+
         });
 
     </script>
