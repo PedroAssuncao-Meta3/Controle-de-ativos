@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controle_Ativos", "Controle_Ativos\Controle_Ativos.csproj", "{C86F6E9A-531F-4D18-AC31-0CFBD2A38353}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controle_Ativos.BLL", "Controle_Ativos.BLL\Controle_Ativos.BLL.csproj", "{FBA45AB4-8D45-4761-AEF0-DD088A6DAAEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controle_Ativos.BLL", "Controle_Ativos.BLL\Controle_Ativos.BLL.csproj", "{FBA45AB4-8D45-4761-AEF0-DD088A6DAAEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controle_Ativos.Data", "Controle_Ativos.Data\Controle_Ativos.Data.csproj", "{22372858-3EEF-4861-85F6-E6C921CCC74D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controle_Ativos.Data", "Controle_Ativos.Data\Controle_Ativos.Data.csproj", "{22372858-3EEF-4861-85F6-E6C921CCC74D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

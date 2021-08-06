@@ -38,9 +38,8 @@
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
-                </label>
+                <label asp-for="Ativo" class="control-label"></label>
+                    <input class="form-check-input" asp-for="Ativo" />@Html.CheckBoxFor(x => x.Ativo, new { @checked = "checked" })
             </div>
             <div class="form-group">
                 <label asp-for="TipoPatrimonioId" class="control-label"></label>
