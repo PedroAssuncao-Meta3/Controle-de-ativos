@@ -81,12 +81,13 @@
                         <button type="button" class="close" data-dismiss="modal">
                             <span>x</span>
                         </button>
-                    </div>
-
+                    </div>               
                     <div class="modal-body">
+                        <h4>Cliente:</h4>
                         @for (int j = 0; j < Model.Count(); j++)
                         {
                             <span>@Model.ElementAt(j).Nome</span>
+                            <br />
                         }
                     </div>
 
