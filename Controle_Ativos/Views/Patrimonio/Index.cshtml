@@ -3,6 +3,15 @@
 @{
     ViewData["Title"] = "Index";
 }
+
+<link href="~/css/jquery.dataTables.css" rel="stylesheet" />
+
+@section Scripts{
+    @*<script src="~/js/Datagrid/datatables.bundle.js"></script>*@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+}
+
 <head>
     <title>
         Patrimonio
@@ -24,7 +33,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="tblIndex">
                                 <thead>
                                     <tr>
                                         <th>
