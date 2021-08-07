@@ -165,7 +165,7 @@
                             </div>
                             <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
                             <div class="form-group">
-                                <input type="submit" value="Save" class="btn btn-primary" />
+                                <input type="submit" value="Salvar" class="btn btn-primary" />
                             </div>
                         </form>
 
@@ -185,7 +185,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Delete</h5>
+                        <h5 class="modal-title">Tem certeza que quer deletar isto?</h5>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>x</span>
                         </button>
@@ -195,7 +195,7 @@
 
                         <form asp-action="Delete">
                             <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
-                            <input type="submit" value="Delete" class="btn btn-danger" />
+                            <input type="submit" value="Deletar" class="btn btn-danger" />
                         </form>
 
                     </div>
