@@ -9,5 +9,7 @@ namespace Controle_Ativos.BLL.Interfaces
     {
         List<TipoPatrimonio> RecuperaListaTipoPatrimonio();
         List<Atributo> RecuperaListaAtributo();
+
+        List<AtributoXTipoPatrimonio> RecupeaListaAtributoDoTipoPatrimonio(Guid Id);
     }
 }

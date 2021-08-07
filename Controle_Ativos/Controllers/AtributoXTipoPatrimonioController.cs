@@ -82,23 +82,13 @@ namespace Controle_Ativos.Controllers
 
                 //Recupera a lista de atributos
                 var listaAtrib = _mapper.Map<List<Atributo>>(registro.Atributos);
-                
+
                 //Atribui o ID e patrimonio para cada atributo
                 listaAtrib.ForEach(atrib =>
                 {
                     atrib.Id = Guid.NewGuid();
                     atrib.AtributoXTipoPatrimonios = new List<AtributoXTipoPatrimonio>() { new AtributoXTipoPatrimonio() { TipoPatrimonioId = tabelaTP.Id } };
                 });
-
-                //foreach (var item in listaAtrib)
-                //{
-                //    var listaAtrxPat = new List<AtributoXTipoPatrimonio>();
-                //    var atrXPat = new AtributoXTipoPatrimonio();
-                //    atrXPat.TipoPatrimonioId = tabelaTP.Id;
-                //    listaAtrxPat.Add(atrXPat);
-                //    item.Id = Guid.NewGuid();
-                //    item.AtributoXTipoPatrimonios = listaAtrxPat;
-                //}
                 
                 //Persiste a lista de atributos
                 _repositorioAtributo.AdicionarLista(listaAtrib);

@@ -26,6 +26,11 @@ namespace Controle_Ativos.Data.Repositorio
         {
             return Db.Patrimonios.Include(x => x.TipoPatrimonio).ToList();
         }
+
+        public override Patrimonio ObterPorId(Guid id)
+        {
+            return Db.Patrimonios.Where(x => x.Id == id).Include(x => x.TipoPatrimonio).FirstOrDefault();
+        }
     }
 }
 
