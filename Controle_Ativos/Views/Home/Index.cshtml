@@ -3,7 +3,7 @@
 }
 <head>
     <title>
-        Template
+        Home
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!-- CSS Files -->
@@ -84,7 +84,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Relatórios de Ativos</h4>
                         <p class="card-category">
-                            <button type="button" class="btn btn-outline-primary" value='Call Procedure' id='BtnId'>Gerar Relatório</button>
+                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioTipoPatXAtributo" asp-action="Index">Gerar Relatório</a>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -100,7 +100,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Relatório de Inventario</h4>
                         <p class="card-category">
-                            <button type="button" class="btn btn-outline-primary">Gerar Relatório</button>
+                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioTipoPatXAtributo" asp-action="Index">Gerar Relatório</a>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -114,9 +114,9 @@
                     <div class="card-header card-header-primary">
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">Relatório de Ativos Emprestados</h4>
+                        <h4 class="card-title">Relatório Emprestimos</h4>
                         <p class="card-category">
-                            <button type="button" class="btn btn-outline-primary">Gerar Relatório</button>
+                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioTipoPatXAtributo" asp-action="Index">Gerar Relatório</a>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -134,7 +134,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Relatórios de Ativos na Sede</h4>
                         <p class="card-category">
-                            <button type="button" class="btn btn-outline-primary">Gerar Relatório</button>
+                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioTipoPatXAtributo" asp-action="Index">Gerar Relatório</a>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -150,7 +150,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Relatório de Ativos Inutilizados</h4>
                         <p class="card-category">
-                            <button type="button" class="btn btn-outline-primary">Gerar Relatório</button>
+                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioPatDesativados" asp-action="Index">Gerar Relatório</a>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -166,7 +166,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Relatório de Ativos Disponiveis</h4>
                         <p class="card-category">
-                            <button type="button" class="btn btn-outline-primary">Gerar Relatório</button>
+                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioPatAtivos" asp-action="Index">Gerar Relatório</a>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -182,3 +182,11 @@
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
 </body>
+@section Scripts{
+    <script type="text/javascript">
+
+        $("document").ready(function () {
+            $(".loadingWrapper").hide();
+        });
+    </script>
+}

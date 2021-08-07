@@ -2,9 +2,9 @@
     ViewData["Title"] = "Relatorio Patrimonio Desativados";
 }
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<link href="~/css/jquery.dataTables.css" rel="stylesheet" />
 
-<div class="fs-lg fw-300 p-5 bg-white border-faded rounded mb-g">
+<div class="fs-lg fw-300 p-5 border-faded rounded mb-g">
     <h1 class="display-4" style="text-align:center; font-weight:bold">Relatório Ativos</h1>
 
     <div class="row">
@@ -39,6 +39,7 @@
 
     <div>
         <script type="text/javascript">
+            $(".loadingWrapper").hide();
         $("#itemMenuRelatorios").addClass("active open");
         $("#vwDataBaseReport").addClass("active open");
 

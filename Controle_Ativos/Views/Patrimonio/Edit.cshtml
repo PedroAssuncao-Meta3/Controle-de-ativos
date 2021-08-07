@@ -44,8 +44,10 @@
             </div>
             //Não deveria ser possível editar o tipo do patrimonio
             <div class="form-group">
-                <label asp-for="TipoPatrimonio.Descricao" class="control-label"></label>
-                <select asp-for="TipoPatrimonio.Descricao" class="form-control" asp-items="ViewBag.TipoPatrimonio.Descricao"></select>
+                <label asp-for="TipoPatrimonioId" class="control-label"></label>
+                <select asp-for="TipoPatrimonioId" class="form-control" asp-items="@(new SelectList(Model.TipoPatrimonios, "Id", "Descricao"))">
+                    <option></option>
+                </select>
             </div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">

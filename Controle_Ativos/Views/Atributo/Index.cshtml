@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+<link href="~/css/jquery.dataTables.css" rel="stylesheet" />
 
 @section Scripts{
     @*<script src="~/js/Datagrid/datatables.bundle.js"></script>*@
@@ -32,7 +32,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="tblIndex">
                                 <thead>
                                     <tr>
                                         <th>
@@ -42,20 +42,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @for (int i = 0; i < Model.Count(); i++)
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Descricao)
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).Descricao)
                                             </td>
                                             <td>
-                                                <a class="button" asp-action="Edit" asp-route-id="@item.Id">
+                                                <a class="button" data-toggle="modal" data-target="#modal-edit-container--@i" asp-action="Edit" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <a class="button" asp-action="Details" asp-route-id="@item.Id">
+                                                <a class="button" data-toggle="modal" data-target="#modal-details-container--@i" asp-action="Details" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">plagiarism</i>
                                                 </a>
-                                                <a class="button" asp-action="Delete" asp-route-id="@item.Id">
+                                                <a class="button" data-toggle="modal" data-target="#modal-delete-container--@i" asp-action="Delete" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">delete</i>
                                                 </a>
                                             </td>
@@ -69,12 +69,107 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Details-->
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <div class="modal" id="modal-details-container--@i" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Detalhes</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>x</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <span>@Model.ElementAt(i).Descricao</span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal edit-->
+
+        <div class="modal" id="modal-edit-container--@i" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>x</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).Descricao" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).Descricao" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).Descricao" class="text-danger"></span>
+                            </div>
+                            <input type="hidden" asp-for="@Model.ElementAt(i).Descricao" />
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal delete-->
+
+        <div class="modal" id="modal-delete-container--@i" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>x</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="@Model.ElementAt(i).Descricao" />
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </form>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../assets/js/core/popper.min.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
     <script type="text/javascript">
         $("document").ready(function () {
+            $(".loadingWrapper").hide();
             $("#tblIndex").DataTable({
                 responsive: true,
                 searching: true,

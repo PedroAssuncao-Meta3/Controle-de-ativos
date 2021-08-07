@@ -38,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\img\loading\" />
     <Folder Include="wwwroot\js\datagrid\dataTables\" />
   </ItemGroup>
 
