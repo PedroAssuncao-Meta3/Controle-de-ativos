@@ -14,10 +14,14 @@ namespace Controle_Ativos.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IPatrimonioRepositorio _repositorio;
+        private readonly IAtributoXPatrimonioRepositorio _repositorioAtrXPat;
+        private readonly IAtributoXTipoPatrimonioRepositorio _repositorioAtrXTP;
 
-        public PatrimonioController(IMapper mapper, IPatrimonioRepositorio repositorio)
+        public PatrimonioController(IMapper mapper, IPatrimonioRepositorio repositorio, IAtributoXPatrimonioRepositorio repositorioAtrXPat, IAtributoXTipoPatrimonioRepositorio repositorioAtrXTP)
         {
             _repositorio = repositorio;
+            _repositorioAtrXPat = repositorioAtrXPat;
+            _repositorioAtrXTP = repositorioAtrXTP;
             _mapper = mapper;
         }
 
@@ -65,6 +69,16 @@ namespace Controle_Ativos.Controllers
             {
                 var tabela = _mapper.Map<Patrimonio>(registro);
                 _repositorio.Adicionar(tabela);
+
+                var atributos = _repositorioAtrXTP.RecupeaListaAtributoDoTipoPatrimonio(tabela.TipoPatrimonioId);
+
+                var listaAtributosxPat = new List<AtributoXPatrimonioViewModel>();
+                atributos.ForEach(x => listaAtributosxPat.Add(new AtributoXPatrimonioViewModel() { AtributoId = x.AtributoId}));
+                listaAtributosxPat.ForEach(x => x.PatrimonioId = tabela.Id);
+                listaAtributosxPat.ForEach(x => x.Conteudo = "Insira um conteúdo");
+
+                _repositorioAtrXPat.AdicionarLista(_mapper.Map<List<AtributoXPatrimonio>>(listaAtributosxPat));
+
                 return RedirectToAction(nameof(Index));
             }
             return View(registro);
@@ -84,6 +98,7 @@ namespace Controle_Ativos.Controllers
             {
                 return NotFound();
             }
+            
 
             return View(_mapper.Map<PatrimonioViewModel>(tabela));
         }
@@ -95,6 +110,7 @@ namespace Controle_Ativos.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, PatrimonioViewModel registro)
         {
+            
             if (id != registro.Id)
             {
                 return NotFound();
@@ -103,6 +119,7 @@ namespace Controle_Ativos.Controllers
             if (ModelState.IsValid)
             {
                 var tabela = _mapper.Map<Patrimonio>(registro);
+                
                 try
                 {
                     _repositorio.Atualizar(tabela);

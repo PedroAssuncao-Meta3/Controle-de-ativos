@@ -37,8 +37,5 @@ namespace Controle_Ativos.ViewModel
         public TipoPatrimonioViewModel TipoPatrimonio { get; set; }
 
         public List<TipoPatrimonioViewModel> TipoPatrimonios { get; set; } = new List<TipoPatrimonioViewModel>();
-
-
-
     }
 }

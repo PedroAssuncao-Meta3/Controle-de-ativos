@@ -74,6 +74,7 @@ namespace Controle_Ativos.Controllers
         // GET: Colaborador/Edit/5
         public async Task<IActionResult> Edit(Guid id)
         {
+            
             if (id == null)
             {
                 return NotFound();
@@ -85,8 +86,9 @@ namespace Controle_Ativos.Controllers
             {
                 return NotFound();
             }
-
-            return View(_mapper.Map<ColaboradorViewModel>(tabela));
+            var registro = _mapper.Map<ColaboradorViewModel>(tabela);
+            registro.Clientes = _mapper.Map<List<ClienteViewModel>>(_repositorio.RecuperaListaCliente());
+            return View(registro);
         }
 
         // POST: Colaborador/Edit/5

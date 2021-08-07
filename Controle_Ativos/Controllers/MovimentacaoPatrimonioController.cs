@@ -88,8 +88,11 @@ namespace Controle_Ativos.Controllers
             {
                 return NotFound();
             }
-
-            return View(_mapper.Map<MovimentacaoPatrimonioViewModel>(tabela));
+            var registro = _mapper.Map<MovimentacaoPatrimonioViewModel>(tabela);
+            registro.Colaboradores = _mapper.Map<List<ColaboradorViewModel>>(_repositorio.RecuperaListaColaborador());
+            registro.Patrimonios = _mapper.Map<List<PatrimonioViewModel>>(_repositorio.RecuperaListaPatrimonio());
+            registro.TipoMovimentacoes = _mapper.Map<List<TipoMovimentoViewModel>>(_repositorio.RecuperaListaTipoMovimentacao());
+            return View(registro);
         }
 
         // POST: MovimentacaoPatrimonio/Edit/5

@@ -18,6 +18,11 @@ namespace Controle_Ativos.Data.Repositorio
             return Db.TiposPatrimonio.ToList();
         }
 
+        public List<AtributoXTipoPatrimonio> RecupeaListaAtributoDoTipoPatrimonio(Guid Id) {
+
+            return Db.AtributosXTiposPatrimonio.Where(X => X.TipoPatrimonioId == Id).ToList();
+        }
+
         public List<Atributo> RecuperaListaAtributo()
         {
             return Db.Atributos.ToList();
