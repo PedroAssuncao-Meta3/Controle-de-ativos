@@ -89,9 +89,6 @@
                                                 <a class="button" data-toggle="modal" data-target="#modal-edit-container--@i" asp-action="Edit" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <a class="button" data-toggle="modal" data-target="#modal-details-container--@i" asp-action="Details" asp-route-id="@Model.ElementAt(i).Id">
-                                                    <i class="material-icons">plagiarism</i>
-                                                </a>
                                                 <a class="button" data-toggle="modal" data-target="#modal-delete-container--@i" asp-action="Delete" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">delete</i>
                                                 </a>
@@ -178,7 +175,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Delete</h5>
+                        <h5 class="modal-title">Tem certeza que quer deletar isto?</h5>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>x</span>
                         </button>
@@ -188,7 +185,7 @@
 
                         <form asp-action="Delete">
                             <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
-                            <input type="submit" value="Delete" class="btn btn-danger" />
+                            <input type="submit" value="Deletar" class="btn btn-danger" />
                         </form>
 
                     </div>
