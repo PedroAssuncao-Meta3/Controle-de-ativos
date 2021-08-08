@@ -27,5 +27,10 @@ namespace Controle_Ativos.Data.Repositorio
         {
             return Db.AtributosXPatrimonios.Include(x => x.Patrimonio).Include(x => x.Atributo).ToList();
         }
+
+        public override AtributoXPatrimonio ObterPorId(Guid id)
+        {
+            return Db.AtributosXPatrimonios.Include(x => x.Patrimonio).Include(x => x.Atributo).FirstOrDefault();
+        }
     }
 }

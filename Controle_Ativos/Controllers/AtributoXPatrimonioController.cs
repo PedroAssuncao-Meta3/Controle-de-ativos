@@ -105,6 +105,10 @@ namespace Controle_Ativos.Controllers
 
             if (ModelState.IsValid)
             {
+                
+                var aux = _mapper.Map<AtributoXPatrimonioViewModel>(_repositorio.ObterPorId(id));
+                registro.PatrimonioId = aux.Patrimonio.Id;
+                registro.AtributoId = aux.Atributo.Id;
                 var tabela = _mapper.Map<AtributoXPatrimonio>(registro);
                 try
                 {
