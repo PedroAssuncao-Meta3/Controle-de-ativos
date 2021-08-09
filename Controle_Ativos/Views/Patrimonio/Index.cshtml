@@ -175,7 +175,7 @@
                             </div>
                             <div class="form-group form-check">
                                 <label asp-for="@Model.ElementAt(i).Ativo" class="control-label"></label>
-                                <input class="form-check-input" asp-for="@Model.ElementAt(i).Ativo" />@Html.CheckBoxFor(x => x.FirstOrDefault().Ativo ,new { @checked = "checked" })
+                                <input class="form-check-input" asp-for="@Model.ElementAt(i).Ativo" />@Html.CheckBoxFor(x => x.Where(x => x.Ativo == Model.ElementAt(i).Ativo).FirstOrDefault().Ativo, new { @checked = "checked" })
                             </div>
                             <input type="hidden" asp-for="@Model.ElementAt(i).TipoPatrimonioId" />
                             <input type="hidden" asp-for="@Model.ElementAt(i).Id" />

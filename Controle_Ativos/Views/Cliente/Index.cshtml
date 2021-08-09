@@ -81,10 +81,7 @@
                         </button>
                     </div>               
                     <div class="modal-body">
-                        @for (int j = 0; j < Model.Count(); j++)
-                        {
-                            <span>@Model.ElementAt(j).Nome</span>
-                        }
+                        <span>@Model.ElementAt(i).Nome</span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
