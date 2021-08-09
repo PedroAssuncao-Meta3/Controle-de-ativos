@@ -24,7 +24,7 @@ namespace Controle_Ativos.ViewModel
 
         public Guid PatrimonioId { get; set; }
 
-        public TipoPatrimonioViewModel Patrimonio { get; set; }
+        public PatrimonioViewModel Patrimonio { get; set; }
 
 
         public List<PatrimonioViewModel> Patrimonios { get; set; } = new List<PatrimonioViewModel>();

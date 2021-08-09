@@ -17,7 +17,7 @@ namespace Controle_Ativos.BLL.Models
 
         public double Valor { get; set; } = 0;
         
-        public bool Ativo { get; set; } = true;
+        public bool Ativo { get; set; }
 
         public Guid TipoPatrimonioId { get; set; }
 

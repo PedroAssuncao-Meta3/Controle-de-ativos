@@ -3,69 +3,221 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link href="~/css/jquery.dataTables.css" rel="stylesheet" />
 
-<h1>Index</h1>
+@section Scripts{
+    @*<script src="~/js/Datagrid/datatables.bundle.js"></script>*@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DataIncio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataFechamento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Colaborador)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Patrimonio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoMovimento)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataIncio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataFechamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Colaborador.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Patrimonio.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoMovimento.Descricao)
-            </td>
-            <td>
-                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">
-                    <i class="material-icons">edit</i>
-                </a>
-                <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">
-                    <i class="material-icons">plagiarism</i>
-                </a>
-                <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">
-                    <i class="material-icons">delete</i>
-                </a>
-            </td>
-        </tr>
 }
-    </tbody>
-</table>
+<head>
+    <title>
+        Movimentação Patrimonio
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!-- CSS Files -->
+    <link href="~/assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Tabela Empréstimos</h4>
+                        <p>
+                            <a type="button" class="btn btn-primary" asp-action="Create">Novo Registro</a>
+                        </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table" id="tblIndex">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.DataIncio)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.DataFechamento)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Observacao)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Colaborador)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Patrimonio)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.TipoMovimento)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.Count(); i++)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).DataIncio)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).DataFechamento)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).Observacao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).Colaborador.Nome)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).Patrimonio.Descricao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).TipoMovimento.Descricao)
+                                            </td>
+                                            <td>
+                                                <a class="button" data-toggle="modal" data-target="#modal-edit-container--@i" asp-action="Edit" asp-route-id="@Model.ElementAt(i).Id">
+                                                    <i class="material-icons">edit</i>
+                                                </a>
+                                                <a class="button" data-toggle="modal" data-target="#modal-delete-container--@i" asp-action="Delete" asp-route-id="@Model.ElementAt(i).Id">
+                                                    <i class="material-icons">delete</i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Details-->
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <div class="modal" id="modal-details-container--@i" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Detalhes</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>x</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <span>@Model.ElementAt(i).Id</span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal edit-->
+
+        <div class="modal" id="modal-edit-container--@i" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>x</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).DataFechamento" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).DataFechamento" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).DataFechamento" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).Observacao" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).Observacao" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).Observacao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).TipoMovimentoId" class="control-label"></label>
+                                <select asp-for="@Model.ElementAt(i).TipoMovimentoId" class="form-control" asp-items="@(new SelectList(@Model.ElementAt(i).TipoMovimentacoes, "Id", "Descricao"))">
+                                    <option></option>
+                                </select>
+                            </div>
+                            <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
+                            <input type="hidden" asp-for="@Model.ElementAt(i).ColaboradorId" />
+                            <input type="hidden" asp-for="@Model.ElementAt(i).PatrimonioId" />
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal delete-->
+
+        <div class="modal" id="modal-delete-container--@i" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>x</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </form>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
+    <script type="text/javascript">
+        $("document").ready(function () {
+            $(".loadingWrapper").hide();
+            $("#tblIndex").DataTable({
+                responsive: true,
+                searching: true,
+                ordering: true,
+                "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
+                "language": {
+                    url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
+                }
+            });
+        });
+    </script>
+</body>

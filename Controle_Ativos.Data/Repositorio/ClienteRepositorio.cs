@@ -16,6 +16,7 @@ namespace Controle_Ativos.Data.Repositorio
         { 
             return this.Buscar(tab => tab.Nome == nome).ToList();
         }
+        
 
     }
 }

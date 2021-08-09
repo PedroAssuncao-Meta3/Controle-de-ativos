@@ -4,17 +4,20 @@
     ViewData["Title"] = "Lista de Colaboradores";
 }
 
+<link href="~/css/jquery.dataTables.css" rel="stylesheet" />
+
 @section Scripts{
-    <script src="~/js/Datagrid/datatables.bundle.js"></script>
+    @*<script src="~/js/Datagrid/datatables.bundle.js"></script>*@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
 }
 <head>
     <title>
-        Colaborador
+        Lista Colaboradores
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!-- CSS Files -->
     <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class="container-fluid">
@@ -24,9 +27,9 @@
                     <div class="card-header card-header-primary">
                         <h3 class="card-title ">Tabela Colaboradores</h3>
                         <p>
-                            <a asp-action="Create">Novo Registro</a>
+                            <a type="button" class="btn btn-primary" asp-action="Create">Novo Registro</a>
                         </p>
-                    </div> 
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table" id="tblIndex">
@@ -35,26 +38,27 @@
                                         <th>
                                             @Html.DisplayNameFor(model => model.Nome)
                                         </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.CPF)
-                                        </th>
+                                        @*<th>
+                                                @Html.DisplayNameFor(model => model.CPF)
+                                            </th>*@
                                         <th>
                                             @Html.DisplayNameFor(model => model.Cargo)
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Email)
                                         </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.DataNascimento)
-                                        </th>
+                                        @*<th>
+                                                @Html.DisplayNameFor(model => model.DataNascimento)
+                                            </th>*@
+                                        @*
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Celular)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Endereço)
+                                            </th>*@
                                         <th>
                                             @Html.DisplayNameFor(model => model.Telefone)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Celular)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.Endereço)
                                         </th>
                                         <th>
                                             @Html.DisplayNameFor(model => model.Cliente)
@@ -63,44 +67,45 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+                                    @for (int i = 0; i < Model.Count(); i++)
                                     {
+
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Nome)
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).Nome)
+                                            </td>
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.CPF)
+                                                </td>*@
+                                            <td>
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).Cargo)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.CPF)
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).Email)
+                                            </td>
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.DataNascimento)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Celular)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Endereço)
+                                                </td>*@
+                                            <td>
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).Telefone)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Cargo)
+                                                @Html.DisplayFor(modelItem => @Model.ElementAt(i).Cliente.Nome)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Email)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.DataNascimento)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Telefone)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Celular)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Endereço)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Cliente.Nome)
-                                            </td>
-                                            <td>
-                                                <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">
+                                                <a class="button" data-toggle="modal" data-target="#modal-edit-container--@i" asp-action="Edit" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">
+                                                <a class="button" data-toggle="modal" data-target="#modal-details-container--@i" asp-action="Details" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">plagiarism</i>
                                                 </a>
-                                                <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">
+                                                <a class="button" data-toggle="modal" data-target="#modal-delete-container--@i" asp-action="Delete" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">delete</i>
                                                 </a>
                                             </td>
@@ -114,196 +119,150 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Details-->
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <div class="modal" id="modal-details-container--@i" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Detalhes</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>x</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        Nome:  <span>@Model.ElementAt(i).Nome</span><br />
+                        Data de Nascimento: <span>@Model.ElementAt(i).DataNascimento</span><br />
+                        Email:  <span>@Model.ElementAt(i).Email</span><br />
+                        Cargo: <span>@Model.ElementAt(i).Cargo</span><br />
+                        CPF: <span>@Model.ElementAt(i).CPF</span><br />
+                        Celular: <span>@Model.ElementAt(i).Celular</span><br />
+                        Telefone: <span>@Model.ElementAt(i).Telefone</span><br />
+                        Cliente: <span>@Model.ElementAt(i).Cliente.Nome</span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal edit-->
+
+        <div class="modal" id="modal-edit-container--@i" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>x</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).Nome" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).Nome" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).Nome" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).CPF" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).CPF" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).CPF" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).Cargo" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).Cargo" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).Cargo" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).Email" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).Email" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).Telefone" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).Telefone" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).Telefone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).ClienteId" class="control-label"></label>
+                                <select asp-for="@Model.ElementAt(i).ClienteId" class="form-control" asp-items="@(new SelectList(@Model.ElementAt(i).Clientes, "Id", "Nome"))">
+                                    <option></option>
+                                </select>
+                                <span asp-validation-for="@Model.ElementAt(i).ClienteId" class="text-danger"></span>
+                            </div>
+                            <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
+                            <div class="form-group">
+                                <input type="submit" value="Salvar" class="btn btn-primary" />
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal delete-->
+
+        <div class="modal" id="modal-delete-container--@i" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Tem certeza que quer deletar isto?</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>x</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
+                            <input type="submit" value="Deletar" class="btn btn-danger" />
+                        </form>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
     <script src="../assets/js/core/jquery.min.js"></script>
     <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
-    <script src="https://unpkg.com/default-passive-events"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-    <!-- Chartist JS -->
-    <script src="../assets/js/plugins/chartist.min.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="../assets/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="../assets/demo/demo.js"></script>
-    <script>
-        $(document).ready(function () {
-            $().ready(function () {
-                $sidebar = $('.sidebar');
-
-                $sidebar_img_container = $sidebar.find('.sidebar-background');
-
-                $full_page = $('.full-page');
-
-                $sidebar_responsive = $('body > .navbar-collapse');
-
-                window_width = $(window).width();
-
-                $('.fixed-plugin a').click(function (event) {
-                    // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-                    if ($(this).hasClass('switch-trigger')) {
-                        if (event.stopPropagation) {
-                            event.stopPropagation();
-                        } else if (window.event) {
-                            window.event.cancelBubble = true;
-                        }
-                    }
-                });
-
-                $('.fixed-plugin .active-color span').click(function () {
-                    $full_page_background = $('.full-page-background');
-
-                    $(this).siblings().removeClass('active');
-                    $(this).addClass('active');
-
-                    var new_color = $(this).data('color');
-
-                    if ($sidebar.length != 0) {
-                        $sidebar.attr('data-color', new_color);
-                    }
-
-                    if ($full_page.length != 0) {
-                        $full_page.attr('filter-color', new_color);
-                    }
-
-                    if ($sidebar_responsive.length != 0) {
-                        $sidebar_responsive.attr('data-color', new_color);
-                    }
-                });
-
-                $('.fixed-plugin .background-color .badge').click(function () {
-                    $(this).siblings().removeClass('active');
-                    $(this).addClass('active');
-
-                    var new_color = $(this).data('background-color');
-
-                    if ($sidebar.length != 0) {
-                        $sidebar.attr('data-background-color', new_color);
-                    }
-                });
-
-                $('.fixed-plugin .img-holder').click(function () {
-                    $full_page_background = $('.full-page-background');
-
-                    $(this).parent('li').siblings().removeClass('active');
-                    $(this).parent('li').addClass('active');
-
-
-                    var new_image = $(this).find("img").attr('src');
-
-                    if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-                        $sidebar_img_container.fadeOut('fast', function () {
-                            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-                            $sidebar_img_container.fadeIn('fast');
-                        });
-                    }
-
-                    if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-                        $full_page_background.fadeOut('fast', function () {
-                            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-                            $full_page_background.fadeIn('fast');
-                        });
-                    }
-
-                    if ($('.switch-sidebar-image input:checked').length == 0) {
-                        var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
-                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
-
-                        $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-                        $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-                    }
-
-                    if ($sidebar_responsive.length != 0) {
-                        $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-                    }
-                });
-
-                $('.switch-sidebar-image input').change(function () {
-                    $full_page_background = $('.full-page-background');
-
-                    $input = $(this);
-
-                    if ($input.is(':checked')) {
-                        if ($sidebar_img_container.length != 0) {
-                            $sidebar_img_container.fadeIn('fast');
-                            $sidebar.attr('data-image', '#');
-                        }
-
-                        if ($full_page_background.length != 0) {
-                            $full_page_background.fadeIn('fast');
-                            $full_page.attr('data-image', '#');
-                        }
-
-                        background_image = true;
-                    } else {
-                        if ($sidebar_img_container.length != 0) {
-                            $sidebar.removeAttr('data-image');
-                            $sidebar_img_container.fadeOut('fast');
-                        }
-
-                        if ($full_page_background.length != 0) {
-                            $full_page.removeAttr('data-image', '#');
-                            $full_page_background.fadeOut('fast');
-                        }
-
-                        background_image = false;
-                    }
-                });
-
-                $('.switch-sidebar-mini input').change(function () {
-                    $body = $('body');
-
-                    $input = $(this);
-
-                    if (md.misc.sidebar_mini_active == true) {
-                        $('body').removeClass('sidebar-mini');
-                        md.misc.sidebar_mini_active = false;
-
-                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
-
-                    } else {
-
-                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
-
-                        setTimeout(function () {
-                            $('body').addClass('sidebar-mini');
-
-                            md.misc.sidebar_mini_active = true;
-                        }, 300);
-                    }
-
-                    // we simulate the window Resize so the charts will get updated in realtime.
-                    var simulateWindowResize = setInterval(function () {
-                        window.dispatchEvent(new Event('resize'));
-                    }, 180);
-
-                    // we stop the simulation of Window Resize after the animations are completed
-                    setTimeout(function () {
-                        clearInterval(simulateWindowResize);
-                    }, 1000);
-
-                });
-            });
-        });
-    </script>
     <script type="text/javascript">
         $("document").ready(function () {
             $("#tblIndex").DataTable({
                 responsive: true,
                 searching: true,
-                ordering: false,
+                ordering: true,
                 "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
                 "language": {
-                    url: "../../lib/datatables/locale/pt-br.js"
+                    url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
                 }
             });
         });
     </script>
 </body>
+

@@ -1,4 +1,4 @@
-﻿@model Controle_Ativos.BLL.Models.Cliente
+﻿@model Controle_Ativos.ViewModel.ClienteViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -11,7 +11,8 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
+            <p> @Html.DisplayNameFor(model => model.Nome) </p>
+            
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Nome)

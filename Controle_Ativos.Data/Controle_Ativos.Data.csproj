@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20210729185459_versao04.Designer.cs" />
     <Compile Remove="Migrations\20210729190125_versao04.cs" />
     <Compile Remove="Migrations\20210729190125_versao04.Designer.cs" />
+    <Compile Remove="Migrations\20210805174935_versao05.cs" />
+    <Compile Remove="Migrations\20210805174935_versao05.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

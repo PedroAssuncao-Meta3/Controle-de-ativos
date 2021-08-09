@@ -1,6 +1,7 @@
 ﻿using Controle_Ativos.BLL.Interfaces;
 using Controle_Ativos.BLL.Models;
 using Controle_Ativos.Data.Contexto;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,17 @@ namespace Controle_Ativos.Data.Repositorio
         {
             return Db.Clientes.ToList();
         }
+
+        public override List<Colaborador> ObterTodos()
+        {
+            return Db.Colaboradores.Include(c=> c.Cliente).ToList();
+        }
+
+        public override Colaborador ObterPorId(Guid id)
+        {
+            return Db.Colaboradores.Where(c => c.Id == id).Include(c => c.Cliente).FirstOrDefault();
+        }
+
 
     }
 }

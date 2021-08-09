@@ -1,1 +1,15043 @@
-!function(n){"use strict";"function"==typeof define&&define.amd?define(["jquery"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e||(e="undefined"!=typeof window?require("jquery"):require("jquery")(t)),n(e,t,t.document)}:n(jQuery,window,document)}(function(W,F,v,z){"use strict";function r(t){return!t||!0===t||"-"===t}function h(t){var e=parseInt(t,10);return!isNaN(e)&&isFinite(t)?e:null}function a(t,e){return n[e]||(n[e]=new RegExp(Tt(e),"g")),"string"==typeof t&&"."!==e?t.replace(/\./g,"").replace(n[e],"."):t}function o(t,e,n){var o="string"==typeof t;return!!r(t)||(e&&o&&(t=a(t,e)),n&&o&&(t=t.replace(u,"")),!isNaN(parseFloat(t))&&isFinite(t))}function i(t,e,n){return!!r(t)||(function(t){return r(t)||"string"==typeof t}(t)&&!!o(f(t),e,n)||null)}function m(t,e,n,o){var r=[],a=0,i=e.length;if(o!==z)for(;a<i;a++)t[e[a]][n]&&r.push(t[e[a]][n][o]);else for(;a<i;a++)r.push(t[e[a]][n]);return r}function p(t,e){var n,o=[];e===z?(e=0,n=t):(n=e,e=t);for(var r=e;r<n;r++)o.push(r);return o}function b(t){for(var e=[],n=0,o=t.length;n<o;n++)t[n]&&e.push(t[n]);return e}var g,y,e,t,I=function(T){this.$=function(t,e){return this.api(!0).$(t,e)},this._=function(t,e){return this.api(!0).rows(t,e).data()},this.api=function(t){return new y(t?ae(this[g.iApiIndex]):this)},this.fnAddData=function(t,e){var n=this.api(!0),o=W.isArray(t)&&(W.isArray(t[0])||W.isPlainObject(t[0]))?n.rows.add(t):n.row.add(t);return e!==z&&!e||n.draw(),o.flatten().toArray()},this.fnAdjustColumnSizing=function(t){var e=this.api(!0).columns.adjust(),n=e.settings()[0],o=n.oScroll;t===z||t?e.draw(!1):""===o.sX&&""===o.sY||Mt(n)},this.fnClearTable=function(t){var e=this.api(!0).clear();t!==z&&!t||e.draw()},this.fnClose=function(t){this.api(!0).row(t).child.hide()},this.fnDeleteRow=function(t,e,n){var o=this.api(!0),r=o.rows(t),a=r.settings()[0],i=a.aoData[r[0][0]];return r.remove(),e&&e.call(this,a,i),n!==z&&!n||o.draw(),i},this.fnDestroy=function(t){this.api(!0).destroy(t)},this.fnDraw=function(t){this.api(!0).draw(t)},this.fnFilter=function(t,e,n,o,r,a){var i=this.api(!0);null===e||e===z?i.search(t,n,o,a):i.column(e).search(t,n,o,a),i.draw()},this.fnGetData=function(t,e){var n=this.api(!0);if(t===z)return n.data().toArray();var o=t.nodeName?t.nodeName.toLowerCase():"";return e!==z||"td"==o||"th"==o?n.cell(t,e).data():n.row(t).data()||null},this.fnGetNodes=function(t){var e=this.api(!0);return t!==z?e.row(t).node():e.rows().nodes().flatten().toArray()},this.fnGetPosition=function(t){var e=this.api(!0),n=t.nodeName.toUpperCase();if("TR"==n)return e.row(t).index();if("TD"!=n&&"TH"!=n)return null;var o=e.cell(t).index();return[o.row,o.columnVisible,o.column]},this.fnIsOpen=function(t){return this.api(!0).row(t).child.isShown()},this.fnOpen=function(t,e,n){return this.api(!0).row(t).child(e,n).show().child()[0]},this.fnPageChange=function(t,e){var n=this.api(!0).page(t);e!==z&&!e||n.draw(!1)},this.fnSetColumnVis=function(t,e,n){var o=this.api(!0).column(t).visible(e);n!==z&&!n||o.columns.adjust().draw()},this.fnSettings=function(){return ae(this[g.iApiIndex])},this.fnSort=function(t){this.api(!0).order(t).draw()},this.fnSortListener=function(t,e,n){this.api(!0).order.listener(t,e,n)},this.fnUpdate=function(t,e,n,o,r){var a=this.api(!0);return n===z||null===n?a.row(e).data(t):a.cell(e,n).data(t),r!==z&&!r||a.columns.adjust(),o!==z&&!o||a.draw(),0},this.fnVersionCheck=g.fnVersionCheck;var C=this,S=T===z,D=this.length;for(var t in S&&(T={}),this.oApi=this.internal=g.internal,I.ext.internal)t&&(this[t]=He(t));return this.each(function(){var a,i=1<D?le({},T,!0):T,s=0,t=this.getAttribute("id"),l=!1,e=I.defaults,d=W(this);if("table"==this.nodeName.toLowerCase()){k(e),N(e.column),R(e,e,!0),R(e.column,e.column,!0),R(e,W.extend(i,d.data()));var n=I.settings;for(s=0,a=n.length;s<a;s++){var o=n[s];if(o.nTable==this||o.nTHead&&o.nTHead.parentNode==this||o.nTFoot&&o.nTFoot.parentNode==this){var r=i.bRetrieve!==z?i.bRetrieve:e.bRetrieve,c=i.bDestroy!==z?i.bDestroy:e.bDestroy;if(S||r)return o.oInstance;if(c){o.oInstance.fnDestroy();break}return void ie(o,0,"Cannot reinitialise DataTable",3)}if(o.sTableId==this.id){n.splice(s,1);break}}null!==t&&""!==t||(t="DataTables_Table_"+I.ext._unique++,this.id=t);var u=W.extend(!0,{},I.models.oSettings,{sDestroyWidth:d[0].style.width,sInstance:t,sTableId:t});u.nTable=this,u.oApi=C.internal,u.oInit=i,n.push(u),u.oInstance=1===C.length?C:d.dataTable(),k(i),A(i.oLanguage),i.aLengthMenu&&!i.iDisplayLength&&(i.iDisplayLength=W.isArray(i.aLengthMenu[0])?i.aLengthMenu[0][0]:i.aLengthMenu[0]),i=le(W.extend(!0,{},e),i),se(u.oFeatures,i,["bPaginate","bLengthChange","bFilter","bSort","bSortMulti","bInfo","bProcessing","bAutoWidth","bSortClasses","bServerSide","bDeferRender"]),se(u,i,["asStripeClasses","ajax","fnServerData","fnFormatNumber","sServerMethod","aaSorting","aaSortingFixed","aLengthMenu","sPaginationType","sAjaxSource","sAjaxDataProp","iStateDuration","sDom","bSortCellsTop","iTabIndex","fnStateLoadCallback","fnStateSaveCallback","renderer","searchDelay","rowId",["iCookieDuration","iStateDuration"],["oSearch","oPreviousSearch"],["aoSearchCols","aoPreSearchCols"],["iDisplayLength","_iDisplayLength"]]),se(u.oScroll,i,[["sScrollX","sX"],["sScrollXInner","sXInner"],["sScrollY","sY"],["bScrollCollapse","bCollapse"]]),se(u.oLanguage,i,"fnInfoCallback"),ce(u,"aoDrawCallback",i.fnDrawCallback,"user"),ce(u,"aoServerParams",i.fnServerParams,"user"),ce(u,"aoStateSaveParams",i.fnStateSaveParams,"user"),ce(u,"aoStateLoadParams",i.fnStateLoadParams,"user"),ce(u,"aoStateLoaded",i.fnStateLoaded,"user"),ce(u,"aoRowCallback",i.fnRowCallback,"user"),ce(u,"aoRowCreatedCallback",i.fnCreatedRow,"user"),ce(u,"aoHeaderCallback",i.fnHeaderCallback,"user"),ce(u,"aoFooterCallback",i.fnFooterCallback,"user"),ce(u,"aoInitComplete",i.fnInitComplete,"user"),ce(u,"aoPreDrawCallback",i.fnPreDrawCallback,"user"),u.rowIdFn=K(i.rowId),L(u);var f=u.oClasses;if(W.extend(f,I.ext.classes,i.oClasses),d.addClass(f.sTable),u.iInitDisplayStart===z&&(u.iInitDisplayStart=i.iDisplayStart,u._iDisplayStart=i.iDisplayStart),null!==i.iDeferLoading){u.bDeferLoading=!0;var h=W.isArray(i.iDeferLoading);u._iRecordsDisplay=h?i.iDeferLoading[0]:i.iDeferLoading,u._iRecordsTotal=h?i.iDeferLoading[1]:i.iDeferLoading}var p=u.oLanguage;W.extend(!0,p,i.oLanguage),p.sUrl&&(W.ajax({dataType:"json",url:p.sUrl,success:function(t){A(t),R(e.oLanguage,t),W.extend(!0,p,t),Nt(u)},error:function(){Nt(u)}}),l=!0),null===i.asStripeClasses&&(u.asStripeClasses=[f.sStripeOdd,f.sStripeEven]);var m=u.asStripeClasses,b=d.children("tbody").find("tr").eq(0);-1!==W.inArray(!0,W.map(m,function(t,e){return b.hasClass(t)}))&&(W("tbody tr",this).removeClass(m.join(" ")),u.asDestroyStripes=m.slice());var g,v=[],y=this.getElementsByTagName("thead");if(0!==y.length&&(ct(u.aoHeader,y[0]),v=ut(u)),null===i.aoColumns)for(g=[],s=0,a=v.length;s<a;s++)g.push(null);else g=i.aoColumns;for(s=0,a=g.length;s<a;s++)H(u,v?v[s]:null);if(P(u,i.aoColumnDefs,g,function(t,e){B(u,t,e)}),b.length){var w=function(t,e){return null!==t.getAttribute("data-"+e)?e:null};W(b[0]).children("th, td").each(function(t,e){var n=u.aoColumns[t];if(n.mData===t){var o=w(e,"sort")||w(e,"order"),r=w(e,"filter")||w(e,"search");null===o&&null===r||(n.mData={_:t+".display",sort:null!==o?t+".@data-"+o:z,type:null!==o?t+".@data-"+o:z,filter:null!==r?t+".@data-"+r:z},B(u,t))}})}var x=u.oFeatures,_=function(){if(i.aaSorting===z){var t=u.aaSorting;for(s=0,a=t.length;s<a;s++)t[s][1]=u.aoColumns[s].asSorting[0]}ee(u),x.bSort&&ce(u,"aoDrawCallback",function(){if(u.bSorted){var t=Kt(u),n={};W.each(t,function(t,e){n[e.src]=e.dir}),ue(u,null,"order",[u,t,n]),Qt(u)}}),ce(u,"aoDrawCallback",function(){(u.bSorted||"ssp"===pe(u)||x.bDeferRender)&&ee(u)},"sc");var e=d.children("caption").each(function(){this._captionSide=W(this).css("caption-side")}),n=d.children("thead");0===n.length&&(n=W("<thead/>").appendTo(d)),u.nTHead=n[0];var o=d.children("tbody");0===o.length&&(o=W("<tbody/>").appendTo(d)),u.nTBody=o[0];var r=d.children("tfoot");if(0===r.length&&0<e.length&&(""!==u.oScroll.sX||""!==u.oScroll.sY)&&(r=W("<tfoot/>").appendTo(d)),0===r.length||0===r.children().length?d.addClass(f.sNoFooter):0<r.length&&(u.nTFoot=r[0],ct(u.aoFooter,u.nTFoot)),i.aaData)for(s=0;s<i.aaData.length;s++)q(u,i.aaData[s]);else!u.bDeferLoading&&"dom"!=pe(u)||E(u,W(u.nTBody).children("tr"));u.aiDisplay=u.aiDisplayMaster.slice(),!(u.bInitialised=!0)===l&&Nt(u)};i.bStateSave?(x.bStateSave=!0,ce(u,"aoDrawCallback",oe,"state_save"),re(u,i,_)):_()}else ie(null,0,"Non-table node initialisation ("+this.nodeName+")",2)}),C=null,this},n={},s=/[\r\n]/g,l=/<.*?>/g,d=/^\d{2,4}[\.\/\-]\d{1,2}[\.\/\-]\d{1,2}([T ]{1}\d{1,2}[:\.]\d{2}([\.:]\d{2})?)?$/,c=new RegExp("(\\"+["/",".","*","+","?","|","(",")","[","]","{","}","\\","$","^","-"].join("|\\")+")","g"),u=/[',$£€¥%\u2009\u202F\u20BD\u20a9\u20BArfkɃΞ]/gi,V=function(t,e,n){var o=[],r=0,a=t.length;if(n!==z)for(;r<a;r++)t[r]&&t[r][e]&&o.push(t[r][e][n]);else for(;r<a;r++)t[r]&&o.push(t[r][e]);return o},f=function(t){return t.replace(l,"")},w=function(t){if(function(t){if(t.length<2)return!0;for(var e=t.slice().sort(),n=e[0],o=1,r=e.length;o<r;o++){if(e[o]===n)return!1;n=e[o]}return!0}(t))return t.slice();var e,n,o,r=[],a=t.length,i=0;t:for(n=0;n<a;n++){for(e=t[n],o=0;o<i;o++)if(r[o]===e)continue t;r.push(e),i++}return r};function x(n){var o,r,a={};W.each(n,function(t,e){(o=t.match(/^([^A-Z]+?)([A-Z])/))&&-1!=="a aa ai ao as b fn i m o s ".indexOf(o[1]+" ")&&(r=t.replace(o[0],o[2].toLowerCase()),a[r]=t,"o"===o[1]&&x(n[t]))}),n._hungarianMap=a}function R(n,o,r){var a;n._hungarianMap||x(n),W.each(o,function(t,e){(a=n._hungarianMap[t])===z||!r&&o[a]!==z||("o"===a.charAt(0)?(o[a]||(o[a]={}),W.extend(!0,o[a],o[t]),R(n[a],o[a],r)):o[a]=o[t])})}function A(t){var e=I.defaults.oLanguage,n=e.sDecimal;if(n&&Ne(n),t){var o=t.sZeroRecords;!t.sEmptyTable&&o&&"No data available in table"===e.sEmptyTable&&se(t,t,"sZeroRecords","sEmptyTable"),!t.sLoadingRecords&&o&&"Loading..."===e.sLoadingRecords&&se(t,t,"sZeroRecords","sLoadingRecords"),t.sInfoThousands&&(t.sThousands=t.sInfoThousands);var r=t.sDecimal;r&&n!==r&&Ne(r)}}I.util={throttle:function(o,t){var r,a,i=t!==z?t:200;return function(){var t=this,e=+new Date,n=arguments;r&&e<r+i?(clearTimeout(a),a=setTimeout(function(){r=z,o.apply(t,n)},i)):(r=e,o.apply(t,n))}},escapeRegex:function(t){return t.replace(c,"\\$1")}};var _=function(t,e,n){t[e]!==z&&(t[n]=t[e])};function k(t){_(t,"ordering","bSort"),_(t,"orderMulti","bSortMulti"),_(t,"orderClasses","bSortClasses"),_(t,"orderCellsTop","bSortCellsTop"),_(t,"order","aaSorting"),_(t,"orderFixed","aaSortingFixed"),_(t,"paging","bPaginate"),_(t,"pagingType","sPaginationType"),_(t,"pageLength","iDisplayLength"),_(t,"searching","bFilter"),"boolean"==typeof t.sScrollX&&(t.sScrollX=t.sScrollX?"100%":""),"boolean"==typeof t.scrollX&&(t.scrollX=t.scrollX?"100%":"");var e=t.aoSearchCols;if(e)for(var n=0,o=e.length;n<o;n++)e[n]&&R(I.models.oSearch,e[n])}function N(t){_(t,"orderable","bSortable"),_(t,"orderData","aDataSort"),_(t,"orderSequence","asSorting"),_(t,"orderDataType","sortDataType");var e=t.aDataSort;"number"!=typeof e||W.isArray(e)||(t.aDataSort=[e])}function L(t){if(!I.__browser){var e={};I.__browser=e;var n=W("<div/>").css({position:"fixed",top:0,left:-1*W(F).scrollLeft(),height:1,width:1,overflow:"hidden"}).append(W("<div/>").css({position:"absolute",top:1,left:1,width:100,overflow:"scroll"}).append(W("<div/>").css({width:"100%",height:10}))).appendTo("body"),o=n.children(),r=o.children();e.barWidth=o[0].offsetWidth-o[0].clientWidth,e.bScrollOversize=100===r[0].offsetWidth&&100!==o[0].clientWidth,e.bScrollbarLeft=1!==Math.round(r.offset().left),e.bBounding=!!n[0].getBoundingClientRect().width,n.remove()}W.extend(t.oBrowser,I.__browser),t.oScroll.iBarWidth=I.__browser.barWidth}function T(t,e,n,o,r,a){var i,s=o,l=!1;for(n!==z&&(i=n,l=!0);s!==r;)t.hasOwnProperty(s)&&(i=l?e(i,t[s],s,t):t[s],l=!0,s+=a);return i}function H(t,e){var n=I.defaults.column,o=t.aoColumns.length,r=W.extend({},I.models.oColumn,n,{nTh:e||v.createElement("th"),sTitle:n.sTitle?n.sTitle:e?e.innerHTML:"",aDataSort:n.aDataSort?n.aDataSort:[o],mData:n.mData?n.mData:o,idx:o});t.aoColumns.push(r);var a=t.aoPreSearchCols;a[o]=W.extend({},I.models.oSearch,a[o]),B(t,o,W(e).data())}function B(t,e,n){var o=t.aoColumns[e],r=t.oClasses,a=W(o.nTh);if(!o.sWidthOrig){o.sWidthOrig=a.attr("width")||null;var i=(a.attr("style")||"").match(/width:\s*(\d+[pxem%]+)/);i&&(o.sWidthOrig=i[1])}n!==z&&null!==n&&(N(n),R(I.defaults.column,n),n.mDataProp===z||n.mData||(n.mData=n.mDataProp),n.sType&&(o._sManualType=n.sType),n.className&&!n.sClass&&(n.sClass=n.className),n.sClass&&a.addClass(n.sClass),W.extend(o,n),se(o,n,"sWidth","sWidthOrig"),n.iDataSort!==z&&(o.aDataSort=[n.iDataSort]),se(o,n,"aDataSort"));function s(t){return"string"==typeof t&&-1!==t.indexOf("@")}var l=o.mData,d=K(l),c=o.mRender?K(o.mRender):null;o._bAttrSrc=W.isPlainObject(l)&&(s(l.sort)||s(l.type)||s(l.filter)),o._setter=null,o.fnGetData=function(t,e,n){var o=d(t,e,z,n);return c&&e?c(o,e,t,n):o},o.fnSetData=function(t,e,n){return Y(l)(t,e,n)},"number"!=typeof l&&(t._rowReadObject=!0),t.oFeatures.bSort||(o.bSortable=!1,a.addClass(r.sSortableNone));var u=-1!==W.inArray("asc",o.asSorting),f=-1!==W.inArray("desc",o.asSorting);o.bSortable&&(u||f)?u&&!f?(o.sSortingClass=r.sSortableAsc,o.sSortingClassJUI=r.sSortJUIAscAllowed):!u&&f?(o.sSortingClass=r.sSortableDesc,o.sSortingClassJUI=r.sSortJUIDescAllowed):(o.sSortingClass=r.sSortable,o.sSortingClassJUI=r.sSortJUI):(o.sSortingClass=r.sSortableNone,o.sSortingClassJUI="")}function $(t){if(!1!==t.oFeatures.bAutoWidth){var e=t.aoColumns;Vt(t);for(var n=0,o=e.length;n<o;n++)e[n].nTh.style.width=e[n].sWidth}var r=t.oScroll;""===r.sY&&""===r.sX||Mt(t),ue(t,null,"column-sizing",[t])}function X(t,e){var n=j(t,"bVisible");return"number"==typeof n[e]?n[e]:null}function C(t,e){var n=j(t,"bVisible"),o=W.inArray(e,n);return-1!==o?o:null}function O(t){var n=0;return W.each(t.aoColumns,function(t,e){e.bVisible&&"none"!==W(e.nTh).css("display")&&n++}),n}function j(t,n){var o=[];return W.map(t.aoColumns,function(t,e){t[n]&&o.push(e)}),o}function S(t){var e,n,o,r,a,i,s,l,d,c=t.aoColumns,u=t.aoData,f=I.ext.type.detect;for(e=0,n=c.length;e<n;e++)if(d=[],!(s=c[e]).sType&&s._sManualType)s.sType=s._sManualType;else if(!s.sType){for(o=0,r=f.length;o<r;o++){for(a=0,i=u.length;a<i&&(d[a]===z&&(d[a]=D(t,a,e,"type")),(l=f[o](d[a],t))||o===f.length-1)&&"html"!==l;a++);if(l){s.sType=l;break}}s.sType||(s.sType="string")}}function P(t,e,n,o){var r,a,i,s,l,d,c,u=t.aoColumns;if(e)for(r=e.length-1;0<=r;r--){var f=(c=e[r]).targets!==z?c.targets:c.aTargets;for(W.isArray(f)||(f=[f]),i=0,s=f.length;i<s;i++)if("number"==typeof f[i]&&0<=f[i]){for(;u.length<=f[i];)H(t);o(f[i],c)}else if("number"==typeof f[i]&&f[i]<0)o(u.length+f[i],c);else if("string"==typeof f[i])for(l=0,d=u.length;l<d;l++)"_all"!=f[i]&&!W(u[l].nTh).hasClass(f[i])||o(l,c)}if(n)for(r=0,a=n.length;r<a;r++)o(r,n[r])}function q(t,e,n,o){var r=t.aoData.length,a=W.extend(!0,{},I.models.oRow,{src:n?"dom":"data",idx:r});a._aData=e,t.aoData.push(a);for(var i=t.aoColumns,s=0,l=i.length;s<l;s++)i[s].sType=null;t.aiDisplayMaster.push(r);var d=t.rowIdFn(e);return d!==z&&(t.aIds[d]=a),!n&&t.oFeatures.bDeferRender||ot(t,r,n,o),r}function E(n,t){var o;return t instanceof W||(t=W(t)),t.map(function(t,e){return o=nt(n,e),q(n,o.data,e,o.cells)})}function D(t,e,n,o){var r=t.iDraw,a=t.aoColumns[n],i=t.aoData[e]._aData,s=a.sDefaultContent,l=a.fnGetData(i,o,{settings:t,row:e,col:n});if(l===z)return t.iDrawError!=r&&null===s&&(ie(t,0,"Requested unknown parameter "+("function"==typeof a.mData?"{function}":"'"+a.mData+"'")+" for row "+e+", column "+n,4),t.iDrawError=r),s;if(l!==i&&null!==l||null===s||o===z){if("function"==typeof l)return l.call(i)}else l=s;return null===l&&"display"==o?"":l}function M(t,e,n,o){var r=t.aoColumns[n],a=t.aoData[e]._aData;r.fnSetData(a,o,{settings:t,row:e,col:n})}var U=/\[.*?\]$/,G=/\(\)$/;function J(t){return W.map(t.match(/(\\.|[^\.])+/g)||[""],function(t){return t.replace(/\\\./g,".")})}function K(r){if(W.isPlainObject(r)){var a={};return W.each(r,function(t,e){e&&(a[t]=K(e))}),function(t,e,n,o){var r=a[e]||a._;return r!==z?r(t,e,n,o):t}}if(null===r)return function(t){return t};if("function"==typeof r)return function(t,e,n,o){return r(t,e,n,o)};if("string"!=typeof r||-1===r.indexOf(".")&&-1===r.indexOf("[")&&-1===r.indexOf("("))return function(t,e){return t[r]};var h=function(t,e,n){var o,r,a,i;if(""!==n)for(var s=J(n),l=0,d=s.length;l<d;l++){if(o=s[l].match(U),r=s[l].match(G),o){if(s[l]=s[l].replace(U,""),""!==s[l]&&(t=t[s[l]]),a=[],s.splice(0,l+1),i=s.join("."),W.isArray(t))for(var c=0,u=t.length;c<u;c++)a.push(h(t[c],e,i));var f=o[0].substring(1,o[0].length-1);t=""===f?a:a.join(f);break}if(r)s[l]=s[l].replace(G,""),t=t[s[l]]();else{if(null===t||t[s[l]]===z)return z;t=t[s[l]]}}return t};return function(t,e){return h(t,e,r)}}function Y(o){if(W.isPlainObject(o))return Y(o._);if(null===o)return function(){};if("function"==typeof o)return function(t,e,n){o(t,"set",e,n)};if("string"!=typeof o||-1===o.indexOf(".")&&-1===o.indexOf("[")&&-1===o.indexOf("("))return function(t,e){t[o]=e};var p=function(t,e,n){for(var o,r,a,i,s,l=J(n),d=l[l.length-1],c=0,u=l.length-1;c<u;c++){if(r=l[c].match(U),a=l[c].match(G),r){if(l[c]=l[c].replace(U,""),t[l[c]]=[],(o=l.slice()).splice(0,c+1),s=o.join("."),W.isArray(e))for(var f=0,h=e.length;f<h;f++)p(i={},e[f],s),t[l[c]].push(i);else t[l[c]]=e;return}a&&(l[c]=l[c].replace(G,""),t=t[l[c]](e)),null!==t[l[c]]&&t[l[c]]!==z||(t[l[c]]={}),t=t[l[c]]}d.match(G)?t=t[d.replace(G,"")](e):t[d.replace(U,"")]=e};return function(t,e){return p(t,e,o)}}function Q(t){return V(t.aoData,"_aData")}function Z(t){t.aoData.length=0,t.aiDisplayMaster.length=0,t.aiDisplay.length=0,t.aIds={}}function tt(t,e,n){for(var o=-1,r=0,a=t.length;r<a;r++)t[r]==e?o=r:t[r]>e&&t[r]--;-1!=o&&n===z&&t.splice(o,1)}function et(n,o,t,e){function r(t,e){for(;t.childNodes.length;)t.removeChild(t.firstChild);t.innerHTML=D(n,o,e,"display")}var a,i,s=n.aoData[o];if("dom"!==t&&(t&&"auto"!==t||"dom"!==s.src)){var l=s.anCells;if(l)if(e!==z)r(l[e],e);else for(a=0,i=l.length;a<i;a++)r(l[a],a)}else s._aData=nt(n,s,e,e===z?z:s._aData).data;s._aSortData=null,s._aFilterData=null;var d=n.aoColumns;if(e!==z)d[e].sType=null;else{for(a=0,i=d.length;a<i;a++)d[a].sType=null;rt(n,s)}}function nt(t,e,n,r){var o,a,i,s=[],l=e.firstChild,d=0,c=t.aoColumns,u=t._rowReadObject;r=r!==z?r:u?{}:[];function f(t,e){if("string"==typeof t){var n=t.indexOf("@");if(-1!==n){var o=t.substring(n+1);Y(t)(r,e.getAttribute(o))}}}function h(t){n!==z&&n!==d||(a=c[d],i=W.trim(t.innerHTML),a&&a._bAttrSrc?(Y(a.mData._)(r,i),f(a.mData.sort,t),f(a.mData.type,t),f(a.mData.filter,t)):u?(a._setter||(a._setter=Y(a.mData)),a._setter(r,i)):r[d]=i),d++}if(l)for(;l;)"TD"!=(o=l.nodeName.toUpperCase())&&"TH"!=o||(h(l),s.push(l)),l=l.nextSibling;else for(var p=0,m=(s=e.anCells).length;p<m;p++)h(s[p]);var b=e.firstChild?e:e.nTr;if(b){var g=b.getAttribute("id");g&&Y(t.rowId)(r,g)}return{data:r,cells:s}}function ot(t,e,n,o){var r,a,i,s,l,d=t.aoData[e],c=d._aData,u=[];if(null===d.nTr){for(r=n||v.createElement("tr"),d.nTr=r,d.anCells=u,r._DT_RowIndex=e,rt(t,d),s=0,l=t.aoColumns.length;s<l;s++)i=t.aoColumns[s],(a=n?o[s]:v.createElement(i.sCellType))._DT_CellIndex={row:e,column:s},u.push(a),n&&!i.mRender&&i.mData===s||W.isPlainObject(i.mData)&&i.mData._===s+".display"||(a.innerHTML=D(t,e,s,"display")),i.sClass&&(a.className+=" "+i.sClass),i.bVisible&&!n?r.appendChild(a):!i.bVisible&&n&&a.parentNode.removeChild(a),i.fnCreatedCell&&i.fnCreatedCell.call(t.oInstance,a,D(t,e,s),c,e,s);ue(t,"aoRowCreatedCallback",null,[r,c,e,u])}d.nTr.setAttribute("role","row")}function rt(t,e){var n=e.nTr,o=e._aData;if(n){var r=t.rowIdFn(o);if(r&&(n.id=r),o.DT_RowClass){var a=o.DT_RowClass.split(" ");e.__rowc=e.__rowc?w(e.__rowc.concat(a)):a,W(n).removeClass(e.__rowc.join(" ")).addClass(o.DT_RowClass)}o.DT_RowAttr&&W(n).attr(o.DT_RowAttr),o.DT_RowData&&W(n).data(o.DT_RowData)}}function at(t){var e,n,o,r,a,i=t.nTHead,s=t.nTFoot,l=0===W("th, td",i).length,d=t.oClasses,c=t.aoColumns;for(l&&(r=W("<tr/>").appendTo(i)),e=0,n=c.length;e<n;e++)a=c[e],o=W(a.nTh).addClass(a.sClass),l&&o.appendTo(r),t.oFeatures.bSort&&(o.addClass(a.sSortingClass),!1!==a.bSortable&&(o.attr("tabindex",t.iTabIndex).attr("aria-controls",t.sTableId),te(t,a.nTh,e))),a.sTitle!=o[0].innerHTML&&o.html(a.sTitle),he(t,"header")(t,o,a,d);if(l&&ct(t.aoHeader,i),W(i).find(">tr").attr("role","row"),W(i).find(">tr>th, >tr>td").addClass(d.sHeaderTH),W(s).find(">tr>th, >tr>td").addClass(d.sFooterTH),null!==s){var u=t.aoFooter[0];for(e=0,n=u.length;e<n;e++)(a=c[e]).nTf=u[e].cell,a.sClass&&W(a.nTf).addClass(a.sClass)}}function it(t,e,n){var o,r,a,i,s,l,d,c,u,f=[],h=[],p=t.aoColumns.length;if(e){for(n===z&&(n=!1),o=0,r=e.length;o<r;o++){for(f[o]=e[o].slice(),f[o].nTr=e[o].nTr,a=p-1;0<=a;a--)t.aoColumns[a].bVisible||n||f[o].splice(a,1);h.push([])}for(o=0,r=f.length;o<r;o++){if(d=f[o].nTr)for(;l=d.firstChild;)d.removeChild(l);for(a=0,i=f[o].length;a<i;a++)if(u=c=1,h[o][a]===z){for(d.appendChild(f[o][a].cell),h[o][a]=1;f[o+c]!==z&&f[o][a].cell==f[o+c][a].cell;)h[o+c][a]=1,c++;for(;f[o][a+u]!==z&&f[o][a].cell==f[o][a+u].cell;){for(s=0;s<c;s++)h[o+s][a+u]=1;u++}W(f[o][a].cell).attr("rowspan",c).attr("colspan",u)}}}}function st(t){var e=ue(t,"aoPreDrawCallback","preDraw",[t]);if(-1===W.inArray(!1,e)){var n=[],o=0,r=t.asStripeClasses,a=r.length,i=(t.aoOpenRows.length,t.oLanguage),s=t.iInitDisplayStart,l="ssp"==pe(t),d=t.aiDisplay;t.bDrawing=!0,s!==z&&-1!==s&&(t._iDisplayStart=l?s:s>=t.fnRecordsDisplay()?0:s,t.iInitDisplayStart=-1);var c=t._iDisplayStart,u=t.fnDisplayEnd();if(t.bDeferLoading)t.bDeferLoading=!1,t.iDraw++,qt(t,!1);else if(l){if(!t.bDestroying&&!ht(t))return}else t.iDraw++;if(0!==d.length)for(var f=l?0:c,h=l?t.aoData.length:u,p=f;p<h;p++){var m=d[p],b=t.aoData[m];null===b.nTr&&ot(t,m);var g=b.nTr;if(0!==a){var v=r[o%a];b._sRowStripe!=v&&(W(g).removeClass(b._sRowStripe).addClass(v),b._sRowStripe=v)}ue(t,"aoRowCallback",null,[g,b._aData,o,p,m]),n.push(g),o++}else{var y=i.sZeroRecords;1==t.iDraw&&"ajax"==pe(t)?y=i.sLoadingRecords:i.sEmptyTable&&0===t.fnRecordsTotal()&&(y=i.sEmptyTable),n[0]=W("<tr/>",{class:a?r[0]:""}).append(W("<td />",{valign:"top",colSpan:O(t),class:t.oClasses.sRowEmpty}).html(y))[0]}ue(t,"aoHeaderCallback","header",[W(t.nTHead).children("tr")[0],Q(t),c,u,d]),ue(t,"aoFooterCallback","footer",[W(t.nTFoot).children("tr")[0],Q(t),c,u,d]);var w=W(t.nTBody);w.children().detach(),w.append(W(n)),ue(t,"aoDrawCallback","draw",[t]),t.bSorted=!1,t.bFiltered=!1,t.bDrawing=!1}else qt(t,!1)}function lt(t,e){var n=t.oFeatures,o=n.bSort,r=n.bFilter;o&&Yt(t),r?vt(t,t.oPreviousSearch):t.aiDisplay=t.aiDisplayMaster.slice(),!0!==e&&(t._iDisplayStart=0),t._drawHold=e,st(t),t._drawHold=!1}function dt(t){var e=t.oClasses,n=W(t.nTable),o=W("<div/>").insertBefore(n),r=t.oFeatures,a=W("<div/>",{id:t.sTableId+"_wrapper",class:e.sWrapper+(t.nTFoot?"":" "+e.sNoFooter)});t.nHolding=o[0],t.nTableWrapper=a[0],t.nTableReinsertBefore=t.nTable.nextSibling;for(var i,s,l,d,c,u,f=t.sDom.split(""),h=0;h<f.length;h++){if(i=null,"<"==(s=f[h])){if(l=W("<div/>")[0],"'"==(d=f[h+1])||'"'==d){for(c="",u=2;f[h+u]!=d;)c+=f[h+u],u++;if("H"==c?c=e.sJUIHeader:"F"==c&&(c=e.sJUIFooter),-1!=c.indexOf(".")){var p=c.split(".");l.id=p[0].substr(1,p[0].length-1),l.className=p[1]}else"#"==c.charAt(0)?l.id=c.substr(1,c.length-1):l.className=c;h+=u}a.append(l),a=W(l)}else if(">"==s)a=a.parent();else if("l"==s&&r.bPaginate&&r.bLengthChange)i=Bt(t);else if("f"==s&&r.bFilter)i=gt(t);else if("r"==s&&r.bProcessing)i=Pt(t);else if("t"==s)i=Et(t);else if("i"==s&&r.bInfo)i=Rt(t);else if("p"==s&&r.bPaginate)i=Ot(t);else if(0!==I.ext.feature.length)for(var m=I.ext.feature,b=0,g=m.length;b<g;b++)if(s==m[b].cFeature){i=m[b].fnInit(t);break}if(i){var v=t.aanFeatures;v[s]||(v[s]=[]),v[s].push(i),a.append(i)}}o.replaceWith(a),t.nHolding=null}function ct(t,e){function n(t,e,n){for(var o=t[e];o[n];)n++;return n}var o,r,a,i,s,l,d,c,u,f,h=W(e).children("tr");for(t.splice(0,t.length),a=0,l=h.length;a<l;a++)t.push([]);for(a=0,l=h.length;a<l;a++)for(0,r=(o=h[a]).firstChild;r;){if("TD"==r.nodeName.toUpperCase()||"TH"==r.nodeName.toUpperCase())for(c=(c=1*r.getAttribute("colspan"))&&0!==c&&1!==c?c:1,u=(u=1*r.getAttribute("rowspan"))&&0!==u&&1!==u?u:1,d=n(t,a,0),f=1===c,s=0;s<c;s++)for(i=0;i<u;i++)t[a+i][d+s]={cell:r,unique:f},t[a+i].nTr=o;r=r.nextSibling}}function ut(t,e,n){var o=[];n||(n=t.aoHeader,e&&ct(n=[],e));for(var r=0,a=n.length;r<a;r++)for(var i=0,s=n[r].length;i<s;i++)!n[r][i].unique||o[i]&&t.bSortCellsTop||(o[i]=n[r][i].cell);return o}function ft(r,t,e){if(ue(r,"aoServerParams","serverParams",[t]),t&&W.isArray(t)){var a={},i=/(.*?)\[\]$/;W.each(t,function(t,e){var n=e.name.match(i);if(n){var o=n[0];a[o]||(a[o]=[]),a[o].push(e.value)}else a[e.name]=e.value}),t=a}function n(t){ue(r,null,"xhr",[r,t,r.jqXHR]),e(t)}var o,s=r.ajax,l=r.oInstance;if(W.isPlainObject(s)&&s.data){var d="function"==typeof(o=s.data)?o(t,r):o;t="function"==typeof o&&d?d:W.extend(!0,t,d),delete s.data}var c={data:t,success:function(t){var e=t.error||t.sError;e&&ie(r,0,e),r.json=t,n(t)},dataType:"json",cache:!1,type:r.sServerMethod,error:function(t,e,n){var o=ue(r,null,"xhr",[r,null,r.jqXHR]);-1===W.inArray(!0,o)&&("parsererror"==e?ie(r,0,"Invalid JSON response",1):4===t.readyState&&ie(r,0,"Ajax error",7)),qt(r,!1)}};r.oAjaxData=t,ue(r,null,"preXhr",[r,t]),r.fnServerData?r.fnServerData.call(l,r.sAjaxSource,W.map(t,function(t,e){return{name:e,value:t}}),n,r):r.sAjaxSource||"string"==typeof s?r.jqXHR=W.ajax(W.extend(c,{url:s||r.sAjaxSource})):"function"==typeof s?r.jqXHR=s.call(l,t,n,r):(r.jqXHR=W.ajax(W.extend(c,s)),s.data=o)}function ht(e){return!e.bAjaxDataGet||(e.iDraw++,qt(e,!0),ft(e,pt(e),function(t){mt(e,t)}),!1)}function pt(t){function n(t,e){u.push({name:t,value:e})}var e,o,r,a,i=t.aoColumns,s=i.length,l=t.oFeatures,d=t.oPreviousSearch,c=t.aoPreSearchCols,u=[],f=Kt(t),h=t._iDisplayStart,p=!1!==l.bPaginate?t._iDisplayLength:-1;n("sEcho",t.iDraw),n("iColumns",s),n("sColumns",V(i,"sName").join(",")),n("iDisplayStart",h),n("iDisplayLength",p);var m={draw:t.iDraw,columns:[],order:[],start:h,length:p,search:{value:d.sSearch,regex:d.bRegex}};for(e=0;e<s;e++)r=i[e],a=c[e],o="function"==typeof r.mData?"function":r.mData,m.columns.push({data:o,name:r.sName,searchable:r.bSearchable,orderable:r.bSortable,search:{value:a.sSearch,regex:a.bRegex}}),n("mDataProp_"+e,o),l.bFilter&&(n("sSearch_"+e,a.sSearch),n("bRegex_"+e,a.bRegex),n("bSearchable_"+e,r.bSearchable)),l.bSort&&n("bSortable_"+e,r.bSortable);l.bFilter&&(n("sSearch",d.sSearch),n("bRegex",d.bRegex)),l.bSort&&(W.each(f,function(t,e){m.order.push({column:e.col,dir:e.dir}),n("iSortCol_"+t,e.col),n("sSortDir_"+t,e.dir)}),n("iSortingCols",f.length));var b=I.ext.legacy.ajax;return null===b?t.sAjaxSource?u:m:b?u:m}function mt(t,n){function e(t,e){return n[t]!==z?n[t]:n[e]}var o=bt(t,n),r=e("sEcho","draw"),a=e("iTotalRecords","recordsTotal"),i=e("iTotalDisplayRecords","recordsFiltered");if(r){if(1*r<t.iDraw)return;t.iDraw=1*r}Z(t),t._iRecordsTotal=parseInt(a,10),t._iRecordsDisplay=parseInt(i,10);for(var s=0,l=o.length;s<l;s++)q(t,o[s]);t.aiDisplay=t.aiDisplayMaster.slice(),t.bAjaxDataGet=!1,st(t),t._bInitComplete||Lt(t,n),t.bAjaxDataGet=!0,qt(t,!1)}function bt(t,e){var n=W.isPlainObject(t.ajax)&&t.ajax.dataSrc!==z?t.ajax.dataSrc:t.sAjaxDataProp;return"data"===n?e.aaData||e[n]:""!==n?K(n)(e):e}function gt(n){var t=n.oClasses,e=n.sTableId,o=n.oLanguage,r=n.oPreviousSearch,a=n.aanFeatures,i='<input type="search" class="'+t.sFilterInput+'"/>',s=o.sSearch;s=s.match(/_INPUT_/)?s.replace("_INPUT_",i):s+i;function l(){a.f;var t=this.value?this.value:"";t!=r.sSearch&&(vt(n,{sSearch:t,bRegex:r.bRegex,bSmart:r.bSmart,bCaseInsensitive:r.bCaseInsensitive}),n._iDisplayStart=0,st(n))}var d=W("<div/>",{id:a.f?null:e+"_filter",class:t.sFilter}).append(W("<label/>").append(s)),c=null!==n.searchDelay?n.searchDelay:"ssp"===pe(n)?400:0,u=W("input",d).val(r.sSearch).attr("placeholder",o.sSearchPlaceholder).on("keyup.DT search.DT input.DT paste.DT cut.DT",c?$t(l,c):l).on("keypress.DT",function(t){if(13==t.keyCode)return!1}).attr("aria-controls",e);return W(n.nTable).on("search.dt.DT",function(t,e){if(n===e)try{u[0]!==v.activeElement&&u.val(r.sSearch)}catch(t){}}),d[0]}function vt(t,e,n){function o(t){a.sSearch=t.sSearch,a.bRegex=t.bRegex,a.bSmart=t.bSmart,a.bCaseInsensitive=t.bCaseInsensitive}function r(t){return t.bEscapeRegex!==z?!t.bEscapeRegex:t.bRegex}var a=t.oPreviousSearch,i=t.aoPreSearchCols;if(S(t),"ssp"!=pe(t)){xt(t,e.sSearch,n,r(e),e.bSmart,e.bCaseInsensitive),o(e);for(var s=0;s<i.length;s++)wt(t,i[s].sSearch,s,r(i[s]),i[s].bSmart,i[s].bCaseInsensitive);yt(t)}else o(e);t.bFiltered=!0,ue(t,null,"search",[t])}function yt(t){for(var e,n,o=I.ext.search,r=t.aiDisplay,a=0,i=o.length;a<i;a++){for(var s=[],l=0,d=r.length;l<d;l++)n=r[l],e=t.aoData[n],o[a](t,e._aFilterData,n,e._aData,l)&&s.push(n);r.length=0,W.merge(r,s)}}function wt(t,e,n,o,r,a){if(""!==e){for(var i,s=[],l=t.aiDisplay,d=_t(e,o,r,a),c=0;c<l.length;c++)i=t.aoData[l[c]]._aFilterData[n],d.test(i)&&s.push(l[c]);t.aiDisplay=s}}function xt(t,e,n,o,r,a){var i,s,l,d=_t(e,o,r,a),c=t.oPreviousSearch.sSearch,u=t.aiDisplayMaster,f=[];if(0!==I.ext.search.length&&(n=!0),s=Dt(t),e.length<=0)t.aiDisplay=u.slice();else{for((s||n||c.length>e.length||0!==e.indexOf(c)||t.bSorted)&&(t.aiDisplay=u.slice()),i=t.aiDisplay,l=0;l<i.length;l++)d.test(t.aoData[i[l]]._sFilterRow)&&f.push(i[l]);t.aiDisplay=f}}function _t(t,e,n,o){t=e?t:Tt(t),n&&(t="^(?=.*?"+W.map(t.match(/"[^"]+"|[^ ]+/g)||[""],function(t){if('"'===t.charAt(0)){var e=t.match(/^"(.*)"$/);t=e?e[1]:t}return t.replace('"',"")}).join(")(?=.*?")+").*$");return new RegExp(t,o?"i":"")}var Tt=I.util.escapeRegex,Ct=W("<div>")[0],St=Ct.textContent!==z;function Dt(t){var e,n,o,r,a,i,s,l,d=t.aoColumns,c=I.ext.type.search,u=!1;for(n=0,r=t.aoData.length;n<r;n++)if(!(l=t.aoData[n])._aFilterData){for(i=[],o=0,a=d.length;o<a;o++)(e=d[o]).bSearchable?(s=D(t,n,o,"filter"),c[e.sType]&&(s=c[e.sType](s)),null===s&&(s=""),"string"!=typeof s&&s.toString&&(s=s.toString())):s="",s.indexOf&&-1!==s.indexOf("&")&&(Ct.innerHTML=s,s=St?Ct.textContent:Ct.innerText),s.replace&&(s=s.replace(/[\r\n]/g,"")),i.push(s);l._aFilterData=i,l._sFilterRow=i.join("  "),u=!0}return u}function It(t){return{search:t.sSearch,smart:t.bSmart,regex:t.bRegex,caseInsensitive:t.bCaseInsensitive}}function Ft(t){return{sSearch:t.search,bSmart:t.smart,bRegex:t.regex,bCaseInsensitive:t.caseInsensitive}}function Rt(t){var e=t.sTableId,n=t.aanFeatures.i,o=W("<div/>",{class:t.oClasses.sInfo,id:n?null:e+"_info"});return n||(t.aoDrawCallback.push({fn:At,sName:"information"}),o.attr("role","status").attr("aria-live","polite"),W(t.nTable).attr("aria-describedby",e+"_info")),o[0]}function At(t){var e=t.aanFeatures.i;if(0!==e.length){var n=t.oLanguage,o=t._iDisplayStart+1,r=t.fnDisplayEnd(),a=t.fnRecordsTotal(),i=t.fnRecordsDisplay(),s=i?n.sInfo:n.sInfoEmpty;i!==a&&(s+=" "+n.sInfoFiltered),s=kt(t,s+=n.sInfoPostFix);var l=n.fnInfoCallback;null!==l&&(s=l.call(t.oInstance,t,o,r,a,i,s)),W(e).html(s)}}function kt(t,e){var n=t.fnFormatNumber,o=t._iDisplayStart+1,r=t._iDisplayLength,a=t.fnRecordsDisplay(),i=-1===r;return e.replace(/_START_/g,n.call(t,o)).replace(/_END_/g,n.call(t,t.fnDisplayEnd())).replace(/_MAX_/g,n.call(t,t.fnRecordsTotal())).replace(/_TOTAL_/g,n.call(t,a)).replace(/_PAGE_/g,n.call(t,i?1:Math.ceil(o/r))).replace(/_PAGES_/g,n.call(t,i?1:Math.ceil(a/r)))}function Nt(n){var o,t,e,r=n.iInitDisplayStart,a=n.aoColumns,i=n.oFeatures,s=n.bDeferLoading;if(n.bInitialised){for(dt(n),at(n),it(n,n.aoHeader),it(n,n.aoFooter),qt(n,!0),i.bAutoWidth&&Vt(n),o=0,t=a.length;o<t;o++)(e=a[o]).sWidth&&(e.nTh.style.width=Jt(e.sWidth));ue(n,null,"preInit",[n]),lt(n);var l=pe(n);"ssp"==l&&!s||("ajax"==l?ft(n,[],function(t){var e=bt(n,t);for(o=0;o<e.length;o++)q(n,e[o]);n.iInitDisplayStart=r,lt(n),qt(n,!1),Lt(n,t)}):(qt(n,!1),Lt(n)))}else setTimeout(function(){Nt(n)},200)}function Lt(t,e){t._bInitComplete=!0,(e||t.oInit.aaData)&&$(t),ue(t,null,"plugin-init",[t,e]),ue(t,"aoInitComplete","init",[t,e])}function Ht(t,e){var n=parseInt(e,10);t._iDisplayLength=n,fe(t),ue(t,null,"length",[t,n])}function Bt(o){for(var t=o.oClasses,e=o.sTableId,n=o.aLengthMenu,r=W.isArray(n[0]),a=r?n[0]:n,i=r?n[1]:n,s=W("<select/>",{name:e+"_length","aria-controls":e,class:t.sLengthSelect}),l=0,d=a.length;l<d;l++)s[0][l]=new Option("number"==typeof i[l]?o.fnFormatNumber(i[l]):i[l],a[l]);var c=W("<div><label/></div>").addClass(t.sLength);return o.aanFeatures.l||(c[0].id=e+"_length"),c.children().append(o.oLanguage.sLengthMenu.replace("_MENU_",s[0].outerHTML)),W("select",c).val(o._iDisplayLength).on("change.DT",function(t){Ht(o,W(this).val()),st(o)}),W(o.nTable).on("length.dt.DT",function(t,e,n){o===e&&W("select",c).val(n)}),c[0]}function Ot(t){function c(t){st(t)}var e=t.sPaginationType,u=I.ext.pager[e],f="function"==typeof u,n=W("<div/>").addClass(t.oClasses.sPaging+e)[0],h=t.aanFeatures;return f||u.fnInit(t,n,c),h.p||(n.id=t.sTableId+"_paginate",t.aoDrawCallback.push({fn:function(t){if(f){var e,n,o=t._iDisplayStart,r=t._iDisplayLength,a=t.fnRecordsDisplay(),i=-1===r,s=i?0:Math.ceil(o/r),l=i?1:Math.ceil(a/r),d=u(s,l);for(e=0,n=h.p.length;e<n;e++)he(t,"pageButton")(t,h.p[e],e,d,s,l)}else u.fnUpdate(t,c)},sName:"pagination"})),n}function jt(t,e,n){var o=t._iDisplayStart,r=t._iDisplayLength,a=t.fnRecordsDisplay();0===a||-1===r?o=0:"number"==typeof e?a<(o=e*r)&&(o=0):"first"==e?o=0:"previous"==e?(o=0<=r?o-r:0)<0&&(o=0):"next"==e?o+r<a&&(o+=r):"last"==e?o=Math.floor((a-1)/r)*r:ie(t,0,"Unknown paging action: "+e,5);var i=t._iDisplayStart!==o;return t._iDisplayStart=o,i&&(ue(t,null,"page",[t]),n&&st(t)),i}function Pt(t){return W("<div/>",{id:t.aanFeatures.r?null:t.sTableId+"_processing",class:t.oClasses.sProcessing}).html(t.oLanguage.sProcessing).insertBefore(t.nTable)[0]}function qt(t,e){t.oFeatures.bProcessing&&W(t.aanFeatures.r).css("display",e?"block":"none"),ue(t,null,"processing",[t,e])}function Et(t){var e=W(t.nTable);e.attr("role","grid");var n=t.oScroll;if(""===n.sX&&""===n.sY)return t.nTable;function o(t){return t?Jt(t):null}var r=n.sX,a=n.sY,i=t.oClasses,s=e.children("caption"),l=s.length?s[0]._captionSide:null,d=W(e[0].cloneNode(!1)),c=W(e[0].cloneNode(!1)),u=e.children("tfoot"),f="<div/>";u.length||(u=null);var h=W(f,{class:i.sScrollWrapper}).append(W(f,{class:i.sScrollHead}).css({overflow:"hidden",position:"relative",border:0,width:r?o(r):"100%"}).append(W(f,{class:i.sScrollHeadInner}).css({"box-sizing":"content-box",width:n.sXInner||"100%"}).append(d.removeAttr("id").css("margin-left",0).append("top"===l?s:null).append(e.children("thead"))))).append(W(f,{class:i.sScrollBody}).css({position:"relative",overflow:"auto",width:o(r)}).append(e));u&&h.append(W(f,{class:i.sScrollFoot}).css({overflow:"hidden",border:0,width:r?o(r):"100%"}).append(W(f,{class:i.sScrollFootInner}).append(c.removeAttr("id").css("margin-left",0).append("bottom"===l?s:null).append(e.children("tfoot")))));var p=h.children(),m=p[0],b=p[1],g=u?p[2]:null;return r&&W(b).on("scroll.DT",function(t){var e=this.scrollLeft;m.scrollLeft=e,u&&(g.scrollLeft=e)}),W(b).css(a&&n.bCollapse?"max-height":"height",a),t.nScrollHead=m,t.nScrollBody=b,t.nScrollFoot=g,t.aoDrawCallback.push({fn:Mt,sName:"scrolling"}),h[0]}function Mt(n){function t(t){var e=t.style;e.paddingTop="0",e.paddingBottom="0",e.borderTopWidth="0",e.borderBottomWidth="0",e.height=0}var e,o,r,a,i,s,l,d,c,u=n.oScroll,f=u.sX,h=u.sXInner,p=u.sY,m=u.iBarWidth,b=W(n.nScrollHead),g=b[0].style,v=b.children("div"),y=v[0].style,w=v.children("table"),x=n.nScrollBody,_=W(x),T=x.style,C=W(n.nScrollFoot).children("div"),S=C.children("table"),D=W(n.nTHead),I=W(n.nTable),F=I[0],R=F.style,A=n.nTFoot?W(n.nTFoot):null,k=n.oBrowser,N=k.bScrollOversize,L=V(n.aoColumns,"nTh"),H=[],B=[],O=[],j=[],P=x.scrollHeight>x.clientHeight;if(n.scrollBarVis!==P&&n.scrollBarVis!==z)return n.scrollBarVis=P,void $(n);n.scrollBarVis=P,I.children("thead, tfoot").remove(),A&&(s=A.clone().prependTo(I),o=A.find("tr"),a=s.find("tr")),i=D.clone().prependTo(I),e=D.find("tr"),r=i.find("tr"),i.find("th, td").removeAttr("tabindex"),f||(T.width="100%",b[0].style.width="100%"),W.each(ut(n,i),function(t,e){l=X(n,t),e.style.width=n.aoColumns[l].sWidth}),A&&Wt(function(t){t.style.width=""},a),c=I.outerWidth(),""===f?(R.width="100%",N&&(I.find("tbody").height()>x.offsetHeight||"scroll"==_.css("overflow-y"))&&(R.width=Jt(I.outerWidth()-m)),c=I.outerWidth()):""!==h&&(R.width=Jt(h),c=I.outerWidth()),Wt(t,r),Wt(function(t){O.push(t.innerHTML),H.push(Jt(W(t).css("width")))},r),Wt(function(t,e){-1!==W.inArray(t,L)&&(t.style.width=H[e])},e),W(r).height(0),A&&(Wt(t,a),Wt(function(t){j.push(t.innerHTML),B.push(Jt(W(t).css("width")))},a),Wt(function(t,e){t.style.width=B[e]},o),W(a).height(0)),Wt(function(t,e){t.innerHTML='<div class="dataTables_sizing">'+O[e]+"</div>",t.childNodes[0].style.height="0",t.childNodes[0].style.overflow="hidden",t.style.width=H[e]},r),A&&Wt(function(t,e){t.innerHTML='<div class="dataTables_sizing">'+j[e]+"</div>",t.childNodes[0].style.height="0",t.childNodes[0].style.overflow="hidden",t.style.width=B[e]},a),I.outerWidth()<c?(d=x.scrollHeight>x.offsetHeight||"scroll"==_.css("overflow-y")?c+m:c,N&&(x.scrollHeight>x.offsetHeight||"scroll"==_.css("overflow-y"))&&(R.width=Jt(d-m)),""!==f&&""===h||ie(n,1,"Possible column misalignment",6)):d="100%",T.width=Jt(d),g.width=Jt(d),A&&(n.nScrollFoot.style.width=Jt(d)),p||N&&(T.height=Jt(F.offsetHeight+m));var q=I.outerWidth();w[0].style.width=Jt(q),y.width=Jt(q);var E=I.height()>x.clientHeight||"scroll"==_.css("overflow-y"),M="padding"+(k.bScrollbarLeft?"Left":"Right");y[M]=E?m+"px":"0px",A&&(S[0].style.width=Jt(q),C[0].style.width=Jt(q),C[0].style[M]=E?m+"px":"0px"),I.children("colgroup").insertBefore(I.children("thead")),_.scroll(),!n.bSorted&&!n.bFiltered||n._drawHold||(x.scrollTop=0)}function Wt(t,e,n){for(var o,r,a=0,i=0,s=e.length;i<s;){for(o=e[i].firstChild,r=n?n[i].firstChild:null;o;)1===o.nodeType&&(n?t(o,r,a):t(o,a),a++),o=o.nextSibling,r=n?r.nextSibling:null;i++}}var zt=/<.*?>/g;function Vt(t){var e,n,o,r=t.nTable,a=t.aoColumns,i=t.oScroll,s=i.sY,l=i.sX,d=i.sXInner,c=a.length,u=j(t,"bVisible"),f=W("th",t.nTHead),h=r.getAttribute("width"),p=r.parentNode,m=!1,b=t.oBrowser,g=b.bScrollOversize,v=r.style.width;for(v&&-1!==v.indexOf("%")&&(h=v),e=0;e<u.length;e++)null!==(n=a[u[e]]).sWidth&&(n.sWidth=Xt(n.sWidthOrig,p),m=!0);if(g||!m&&!l&&!s&&c==O(t)&&c==f.length)for(e=0;e<c;e++){var y=X(t,e);null!==y&&(a[y].sWidth=Jt(f.eq(e).width()))}else{var w=W(r).clone().css("visibility","hidden").removeAttr("id");w.find("tbody tr").remove();var x=W("<tr/>").appendTo(w.find("tbody"));for(w.find("thead, tfoot").remove(),w.append(W(t.nTHead).clone()).append(W(t.nTFoot).clone()),w.find("tfoot th, tfoot td").css("width",""),f=ut(t,w.find("thead")[0]),e=0;e<u.length;e++)n=a[u[e]],f[e].style.width=null!==n.sWidthOrig&&""!==n.sWidthOrig?Jt(n.sWidthOrig):"",n.sWidthOrig&&l&&W(f[e]).append(W("<div/>").css({width:n.sWidthOrig,margin:0,padding:0,border:0,height:1}));if(t.aoData.length)for(e=0;e<u.length;e++)n=a[o=u[e]],W(Ut(t,o)).clone(!1).append(n.sContentPadding).appendTo(x);W("[name]",w).removeAttr("name");var _=W("<div/>").css(l||s?{position:"absolute",top:0,left:0,height:1,right:0,overflow:"hidden"}:{}).append(w).appendTo(p);l&&d?w.width(d):l?(w.css("width","auto"),w.removeAttr("width"),w.width()<p.clientWidth&&h&&w.width(p.clientWidth)):s?w.width(p.clientWidth):h&&w.width(h);var T=0;for(e=0;e<u.length;e++){var C=W(f[e]),S=C.outerWidth()-C.width(),D=b.bBounding?Math.ceil(f[e].getBoundingClientRect().width):C.outerWidth();T+=D,a[u[e]].sWidth=Jt(D-S)}r.style.width=Jt(T),_.remove()}if(h&&(r.style.width=Jt(h)),(h||l)&&!t._reszEvt){var I=function(){W(F).on("resize.DT-"+t.sInstance,$t(function(){$(t)}))};g?setTimeout(I,1e3):I(),t._reszEvt=!0}}var $t=I.util.throttle;function Xt(t,e){if(!t)return 0;var n=W("<div/>").css("width",Jt(t)).appendTo(e||v.body),o=n[0].offsetWidth;return n.remove(),o}function Ut(t,e){var n=Gt(t,e);if(n<0)return null;var o=t.aoData[n];return o.nTr?o.anCells[e]:W("<td/>").html(D(t,n,e,"display"))[0]}function Gt(t,e){for(var n,o=-1,r=-1,a=0,i=t.aoData.length;a<i;a++)(n=(n=(n=D(t,a,e,"display")+"").replace(zt,"")).replace(/&nbsp;/g," ")).length>o&&(o=n.length,r=a);return r}function Jt(t){return null===t?"0px":"number"==typeof t?t<0?"0px":t+"px":t.match(/\d$/)?t+"px":t}function Kt(t){function e(t){t.length&&!W.isArray(t[0])?h.push(t):W.merge(h,t)}var n,o,r,a,i,s,l,d=[],c=t.aoColumns,u=t.aaSortingFixed,f=W.isPlainObject(u),h=[];for(W.isArray(u)&&e(u),f&&u.pre&&e(u.pre),e(t.aaSorting),f&&u.post&&e(u.post),n=0;n<h.length;n++)for(o=0,r=(a=c[l=h[n][0]].aDataSort).length;o<r;o++)s=c[i=a[o]].sType||"string",h[n]._idx===z&&(h[n]._idx=W.inArray(h[n][1],c[i].asSorting)),d.push({src:l,col:i,dir:h[n][1],index:h[n]._idx,type:s,formatter:I.ext.type.order[s+"-pre"]});return d}function Yt(t){var e,n,o,r,c,u=[],f=I.ext.type.order,h=t.aoData,a=(t.aoColumns,0),i=t.aiDisplayMaster;for(S(t),e=0,n=(c=Kt(t)).length;e<n;e++)(r=c[e]).formatter&&a++,ne(t,r.col);if("ssp"!=pe(t)&&0!==c.length){for(e=0,o=i.length;e<o;e++)u[i[e]]=e;a===c.length?i.sort(function(t,e){var n,o,r,a,i,s=c.length,l=h[t]._aSortData,d=h[e]._aSortData;for(r=0;r<s;r++)if(0!=(a=(n=l[(i=c[r]).col])<(o=d[i.col])?-1:o<n?1:0))return"asc"===i.dir?a:-a;return(n=u[t])<(o=u[e])?-1:o<n?1:0}):i.sort(function(t,e){var n,o,r,a,i,s=c.length,l=h[t]._aSortData,d=h[e]._aSortData;for(r=0;r<s;r++)if(n=l[(i=c[r]).col],o=d[i.col],0!==(a=(f[i.type+"-"+i.dir]||f["string-"+i.dir])(n,o)))return a;return(n=u[t])<(o=u[e])?-1:o<n?1:0})}t.bSorted=!0}function Qt(t){for(var e,n=t.aoColumns,o=Kt(t),r=t.oLanguage.oAria,a=0,i=n.length;a<i;a++){var s=n[a],l=s.asSorting,d=s.sTitle.replace(/<.*?>/g,""),c=s.nTh;c.removeAttribute("aria-sort"),e=s.bSortable?d+("asc"===(0<o.length&&o[0].col==a?(c.setAttribute("aria-sort","asc"==o[0].dir?"ascending":"descending"),l[o[0].index+1]||l[0]):l[0])?r.sSortAscending:r.sSortDescending):d,c.setAttribute("aria-label",e)}}function Zt(t,e,n,o){function r(t,e){var n=t._idx;return n===z&&(n=W.inArray(t[1],l)),n+1<l.length?n+1:e?null:0}var a,i=t.aoColumns[e],s=t.aaSorting,l=i.asSorting;if("number"==typeof s[0]&&(s=t.aaSorting=[s]),n&&t.oFeatures.bSortMulti){var d=W.inArray(e,V(s,"0"));-1!==d?(null===(a=r(s[d],!0))&&1===s.length&&(a=0),null===a?s.splice(d,1):(s[d][1]=l[a],s[d]._idx=a)):(s.push([e,l[0],0]),s[s.length-1]._idx=0)}else s.length&&s[0][0]==e?(a=r(s[0]),s.length=1,s[0][1]=l[a],s[0]._idx=a):(s.length=0,s.push([e,l[0]]),s[0]._idx=0);lt(t),"function"==typeof o&&o(t)}function te(e,t,n,o){var r=e.aoColumns[n];de(t,{},function(t){!1!==r.bSortable&&(e.oFeatures.bProcessing?(qt(e,!0),setTimeout(function(){Zt(e,n,t.shiftKey,o),"ssp"!==pe(e)&&qt(e,!1)},0)):Zt(e,n,t.shiftKey,o))})}function ee(t){var e,n,o,r=t.aLastSort,a=t.oClasses.sSortColumn,i=Kt(t),s=t.oFeatures;if(s.bSort&&s.bSortClasses){for(e=0,n=r.length;e<n;e++)o=r[e].src,W(V(t.aoData,"anCells",o)).removeClass(a+(e<2?e+1:3));for(e=0,n=i.length;e<n;e++)o=i[e].src,W(V(t.aoData,"anCells",o)).addClass(a+(e<2?e+1:3))}t.aLastSort=i}function ne(t,e){var n,o,r,a=t.aoColumns[e],i=I.ext.order[a.sSortDataType];i&&(n=i.call(t.oInstance,t,e,C(t,e)));for(var s=I.ext.type.order[a.sType+"-pre"],l=0,d=t.aoData.length;l<d;l++)(o=t.aoData[l])._aSortData||(o._aSortData=[]),o._aSortData[e]&&!i||(r=i?n[l]:D(t,l,e,"sort"),o._aSortData[e]=s?s(r):r)}function oe(n){if(n.oFeatures.bStateSave&&!n.bDestroying){var t={time:+new Date,start:n._iDisplayStart,length:n._iDisplayLength,order:W.extend(!0,[],n.aaSorting),search:It(n.oPreviousSearch),columns:W.map(n.aoColumns,function(t,e){return{visible:t.bVisible,search:It(n.aoPreSearchCols[e])}})};ue(n,"aoStateSaveParams","stateSaveParams",[n,t]),n.oSavedState=t,n.fnStateSaveCallback.call(n.oInstance,n,t)}}function re(r,t,a){function e(t){if(t&&t.time){var e=ue(r,"aoStateLoadParams","stateLoadParams",[r,t]);if(-1===W.inArray(!1,e)){var n=r.iStateDuration;if(0<n&&t.time<+new Date-1e3*n)a();else if(t.columns&&l.length!==t.columns.length)a();else{if(r.oLoadedState=W.extend(!0,{},t),t.start!==z&&(r._iDisplayStart=t.start,r.iInitDisplayStart=t.start),t.length!==z&&(r._iDisplayLength=t.length),t.order!==z&&(r.aaSorting=[],W.each(t.order,function(t,e){r.aaSorting.push(e[0]>=l.length?[0,e[1]]:e)})),t.search!==z&&W.extend(r.oPreviousSearch,Ft(t.search)),t.columns)for(i=0,s=t.columns.length;i<s;i++){var o=t.columns[i];o.visible!==z&&(l[i].bVisible=o.visible),o.search!==z&&W.extend(r.aoPreSearchCols[i],Ft(o.search))}ue(r,"aoStateLoaded","stateLoaded",[r,t]),a()}}else a()}else a()}var i,s,l=r.aoColumns;if(r.oFeatures.bStateSave){var n=r.fnStateLoadCallback.call(r.oInstance,r,e);n!==z&&e(n)}else a()}function ae(t){var e=I.settings,n=W.inArray(t,V(e,"nTable"));return-1!==n?e[n]:null}function ie(t,e,n,o){if(n="DataTables warning: "+(t?"table id="+t.sTableId+" - ":"")+n,o&&(n+=". For more information about this error, please see http://datatables.net/tn/"+o),e)F.console&&console.log&&console.log(n);else{var r=I.ext,a=r.sErrMode||r.errMode;if(t&&ue(t,null,"error",[t,o,n]),"alert"==a)alert(n);else{if("throw"==a)throw new Error(n);"function"==typeof a&&a(t,o,n)}}}function se(n,o,t,e){W.isArray(t)?W.each(t,function(t,e){W.isArray(e)?se(n,o,e[0],e[1]):se(n,o,e)}):(e===z&&(e=t),o[t]!==z&&(n[e]=o[t]))}function le(t,e,n){var o;for(var r in e)e.hasOwnProperty(r)&&(o=e[r],W.isPlainObject(o)?(W.isPlainObject(t[r])||(t[r]={}),W.extend(!0,t[r],o)):n&&"data"!==r&&"aaData"!==r&&W.isArray(o)?t[r]=o.slice():t[r]=o);return t}function de(e,t,n){W(e).on("click.DT",t,function(t){W(e).blur(),n(t)}).on("keypress.DT",t,function(t){13===t.which&&(t.preventDefault(),n(t))}).on("selectstart.DT",function(){return!1})}function ce(t,e,n,o){n&&t[e].push({fn:n,sName:o})}function ue(n,t,e,o){var r=[];if(t&&(r=W.map(n[t].slice().reverse(),function(t,e){return t.fn.apply(n.oInstance,o)})),null!==e){var a=W.Event(e+".dt");W(n.nTable).trigger(a,o),r.push(a.result)}return r}function fe(t){var e=t._iDisplayStart,n=t.fnDisplayEnd(),o=t._iDisplayLength;n<=e&&(e=n-o),e-=e%o,(-1===o||e<0)&&(e=0),t._iDisplayStart=e}function he(t,e){var n=t.renderer,o=I.ext.renderer[e];return W.isPlainObject(n)&&n[e]?o[n[e]]||o._:"string"==typeof n&&o[n]||o._}function pe(t){return t.oFeatures.bServerSide?"ssp":t.ajax||t.sAjaxSource?"ajax":"dom"}var me=[],be=Array.prototype;y=function(t,e){if(!(this instanceof y))return new y(t,e);function n(t){var e=function(t){var e,n,o=I.settings,r=W.map(o,function(t,e){return t.nTable});return t?t.nTable&&t.oApi?[t]:t.nodeName&&"table"===t.nodeName.toLowerCase()?-1!==(e=W.inArray(t,r))?[o[e]]:null:t&&"function"==typeof t.settings?t.settings().toArray():("string"==typeof t?n=W(t):t instanceof W&&(n=t),n?n.map(function(t){return-1!==(e=W.inArray(this,r))?o[e]:null}).toArray():void 0):[]}(t);e&&(o=o.concat(e))}var o=[];if(W.isArray(t))for(var r=0,a=t.length;r<a;r++)n(t[r]);else n(t);this.context=w(o),e&&W.merge(this,e),this.selector={rows:null,cols:null,opts:null},y.extend(this,this,me)},I.Api=y,W.extend(y.prototype,{any:function(){return 0!==this.count()},concat:be.concat,context:[],count:function(){return this.flatten().length},each:function(t){for(var e=0,n=this.length;e<n;e++)t.call(this,this[e],e,this);return this},eq:function(t){var e=this.context;return e.length>t?new y(e[t],this[t]):null},filter:function(t){var e=[];if(be.filter)e=be.filter.call(this,t,this);else for(var n=0,o=this.length;n<o;n++)t.call(this,this[n],n,this)&&e.push(this[n]);return new y(this.context,e)},flatten:function(){var t=[];return new y(this.context,t.concat.apply(t,this.toArray()))},join:be.join,indexOf:be.indexOf||function(t,e){for(var n=e||0,o=this.length;n<o;n++)if(this[n]===t)return n;return-1},iterator:function(t,e,n,o){var r,a,i,s,l,d,c,u,f=[],h=this.context,p=this.selector;for("string"==typeof t&&(o=n,n=e,e=t,t=!1),a=0,i=h.length;a<i;a++){var m=new y(h[a]);if("table"===e)(r=n.call(m,h[a],a))!==z&&f.push(r);else if("columns"===e||"rows"===e)(r=n.call(m,h[a],this[a],a))!==z&&f.push(r);else if("column"===e||"column-rows"===e||"row"===e||"cell"===e)for(c=this[a],"column-rows"===e&&(d=xe(h[a],p.opts)),s=0,l=c.length;s<l;s++)u=c[s],(r="cell"===e?n.call(m,h[a],u.row,u.column,a,s):n.call(m,h[a],u,a,s,d))!==z&&f.push(r)}if(f.length||o){var b=new y(h,t?f.concat.apply([],f):f),g=b.selector;return g.rows=p.rows,g.cols=p.cols,g.opts=p.opts,b}return this},lastIndexOf:be.lastIndexOf||function(t,e){return this.indexOf.apply(this.toArray.reverse(),arguments)},length:0,map:function(t){var e=[];if(be.map)e=be.map.call(this,t,this);else for(var n=0,o=this.length;n<o;n++)e.push(t.call(this,this[n],n));return new y(this.context,e)},pluck:function(e){return this.map(function(t){return t[e]})},pop:be.pop,push:be.push,reduce:be.reduce||function(t,e){return T(this,t,e,0,this.length,1)},reduceRight:be.reduceRight||function(t,e){return T(this,t,e,this.length-1,-1,-1)},reverse:be.reverse,selector:null,shift:be.shift,slice:function(){return new y(this.context,this)},sort:be.sort,splice:be.splice,toArray:function(){return be.slice.call(this)},to$:function(){return W(this)},toJQuery:function(){return W(this)},unique:function(){return new y(this.context,w(this))},unshift:be.unshift}),y.extend=function(t,e,n){if(n.length&&e&&(e instanceof y||e.__dt_wrapper)){var o,r,a,i=function(e,n,o){return function(){var t=n.apply(e,arguments);return y.extend(t,t,o.methodExt),t}};for(o=0,r=n.length;o<r;o++)e[(a=n[o]).name]="function"==typeof a.val?i(t,a.val,a):W.isPlainObject(a.val)?{}:a.val,e[a.name].__dt_wrapper=!0,y.extend(t,e[a.name],a.propExt)}},y.register=e=function(t,e){if(W.isArray(t))for(var n=0,o=t.length;n<o;n++)y.register(t[n],e);else{var r,a,i,s,l=t.split("."),d=me,c=function(t,e){for(var n=0,o=t.length;n<o;n++)if(t[n].name===e)return t[n];return null};for(r=0,a=l.length;r<a;r++){var u=c(d,i=(s=-1!==l[r].indexOf("()"))?l[r].replace("()",""):l[r]);u||(u={name:i,val:{},methodExt:[],propExt:[]},d.push(u)),r===a-1?u.val=e:d=s?u.methodExt:u.propExt}}},y.registerPlural=t=function(t,e,n){y.register(t,n),y.register(e,function(){var t=n.apply(this,arguments);return t===this?this:t instanceof y?t.length?W.isArray(t[0])?new y(t.context,t[0]):t[0]:z:t})};e("tables()",function(t){return t?new y(function(t,n){if("number"==typeof t)return[n[t]];var o=W.map(n,function(t,e){return t.nTable});return W(o).filter(t).map(function(t){var e=W.inArray(this,o);return n[e]}).toArray()}(t,this.context)):this}),e("table()",function(t){var e=this.tables(t),n=e.context;return n.length?new y(n[0]):e}),t("tables().nodes()","table().node()",function(){return this.iterator("table",function(t){return t.nTable},1)}),t("tables().body()","table().body()",function(){return this.iterator("table",function(t){return t.nTBody},1)}),t("tables().header()","table().header()",function(){return this.iterator("table",function(t){return t.nTHead},1)}),t("tables().footer()","table().footer()",function(){return this.iterator("table",function(t){return t.nTFoot},1)}),t("tables().containers()","table().container()",function(){return this.iterator("table",function(t){return t.nTableWrapper},1)}),e("draw()",function(e){return this.iterator("table",function(t){"page"===e?st(t):("string"==typeof e&&(e="full-hold"!==e),lt(t,!1===e))})}),e("page()",function(e){return e===z?this.page.info().page:this.iterator("table",function(t){jt(t,e)})}),e("page.info()",function(t){if(0===this.context.length)return z;var e=this.context[0],n=e._iDisplayStart,o=e.oFeatures.bPaginate?e._iDisplayLength:-1,r=e.fnRecordsDisplay(),a=-1===o;return{page:a?0:Math.floor(n/o),pages:a?1:Math.ceil(r/o),start:n,end:e.fnDisplayEnd(),length:o,recordsTotal:e.fnRecordsTotal(),recordsDisplay:r,serverSide:"ssp"===pe(e)}}),e("page.len()",function(e){return e===z?0!==this.context.length?this.context[0]._iDisplayLength:z:this.iterator("table",function(t){Ht(t,e)})});function ge(r,a,t){if(t){var e=new y(r);e.one("draw",function(){t(e.ajax.json())})}if("ssp"==pe(r))lt(r,a);else{qt(r,!0);var n=r.jqXHR;n&&4!==n.readyState&&n.abort(),ft(r,[],function(t){Z(r);for(var e=bt(r,t),n=0,o=e.length;n<o;n++)q(r,e[n]);lt(r,a),qt(r,!1)})}}e("ajax.json()",function(){var t=this.context;if(0<t.length)return t[0].json}),e("ajax.params()",function(){var t=this.context;if(0<t.length)return t[0].oAjaxData}),e("ajax.reload()",function(e,n){return this.iterator("table",function(t){ge(t,!1===n,e)})}),e("ajax.url()",function(e){var t=this.context;return e===z?0===t.length?z:(t=t[0]).ajax?W.isPlainObject(t.ajax)?t.ajax.url:t.ajax:t.sAjaxSource:this.iterator("table",function(t){W.isPlainObject(t.ajax)?t.ajax.url=e:t.ajax=e})}),e("ajax.url().load()",function(e,n){return this.iterator("table",function(t){ge(t,!1===n,e)})});function ve(t,e,n,o,r){var a,i,s,l,d,c,u=[],f=typeof e;for(e&&"string"!=f&&"function"!=f&&e.length!==z||(e=[e]),s=0,l=e.length;s<l;s++)for(d=0,c=(i=e[s]&&e[s].split&&!e[s].match(/[\[\(:]/)?e[s].split(","):[e[s]]).length;d<c;d++)(a=n("string"==typeof i[d]?W.trim(i[d]):i[d]))&&a.length&&(u=u.concat(a));var h=g.selector[t];if(h.length)for(s=0,l=h.length;s<l;s++)u=h[s](o,r,u);return w(u)}function ye(t){return t||(t={}),t.filter&&t.search===z&&(t.search=t.filter),W.extend({search:"none",order:"current",page:"all"},t)}function we(t){for(var e=0,n=t.length;e<n;e++)if(0<t[e].length)return t[0]=t[e],t[0].length=1,t.length=1,t.context=[t.context[e]],t;return t.length=0,t}var xe=function(t,e){var n,o=[],r=t.aiDisplay,a=t.aiDisplayMaster,i=e.search,s=e.order,l=e.page;if("ssp"==pe(t))return"removed"===i?[]:p(0,a.length);if("current"==l)for(c=t._iDisplayStart,u=t.fnDisplayEnd();c<u;c++)o.push(r[c]);else if("current"==s||"applied"==s){if("none"==i)o=a.slice();else if("applied"==i)o=r.slice();else if("removed"==i){for(var d={},c=0,u=r.length;c<u;c++)d[r[c]]=null;o=W.map(a,function(t){return d.hasOwnProperty(t)?null:t})}}else if("index"==s||"original"==s)for(c=0,u=t.aoData.length;c<u;c++)"none"==i?o.push(c):(-1===(n=W.inArray(c,r))&&"removed"==i||0<=n&&"applied"==i)&&o.push(c);return o};e("rows()",function(e,n){e===z?e="":W.isPlainObject(e)&&(n=e,e=""),n=ye(n);var t=this.iterator("table",function(t){return function(l,t,d){var c;return ve("row",t,function(n){var t=h(n),o=l.aoData;if(null!==t&&!d)return[t];if(c||(c=xe(l,d)),null!==t&&-1!==W.inArray(t,c))return[t];if(null===n||n===z||""===n)return c;if("function"==typeof n)return W.map(c,function(t){var e=o[t];return n(t,e._aData,e.nTr)?t:null});if(n.nodeName){var e=n._DT_RowIndex,r=n._DT_CellIndex;if(e!==z)return o[e]&&o[e].nTr===n?[e]:[];if(r)return o[r.row]&&o[r.row].nTr===n?[r.row]:[];var a=W(n).closest("*[data-dt-row]");return a.length?[a.data("dt-row")]:[]}if("string"==typeof n&&"#"===n.charAt(0)){var i=l.aIds[n.replace(/^#/,"")];if(i!==z)return[i.idx]}var s=b(m(l.aoData,c,"nTr"));return W(s).filter(n).map(function(){return this._DT_RowIndex}).toArray()},l,d)}(t,e,n)},1);return t.selector.rows=e,t.selector.opts=n,t}),e("rows().nodes()",function(){return this.iterator("row",function(t,e){return t.aoData[e].nTr||z},1)}),e("rows().data()",function(){return this.iterator(!0,"rows",function(t,e){return m(t.aoData,e,"_aData")},1)}),t("rows().cache()","row().cache()",function(o){return this.iterator("row",function(t,e){var n=t.aoData[e];return"search"===o?n._aFilterData:n._aSortData},1)}),t("rows().invalidate()","row().invalidate()",function(n){return this.iterator("row",function(t,e){et(t,e,n)})}),t("rows().indexes()","row().index()",function(){return this.iterator("row",function(t,e){return e},1)}),t("rows().ids()","row().id()",function(t){for(var e=[],n=this.context,o=0,r=n.length;o<r;o++)for(var a=0,i=this[o].length;a<i;a++){var s=n[o].rowIdFn(n[o].aoData[this[o][a]]._aData);e.push((!0===t?"#":"")+s)}return new y(n,e)}),t("rows().remove()","row().remove()",function(){var f=this;return this.iterator("row",function(t,e,n){var o,r,a,i,s,l,d=t.aoData,c=d[e];for(d.splice(e,1),o=0,r=d.length;o<r;o++)if(l=(s=d[o]).anCells,null!==s.nTr&&(s.nTr._DT_RowIndex=o),null!==l)for(a=0,i=l.length;a<i;a++)l[a]._DT_CellIndex.row=o;tt(t.aiDisplayMaster,e),tt(t.aiDisplay,e),tt(f[n],e,!1),0<t._iRecordsDisplay&&t._iRecordsDisplay--,fe(t);var u=t.rowIdFn(c._aData);u!==z&&delete t.aIds[u]}),this.iterator("table",function(t){for(var e=0,n=t.aoData.length;e<n;e++)t.aoData[e].idx=e}),this}),e("rows.add()",function(a){var t=this.iterator("table",function(t){var e,n,o,r=[];for(n=0,o=a.length;n<o;n++)(e=a[n]).nodeName&&"TR"===e.nodeName.toUpperCase()?r.push(E(t,e)[0]):r.push(q(t,e));return r},1),e=this.rows(-1);return e.pop(),W.merge(e,t),e}),e("row()",function(t,e){return we(this.rows(t,e))}),e("row().data()",function(t){var e=this.context;if(t===z)return e.length&&this.length?e[0].aoData[this[0]]._aData:z;var n=e[0].aoData[this[0]];return n._aData=t,W.isArray(t)&&n.nTr.id&&Y(e[0].rowId)(t,n.nTr.id),et(e[0],this[0],"data"),this}),e("row().node()",function(){var t=this.context;return t.length&&this.length&&t[0].aoData[this[0]].nTr||null}),e("row.add()",function(e){e instanceof W&&e.length&&(e=e[0]);var t=this.iterator("table",function(t){return e.nodeName&&"TR"===e.nodeName.toUpperCase()?E(t,e)[0]:q(t,e)});return this.row(t[0])});function _e(t,e){var n=t.context;if(n.length){var o=n[0].aoData[e!==z?e:t[0]];o&&o._details&&(o._details.remove(),o._detailsShow=z,o._details=z)}}function Te(t,e){var n=t.context;if(n.length&&t.length){var o=n[0].aoData[t[0]];o._details&&((o._detailsShow=e)?o._details.insertAfter(o.nTr):o._details.detach(),Ce(n[0]))}}var Ce=function(l){var r=new y(l),t=".dt.DT_details",e="draw"+t,n="column-visibility"+t,o="destroy"+t,d=l.aoData;r.off(e+" "+n+" "+o),0<V(d,"_details").length&&(r.on(e,function(t,e){l===e&&r.rows({page:"current"}).eq(0).each(function(t){var e=d[t];e._detailsShow&&e._details.insertAfter(e.nTr)})}),r.on(n,function(t,e,n,o){if(l===e)for(var r,a=O(e),i=0,s=d.length;i<s;i++)(r=d[i])._details&&r._details.children("td[colspan]").attr("colspan",a)}),r.on(o,function(t,e){if(l===e)for(var n=0,o=d.length;n<o;n++)d[n]._details&&_e(r,n)}))},Se="row().child",De=Se+"()";e(De,function(t,e){var n=this.context;return t===z?n.length&&this.length?n[0].aoData[this[0]]._details:z:(!0===t?this.child.show():!1===t?_e(this):n.length&&this.length&&function(a,t,e,n){var i=[],s=function(t,e){if(W.isArray(t)||t instanceof W)for(var n=0,o=t.length;n<o;n++)s(t[n],e);else if(t.nodeName&&"tr"===t.nodeName.toLowerCase())i.push(t);else{var r=W("<tr><td/></tr>").addClass(e);W("td",r).addClass(e).html(t)[0].colSpan=O(a),i.push(r[0])}};s(e,n),t._details&&t._details.detach(),t._details=W(i),t._detailsShow&&t._details.insertAfter(t.nTr)}(n[0],n[0].aoData[this[0]],t,e),this)}),e([Se+".show()",De+".show()"],function(t){return Te(this,!0),this}),e([Se+".hide()",De+".hide()"],function(){return Te(this,!1),this}),e([Se+".remove()",De+".remove()"],function(){return _e(this),this}),e(Se+".isShown()",function(){var t=this.context;return t.length&&this.length&&t[0].aoData[this[0]]._detailsShow||!1});function Ie(t,e,n,o,r){for(var a=[],i=0,s=r.length;i<s;i++)a.push(D(t,r[i],e));return a}var Fe=/^([^:]+):(name|visIdx|visible)$/;e("columns()",function(e,n){e===z?e="":W.isPlainObject(e)&&(n=e,e=""),n=ye(n);var t=this.iterator("table",function(t){return function(l,t,d){var c=l.aoColumns,u=V(c,"sName"),f=V(c,"nTh");return ve("column",t,function(n){var t=h(n);if(""===n)return p(c.length);if(null!==t)return[0<=t?t:c.length+t];if("function"==typeof n){var o=xe(l,d);return W.map(c,function(t,e){return n(e,Ie(l,e,0,0,o),f[e])?e:null})}var r="string"==typeof n?n.match(Fe):"";if(r)switch(r[2]){case"visIdx":case"visible":var e=parseInt(r[1],10);if(e<0){var a=W.map(c,function(t,e){return t.bVisible?e:null});return[a[a.length+e]]}return[X(l,e)];case"name":return W.map(u,function(t,e){return t===r[1]?e:null});default:return[]}if(n.nodeName&&n._DT_CellIndex)return[n._DT_CellIndex.column];var i=W(f).filter(n).map(function(){return W.inArray(this,f)}).toArray();if(i.length||!n.nodeName)return i;var s=W(n).closest("*[data-dt-column]");return s.length?[s.data("dt-column")]:[]},l,d)}(t,e,n)},1);return t.selector.cols=e,t.selector.opts=n,t}),t("columns().header()","column().header()",function(t,e){return this.iterator("column",function(t,e){return t.aoColumns[e].nTh},1)}),t("columns().footer()","column().footer()",function(t,e){return this.iterator("column",function(t,e){return t.aoColumns[e].nTf},1)}),t("columns().data()","column().data()",function(){return this.iterator("column-rows",Ie,1)}),t("columns().dataSrc()","column().dataSrc()",function(){return this.iterator("column",function(t,e){return t.aoColumns[e].mData},1)}),t("columns().cache()","column().cache()",function(a){return this.iterator("column-rows",function(t,e,n,o,r){return m(t.aoData,r,"search"===a?"_aFilterData":"_aSortData",e)},1)}),t("columns().nodes()","column().nodes()",function(){return this.iterator("column-rows",function(t,e,n,o,r){return m(t.aoData,r,"anCells",e)},1)}),t("columns().visible()","column().visible()",function(n,o){var t=this.iterator("column",function(t,e){if(n===z)return t.aoColumns[e].bVisible;!function(t,e,n){var o,r,a,i,s=t.aoColumns,l=s[e],d=t.aoData;if(n===z)return l.bVisible;if(l.bVisible!==n){if(n){var c=W.inArray(!0,V(s,"bVisible"),e+1);for(r=0,a=d.length;r<a;r++)i=d[r].nTr,o=d[r].anCells,i&&i.insertBefore(o[e],o[c]||null)}else W(V(t.aoData,"anCells",e)).detach();l.bVisible=n,it(t,t.aoHeader),it(t,t.aoFooter),t.aiDisplay.length||W(t.nTBody).find("td[colspan]").attr("colspan",O(t)),oe(t)}}(t,e,n)});return n!==z&&(this.iterator("column",function(t,e){ue(t,null,"column-visibility",[t,e,n,o])}),o!==z&&!o||this.columns.adjust()),t}),t("columns().indexes()","column().index()",function(n){return this.iterator("column",function(t,e){return"visible"===n?C(t,e):e},1)}),e("columns.adjust()",function(){return this.iterator("table",function(t){$(t)},1)}),e("column.index()",function(t,e){if(0!==this.context.length){var n=this.context[0];if("fromVisible"===t||"toData"===t)return X(n,e);if("fromData"===t||"toVisible"===t)return C(n,e)}}),e("column()",function(t,e){return we(this.columns(t,e))});e("cells()",function(e,t,n){if(W.isPlainObject(e)&&(e.row===z?(n=e,e=null):(n=t,t=null)),W.isPlainObject(t)&&(n=t,t=null),null===t||t===z)return this.iterator("table",function(t){return function(o,t,e){var r,a,i,s,l,d,c,u=o.aoData,f=xe(o,e),n=b(m(u,f,"anCells")),h=W([].concat.apply([],n)),p=o.aoColumns.length;return ve("cell",t,function(t){var e="function"==typeof t;if(null===t||t===z||e){for(a=[],i=0,s=f.length;i<s;i++)for(r=f[i],l=0;l<p;l++)d={row:r,column:l},e?(c=u[r],t(d,D(o,r,l),c.anCells?c.anCells[l]:null)&&a.push(d)):a.push(d);return a}if(W.isPlainObject(t))return t.column!==z&&t.row!==z&&-1!==W.inArray(t.row,f)?[t]:[];var n=h.filter(t).map(function(t,e){return{row:e._DT_CellIndex.row,column:e._DT_CellIndex.column}}).toArray();return n.length||!t.nodeName?n:(c=W(t).closest("*[data-dt-row]")).length?[{row:c.data("dt-row"),column:c.data("dt-column")}]:[]},o,e)}(t,e,ye(n))});var o,r,a,i,s,l=this.columns(t),d=this.rows(e);this.iterator("table",function(t,e){for(o=[],r=0,a=d[e].length;r<a;r++)for(i=0,s=l[e].length;i<s;i++)o.push({row:d[e][r],column:l[e][i]})},1);var c=this.cells(o,n);return W.extend(c.selector,{cols:t,rows:e,opts:n}),c}),t("cells().nodes()","cell().node()",function(){return this.iterator("cell",function(t,e,n){var o=t.aoData[e];return o&&o.anCells?o.anCells[n]:z},1)}),e("cells().data()",function(){return this.iterator("cell",function(t,e,n){return D(t,e,n)},1)}),t("cells().cache()","cell().cache()",function(o){return o="search"===o?"_aFilterData":"_aSortData",this.iterator("cell",function(t,e,n){return t.aoData[e][o][n]},1)}),t("cells().render()","cell().render()",function(o){return this.iterator("cell",function(t,e,n){return D(t,e,n,o)},1)}),t("cells().indexes()","cell().index()",function(){return this.iterator("cell",function(t,e,n){return{row:e,column:n,columnVisible:C(t,n)}},1)}),t("cells().invalidate()","cell().invalidate()",function(o){return this.iterator("cell",function(t,e,n){et(t,e,o,n)})}),e("cell()",function(t,e,n){return we(this.cells(t,e,n))}),e("cell().data()",function(t){var e=this.context,n=this[0];return t===z?e.length&&n.length?D(e[0],n[0].row,n[0].column):z:(M(e[0],n[0].row,n[0].column,t),et(e[0],n[0].row,"data",n[0].column),this)}),e("order()",function(e,t){var n=this.context;return e===z?0!==n.length?n[0].aaSorting:z:("number"==typeof e?e=[[e,t]]:e.length&&!W.isArray(e[0])&&(e=Array.prototype.slice.call(arguments)),this.iterator("table",function(t){t.aaSorting=e.slice()}))}),e("order.listener()",function(e,n,o){return this.iterator("table",function(t){te(t,e,n,o)})}),e("order.fixed()",function(e){if(e)return this.iterator("table",function(t){t.aaSortingFixed=W.extend(!0,{},e)});var t=this.context,n=t.length?t[0].aaSortingFixed:z;return W.isArray(n)?{pre:n}:n}),e(["columns().order()","column().order()"],function(o){var r=this;return this.iterator("table",function(t,e){var n=[];W.each(r[e],function(t,e){n.push([e,o])}),t.aaSorting=n})}),e("search()",function(e,n,o,r){var t=this.context;return e===z?0!==t.length?t[0].oPreviousSearch.sSearch:z:this.iterator("table",function(t){t.oFeatures.bFilter&&vt(t,W.extend({},t.oPreviousSearch,{sSearch:e+"",bRegex:null!==n&&n,bSmart:null===o||o,bCaseInsensitive:null===r||r}),1)})}),t("columns().search()","column().search()",function(o,r,a,i){return this.iterator("column",function(t,e){var n=t.aoPreSearchCols;if(o===z)return n[e].sSearch;t.oFeatures.bFilter&&(W.extend(n[e],{sSearch:o+"",bRegex:null!==r&&r,bSmart:null===a||a,bCaseInsensitive:null===i||i}),vt(t,t.oPreviousSearch,1))})}),e("state()",function(){return this.context.length?this.context[0].oSavedState:null}),e("state.clear()",function(){return this.iterator("table",function(t){t.fnStateSaveCallback.call(t.oInstance,t,{})})}),e("state.loaded()",function(){return this.context.length?this.context[0].oLoadedState:null}),e("state.save()",function(){return this.iterator("table",function(t){oe(t)})}),I.versionCheck=I.fnVersionCheck=function(t){for(var e,n,o=I.version.split("."),r=t.split("."),a=0,i=r.length;a<i;a++)if((e=parseInt(o[a],10)||0)!==(n=parseInt(r[a],10)||0))return n<e;return!0},I.isDataTable=I.fnIsDataTable=function(t){var r=W(t).get(0),a=!1;return t instanceof I.Api||(W.each(I.settings,function(t,e){var n=e.nScrollHead?W("table",e.nScrollHead)[0]:null,o=e.nScrollFoot?W("table",e.nScrollFoot)[0]:null;e.nTable!==r&&n!==r&&o!==r||(a=!0)}),a)},I.tables=I.fnTables=function(e){var t=!1;W.isPlainObject(e)&&(t=e.api,e=e.visible);var n=W.map(I.settings,function(t){if(!e||e&&W(t.nTable).is(":visible"))return t.nTable});return t?new y(n):n},I.camelToHungarian=R,e("$()",function(t,e){var n=this.rows(e).nodes(),o=W(n);return W([].concat(o.filter(t).toArray(),o.find(t).toArray()))}),W.each(["on","one","off"],function(t,n){e(n+"()",function(){var t=Array.prototype.slice.call(arguments);t[0]=W.map(t[0].split(/\s/),function(t){return t.match(/\.dt\b/)?t:t+".dt"}).join(" ");var e=W(this.tables().nodes());return e[n].apply(e,t),this})}),e("clear()",function(){return this.iterator("table",function(t){Z(t)})}),e("settings()",function(){return new y(this.context,this.context)}),e("init()",function(){var t=this.context;return t.length?t[0].oInit:null}),e("data()",function(){return this.iterator("table",function(t){return V(t.aoData,"_aData")}).flatten()}),e("destroy()",function(p){return p=p||!1,this.iterator("table",function(e){var n,t=e.nTableWrapper.parentNode,o=e.oClasses,r=e.nTable,a=e.nTBody,i=e.nTHead,s=e.nTFoot,l=W(r),d=W(a),c=W(e.nTableWrapper),u=W.map(e.aoData,function(t){return t.nTr});e.bDestroying=!0,ue(e,"aoDestroyCallback","destroy",[e]),p||new y(e).columns().visible(!0),c.off(".DT").find(":not(tbody *)").off(".DT"),W(F).off(".DT-"+e.sInstance),r!=i.parentNode&&(l.children("thead").detach(),l.append(i)),s&&r!=s.parentNode&&(l.children("tfoot").detach(),l.append(s)),e.aaSorting=[],e.aaSortingFixed=[],ee(e),W(u).removeClass(e.asStripeClasses.join(" ")),W("th, td",i).removeClass(o.sSortable+" "+o.sSortableAsc+" "+o.sSortableDesc+" "+o.sSortableNone),d.children().detach(),d.append(u);var f=p?"remove":"detach";l[f](),c[f](),!p&&t&&(t.insertBefore(r,e.nTableReinsertBefore),l.css("width",e.sDestroyWidth).removeClass(o.sTable),(n=e.asDestroyStripes.length)&&d.children().each(function(t){W(this).addClass(e.asDestroyStripes[t%n])}));var h=W.inArray(e,I.settings);-1!==h&&I.settings.splice(h,1)})}),W.each(["column","row","cell"],function(t,l){e(l+"s().every()",function(a){var i=this.selector.opts,s=this;return this.iterator(l,function(t,e,n,o,r){a.call(s[l](e,"cell"===l?n:i,"cell"===l?i:z),e,n,o,r)})})}),e("i18n()",function(t,e,n){var o=this.context[0],r=K(t)(o.oLanguage);return r===z&&(r=e),n!==z&&W.isPlainObject(r)&&(r=r[n]!==z?r[n]:r._),r.replace("%d",n)}),I.version="1.10.19",I.settings=[],I.models={},I.models.oSearch={bCaseInsensitive:!0,sSearch:"",bRegex:!1,bSmart:!0},I.models.oRow={nTr:null,anCells:null,_aData:[],_aSortData:null,_aFilterData:null,_sFilterRow:null,_sRowStripe:"",src:null,idx:-1},I.models.oColumn={idx:null,aDataSort:null,asSorting:null,bSearchable:null,bSortable:null,bVisible:null,_sManualType:null,_bAttrSrc:!1,fnCreatedCell:null,fnGetData:null,fnSetData:null,mData:null,mRender:null,nTh:null,nTf:null,sClass:null,sContentPadding:null,sDefaultContent:null,sName:null,sSortDataType:"std",sSortingClass:null,sSortingClassJUI:null,sTitle:null,sType:null,sWidth:null,sWidthOrig:null},I.defaults={aaData:null,aaSorting:[[0,"asc"]],aaSortingFixed:[],ajax:null,aLengthMenu:[10,25,50,100],aoColumns:null,aoColumnDefs:null,aoSearchCols:[],asStripeClasses:null,bAutoWidth:!0,bDeferRender:!1,bDestroy:!1,bFilter:!0,bInfo:!0,bLengthChange:!0,bPaginate:!0,bProcessing:!1,bRetrieve:!1,bScrollCollapse:!1,bServerSide:!1,bSort:!0,bSortMulti:!0,bSortCellsTop:!1,bSortClasses:!0,bStateSave:!1,fnCreatedRow:null,fnDrawCallback:null,fnFooterCallback:null,fnFormatNumber:function(t){return t.toString().replace(/\B(?=(\d{3})+(?!\d))/g,this.oLanguage.sThousands)},fnHeaderCallback:null,fnInfoCallback:null,fnInitComplete:null,fnPreDrawCallback:null,fnRowCallback:null,fnServerData:null,fnServerParams:null,fnStateLoadCallback:function(t){try{return JSON.parse((-1===t.iStateDuration?sessionStorage:localStorage).getItem("DataTables_"+t.sInstance+"_"+location.pathname))}catch(t){}},fnStateLoadParams:null,fnStateLoaded:null,fnStateSaveCallback:function(t,e){try{(-1===t.iStateDuration?sessionStorage:localStorage).setItem("DataTables_"+t.sInstance+"_"+location.pathname,JSON.stringify(e))}catch(t){}},fnStateSaveParams:null,iStateDuration:7200,iDeferLoading:null,iDisplayLength:10,iDisplayStart:0,iTabIndex:0,oClasses:{},oLanguage:{oAria:{sSortAscending:": activate to sort column ascending",sSortDescending:": activate to sort column descending"},oPaginate:{sFirst:"First",sLast:"Last",sNext:"Next",sPrevious:"Previous"},sEmptyTable:"No data available in table",sInfo:"Showing _START_ to _END_ of _TOTAL_ entries",sInfoEmpty:"Showing 0 to 0 of 0 entries",sInfoFiltered:"(filtered from _MAX_ total entries)",sInfoPostFix:"",sDecimal:"",sThousands:",",sLengthMenu:"Show _MENU_ entries",sLoadingRecords:"Loading...",sProcessing:"Processing...",sSearch:"Search:",sSearchPlaceholder:"",sUrl:"",sZeroRecords:"No matching records found"},oSearch:W.extend({},I.models.oSearch),sAjaxDataProp:"data",sAjaxSource:null,sDom:"lfrtip",searchDelay:null,sPaginationType:"simple_numbers",sScrollX:"",sScrollXInner:"",sScrollY:"",sServerMethod:"GET",renderer:null,rowId:"DT_RowId"},x(I.defaults),I.defaults.column={aDataSort:null,iDataSort:-1,asSorting:["asc","desc"],bSearchable:!0,bSortable:!0,bVisible:!0,fnCreatedCell:null,mData:null,mRender:null,sCellType:"td",sClass:"",sContentPadding:"",sDefaultContent:null,sName:"",sSortDataType:"std",sTitle:null,sType:null,sWidth:null},x(I.defaults.column),I.models.oSettings={oFeatures:{bAutoWidth:null,bDeferRender:null,bFilter:null,bInfo:null,bLengthChange:null,bPaginate:null,bProcessing:null,bServerSide:null,bSort:null,bSortMulti:null,bSortClasses:null,bStateSave:null},oScroll:{bCollapse:null,iBarWidth:0,sX:null,sXInner:null,sY:null},oLanguage:{fnInfoCallback:null},oBrowser:{bScrollOversize:!1,bScrollbarLeft:!1,bBounding:!1,barWidth:0},ajax:null,aanFeatures:[],aoData:[],aiDisplay:[],aiDisplayMaster:[],aIds:{},aoColumns:[],aoHeader:[],aoFooter:[],oPreviousSearch:{},aoPreSearchCols:[],aaSorting:null,aaSortingFixed:[],asStripeClasses:null,asDestroyStripes:[],sDestroyWidth:0,aoRowCallback:[],aoHeaderCallback:[],aoFooterCallback:[],aoDrawCallback:[],aoRowCreatedCallback:[],aoPreDrawCallback:[],aoInitComplete:[],aoStateSaveParams:[],aoStateLoadParams:[],aoStateLoaded:[],sTableId:"",nTable:null,nTHead:null,nTFoot:null,nTBody:null,nTableWrapper:null,bDeferLoading:!1,bInitialised:!1,aoOpenRows:[],sDom:null,searchDelay:null,sPaginationType:"two_button",iStateDuration:0,aoStateSave:[],aoStateLoad:[],oSavedState:null,oLoadedState:null,sAjaxSource:null,sAjaxDataProp:null,bAjaxDataGet:!0,jqXHR:null,json:z,oAjaxData:z,fnServerData:null,aoServerParams:[],sServerMethod:null,fnFormatNumber:null,aLengthMenu:null,iDraw:0,bDrawing:!1,iDrawError:-1,_iDisplayLength:10,_iDisplayStart:0,_iRecordsTotal:0,_iRecordsDisplay:0,oClasses:{},bFiltered:!1,bSorted:!1,bSortCellsTop:null,oInit:null,aoDestroyCallback:[],fnRecordsTotal:function(){return"ssp"==pe(this)?1*this._iRecordsTotal:this.aiDisplayMaster.length},fnRecordsDisplay:function(){return"ssp"==pe(this)?1*this._iRecordsDisplay:this.aiDisplay.length},fnDisplayEnd:function(){var t=this._iDisplayLength,e=this._iDisplayStart,n=e+t,o=this.aiDisplay.length,r=this.oFeatures,a=r.bPaginate;return r.bServerSide?!1===a||-1===t?e+o:Math.min(e+t,this._iRecordsDisplay):!a||o<n||-1===t?o:n},oInstance:null,sInstance:null,iTabIndex:0,nScrollHead:null,nScrollFoot:null,aLastSort:[],oPlugins:{},rowIdFn:null,rowId:null},I.ext=g={buttons:{},classes:{},builder:"-source-",errMode:"alert",feature:[],search:[],selector:{cell:[],column:[],row:[]},internal:{},legacy:{ajax:null},pager:{},renderer:{pageButton:{},header:{}},order:{},type:{detect:[],search:{},order:{}},_unique:0,fnVersionCheck:I.fnVersionCheck,iApiIndex:0,oJUIClasses:{},sVersion:I.version},W.extend(g,{afnFiltering:g.search,aTypes:g.type.detect,ofnSearch:g.type.search,oSort:g.type.order,afnSortData:g.order,aoFeatures:g.feature,oApi:g.internal,oStdClasses:g.classes,oPagination:g.pager}),W.extend(I.ext.classes,{sTable:"dataTable",sNoFooter:"no-footer",sPageButton:"paginate_button",sPageButtonActive:"current",sPageButtonDisabled:"disabled",sStripeOdd:"odd",sStripeEven:"even",sRowEmpty:"dataTables_empty",sWrapper:"dataTables_wrapper",sFilter:"dataTables_filter",sInfo:"dataTables_info",sPaging:"dataTables_paginate paging_",sLength:"dataTables_length",sProcessing:"dataTables_processing",sSortAsc:"sorting_asc",sSortDesc:"sorting_desc",sSortable:"sorting",sSortableAsc:"sorting_asc_disabled",sSortableDesc:"sorting_desc_disabled",sSortableNone:"sorting_disabled",sSortColumn:"sorting_",sFilterInput:"",sLengthSelect:"",sScrollWrapper:"dataTables_scroll",sScrollHead:"dataTables_scrollHead",sScrollHeadInner:"dataTables_scrollHeadInner",sScrollBody:"dataTables_scrollBody",sScrollFoot:"dataTables_scrollFoot",sScrollFootInner:"dataTables_scrollFootInner",sHeaderTH:"",sFooterTH:"",sSortJUIAsc:"",sSortJUIDesc:"",sSortJUI:"",sSortJUIAscAllowed:"",sSortJUIDescAllowed:"",sSortJUIWrapper:"",sSortIcon:"",sJUIHeader:"",sJUIFooter:""});var Re=I.ext.pager;function Ae(t,e){var n=[],o=Re.numbers_length,r=Math.floor(o/2);return e<=o?n=p(0,e):t<=r?((n=p(0,o-2)).push("ellipsis"),n.push(e-1)):(e-1-r<=t?(n=p(e-(o-2),e)).splice(0,0,"ellipsis"):((n=p(t-r+2,t+r-1)).push("ellipsis"),n.push(e-1),n.splice(0,0,"ellipsis")),n.splice(0,0,0)),n.DT_el="span",n}W.extend(Re,{simple:function(t,e){return["previous","next"]},full:function(t,e){return["first","previous","next","last"]},numbers:function(t,e){return[Ae(t,e)]},simple_numbers:function(t,e){return["previous",Ae(t,e),"next"]},full_numbers:function(t,e){return["first","previous",Ae(t,e),"next","last"]},first_last_numbers:function(t,e){return["first",Ae(t,e),"last"]},_numbers:Ae,numbers_length:7}),W.extend(!0,I.ext.renderer,{pageButton:{_:function(s,t,l,e,d,c){var u,f,n,h=s.oClasses,p=s.oLanguage.oPaginate,m=s.oLanguage.oAria.paginate||{},b=0,g=function(t,e){function n(t){jt(s,t.data.action,!0)}var o,r,a;for(o=0,r=e.length;o<r;o++)if(a=e[o],W.isArray(a)){var i=W("<"+(a.DT_el||"div")+"/>").appendTo(t);g(i,a)}else{switch(u=null,f="",a){case"ellipsis":t.append('<span class="ellipsis">&#x2026;</span>');break;case"first":u=p.sFirst,f=a+(0<d?"":" "+h.sPageButtonDisabled);break;case"previous":u=p.sPrevious,f=a+(0<d?"":" "+h.sPageButtonDisabled);break;case"next":u=p.sNext,f=a+(d<c-1?"":" "+h.sPageButtonDisabled);break;case"last":u=p.sLast,f=a+(d<c-1?"":" "+h.sPageButtonDisabled);break;default:u=a+1,f=d===a?h.sPageButtonActive:""}null!==u&&(de(W("<a>",{class:h.sPageButton+" "+f,"aria-controls":s.sTableId,"aria-label":m[a],"data-dt-idx":b,tabindex:s.iTabIndex,id:0===l&&"string"==typeof a?s.sTableId+"_"+a:null}).html(u).appendTo(t),{action:a},n),b++)}};try{n=W(t).find(v.activeElement).data("dt-idx")}catch(t){}g(W(t).empty(),e),n!==z&&W(t).find("[data-dt-idx="+n+"]").focus()}}}),W.extend(I.ext.type.detect,[function(t,e){var n=e.oLanguage.sDecimal;return o(t,n)?"num"+n:null},function(t,e){if(t&&!(t instanceof Date)&&!d.test(t))return null;var n=Date.parse(t);return null!==n&&!isNaN(n)||r(t)?"date":null},function(t,e){var n=e.oLanguage.sDecimal;return o(t,n,!0)?"num-fmt"+n:null},function(t,e){var n=e.oLanguage.sDecimal;return i(t,n)?"html-num"+n:null},function(t,e){var n=e.oLanguage.sDecimal;return i(t,n,!0)?"html-num-fmt"+n:null},function(t,e){return r(t)||"string"==typeof t&&-1!==t.indexOf("<")?"html":null}]),W.extend(I.ext.type.search,{html:function(t){return r(t)?t:"string"==typeof t?t.replace(s," ").replace(l,""):""},string:function(t){return r(t)?t:"string"==typeof t?t.replace(s," "):t}});var ke=function(t,e,n,o){return 0===t||t&&"-"!==t?(e&&(t=a(t,e)),t.replace&&(n&&(t=t.replace(n,"")),o&&(t=t.replace(o,""))),1*t):-1/0};function Ne(n){W.each({num:function(t){return ke(t,n)},"num-fmt":function(t){return ke(t,n,u)},"html-num":function(t){return ke(t,n,l)},"html-num-fmt":function(t){return ke(t,n,l,u)}},function(t,e){g.type.order[t+n+"-pre"]=e,t.match(/^html\-/)&&(g.type.search[t+n]=g.type.search.html)})}W.extend(g.type.order,{"date-pre":function(t){var e=Date.parse(t);return isNaN(e)?-1/0:e},"html-pre":function(t){return r(t)?"":t.replace?t.replace(/<.*?>/g,"").toLowerCase():t+""},"string-pre":function(t){return r(t)?"":"string"==typeof t?t.toLowerCase():t.toString?t.toString():""},"string-asc":function(t,e){return t<e?-1:e<t?1:0},"string-desc":function(t,e){return t<e?1:e<t?-1:0}}),Ne(""),W.extend(!0,I.ext.renderer,{header:{_:function(a,i,s,l){W(a.nTable).on("order.dt.DT",function(t,e,n,o){if(a===e){var r=s.idx;i.removeClass(s.sSortingClass+" "+l.sSortAsc+" "+l.sSortDesc).addClass("asc"==o[r]?l.sSortAsc:"desc"==o[r]?l.sSortDesc:s.sSortingClass)}})},jqueryui:function(a,i,s,l){W("<div/>").addClass(l.sSortJUIWrapper).append(i.contents()).append(W("<span/>").addClass(l.sSortIcon+" "+s.sSortingClassJUI)).appendTo(i),W(a.nTable).on("order.dt.DT",function(t,e,n,o){if(a===e){var r=s.idx;i.removeClass(l.sSortAsc+" "+l.sSortDesc).addClass("asc"==o[r]?l.sSortAsc:"desc"==o[r]?l.sSortDesc:s.sSortingClass),i.find("span."+l.sSortIcon).removeClass(l.sSortJUIAsc+" "+l.sSortJUIDesc+" "+l.sSortJUI+" "+l.sSortJUIAscAllowed+" "+l.sSortJUIDescAllowed).addClass("asc"==o[r]?l.sSortJUIAsc:"desc"==o[r]?l.sSortJUIDesc:s.sSortingClassJUI)}})}}});function Le(t){return"string"==typeof t?t.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"):t}function He(e){return function(){var t=[ae(this[I.ext.iApiIndex])].concat(Array.prototype.slice.call(arguments));return I.ext.internal[e].apply(this,t)}}return I.render={number:function(a,i,s,l,d){return{display:function(t){if("number"!=typeof t&&"string"!=typeof t)return t;var e=t<0?"-":"",n=parseFloat(t);if(isNaN(n))return Le(t);n=n.toFixed(s),t=Math.abs(n);var o=parseInt(t,10),r=s?i+(t-o).toFixed(s).substring(2):"";return e+(l||"")+o.toString().replace(/\B(?=(\d{3})+(?!\d))/g,a)+r+(d||"")}}},text:function(){return{display:Le,filter:Le}}},W.extend(I.ext.internal,{_fnExternApiFunc:He,_fnBuildAjax:ft,_fnAjaxUpdate:ht,_fnAjaxParameters:pt,_fnAjaxUpdateDraw:mt,_fnAjaxDataSrc:bt,_fnAddColumn:H,_fnColumnOptions:B,_fnAdjustColumnSizing:$,_fnVisibleToColumnIndex:X,_fnColumnIndexToVisible:C,_fnVisbleColumns:O,_fnGetColumns:j,_fnColumnTypes:S,_fnApplyColumnDefs:P,_fnHungarianMap:x,_fnCamelToHungarian:R,_fnLanguageCompat:A,_fnBrowserDetect:L,_fnAddData:q,_fnAddTr:E,_fnNodeToDataIndex:function(t,e){return e._DT_RowIndex!==z?e._DT_RowIndex:null},_fnNodeToColumnIndex:function(t,e,n){return W.inArray(n,t.aoData[e].anCells)},_fnGetCellData:D,_fnSetCellData:M,_fnSplitObjNotation:J,_fnGetObjectDataFn:K,_fnSetObjectDataFn:Y,_fnGetDataMaster:Q,_fnClearTable:Z,_fnDeleteIndex:tt,_fnInvalidate:et,_fnGetRowElements:nt,_fnCreateTr:ot,_fnBuildHead:at,_fnDrawHead:it,_fnDraw:st,_fnReDraw:lt,_fnAddOptionsHtml:dt,_fnDetectHeader:ct,_fnGetUniqueThs:ut,_fnFeatureHtmlFilter:gt,_fnFilterComplete:vt,_fnFilterCustom:yt,_fnFilterColumn:wt,_fnFilter:xt,_fnFilterCreateSearch:_t,_fnEscapeRegex:Tt,_fnFilterData:Dt,_fnFeatureHtmlInfo:Rt,_fnUpdateInfo:At,_fnInfoMacros:kt,_fnInitialise:Nt,_fnInitComplete:Lt,_fnLengthChange:Ht,_fnFeatureHtmlLength:Bt,_fnFeatureHtmlPaginate:Ot,_fnPageChange:jt,_fnFeatureHtmlProcessing:Pt,_fnProcessingDisplay:qt,_fnFeatureHtmlTable:Et,_fnScrollDraw:Mt,_fnApplyToChildren:Wt,_fnCalculateColumnWidths:Vt,_fnThrottle:$t,_fnConvertToWidth:Xt,_fnGetWidestNode:Ut,_fnGetMaxLenString:Gt,_fnStringToCss:Jt,_fnSortFlatten:Kt,_fnSort:Yt,_fnSortAria:Qt,_fnSortListener:Zt,_fnSortAttachListener:te,_fnSortingClasses:ee,_fnSortData:ne,_fnSaveState:oe,_fnLoadState:re,_fnSettingsFromNode:ae,_fnLog:ie,_fnMap:se,_fnBindAction:de,_fnCallbackReg:ce,_fnCallbackFire:ue,_fnLengthOverflow:fe,_fnRenderer:he,_fnDataSource:pe,_fnRowAttributes:rt,_fnExtend:le,_fnCalculateEnd:function(){}}),((W.fn.dataTable=I).$=W).fn.dataTableSettings=I.settings,W.fn.dataTableExt=I.ext,W.fn.DataTable=function(t){return W(this).dataTable(t).api()},W.each(I,function(t,e){W.fn.DataTable[t]=e}),W.fn.dataTable}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(y,t,o,r){"use strict";var a=y.fn.dataTable;return y.extend(!0,a.defaults,{dom:"<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",renderer:"bootstrap"}),y.extend(a.ext.classes,{sWrapper:"dataTables_wrapper dt-bootstrap4",sFilterInput:"form-control form-control-sm",sLengthSelect:"custom-select custom-select-sm form-control form-control-sm",sProcessing:"dataTables_processing card",sPageButton:"paginate_button page-item"}),a.ext.renderer.pageButton.bootstrap=function(s,t,l,e,d,c){var u,f,n,h=new a.Api(s),p=s.oClasses,m=s.oLanguage.oPaginate,b=s.oLanguage.oAria.paginate||{},g=0,v=function(t,e){function n(t){t.preventDefault(),y(t.currentTarget).hasClass("disabled")||h.page()==t.data.action||h.page(t.data.action).draw("page")}var o,r,a,i;for(o=0,r=e.length;o<r;o++)if(i=e[o],y.isArray(i))v(t,i);else{switch(f=u="",i){case"ellipsis":u="&#x2026;",f="disabled";break;case"first":u=m.sFirst,f=i+(0<d?"":" disabled");break;case"previous":u=m.sPrevious,f=i+(0<d?"":" disabled");break;case"next":u=m.sNext,f=i+(d<c-1?"":" disabled");break;case"last":u=m.sLast,f=i+(d<c-1?"":" disabled");break;default:u=i+1,f=d===i?"active":""}u&&(a=y("<li>",{class:p.sPageButton+" "+f,id:0===l&&"string"==typeof i?s.sTableId+"_"+i:null}).append(y("<a>",{href:"#","aria-controls":s.sTableId,"aria-label":b[i],"data-dt-idx":g,tabindex:s.iTabIndex,class:"page-link"}).html(u)).appendTo(t),s.oApi._fnBindAction(a,{action:i},n),g++)}};try{n=y(t).find(o.activeElement).data("dt-idx")}catch(t){}v(y(t).empty().html('<ul class="pagination"/>').children("ul"),e),n!==r&&y(t).find("[data-dt-idx="+n+"]").focus()},a}),$.extend(!0,$.fn.dataTableExt.oStdClasses,{sFilterInput:"form-control border-top-left-radius-0 border-bottom-left-radius-0 ml-0 width-lg shadow-inset-1",sLengthSelect:"form-control custom-select"}),$.extend(!0,$.fn.dataTable.defaults,{dom:"<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'l>><'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",lengthMenu:[[10,15,25,50,100,-1],[10,15,25,50,100,"All"]],language:{paginate:{previous:"<i class='fal fa-chevron-left'></i>",next:"<i class='fal fa-chevron-right'></i>"},processing:'<div class="d-flex align-items-center justify-content-center fs-lg"><div class="spinner-border spinner-border-sm text-primary mr-2" role="status"><span class="sr-only"> Loading...</span></div> Processing...</div>',search:'<div class="input-group-text d-inline-flex width-3 align-items-center justify-content-center border-bottom-right-radius-0 border-top-right-radius-0 border-right-0"><i class="fa fa-search"></i></div>',searchPlaceholder:"Search",zeroRecords:"No records to display"},initComplete:function(t,e){initApp.appForms(".dataTables_filter","has-length","has-disabled")}}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(b,i,p,v){"use strict";var s=b.fn.dataTable,n=0,l=function(t,e){if(!s.versionCheck||!s.versionCheck("1.10.8"))throw"Warning: AutoFill requires DataTables 1.10.8 or greater";this.c=b.extend(!0,{},s.defaults.autoFill,l.defaults,e),this.s={dt:new s.Api(t),namespace:".autoFill"+n++,scroll:{},scrollInterval:null,handle:{height:0,width:0},enabled:!1},this.dom={handle:b('<div class="dt-autofill-handle"/>'),select:{top:b('<div class="dt-autofill-select top"/>'),right:b('<div class="dt-autofill-select right"/>'),bottom:b('<div class="dt-autofill-select bottom"/>'),left:b('<div class="dt-autofill-select left"/>')},background:b('<div class="dt-autofill-background"/>'),list:b('<div class="dt-autofill-list">'+this.s.dt.i18n("autoFill.info","")+"<ul/></div>"),dtScroll:null,offsetParent:null},this._constructor()};b.extend(l.prototype,{enabled:function(){return this.s.enabled},enable:function(t){var e=this;return!1===t?this.disable():(this.s.enabled=!0,this._focusListener(),this.dom.handle.on("mousedown",function(t){return e._mousedown(t),!1}),this)},disable:function(){return this.s.enabled=!1,this._focusListenerRemove(),this},_constructor:function(){var t=this,e=this.s.dt,n=b("div.dataTables_scrollBody",this.s.dt.table().container());e.settings()[0].autoFill=this,n.length&&"static"===(this.dom.dtScroll=n).css("position")&&n.css("position","relative"),!1!==this.c.enable&&this.enable(),e.on("destroy.autoFill",function(){t._focusListenerRemove()})},_attach:function(t){var e=this.s.dt,n=e.cell(t).index(),o=this.dom.handle,r=this.s.handle;if(n&&-1!==e.columns(this.c.columns).indexes().indexOf(n.column)){this.dom.offsetParent||(this.dom.offsetParent=b(e.table().node()).offsetParent()),r.height&&r.width||(o.appendTo("body"),r.height=o.outerHeight(),r.width=o.outerWidth());var a=this._getPosition(t,this.dom.offsetParent);this.dom.attachedTo=t,o.css({top:a.top+t.offsetHeight-r.height,left:a.left+t.offsetWidth-r.width}).appendTo(this.dom.offsetParent)}else this._detach()},_actionSelector:function(n){var o=this,r=this.s.dt,a=l.actions,i=[];if(b.each(a,function(t,e){e.available(r,n)&&i.push(t)}),1===i.length&&!1===this.c.alwaysAsk){var t=a[i[0]].execute(r,n);this._update(t,n)}else{var s=this.dom.list.children("ul").empty();i.push("cancel"),b.each(i,function(t,e){s.append(b("<li/>").append('<div class="dt-autofill-question">'+a[e].option(r,n)+"<div>").append(b('<div class="dt-autofill-button">').append(b('<button class="'+l.classes.btn+'">'+r.i18n("autoFill.button","&gt;")+"</button>").on("click",function(){var t=a[e].execute(r,n,b(this).closest("li"));o._update(t,n),o.dom.background.remove(),o.dom.list.remove()}))))}),this.dom.background.appendTo("body"),this.dom.list.appendTo("body"),this.dom.list.css("margin-top",this.dom.list.outerHeight()/2*-1)}},_detach:function(){this.dom.attachedTo=null,this.dom.handle.detach()},_drawSelection:function(t,e){var n=this.s.dt,o=this.s.start,r=b(this.dom.start),a={row:this.c.vertical?n.rows({page:"current"}).nodes().indexOf(t.parentNode):o.row,column:this.c.horizontal?b(t).index():o.column},i=n.column.index("toData",a.column),s=n.row(":eq("+a.row+")",{page:"current"}),l=b(n.cell(s.index(),i).node());if(n.cell(l).any()&&-1!==n.columns(this.c.columns).indexes().indexOf(i)){var d,c,u,f,h,p;this.s.end=a,d=o.row<a.row?r:l,c=o.row<a.row?l:r,u=o.column<a.column?r:l,f=o.column<a.column?l:r,d=this._getPosition(d.get(0)).top,u=this._getPosition(u.get(0)).left,h=this._getPosition(c.get(0)).top+c.outerHeight()-d,p=this._getPosition(f.get(0)).left+f.outerWidth()-u;var m=this.dom.select;m.top.css({top:d,left:u,width:p}),m.left.css({top:d,left:u,height:h}),m.bottom.css({top:d+h,left:u,width:p}),m.right.css({top:d,left:u+p,height:h})}},_editor:function(t){var e=this.s.dt,n=this.c.editor;if(n){for(var o={},r=[],a=n.fields(),i=0,s=t.length;i<s;i++)for(var l=0,d=t[i].length;l<d;l++){var c=t[i][l],u=e.settings()[0].aoColumns[c.index.column],f=u.editField;if(f===v)for(var h=u.mData,p=0,m=a.length;p<m;p++){var b=n.field(a[p]);if(b.dataSrc()===h){f=b.name();break}}if(!f)throw"Could not automatically determine field data. Please see https://datatables.net/tn/11";o[f]||(o[f]={});var g=e.row(c.index.row).id();o[f][g]=c.set,r.push(c.index)}n.bubble(r,!1).multiSet(o).submit()}},_emitEvent:function(n,o){this.s.dt.iterator("table",function(t,e){b(t.nTable).triggerHandler(n+".dt",o)})},_focusListener:function(){var o=this,e=this.s.dt,t=this.s.namespace,n=null!==this.c.focus?this.c.focus:e.init().keys||e.settings()[0].keytable?"focus":"hover";"focus"===n?e.on("key-focus.autoFill",function(t,e,n){o._attach(n.node())}).on("key-blur.autoFill",function(t,e,n){o._detach()}):"click"===n?(b(e.table().body()).on("click"+t,"td, th",function(t){o._attach(this)}),b(p.body).on("click"+t,function(t){b(t.target).parents().filter(e.table().body()).length||o._detach()})):b(e.table().body()).on("mouseenter"+t,"td, th",function(t){o._attach(this)}).on("mouseleave"+t,function(t){b(t.relatedTarget).hasClass("dt-autofill-handle")||o._detach()})},_focusListenerRemove:function(){var t=this.s.dt;t.off(".autoFill"),b(t.table().body()).off(this.s.namespace),b(p.body).off(this.s.namespace)},_getPosition:function(t,e){var n,o=t,r=0,a=0;e||(e=b(b(this.s.dt.table().node())[0].offsetParent));do{var i=o.offsetTop,s=o.offsetLeft;if(r+=i+(n=b(o.offsetParent)).scrollTop(),a+=s+n.scrollLeft(),r+=1*parseInt(n.css("margin-top")),r+=1*parseInt(n.css("border-top-width")),"body"===o.nodeName.toLowerCase())break;o=n.get(0)}while(n.get(0)!==e.get(0));return{top:r,left:a}},_mousedown:function(t){var e=this,n=this.s.dt;this.dom.start=this.dom.attachedTo,this.s.start={row:n.rows({page:"current"}).nodes().indexOf(b(this.dom.start).parent()[0]),column:b(this.dom.start).index()},b(p.body).on("mousemove.autoFill",function(t){e._mousemove(t)}).on("mouseup.autoFill",function(t){e._mouseup(t)});var o=this.dom.select,r=b(n.table().node()).offsetParent();o.top.appendTo(r),o.left.appendTo(r),o.right.appendTo(r),o.bottom.appendTo(r),this._drawSelection(this.dom.start,t),this.dom.handle.css("display","none");var a=this.dom.dtScroll;this.s.scroll={windowHeight:b(i).height(),windowWidth:b(i).width(),dtTop:a?a.offset().top:null,dtLeft:a?a.offset().left:null,dtHeight:a?a.outerHeight():null,dtWidth:a?a.outerWidth():null}},_mousemove:function(t){this.s.dt;var e=t.target.nodeName.toLowerCase();"td"!==e&&"th"!==e||(this._drawSelection(t.target,t),this._shiftScroll(t))},_mouseup:function(t){b(p.body).off(".autoFill");var e=this,i=this.s.dt,n=this.dom.select;n.top.remove(),n.left.remove(),n.right.remove(),n.bottom.remove(),this.dom.handle.css("display","block");var o=this.s.start,r=this.s.end;if(o.row!==r.row||o.column!==r.column){var a=i.cell(":eq("+o.row+")",o.column+":visible",{page:"current"});if(b("div.DTE",a.node()).length){var s=i.editor();return s.on("submitSuccess.dtaf close.dtaf",function(){s.off(".dtaf"),setTimeout(function(){e._mouseup(t)},100)}).on("submitComplete.dtaf preSubmitCancelled.dtaf close.dtaf",function(){s.off(".dtaf")}),void s.submit()}for(var l=this._range(o.row,r.row),d=this._range(o.column,r.column),c=[],u=i.settings()[0],f=u.aoColumns,h=0;h<l.length;h++)c.push(b.map(d,function(t){var e=i.row(":eq("+l[h]+")",{page:"current"}),n=i.cell(e.index(),t+":visible"),o=n.data(),r=n.index(),a=f[r.column].editField;return a!==v&&(o=u.oApi._fnGetObjectDataFn(a)(i.row(r.row).data())),{cell:n,data:o,label:n.data(),index:r}}));this._actionSelector(c),clearInterval(this.s.scrollInterval),this.s.scrollInterval=null}},_range:function(t,e){var n,o=[];if(t<=e)for(n=t;n<=e;n++)o.push(n);else for(n=t;e<=n;n--)o.push(n);return o},_shiftScroll:function(t){var e,n,o,r,a=this,i=(this.s.dt,this.s.scroll),s=!1,l=t.pageY-p.body.scrollTop,d=t.pageX-p.body.scrollLeft;l<65?e=-5:l>i.windowHeight-65&&(e=5),d<65?n=-5:d>i.windowWidth-65&&(n=5),null!==i.dtTop&&t.pageY<i.dtTop+65?o=-5:null!==i.dtTop&&t.pageY>i.dtTop+i.dtHeight-65&&(o=5),null!==i.dtLeft&&t.pageX<i.dtLeft+65?r=-5:null!==i.dtLeft&&t.pageX>i.dtLeft+i.dtWidth-65&&(r=5),e||n||o||r?(i.windowVert=e,i.windowHoriz=n,i.dtVert=o,i.dtHoriz=r,s=!0):this.s.scrollInterval&&(clearInterval(this.s.scrollInterval),this.s.scrollInterval=null),!this.s.scrollInterval&&s&&(this.s.scrollInterval=setInterval(function(){if(i.windowVert&&(p.body.scrollTop+=i.windowVert),i.windowHoriz&&(p.body.scrollLeft+=i.windowHoriz),i.dtVert||i.dtHoriz){var t=a.dom.dtScroll[0];i.dtVert&&(t.scrollTop+=i.dtVert),i.dtHoriz&&(t.scrollLeft+=i.dtHoriz)}},20))},_update:function(t,e){if(!1!==t){var n,o=this.s.dt,r=o.columns(this.c.columns).indexes();if(this._emitEvent("preAutoFill",[o,e]),this._editor(e),null!==this.c.update?this.c.update:!this.c.editor){for(var a=0,i=e.length;a<i;a++)for(var s=0,l=e[a].length;s<l;s++)n=e[a][s],-1!==r.indexOf(n.index.column)&&n.cell.data(n.set);o.draw(!1)}this._emitEvent("autoFill",[o,e])}}}),l.actions={increment:{available:function(t,e){var n=e[0][0].label;return!isNaN(n-parseFloat(n))},option:function(t,e){return t.i18n("autoFill.increment",'Increment / decrement each cell by: <input type="number" value="1">')},execute:function(t,e,n){for(var o=1*e[0][0].data,r=1*b("input",n).val(),a=0,i=e.length;a<i;a++)for(var s=0,l=e[a].length;s<l;s++)e[a][s].set=o,o+=r}},fill:{available:function(t,e){return!0},option:function(t,e){return t.i18n("autoFill.fill","Fill all cells with <i>"+e[0][0].label+"</i>")},execute:function(t,e,n){for(var o=e[0][0].data,r=0,a=e.length;r<a;r++)for(var i=0,s=e[r].length;i<s;i++)e[r][i].set=o}},fillHorizontal:{available:function(t,e){return 1<e.length&&1<e[0].length},option:function(t,e){return t.i18n("autoFill.fillHorizontal","Fill cells horizontally")},execute:function(t,e,n){for(var o=0,r=e.length;o<r;o++)for(var a=0,i=e[o].length;a<i;a++)e[o][a].set=e[o][0].data}},fillVertical:{available:function(t,e){return 1<e.length&&1<e[0].length},option:function(t,e){return t.i18n("autoFill.fillVertical","Fill cells vertically")},execute:function(t,e,n){for(var o=0,r=e.length;o<r;o++)for(var a=0,i=e[o].length;a<i;a++)e[o][a].set=e[0][a].data}},cancel:{available:function(){return!1},option:function(t){return t.i18n("autoFill.cancel","Cancel")},execute:function(){return!1}}},l.version="2.3.3",l.defaults={alwaysAsk:!1,focus:null,columns:"",enable:!0,update:null,editor:null,vertical:!0,horizontal:!0},l.classes={btn:"btn"};var t=b.fn.dataTable.Api;return t.register("autoFill()",function(){return this}),t.register("autoFill().enabled()",function(){var t=this.context[0];return!!t.autoFill&&t.autoFill.enabled()}),t.register("autoFill().enable()",function(e){return this.iterator("table",function(t){t.autoFill&&t.autoFill.enable(e)})}),t.register("autoFill().disable()",function(){return this.iterator("table",function(t){t.autoFill&&t.autoFill.disable()})}),b(p).on("preInit.dt.autofill",function(t,e,n){if("dt"===t.namespace){var o=e.oInit.autoFill,r=s.defaults.autoFill;if(o||r){var a=b.extend({},o,r);!1!==o&&new l(e,a)}}}),s.AutoFill=l,s.AutoFill=l}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs4","datatables.net-autofill"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net-bs4")(t,e).$),e.fn.dataTable.AutoFill||require("datatables.net-autofill")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(t,e,n,o){"use strict";var r=t.fn.dataTable;return r.AutoFill.classes.btn="btn btn-primary",r}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(w,x,_,y){"use strict";var r,o=w.fn.dataTable,n=0,p=0,d=o.ext.buttons,T=function(e,t){if(!(this instanceof T))return function(t){return new T(t,e).container()};void 0===t&&(t={}),!0===t&&(t={}),w.isArray(t)&&(t={buttons:t}),this.c=w.extend(!0,{},T.defaults,t),t.buttons&&(this.c.buttons=t.buttons),this.s={dt:new o.Api(e),buttons:[],listenKeys:"",namespace:"dtb"+n++},this.dom={container:w("<"+this.c.dom.container.tag+"/>").addClass(this.c.dom.container.className)},this._constructor()};w.extend(T.prototype,{action:function(t,e){var n=this._nodeToButton(t);return e===y?n.conf.action:(n.conf.action=e,this)},active:function(t,e){var n=this._nodeToButton(t),o=this.c.dom.button.active,r=w(n.node);return e===y?r.hasClass(o):(r.toggleClass(o,e===y||e),this)},add:function(t,e){var n=this.s.buttons;if("string"==typeof e){for(var o=e.split("-"),r=this.s,a=0,i=o.length-1;a<i;a++)r=r.buttons[1*o[a]];n=r.buttons,e=1*o[o.length-1]}return this._expandButton(n,t,!1,e),this._draw(),this},container:function(){return this.dom.container},disable:function(t){var e=this._nodeToButton(t);return w(e.node).addClass(this.c.dom.button.disabled),this},destroy:function(){w("body").off("keyup."+this.s.namespace);var t,e,n=this.s.buttons.slice();for(t=0,e=n.length;t<e;t++)this.remove(n[t].node);this.dom.container.remove();var o=this.s.dt.settings()[0];for(t=0,e=o.length;t<e;t++)if(o.inst===this){o.splice(t,1);break}return this},enable:function(t,e){if(!1===e)return this.disable(t);var n=this._nodeToButton(t);return w(n.node).removeClass(this.c.dom.button.disabled),this},name:function(){return this.c.name},node:function(t){if(!t)return this.dom.container;var e=this._nodeToButton(t);return w(e.node)},processing:function(t,e){var n=this._nodeToButton(t);return e===y?w(n.node).hasClass("processing"):(w(n.node).toggleClass("processing",e),this)},remove:function(t){var e=this._nodeToButton(t),n=this._nodeToHost(t),o=this.s.dt;if(e.buttons.length)for(var r=e.buttons.length-1;0<=r;r--)this.remove(e.buttons[r].node);e.conf.destroy&&e.conf.destroy.call(o.button(t),o,w(t),e.conf),this._removeKey(e.conf),w(e.node).remove();var a=w.inArray(e,n);return n.splice(a,1),this},text:function(t,e){function n(t){return"function"==typeof t?t(i,s,o.conf):t}var o=this._nodeToButton(t),r=this.c.dom.collection.buttonLiner,a=o.inCollection&&r&&r.tag?r.tag:this.c.dom.buttonLiner.tag,i=this.s.dt,s=w(o.node);return e===y?n(o.conf.text):(o.conf.text=e,a?s.children(a).html(n(e)):s.html(n(e)),this)},_constructor:function(){var n=this,t=this.s.dt,o=t.settings()[0],e=this.c.buttons;o._buttons||(o._buttons=[]),o._buttons.push({inst:this,name:this.c.name});for(var r=0,a=e.length;r<a;r++)this.add(e[r]);t.on("destroy",function(t,e){e===o&&n.destroy()}),w("body").on("keyup."+this.s.namespace,function(t){if(!_.activeElement||_.activeElement===_.body){var e=String.fromCharCode(t.keyCode).toLowerCase();-1!==n.s.listenKeys.toLowerCase().indexOf(e)&&n._keypress(e,t)}})},_addKey:function(t){t.key&&(this.s.listenKeys+=w.isPlainObject(t.key)?t.key.key:t.key)},_draw:function(t,e){t||(t=this.dom.container,e=this.s.buttons),t.children().detach();for(var n=0,o=e.length;n<o;n++)t.append(e[n].inserter),t.append(" "),e[n].buttons&&e[n].buttons.length&&this._draw(e[n].collection,e[n].buttons)},_expandButton:function(t,e,n,o){for(var r=this.s.dt,a=w.isArray(e)?e:[e],i=0,s=a.length;i<s;i++){var l=this._resolveExtends(a[i]);if(l)if(w.isArray(l))this._expandButton(t,l,n,o);else{var d=this._buildButton(l,n);if(d){if(o!==y?(t.splice(o,0,d),o++):t.push(d),d.conf.buttons){var c=this.c.dom.collection;d.collection=w("<"+c.tag+"/>").addClass(c.className).attr("role","menu"),d.conf._collection=d.collection,this._expandButton(d.buttons,d.conf.buttons,!0,o)}l.init&&l.init.call(r.button(d.node),r,w(d.node),l),0}}}},_buildButton:function(e,t){function n(t){return"function"==typeof t?t(i,c,e):t}var o=this.c.dom.button,r=this.c.dom.buttonLiner,a=this.c.dom.collection,i=this.s.dt;if(t&&a.button&&(o=a.button),t&&a.buttonLiner&&(r=a.buttonLiner),e.available&&!e.available(i,e))return!1;function s(t,e,n,o){o.action.call(e.button(n),t,e,n,o),w(e.table().node()).triggerHandler("buttons-action.dt",[e.button(n),e,n,o])}var l=e.tag||o.tag,d=e.clickBlurs===y||e.clickBlurs,c=w("<"+l+"/>").addClass(o.className).attr("tabindex",this.s.dt.settings()[0].iTabIndex).attr("aria-controls",this.s.dt.table().node().id).on("click.dtb",function(t){t.preventDefault(),!c.hasClass(o.disabled)&&e.action&&s(t,i,c,e),d&&c.blur()}).on("keyup.dtb",function(t){13===t.keyCode&&!c.hasClass(o.disabled)&&e.action&&s(t,i,c,e)});if("a"===l.toLowerCase()&&c.attr("href","#"),"button"===l.toLowerCase()&&c.attr("type","button"),r.tag){var u=w("<"+r.tag+"/>").html(n(e.text)).addClass(r.className);"a"===r.tag.toLowerCase()&&u.attr("href","#"),c.append(u)}else c.html(n(e.text));!1===e.enabled&&c.addClass(o.disabled),e.className&&c.addClass(e.className),e.titleAttr&&c.attr("title",n(e.titleAttr)),e.attr&&c.attr(e.attr),e.namespace||(e.namespace=".dt-button-"+p++);var f,h=this.c.dom.buttonContainer;return f=h&&h.tag?w("<"+h.tag+"/>").addClass(h.className).append(c):c,this._addKey(e),this.c.buttonCreated&&(f=this.c.buttonCreated(e,f)),{conf:e,node:c.get(0),inserter:f,buttons:[],inCollection:t,collection:null}},_nodeToButton:function(t,e){e||(e=this.s.buttons);for(var n=0,o=e.length;n<o;n++){if(e[n].node===t)return e[n];if(e[n].buttons.length){var r=this._nodeToButton(t,e[n].buttons);if(r)return r}}},_nodeToHost:function(t,e){e||(e=this.s.buttons);for(var n=0,o=e.length;n<o;n++){if(e[n].node===t)return e;if(e[n].buttons.length){var r=this._nodeToHost(t,e[n].buttons);if(r)return r}}},_keypress:function(n,o){if(!o._buttonsHandled){var r=function(t,e){if(t.key)if(t.key===n)o._buttonsHandled=!0,w(e).click();else if(w.isPlainObject(t.key)){if(t.key.key!==n)return;if(t.key.shiftKey&&!o.shiftKey)return;if(t.key.altKey&&!o.altKey)return;if(t.key.ctrlKey&&!o.ctrlKey)return;if(t.key.metaKey&&!o.metaKey)return;o._buttonsHandled=!0,w(e).click()}},a=function(t){for(var e=0,n=t.length;e<n;e++)r(t[e].conf,t[e].node),t[e].buttons.length&&a(t[e].buttons)};a(this.s.buttons)}},_removeKey:function(t){if(t.key){var e=w.isPlainObject(t.key)?t.key.key:t.key,n=this.s.listenKeys.split(""),o=w.inArray(e,n);n.splice(o,1),this.s.listenKeys=n.join("")}},_resolveExtends:function(n){function t(t){for(var e=0;!w.isPlainObject(t)&&!w.isArray(t);){if(t===y)return;if("function"==typeof t){if(!(t=t(r,n)))return!1}else if("string"==typeof t){if(!d[t])throw"Unknown button type: "+t;t=d[t]}if(30<++e)throw"Buttons: Too many iterations"}return w.isArray(t)?t:w.extend({},t)}var e,o,r=this.s.dt;for(n=t(n);n&&n.extend;){if(!d[n.extend])throw"Cannot extend unknown button type: "+n.extend;var a=t(d[n.extend]);if(w.isArray(a))return a;if(!a)return!1;var i=a.className;n=w.extend({},a,n),i&&n.className!==i&&(n.className=i+" "+n.className);var s=n.postfixButtons;if(s){for(n.buttons||(n.buttons=[]),e=0,o=s.length;e<o;e++)n.buttons.push(s[e]);n.postfixButtons=null}var l=n.prefixButtons;if(l){for(n.buttons||(n.buttons=[]),e=0,o=l.length;e<o;e++)n.buttons.splice(e,0,l[e]);n.prefixButtons=null}n.extend=a.extend}return n}}),T.background=function(t,e,n,o){n===y&&(n=400),o||(o=_.body),t?w("<div/>").addClass(e).css("display","none").insertAfter(o).stop().fadeIn(n):w("div."+e).stop().fadeOut(n,function(){w(this).removeClass(e).remove()})},T.instanceSelector=function(t,r){if(!t)return w.map(r,function(t){return t.inst});var a=[],i=w.map(r,function(t){return t.name}),s=function(t){if(w.isArray(t))for(var e=0,n=t.length;e<n;e++)s(t[e]);else if("string"==typeof t)if(-1!==t.indexOf(","))s(t.split(","));else{var o=w.inArray(w.trim(t),i);-1!==o&&a.push(r[o].inst)}else"number"==typeof t&&a.push(r[t].inst)};return s(t),a},T.buttonSelector=function(t,e){for(var c=[],u=function(t,e,n){for(var o,r,a=0,i=e.length;a<i;a++)(o=e[a])&&(r=n!==y?n+a:a+"",t.push({node:o.node,name:o.conf.name,idx:r}),o.buttons&&u(t,o.buttons,r+"-"))},f=function(t,e){var n,o,r=[];u(r,e.s.buttons);var a=w.map(r,function(t){return t.node});if(w.isArray(t)||t instanceof w)for(n=0,o=t.length;n<o;n++)f(t[n],e);else if(null===t||t===y||"*"===t)for(n=0,o=r.length;n<o;n++)c.push({inst:e,node:r[n].node});else if("number"==typeof t)c.push({inst:e,node:e.s.buttons[t].node});else if("string"==typeof t)if(-1!==t.indexOf(",")){var i=t.split(",");for(n=0,o=i.length;n<o;n++)f(w.trim(i[n]),e)}else if(t.match(/^\d+(\-\d+)*$/)){var s=w.map(r,function(t){return t.idx});c.push({inst:e,node:r[w.inArray(t,s)].node})}else if(-1!==t.indexOf(":name")){var l=t.replace(":name","");for(n=0,o=r.length;n<o;n++)r[n].name===l&&c.push({inst:e,node:r[n].node})}else w(a).filter(t).each(function(){c.push({inst:e,node:this})});else if("object"==typeof t&&t.nodeName){var d=w.inArray(t,a);-1!==d&&c.push({inst:e,node:a[d]})}},n=0,o=t.length;n<o;n++){var r=t[n];f(e,r)}return c},T.defaults={buttons:["copy","excel","csv","pdf","print"],name:"main",tabIndex:0,dom:{container:{tag:"div",className:"dt-buttons"},collection:{tag:"div",className:"dt-button-collection"},button:{tag:"ActiveXObject"in x?"a":"button",className:"dt-button",active:"active",disabled:"disabled"},buttonLiner:{tag:"span",className:""}}},T.version="1.5.6",w.extend(d,{collection:{text:function(t){return t.i18n("buttons.collection","Collection")},className:"buttons-collection",init:function(t,e,n){e.attr("aria-expanded",!1)},action:function(t,e,n,o){function r(){e.buttons('[aria-haspopup="true"][aria-expanded="true"]').nodes().each(function(){var t=w(this).siblings(".dt-button-collection");t.length&&t.stop().fadeOut(o.fade,function(){t.detach()}),w(this).attr("aria-expanded","false")}),w("div.dt-button-background").off("click.dtb-collection"),T.background(!1,o.backgroundClassName,o.fade,u),w("body").off(".dtb-collection"),e.off("buttons-action.b-internal")}var a="true"===n.attr("aria-expanded");if(r(),!a){var i=n,s=w(n).parents("div.dt-button-collection"),l=i.position(),d=w(e.table().container()),c=!1,u=i;n.attr("aria-expanded","true"),s.length&&(c=w(".dt-button-collection").position(),u=s,w("body").trigger("click.dtb-collection")),u.parents("body")[0]!==_.body&&(u=_.body.lastChild),o._collection.find(".dt-button-collection-title").remove(),o._collection.prepend('<div class="dt-button-collection-title">'+o.collectionTitle+"</div>"),o._collection.addClass(o.collectionLayout).css("display","none").insertAfter(u).stop().fadeIn(o.fade);var f=o._collection.css("position");if(c&&"absolute"===f)o._collection.css({top:c.top,left:c.left});else if("absolute"===f){o._collection.css({top:l.top+i.outerHeight(),left:l.left});var h=d.offset().top+d.height(),p=l.top+i.outerHeight()+o._collection.outerHeight()-h,m=l.top-o._collection.outerHeight();(d.offset().top-m<p||o.dropup)&&o._collection.css("top",l.top-o._collection.outerHeight()-5),o._collection.hasClass(o.rightAlignClassName)&&o._collection.css("left",l.left+i.outerWidth()-o._collection.outerWidth());var b=l.left+o._collection.outerWidth(),g=d.offset().left+d.width();g<b&&o._collection.css("left",l.left-(b-g));var v=i.offset().left+o._collection.outerWidth();v>w(x).width()&&o._collection.css("left",l.left-(v-w(x).width()))}else{var y=o._collection.height()/2;y>w(x).height()/2&&(y=w(x).height()/2),o._collection.css("marginTop",-1*y)}o.background&&T.background(!0,o.backgroundClassName,o.fade,u),setTimeout(function(){w("div.dt-button-background").on("click.dtb-collection",function(){}),w("body").on("click.dtb-collection",function(t){var e=w.fn.addBack?"addBack":"andSelf";w(t.target).parents()[e]().filter(o._collection).length||r()}).on("keyup.dtb-collection",function(t){27===t.keyCode&&r()}),o.autoClose&&e.on("buttons-action.b-internal",function(){r()})},10)}},background:!0,collectionLayout:"",collectionTitle:"",backgroundClassName:"dt-button-background",rightAlignClassName:"dt-button-right",autoClose:!1,fade:400,attr:{"aria-haspopup":!0}},copy:function(t,e){return d.copyHtml5?"copyHtml5":d.copyFlash&&d.copyFlash.available(t,e)?"copyFlash":void 0},csv:function(t,e){return d.csvHtml5&&d.csvHtml5.available(t,e)?"csvHtml5":d.csvFlash&&d.csvFlash.available(t,e)?"csvFlash":void 0},excel:function(t,e){return d.excelHtml5&&d.excelHtml5.available(t,e)?"excelHtml5":d.excelFlash&&d.excelFlash.available(t,e)?"excelFlash":void 0},pdf:function(t,e){return d.pdfHtml5&&d.pdfHtml5.available(t,e)?"pdfHtml5":d.pdfFlash&&d.pdfFlash.available(t,e)?"pdfFlash":void 0},pageLength:function(t){var e=t.settings()[0].aLengthMenu,n=w.isArray(e[0])?e[0]:e,o=w.isArray(e[0])?e[1]:e;return{extend:"collection",text:function(t){return t.i18n("buttons.pageLength",{"-1":"Show all rows",_:"Show %d rows"},t.page.len())},className:"buttons-page-length",autoClose:!0,buttons:w.map(n,function(a,t){return{text:o[t],className:"button-page-length",action:function(t,e){e.page.len(a).draw()},init:function(t,e,n){function o(){r.active(t.page.len()===a)}var r=this;t.on("length.dt"+n.namespace,o),o()},destroy:function(t,e,n){t.off("length.dt"+n.namespace)}}}),init:function(t,e,n){var o=this;t.on("length.dt"+n.namespace,function(){o.text(n.text)})},destroy:function(t,e,n){t.off("length.dt"+n.namespace)}}}}),o.Api.register("buttons()",function(e,n){n===y&&(n=e,e=y),this.selector.buttonGroup=e;var t=this.iterator(!0,"table",function(t){if(t._buttons)return T.buttonSelector(T.instanceSelector(e,t._buttons),n)},!0);return t._groupSelector=e,t}),o.Api.register("button()",function(t,e){var n=this.buttons(t,e);return 1<n.length&&n.splice(1,n.length),n}),o.Api.registerPlural("buttons().active()","button().active()",function(e){return e===y?this.map(function(t){return t.inst.active(t.node)}):this.each(function(t){t.inst.active(t.node,e)})}),o.Api.registerPlural("buttons().action()","button().action()",function(e){return e===y?this.map(function(t){return t.inst.action(t.node)}):this.each(function(t){t.inst.action(t.node,e)})}),o.Api.register(["buttons().enable()","button().enable()"],function(e){return this.each(function(t){t.inst.enable(t.node,e)})}),o.Api.register(["buttons().disable()","button().disable()"],function(){return this.each(function(t){t.inst.disable(t.node)})}),o.Api.registerPlural("buttons().nodes()","button().node()",function(){var e=w();return w(this.each(function(t){e=e.add(t.inst.node(t.node))})),e}),o.Api.registerPlural("buttons().processing()","button().processing()",function(e){return e===y?this.map(function(t){return t.inst.processing(t.node)}):this.each(function(t){t.inst.processing(t.node,e)})}),o.Api.registerPlural("buttons().text()","button().text()",function(e){return e===y?this.map(function(t){return t.inst.text(t.node)}):this.each(function(t){t.inst.text(t.node,e)})}),o.Api.registerPlural("buttons().trigger()","button().trigger()",function(){return this.each(function(t){t.inst.node(t.node).trigger("click")})}),o.Api.registerPlural("buttons().containers()","buttons().container()",function(){var r=w(),a=this._groupSelector;return this.iterator(!0,"table",function(t){if(t._buttons)for(var e=T.instanceSelector(a,t._buttons),n=0,o=e.length;n<o;n++)r=r.add(e[n].container())}),r}),o.Api.register("button().add()",function(t,e){var n=this.context;if(n.length){var o=T.instanceSelector(this._groupSelector,n[0]._buttons);o.length&&o[0].add(e,t)}return this.button(this._groupSelector,t)}),o.Api.register("buttons().destroy()",function(){return this.pluck("inst").unique().each(function(t){t.destroy()}),this}),o.Api.registerPlural("buttons().remove()","buttons().remove()",function(){return this.each(function(t){t.inst.remove(t.node)}),this}),o.Api.register("buttons.info()",function(t,e,n){var o=this;return!1===t?(w("#datatables_buttons_info").fadeOut(function(){w(this).remove()}),clearTimeout(r),r=null):(r&&clearTimeout(r),w("#datatables_buttons_info").length&&w("#datatables_buttons_info").remove(),t=t?"<h2>"+t+"</h2>":"",w('<div id="datatables_buttons_info" class="dt-button-info"/>').html(t).append(w("<div/>")["string"==typeof e?"html":"append"](e)).css("display","none").appendTo("body").fadeIn(),n!==y&&0!==n&&(r=setTimeout(function(){o.buttons.info(!1)},n))),this}),o.Api.register("buttons.exportData()",function(t){if(this.context.length)return l(new o.Api(this.context[0]),t)}),o.Api.register("buttons.exportInfo()",function(t){return t||(t={}),{filename:e(t),title:i(t),messageTop:s(this,t.message||t.messageTop,"top"),messageBottom:s(this,t.messageBottom,"bottom")}});var e=function(t){var e="*"===t.filename&&"*"!==t.title&&t.title!==y&&null!==t.title&&""!==t.title?t.title:t.filename;if("function"==typeof e&&(e=e()),e===y||null===e)return null;-1!==e.indexOf("*")&&(e=w.trim(e.replace("*",w("head > title").text()))),e=e.replace(/[^a-zA-Z0-9_\u00A1-\uFFFF\.,\-_ !\(\)]/g,"");var n=a(t.extension);return n||(n=""),e+n},a=function(t){return null===t||t===y?null:"function"==typeof t?t():t},i=function(t){var e=a(t.title);return null===e?null:-1!==e.indexOf("*")?e.replace("*",w("head > title").text()||"Exported data"):e},s=function(t,e,n){var o=a(e);if(null===o)return null;var r=w("caption",t.table().container()).eq(0);return"*"!==o?o:r.css("caption-side")!==n?null:r.length?r.text():""},C=w("<textarea/>")[0],l=function(n,t){var o=w.extend(!0,{},{rows:null,columns:"",modifier:{search:"applied",order:"applied"},orthogonal:"display",stripHtml:!0,stripNewlines:!0,decodeEntities:!0,trim:!0,format:{header:function(t){return e(t)},footer:function(t){return e(t)},body:function(t){return e(t)}},customizeData:null},t),e=function(t){return"string"!=typeof t||(t=(t=t.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi,"")).replace(/<!\-\-.*?\-\->/g,""),o.stripHtml&&(t=t.replace(/<[^>]*>/g,"")),o.trim&&(t=t.replace(/^\s+|\s+$/g,"")),o.stripNewlines&&(t=t.replace(/\n/g," ")),o.decodeEntities&&(C.innerHTML=t,t=C.value)),t},r=n.columns(o.columns).indexes().map(function(t){var e=n.column(t).header();return o.format.header(e.innerHTML,t,e)}).toArray(),a=n.table().footer()?n.columns(o.columns).indexes().map(function(t){var e=n.column(t).footer();return o.format.footer(e?e.innerHTML:"",t,e)}).toArray():null,i=w.extend({},o.modifier);n.select&&"function"==typeof n.select.info&&i.selected===y&&n.rows(o.rows,w.extend({selected:!0},i)).any()&&w.extend(i,{selected:!0});for(var s=n.rows(o.rows,i).indexes().toArray(),l=n.cells(s,o.columns),d=l.render(o.orthogonal).toArray(),c=l.nodes().toArray(),u=r.length,f=[],h=0,p=0,m=0<u?d.length/u:0;p<m;p++){for(var b=[u],g=0;g<u;g++)b[g]=o.format.body(d[h],p,g,c[h]),h++;f[p]=b}var v={header:r,footer:a,body:f};return o.customizeData&&o.customizeData(v),v};function t(t){var e=new o.Api(t),n=e.init().buttons||o.defaults.buttons;return new T(e,n).container()}return w.fn.dataTable.Buttons=T,w.fn.DataTable.Buttons=T,w(_).on("init.dt plugin-init.dt",function(t,e){if("dt"===t.namespace){var n=e.oInit.buttons||o.defaults.buttons;n&&!e._buttons&&new T(e,n).container()}}),o.ext.feature.push({fnInit:t,cFeature:"B"}),o.ext.features&&o.ext.features.register("buttons",t),T}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs4","datatables.net-buttons"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net-bs4")(t,e).$),e.fn.dataTable.Buttons||require("datatables.net-buttons")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(n,t,e,o){"use strict";var r=n.fn.dataTable;return n.extend(!0,r.Buttons.defaults,{dom:{container:{className:"dt-buttons btn-group"},button:{className:"btn btn-secondary"},collection:{tag:"div",className:"dt-button-collection dropdown-menu",button:{tag:"a",className:"dt-button dropdown-item",active:"active",disabled:"disabled"}}},buttonCreated:function(t,e){return t.buttons?n('<div class="btn-group"/>').append(e):e}}),r.ext.buttons.collection.className+=" dropdown-toggle",r.ext.buttons.collection.rightAlignClassName="dropdown-menu-right",r.Buttons}),function(r){"function"==typeof define&&define.amd?define(["jquery","datatables.net","datatables.net-buttons"],function(t){return r(t,window,document)}):"object"==typeof exports?module.exports=function(t,e,n,o){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),e.fn.dataTable.Buttons||require("datatables.net-buttons")(t,e),r(e,t,t.document,n,o)}:r(jQuery,window,document)}(function(D,t,m,e,n,I){"use strict";var o=D.fn.dataTable;function F(){return e||t.JSZip}function u(){return n||t.pdfMake}o.Buttons.pdfMake=function(t){if(!t)return u();n=m_ake},o.Buttons.jszip=function(t){if(!t)return F();e=t};var R=function(s){if(!(void 0===s||"undefined"!=typeof navigator&&/MSIE [1-9]\./.test(navigator.userAgent))){var t=s.document,l=function(){return s.URL||s.webkitURL||s},d=t.createElementNS("http://www.w3.org/1999/xhtml","a"),c="download"in d,u=/constructor/i.test(s.HTMLElement)||s.safari,f=/CriOS\/[\d]+/.test(navigator.userAgent),h=function(t){(s.setImmediate||s.setTimeout)(function(){throw t},0)},p=function(t){setTimeout(function(){"string"==typeof t?l().revokeObjectURL(t):t.remove()},4e4)},m=function(t){return/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(t.type)?new Blob([String.fromCharCode(65279),t],{type:t.type}):t},o=function(t,e,n){n||(t=m(t));function o(){!function(t,e,n){for(var o=(e=[].concat(e)).length;o--;){var r=t["on"+e[o]];if("function"==typeof r)try{r.call(t,n||t)}catch(t){h(t)}}}(a,"writestart progress write writeend".split(" "))}var r,a=this,i="application/octet-stream"===t.type;if(a.readyState=a.INIT,c)return r=l().createObjectURL(t),void setTimeout(function(){d.href=r,d.download=e,function(t){var e=new MouseEvent("click");t.dispatchEvent(e)}(d),o(),p(r),a.readyState=a.DONE});!function(){if((f||i&&u)&&s.FileReader){var e=new FileReader;return e.onloadend=function(){var t=f?e.result:e.result.replace(/^data:[^;]*;/,"data:attachment/file;");s.open(t,"_blank")||(s.location.href=t),t=I,a.readyState=a.DONE,o()},e.readAsDataURL(t),a.readyState=a.INIT}r||(r=l().createObjectURL(t)),i?s.location.href=r:s.open(r,"_blank")||(s.location.href=r);a.readyState=a.DONE,o(),p(r)}()},e=o.prototype;return"undefined"!=typeof navigator&&navigator.msSaveOrOpenBlob?function(t,e,n){return e=e||t.name||"download",n||(t=m(t)),navigator.msSaveOrOpenBlob(t,e)}:(e.abort=function(){},e.readyState=e.INIT=0,e.WRITING=1,e.DONE=2,e.error=e.onwritestart=e.onprogress=e.onwrite=e.onabort=e.onerror=e.onwriteend=null,function(t,e,n){return new o(t,e||t.name||"download",n)})}}("undefined"!=typeof self&&self||void 0!==t&&t||this.content);o.fileSave=R;function A(t){var e="Sheet1";return t.sheetName&&(e=t.sheetName.replace(/[\[\]\*\/\\\?\:]/g,"")),e}function b(t){return t.newline?t.newline:navigator.userAgent.match(/Windows/)?"\r\n":"\n"}function g(t,e){for(var n=b(e),o=t.buttons.exportData(e.exportOptions),r=e.fieldBoundary,a=e.fieldSeparator,i=new RegExp(r,"g"),s=e.escapeChar!==I?e.escapeChar:"\\",l=function(t){for(var e="",n=0,o=t.length;n<o;n++)0<n&&(e+=a),e+=r?r+(""+t[n]).replace(i,s+r)+r:t[n];return e},d=e.header?l(o.header)+n:"",c=e.footer&&o.footer?n+l(o.footer):"",u=[],f=0,h=o.body.length;f<h;f++)u.push(l(o.body[f]));return{str:d+u.join(n)+c,rows:u.length}}function f(){if(!(-1!==navigator.userAgent.indexOf("Safari")&&-1===navigator.userAgent.indexOf("Chrome")&&-1===navigator.userAgent.indexOf("Opera")))return!1;var t=navigator.userAgent.match(/AppleWebKit\/(\d+\.\d+)/);return!!(t&&1<t.length&&1*t[1]<603.1)}function k(t){for(var e="A".charCodeAt(0),n="Z".charCodeAt(0)-e+1,o="";0<=t;)o=String.fromCharCode(t%n+e)+o,t=Math.floor(t/n)-1;return o}try{var N,L=new XMLSerializer}catch(t){}function H(t,e,n){var o=t.createElement(e);return n&&(n.attr&&D(o).attr(n.attr),n.children&&D.each(n.children,function(t,e){o.appendChild(e)}),null!==n.text&&n.text!==I&&o.appendChild(t.createTextNode(n.text))),o}function B(t,e){var n,o,r,a=t.header[e].length;t.footer&&t.footer[e].length>a&&(a=t.footer[e].length);for(var i=0,s=t.body.length;i<s;i++){var l=t.body[i][e];if(a<(n=-1!==(r=null!==l&&l!==I?l.toString():"").indexOf("\n")?((o=r.split("\n")).sort(function(t,e){return e.length-t.length}),o[0].length):r.length)&&(a=n),40<a)return 54}return 6<(a*=1.35)?a:6}var O={"_rels/.rels":'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>',"xl/_rels/workbook.xml.rels":'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>',"[Content_Types].xml":'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="xml" ContentType="application/xml" /><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml" /><Default Extension="jpeg" ContentType="image/jpeg" /><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml" /><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml" /><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml" /></Types>',"xl/workbook.xml":'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><fileVersion appName="xl" lastEdited="5" lowestEdited="5" rupBuild="24816"/><workbookPr showInkAnnotation="0" autoCompressPictures="0"/><bookViews><workbookView xWindow="0" yWindow="0" windowWidth="25600" windowHeight="19020" tabRatio="500"/></bookViews><sheets><sheet name="Sheet1" sheetId="1" r:id="rId1"/></sheets><definedNames/></workbook>',"xl/worksheets/sheet1.xml":'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="x14ac" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac"><sheetData/><mergeCells count="0"/></worksheet>',"xl/styles.xml":'<?xml version="1.0" encoding="UTF-8"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="x14ac" xmlns:x14ac="http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac"><numFmts count="6"><numFmt numFmtId="164" formatCode="#,##0.00_- [$$-45C]"/><numFmt numFmtId="165" formatCode="&quot;£&quot;#,##0.00"/><numFmt numFmtId="166" formatCode="[$€-2] #,##0.00"/><numFmt numFmtId="167" formatCode="0.0%"/><numFmt numFmtId="168" formatCode="#,##0;(#,##0)"/><numFmt numFmtId="169" formatCode="#,##0.00;(#,##0.00)"/></numFmts><fonts count="5" x14ac:knownFonts="1"><font><sz val="11" /><name val="Calibri" /></font><font><sz val="11" /><name val="Calibri" /><color rgb="FFFFFFFF" /></font><font><sz val="11" /><name val="Calibri" /><b /></font><font><sz val="11" /><name val="Calibri" /><i /></font><font><sz val="11" /><name val="Calibri" /><u /></font></fonts><fills count="6"><fill><patternFill patternType="none" /></fill><fill><patternFill patternType="none" /></fill><fill><patternFill patternType="solid"><fgColor rgb="FFD9D9D9" /><bgColor indexed="64" /></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFD99795" /><bgColor indexed="64" /></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="ffc6efce" /><bgColor indexed="64" /></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="ffc6cfef" /><bgColor indexed="64" /></patternFill></fill></fills><borders count="2"><border><left /><right /><top /><bottom /><diagonal /></border><border diagonalUp="false" diagonalDown="false"><left style="thin"><color auto="1" /></left><right style="thin"><color auto="1" /></right><top style="thin"><color auto="1" /></top><bottom style="thin"><color auto="1" /></bottom><diagonal /></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" /></cellStyleXfs><cellXfs count="67"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="3" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="4" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="3" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="4" fillId="2" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="3" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="1" fillId="3" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="3" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="3" fillId="3" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="4" fillId="3" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="1" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="3" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="4" fillId="4" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="1" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="3" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="4" fillId="5" borderId="0" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="1" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="3" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="4" fillId="0" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="1" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="3" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="4" fillId="2" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="1" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="3" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="4" fillId="3" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="1" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="3" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="4" fillId="4" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="1" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="2" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="3" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="4" fillId="5" borderId="1" applyFont="1" applyFill="1" applyBorder="1"/><xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1"><alignment horizontal="left"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1"><alignment horizontal="center"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1"><alignment horizontal="right"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1"><alignment horizontal="fill"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1"><alignment textRotation="90"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyAlignment="1"><alignment wrapText="1"/></xf><xf numFmtId="9"   fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="164" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="165" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="166" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="167" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="168" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="169" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="3" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="4" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="1" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/><xf numFmtId="2" fontId="0" fillId="0" borderId="0" applyFont="1" applyFill="1" applyBorder="1" xfId="0" applyNumberFormat="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0" /></cellStyles><dxfs count="0" /><tableStyles count="0" defaultTableStyle="TableStyleMedium9" defaultPivotStyle="PivotStyleMedium4" /></styleSheet>'},j=[{match:/^\-?\d+\.\d%$/,style:60,fmt:function(t){return t/100}},{match:/^\-?\d+\.?\d*%$/,style:56,fmt:function(t){return t/100}},{match:/^\-?\$[\d,]+.?\d*$/,style:57},{match:/^\-?£[\d,]+.?\d*$/,style:58},{match:/^\-?€[\d,]+.?\d*$/,style:59},{match:/^\-?\d+$/,style:65},{match:/^\-?\d+\.\d{2}$/,style:66},{match:/^\([\d,]+\)$/,style:61,fmt:function(t){return-1*t.replace(/[\(\)]/g,"")}},{match:/^\([\d,]+\.\d{2}\)$/,style:62,fmt:function(t){return-1*t.replace(/[\(\)]/g,"")}},{match:/^\-?[\d,]+$/,style:63},{match:/^\-?[\d,]+\.\d{2}$/,style:64}];return o.ext.buttons.copyHtml5={className:"buttons-copy buttons-html5",text:function(t){return t.i18n("buttons.copy","Copy")},action:function(t,e,n,o){this.processing(!0);var r=this,a=g(e,o),i=e.buttons.exportInfo(o),s=b(o),l=a.str,d=D("<div/>").css({height:1,width:1,overflow:"hidden",position:"fixed",top:0,left:0});i.title&&(l=i.title+s+s+l),i.messageTop&&(l=i.messageTop+s+s+l),i.messageBottom&&(l=l+s+s+i.messageBottom),o.customize&&(l=o.customize(l,o,e));var c=D("<textarea readonly/>").val(l).appendTo(d);if(m.queryCommandSupported("copy")){d.appendTo(e.table().container()),c[0].focus(),c[0].select();try{var u=m.execCommand("copy");if(d.remove(),u)return e.buttons.info(e.i18n("buttons.copyTitle","Copy to clipboard"),e.i18n("buttons.copySuccess",{1:"Copied one row to clipboard",_:"Copied %d rows to clipboard"},a.rows),2e3),void this.processing(!1)}catch(t){}}var f=D("<span>"+e.i18n("buttons.copyKeys","Press <i>ctrl</i> or <i>⌘</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.")+"</span>").append(d);e.buttons.info(e.i18n("buttons.copyTitle","Copy to clipboard"),f,0),c[0].focus(),c[0].select();function h(){p.off("click.buttons-copy"),D(m).off(".buttons-copy"),e.buttons.info(!1)}var p=D(f).closest(".dt-button-info");p.on("click.buttons-copy",h),D(m).on("keydown.buttons-copy",function(t){27===t.keyCode&&(h(),r.processing(!1))}).on("copy.buttons-copy cut.buttons-copy",function(){h(),r.processing(!1)})},exportOptions:{},fieldSeparator:"\t",fieldBoundary:"",header:!0,footer:!1,title:"*",messageTop:"*",messageBottom:"*"},o.ext.buttons.csvHtml5={bom:!1,className:"buttons-csv buttons-html5",available:function(){return t.FileReader!==I&&t.Blob},text:function(t){return t.i18n("buttons.csv","CSV")},action:function(t,e,n,o){this.processing(!0);var r=g(e,o).str,a=e.buttons.exportInfo(o),i=o.charset;o.customize&&(r=o.customize(r,o,e)),!1!==i?(i||(i=m.characterSet||m.charset),i&&(i=";charset="+i)):i="",o.bom&&(r="\ufeff"+r),R(new Blob([r],{type:"text/csv"+i}),a.filename,!0),this.processing(!1)},filename:"*",extension:".csv",exportOptions:{},fieldSeparator:",",fieldBoundary:'"',escapeChar:'"',charset:null,header:!0,footer:!1},o.ext.buttons.excelHtml5={className:"buttons-excel buttons-html5",available:function(){return t.FileReader!==I&&F()!==I&&!f()&&L},text:function(t){return t.i18n("buttons.excel","Excel")},action:function(t,e,n,u){this.processing(!0);function o(t){var e=O[t];return D.parseXML(e)}function r(t){h=H(m,"row",{attr:{r:f=p+1}});for(var e=0,n=t.length;e<n;e++){var o=k(e)+""+f,r=null;if(null===t[e]||t[e]===I||""===t[e]){if(!0!==u.createEmptyCells)continue;t[e]=""}var a=t[e];t[e]=D.trim(t[e]);for(var i=0,s=j.length;i<s;i++){var l=j[i];if(t[e].match&&!t[e].match(/^0\d+/)&&t[e].match(l.match)){var d=t[e].replace(/[^\d\.\-]/g,"");l.fmt&&(d=l.fmt(d)),r=H(m,"c",{attr:{r:o,s:l.style},children:[H(m,"v",{text:d})]});break}}if(!r)if("number"==typeof t[e]||t[e].match&&t[e].match(/^-?\d+(\.\d+)?$/)&&!t[e].match(/^0\d+/))r=H(m,"c",{attr:{t:"n",r:o},children:[H(m,"v",{text:t[e]})]});else{var c=a.replace?a.replace(/[\x00-\x09\x0B\x0C\x0E-\x1F\x7F-\x9F]/g,""):a;r=H(m,"c",{attr:{t:"inlineStr",r:o},children:{row:H(m,"is",{children:{row:H(m,"t",{text:c,attr:{"xml:space":"preserve"}})}})}})}h.appendChild(r)}b.appendChild(h),p++}var a,i,f,h,s=this,p=0,m=o("xl/worksheets/sheet1.xml"),b=m.getElementsByTagName("sheetData")[0],l={_rels:{".rels":o("_rels/.rels")},xl:{_rels:{"workbook.xml.rels":o("xl/_rels/workbook.xml.rels")},"workbook.xml":o("xl/workbook.xml"),"styles.xml":o("xl/styles.xml"),worksheets:{"sheet1.xml":m}},"[Content_Types].xml":o("[Content_Types].xml")},d=e.buttons.exportData(u.exportOptions);u.customizeData&&u.customizeData(d);function c(t,e){var n=D("mergeCells",m);n[0].appendChild(H(m,"mergeCell",{attr:{ref:"A"+t+":"+k(e)+t}})),n.attr("count",parseFloat(n.attr("count"))+1),D("row:eq("+(t-1)+") c",m).attr("s","51")}var g=e.buttons.exportInfo(u);g.title&&(r([g.title]),c(p,d.header.length-1)),g.messageTop&&(r([g.messageTop]),c(p,d.header.length-1)),u.header&&(r(d.header),D("row:last c",m).attr("s","2")),a=p;for(var v=0,y=d.body.length;v<y;v++)r(d.body[v]);i=p,u.footer&&d.footer&&(r(d.footer),D("row:last c",m).attr("s","2")),g.messageBottom&&(r([g.messageBottom]),c(p,d.header.length-1));var w=H(m,"cols");D("worksheet",m).prepend(w);for(var x=0,_=d.header.length;x<_;x++)w.appendChild(H(m,"col",{attr:{min:x+1,max:x+1,width:B(d,x),customWidth:1}}));var T=l.xl["workbook.xml"];D("sheets sheet",T).attr("name",A(u)),u.autoFilter&&(D("mergeCells",m).before(H(m,"autoFilter",{attr:{ref:"A"+a+":"+k(d.header.length-1)+i}})),D("definedNames",T).append(H(T,"definedName",{attr:{name:"_xlnm._FilterDatabase",localSheetId:"0",hidden:1},text:A(u)+"!$A$"+a+":"+k(d.header.length-1)+i}))),u.customize&&u.customize(l,u,e),0===D("mergeCells",m).children().length&&D("mergeCells",m).remove();var C=new(F()),S={type:"blob",mimeType:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"};!function c(u,t){N===I&&(N=-1===L.serializeToString(D.parseXML(O["xl/worksheets/sheet1.xml"])).indexOf("xmlns:r")),D.each(t,function(t,e){if(D.isPlainObject(e))c(u.folder(t),e);else{if(N){var n,o,r=e.childNodes[0],a=[];for(n=r.attributes.length-1;0<=n;n--){var i=r.attributes[n].nodeName,s=r.attributes[n].nodeValue;-1!==i.indexOf(":")&&(a.push({name:i,value:s}),r.removeAttribute(i))}for(n=0,o=a.length;n<o;n++){var l=e.createAttribute(a[n].name.replace(":","_dt_b_namespace_token_"));l.value=a[n].value,r.setAttributeNode(l)}}var d=L.serializeToString(e);N&&(-1===d.indexOf("<?xml")&&(d='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'+d),d=(d=d.replace(/_dt_b_namespace_token_/g,":")).replace(/xmlns:NS[\d]+="" NS[\d]+:/g,"")),d=d.replace(/<([^<>]*?) xmlns=""([^<>]*?)>/g,"<$1 $2>"),u.file(t,d)}})}(C,l),C.generateAsync?C.generateAsync(S).then(function(t){R(t,g.filename),s.processing(!1)}):(R(C.generate(S),g.filename),this.processing(!1))},filename:"*",extension:".xlsx",exportOptions:{},header:!0,footer:!1,title:"*",messageTop:"*",messageBottom:"*",createEmptyCells:!1,autoFilter:!1,sheetName:""},o.ext.buttons.pdfHtml5={className:"buttons-pdf buttons-html5",available:function(){return t.FileReader!==I&&u()},text:function(t){return t.i18n("buttons.pdf","PDF")},action:function(t,e,n,o){this.processing(!0);var r=e.buttons.exportData(o.exportOptions),a=e.buttons.exportInfo(o),i=[];o.header&&i.push(D.map(r.header,function(t){return{text:"string"==typeof t?t:t+"",style:"tableHeader"}}));for(var s=0,l=r.body.length;s<l;s++)i.push(D.map(r.body[s],function(t){return null!==t&&t!==I||(t=""),{text:"string"==typeof t?t:t+"",style:s%2?"tableBodyEven":"tableBodyOdd"}}));o.footer&&r.footer&&i.push(D.map(r.footer,function(t){return{text:"string"==typeof t?t:t+"",style:"tableFooter"}}));var d={pageSize:o.pageSize,pageOrientation:o.orientation,content:[{table:{headerRows:1,body:i},layout:"noBorders"}],styles:{tableHeader:{bold:!0,fontSize:11,color:"white",fillColor:"#2d4154",alignment:"center"},tableBodyEven:{},tableBodyOdd:{fillColor:"#f3f3f3"},tableFooter:{bold:!0,fontSize:11,color:"white",fillColor:"#2d4154"},title:{alignment:"center",fontSize:15},message:{}},defaultStyle:{fontSize:10}};a.messageTop&&d.content.unshift({text:a.messageTop,style:"message",margin:[0,0,0,12]}),a.messageBottom&&d.content.push({text:a.messageBottom,style:"message",margin:[0,0,0,12]}),a.title&&d.content.unshift({text:a.title,style:"title",margin:[0,0,0,12]}),o.customize&&o.customize(d,o,e);var c=u().createPdf(d);"open"!==o.download||f()?c.download(a.filename):c.open(),this.processing(!1)},title:"*",filename:"*",extension:".pdf",exportOptions:{},orientation:"portrait",pageSize:"A4",header:!0,footer:!1,messageTop:"*",messageBottom:"*",customize:null,download:"download"},o.Buttons}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net","datatables.net-buttons"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),e.fn.dataTable.Buttons||require("datatables.net-buttons")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(p,m,t,b){"use strict";var e=p.fn.dataTable,n=t.createElement("a"),g=function(t){n.href=t;var e=n.host;return-1===e.indexOf("/")&&0!==n.pathname.indexOf("/")&&(e+="/"),n.protocol+"//"+e+n.pathname+n.search};return e.ext.buttons.print={className:"buttons-print",text:function(t){return t.i18n("buttons.print","Print")},action:function(t,e,n,o){function r(t,e){for(var n="<tr>",o=0,r=t.length;o<r;o++){var a=null===t[o]||t[o]===b?"":t[o];n+="<"+e+" "+(s[o]?'class="'+s[o]+'"':"")+">"+a+"</"+e+">"}return n+"</tr>"}var a=e.buttons.exportData(p.extend({decodeEntities:!1},o.exportOptions)),i=e.buttons.exportInfo(o),s=e.columns(o.exportOptions.columns).flatten().map(function(t){return e.settings()[0].aoColumns[e.column(t).index()].sClass}).toArray(),l='<table class="'+e.table().node().className+'">';o.header&&(l+="<thead>"+r(a.header,"th")+"</thead>"),l+="<tbody>";for(var d=0,c=a.body.length;d<c;d++)l+=r(a.body[d],"td");l+="</tbody>",o.footer&&a.footer&&(l+="<tfoot>"+r(a.footer,"th")+"</tfoot>"),l+="</table>";var u=m.open("","");u.document.close();var f="<title>"+i.title+"</title>";p("style, link").each(function(){f+=function(t){var e=p(t).clone()[0];return"link"===e.nodeName.toLowerCase()&&(e.href=g(e.href)),e.outerHTML}(this)});try{u.document.head.innerHTML=f}catch(t){p(u.document.head).html(f)}u.document.body.innerHTML="<h1>"+i.title+"</h1><div>"+(i.messageTop||"")+"</div>"+l+"<div>"+(i.messageBottom||"")+"</div>",p(u.document.body).addClass("dt-print-view"),p("img",u.document.body).each(function(t,e){e.setAttribute("src",g(e.getAttribute("src")))}),o.customize&&o.customize(u,o,e);function h(){o.autoPrint&&(u.print(),u.close())}navigator.userAgent.match(/Trident\/\d.\d/)?h():u.setTimeout(h,1e3)},title:"*",messageTop:"*",messageBottom:"*",exportOptions:{},header:!0,footer:!1,autoPrint:!0,customize:null},e.Buttons}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net","datatables.net-buttons"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),e.fn.dataTable.Buttons||require("datatables.net-buttons")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(i,t,e,s){"use strict";var n=i.fn.dataTable;return i.extend(n.ext.buttons,{colvis:function(t,e){return{extend:"collection",text:function(t){return t.i18n("buttons.colvis","Column visibility")},className:"buttons-colvis",buttons:[{extend:"columnsToggle",columns:e.columns,columnText:e.columnText}]}},columnsToggle:function(t,e){return t.columns(e.columns).indexes().map(function(t){return{extend:"columnToggle",columns:t,columnText:e.columnText}}).toArray()},columnToggle:function(t,e){return{extend:"columnVisibility",columns:e.columns,columnText:e.columnText}},columnsVisibility:function(t,e){return t.columns(e.columns).indexes().map(function(t){return{extend:"columnVisibility",columns:t,visibility:e.visibility,columnText:e.columnText}}).toArray()},columnVisibility:{columns:s,text:function(t,e,n){return n._columnText(t,n)},className:"buttons-columnVisibility",action:function(t,e,n,o){var r=e.columns(o.columns),a=r.visible();r.visible(o.visibility!==s?o.visibility:!(a.length&&a[0]))},init:function(o,r,a){var n=this;r.attr("data-cv-idx",a.columns),o.on("column-visibility.dt"+a.namespace,function(t,e){e.bDestroying||e.nTable!=o.settings()[0].nTable||n.active(o.column(a.columns).visible())}).on("column-reorder.dt"+a.namespace,function(t,e,n){1===o.columns(a.columns).count()&&(a.columns=i.inArray(a.columns,n.mapping),r.attr("data-cv-idx",a.columns),r.parent().children("[data-cv-idx]").sort(function(t,e){return 1*t.getAttribute("data-cv-idx")-1*e.getAttribute("data-cv-idx")}).appendTo(r.parent()))}),this.active(o.column(a.columns).visible())},destroy:function(t,e,n){t.off("column-visibility.dt"+n.namespace).off("column-reorder.dt"+n.namespace)},_columnText:function(t,e){var n=t.column(e.columns).index(),o=t.settings()[0].aoColumns[n].sTitle.replace(/\n/g," ").replace(/<br\s*\/?>/gi," ").replace(/<select(.*?)<\/select>/g,"").replace(/<!\-\-.*?\-\->/g,"").replace(/<.*?>/g,"").replace(/^\s+|\s+$/g,"");return e.columnText?e.columnText(t,n,o):o}},colvisRestore:{className:"buttons-colvisRestore",text:function(t){return t.i18n("buttons.colvisRestore","Restore visibility")},init:function(e,t,n){n._visOriginal=e.columns().indexes().map(function(t){return e.column(t).visible()}).toArray()},action:function(t,n,e,o){n.columns().every(function(t){var e=n.colReorder&&n.colReorder.transpose?n.colReorder.transpose(t,"toOriginal"):t;this.visible(o._visOriginal[e])})}},colvisGroup:{className:"buttons-colvisGroup",action:function(t,e,n,o){e.columns(o.show).visible(!0,!1),e.columns(o.hide).visible(!1,!1),e.columns.adjust()},show:[],hide:[]}}),n.Buttons}),$.extend(!0,$.fn.dataTable.Buttons.defaults,{dom:{container:{className:"dt-buttons"},button:{className:"btn"}}}),$.fn.dataTable.AutoFill.classes.btn="btn btn-primary",function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(w,t,a,x){"use strict";var i=w.fn.dataTable;function _(t){for(var e=[],n=0,o=t.length;n<o;n++)e[t[n]]=n;return e}function T(t,e,n){var o=t.splice(e,1)[0];t.splice(n,0,o)}function C(t,e,n){for(var o=[],r=0,a=t.childNodes.length;r<a;r++)1==t.childNodes[r].nodeType&&o.push(t.childNodes[r]);var i=o[e];null!==n?t.insertBefore(i,o[n]):t.appendChild(i)}w.fn.dataTableExt.oApi.fnColReorder=function(n,t,e,o,r){function a(t,e,n){if(t[e]&&"function"!=typeof t[e]){var o=t[e].split("."),r=o.shift();isNaN(1*r)||(t[e]=n[1*r]+"."+o.join("."))}}var i,s,l,d,c,u,f,h=n.aoColumns.length;if(t!=e)if(t<0||h<=t)this.oApi._fnLog(n,1,"ColReorder 'from' index is out of bounds: "+t);else if(e<0||h<=e)this.oApi._fnLog(n,1,"ColReorder 'to' index is out of bounds: "+e);else{var p=[];for(i=0,s=h;i<s;i++)p[i]=i;T(p,t,e);var m=_(p);for(i=0,s=n.aaSorting.length;i<s;i++)n.aaSorting[i][0]=m[n.aaSorting[i][0]];if(null!==n.aaSortingFixed)for(i=0,s=n.aaSortingFixed.length;i<s;i++)n.aaSortingFixed[i][0]=m[n.aaSortingFixed[i][0]];for(i=0,s=h;i<s;i++){for(l=0,d=(f=n.aoColumns[i]).aDataSort.length;l<d;l++)f.aDataSort[l]=m[f.aDataSort[l]];f.idx=m[f.idx]}for(w.each(n.aLastSort,function(t,e){n.aLastSort[t].src=m[e.src]}),i=0,s=h;i<s;i++)"number"==typeof(f=n.aoColumns[i]).mData?f.mData=m[f.mData]:w.isPlainObject(f.mData)&&(a(f.mData,"_",m),a(f.mData,"filter",m),a(f.mData,"sort",m),a(f.mData,"type",m));if(n.aoColumns[t].bVisible){var b=this.oApi._fnColumnIndexToVisible(n,t),g=null;for(i=e<t?e:e+1;null===g&&i<h;)g=this.oApi._fnColumnIndexToVisible(n,i),i++;for(i=0,s=(u=n.nTHead.getElementsByTagName("tr")).length;i<s;i++)C(u[i],b,g);if(null!==n.nTFoot)for(i=0,s=(u=n.nTFoot.getElementsByTagName("tr")).length;i<s;i++)C(u[i],b,g);for(i=0,s=n.aoData.length;i<s;i++)null!==n.aoData[i].nTr&&C(n.aoData[i].nTr,b,g)}for(T(n.aoColumns,t,e),i=0,s=h;i<s;i++)n.oApi._fnColumnOptions(n,i,{});for(T(n.aoPreSearchCols,t,e),i=0,s=n.aoData.length;i<s;i++){var v=n.aoData[i],y=v.anCells;if(y)for(T(y,t,e),l=0,c=y.length;l<c;l++)y[l]&&y[l]._DT_CellIndex&&(y[l]._DT_CellIndex.column=l);"dom"!==v.src&&w.isArray(v._aData)&&T(v._aData,t,e)}for(i=0,s=n.aoHeader.length;i<s;i++)T(n.aoHeader[i],t,e);if(null!==n.aoFooter)for(i=0,s=n.aoFooter.length;i<s;i++)T(n.aoFooter[i],t,e);for(!r&&r!==x||w.fn.dataTable.Api(n).rows().invalidate(),i=0,s=h;i<s;i++)w(n.aoColumns[i].nTh).off(".DT"),this.oApi._fnSortAttachListener(n,n.aoColumns[i].nTh,i);w(n.oInstance).trigger("column-reorder.dt",[n,{from:t,to:e,mapping:m,drop:o,iFrom:t,iTo:e,aiInvertMapping:m}])}};var s=function(t,e){var n=new w.fn.dataTable.Api(t).settings()[0];if(n._colReorder)return n._colReorder;!0===e&&(e={});var o=w.fn.dataTable.camelToHungarian;return o&&(o(s.defaults,s.defaults,!0),o(s.defaults,e||{})),this.s={dt:null,enable:null,init:w.extend(!0,{},s.defaults,e),fixed:0,fixedRight:0,reorderCallback:null,mouse:{startX:-1,startY:-1,offsetX:-1,offsetY:-1,target:-1,targetIndex:-1,fromIndex:-1},aoTargets:[]},this.dom={drag:null,pointer:null},this.s.enable=this.s.init.bEnable,this.s.dt=n,(this.s.dt._colReorder=this)._fnConstruct(),this};return w.extend(s.prototype,{fnEnable:function(t){if(!1===t)return fnDisable();this.s.enable=!0},fnDisable:function(){this.s.enable=!1},fnReset:function(){return this._fnOrderColumns(this.fnOrder()),this},fnGetCurrentOrder:function(){return this.fnOrder()},fnOrder:function(t,e){var n,o,r=[],a=this.s.dt.aoColumns;if(t===x){for(n=0,o=a.length;n<o;n++)r.push(a[n]._ColReorder_iOrigCol);return r}if(e){var i=this.fnOrder();for(n=0,o=t.length;n<o;n++)r.push(w.inArray(t[n],i));t=r}return this._fnOrderColumns(_(t)),this},fnTranspose:function(t,e){e||(e="toCurrent");var n=this.fnOrder(),o=this.s.dt.aoColumns;return"toCurrent"===e?w.isArray(t)?w.map(t,function(t){return w.inArray(t,n)}):w.inArray(t,n):w.isArray(t)?w.map(t,function(t){return o[t]._ColReorder_iOrigCol}):o[t]._ColReorder_iOrigCol},_fnConstruct:function(){var t,n=this,e=this.s.dt.aoColumns.length,o=this.s.dt.nTable;for(this.s.init.iFixedColumns&&(this.s.fixed=this.s.init.iFixedColumns),this.s.init.iFixedColumnsLeft&&(this.s.fixed=this.s.init.iFixedColumnsLeft),this.s.fixedRight=this.s.init.iFixedColumnsRight?this.s.init.iFixedColumnsRight:0,this.s.init.fnReorderCallback&&(this.s.reorderCallback=this.s.init.fnReorderCallback),t=0;t<e;t++)t>this.s.fixed-1&&t<e-this.s.fixedRight&&this._fnMouseListener(t,this.s.dt.aoColumns[t].nTh),this.s.dt.aoColumns[t]._ColReorder_iOrigCol=t;this.s.dt.oApi._fnCallbackReg(this.s.dt,"aoStateSaveParams",function(t,e){n._fnStateSave.call(n,e)},"ColReorder_State");var r=null;if(this.s.init.aiOrder&&(r=this.s.init.aiOrder.slice()),this.s.dt.oLoadedState&&void 0!==this.s.dt.oLoadedState.ColReorder&&this.s.dt.oLoadedState.ColReorder.length==this.s.dt.aoColumns.length&&(r=this.s.dt.oLoadedState.ColReorder),r)if(n.s.dt._bInitComplete){var a=_(r);n._fnOrderColumns.call(n,a)}else{var i=!1;w(o).on("draw.dt.colReorder",function(){if(!n.s.dt._bInitComplete&&!i){i=!0;var t=_(r);n._fnOrderColumns.call(n,t)}})}else this._fnSetColumnIndexes();w(o).on("destroy.dt.colReorder",function(){w(o).off("destroy.dt.colReorder draw.dt.colReorder"),w.each(n.s.dt.aoColumns,function(t,e){w(e.nTh).off(".ColReorder"),w(e.nTh).removeAttr("data-column-index")}),n.s.dt._colReorder=null,n.s=null})},_fnOrderColumns:function(t){var e=!1;if(t.length==this.s.dt.aoColumns.length){for(var n=0,o=t.length;n<o;n++){var r=w.inArray(n,t);n!=r&&(T(t,r,n),this.s.dt.oInstance.fnColReorder(r,n,!0,!1),e=!0)}this._fnSetColumnIndexes(),e&&(w.fn.dataTable.Api(this.s.dt).rows().invalidate(),""===this.s.dt.oScroll.sX&&""===this.s.dt.oScroll.sY||this.s.dt.oInstance.fnAdjustColumnSizing(!1),this.s.dt.oInstance.oApi._fnSaveState(this.s.dt),null!==this.s.reorderCallback&&this.s.reorderCallback.call(this))}else this.s.dt.oInstance.oApi._fnLog(this.s.dt,1,"ColReorder - array reorder does not match known number of columns. Skipping.")},_fnStateSave:function(t){var e,n,o,r=this.s.dt.aoColumns;if(t.ColReorder=[],t.aaSorting){for(e=0;e<t.aaSorting.length;e++)t.aaSorting[e][0]=r[t.aaSorting[e][0]]._ColReorder_iOrigCol;var a=w.extend(!0,[],t.aoSearchCols);for(e=0,n=r.length;e<n;e++)o=r[e]._ColReorder_iOrigCol,t.aoSearchCols[o]=a[e],t.abVisCols[o]=r[e].bVisible,t.ColReorder.push(o)}else if(t.order){for(e=0;e<t.order.length;e++)t.order[e][0]=r[t.order[e][0]]._ColReorder_iOrigCol;var i=w.extend(!0,[],t.columns);for(e=0,n=r.length;e<n;e++)o=r[e]._ColReorder_iOrigCol,t.columns[o]=i[e],t.ColReorder.push(o)}},_fnMouseListener:function(t,e){var n=this;w(e).on("mousedown.ColReorder",function(t){n.s.enable&&n._fnMouseDown.call(n,t,e)}).on("touchstart.ColReorder",function(t){n.s.enable&&n._fnMouseDown.call(n,t,e)})},_fnMouseDown:function(t,e){var n=this,o=w(t.target).closest("th, td").offset(),r=parseInt(w(e).attr("data-column-index"),10);r!==x&&(this.s.mouse.startX=this._fnCursorPosition(t,"pageX"),this.s.mouse.startY=this._fnCursorPosition(t,"pageY"),this.s.mouse.offsetX=this._fnCursorPosition(t,"pageX")-o.left,this.s.mouse.offsetY=this._fnCursorPosition(t,"pageY")-o.top,this.s.mouse.target=this.s.dt.aoColumns[r].nTh,this.s.mouse.targetIndex=r,this.s.mouse.fromIndex=r,this._fnRegions(),w(a).on("mousemove.ColReorder touchmove.ColReorder",function(t){n._fnMouseMove.call(n,t)}).on("mouseup.ColReorder touchend.ColReorder",function(t){n._fnMouseUp.call(n,t)}))},_fnMouseMove:function(t){if(null===this.dom.drag){if(Math.pow(Math.pow(this._fnCursorPosition(t,"pageX")-this.s.mouse.startX,2)+Math.pow(this._fnCursorPosition(t,"pageY")-this.s.mouse.startY,2),.5)<5)return;this._fnCreateDragNode()}this.dom.drag.css({left:this._fnCursorPosition(t,"pageX")-this.s.mouse.offsetX,top:this._fnCursorPosition(t,"pageY")-this.s.mouse.offsetY});for(var e=!1,n=this.s.mouse.toIndex,o=1,r=this.s.aoTargets.length;o<r;o++)if(this._fnCursorPosition(t,"pageX")<this.s.aoTargets[o-1].x+(this.s.aoTargets[o].x-this.s.aoTargets[o-1].x)/2){this.dom.pointer.css("left",this.s.aoTargets[o-1].x),this.s.mouse.toIndex=this.s.aoTargets[o-1].to,e=!0;break}e||(this.dom.pointer.css("left",this.s.aoTargets[this.s.aoTargets.length-1].x),this.s.mouse.toIndex=this.s.aoTargets[this.s.aoTargets.length-1].to),this.s.init.bRealtime&&n!==this.s.mouse.toIndex&&(this.s.dt.oInstance.fnColReorder(this.s.mouse.fromIndex,this.s.mouse.toIndex),this.s.mouse.fromIndex=this.s.mouse.toIndex,""===this.s.dt.oScroll.sX&&""===this.s.dt.oScroll.sY||this.s.dt.oInstance.fnAdjustColumnSizing(!1),this._fnRegions())},_fnMouseUp:function(t){w(a).off(".ColReorder"),null!==this.dom.drag&&(this.dom.drag.remove(),this.dom.pointer.remove(),this.dom.drag=null,this.dom.pointer=null,this.s.dt.oInstance.fnColReorder(this.s.mouse.fromIndex,this.s.mouse.toIndex,!0),this._fnSetColumnIndexes(),""===this.s.dt.oScroll.sX&&""===this.s.dt.oScroll.sY||this.s.dt.oInstance.fnAdjustColumnSizing(!1),this.s.dt.oInstance.oApi._fnSaveState(this.s.dt),null!==this.s.reorderCallback&&this.s.reorderCallback.call(this))},_fnRegions:function(){var t=this.s.dt.aoColumns;this.s.aoTargets.splice(0,this.s.aoTargets.length),this.s.aoTargets.push({x:w(this.s.dt.nTable).offset().left,to:0});for(var e=0,n=this.s.aoTargets[0].x,o=0,r=t.length;o<r;o++)o!=this.s.mouse.fromIndex&&e++,t[o].bVisible&&"none"!==t[o].nTh.style.display&&(n+=w(t[o].nTh).outerWidth(),this.s.aoTargets.push({x:n,to:e}));0!==this.s.fixedRight&&this.s.aoTargets.splice(this.s.aoTargets.length-this.s.fixedRight),0!==this.s.fixed&&this.s.aoTargets.splice(0,this.s.fixed)},_fnCreateDragNode:function(){var t=""!==this.s.dt.oScroll.sX||""!==this.s.dt.oScroll.sY,e=this.s.dt.aoColumns[this.s.mouse.targetIndex].nTh,n=e.parentNode,o=n.parentNode,r=o.parentNode,a=w(e).clone();this.dom.drag=w(r.cloneNode(!1)).addClass("DTCR_clonedTable").append(w(o.cloneNode(!1)).append(w(n.cloneNode(!1)).append(a[0]))).css({position:"absolute",top:0,left:0,width:w(e).outerWidth(),height:w(e).outerHeight()}).appendTo("body"),this.dom.pointer=w("<div></div>").addClass("DTCR_pointer").css({position:"absolute",top:t?w("div.dataTables_scroll",this.s.dt.nTableWrapper).offset().top:w(this.s.dt.nTable).offset().top,height:t?w("div.dataTables_scroll",this.s.dt.nTableWrapper).height():w(this.s.dt.nTable).height()}).appendTo("body")},_fnSetColumnIndexes:function(){w.each(this.s.dt.aoColumns,function(t,e){w(e.nTh).attr("data-column-index",t)})},_fnCursorPosition:function(t,e){return-1!==t.type.indexOf("touch")?t.originalEvent.touches[0][e]:t[e]}}),s.defaults={aiOrder:null,bEnable:!0,bRealtime:!0,iFixedColumnsLeft:0,iFixedColumnsRight:0,fnReorderCallback:null},s.version="1.5.1",w.fn.dataTable.ColReorder=s,w.fn.DataTable.ColReorder=s,"function"==typeof w.fn.dataTable&&"function"==typeof w.fn.dataTableExt.fnVersionCheck&&w.fn.dataTableExt.fnVersionCheck("1.10.8")?w.fn.dataTableExt.aoFeatures.push({fnInit:function(t){var e=t.oInstance;if(t._colReorder)e.oApi._fnLog(t,1,"ColReorder attempted to initialise twice. Ignoring second");else{var n=t.oInit,o=n.colReorder||n.oColReorder||{};new s(t,o)}return null},cFeature:"R",sFeature:"ColReorder"}):alert("Warning: ColReorder requires DataTables 1.10.8 or greater - www.datatables.net/download"),w(a).on("preInit.dt.colReorder",function(t,e){if("dt"===t.namespace){var n=e.oInit.colReorder,o=i.defaults.colReorder;if(n||o){var r=w.extend({},n,o);!1!==n&&new s(e,r)}}}),w.fn.dataTable.Api.register("colReorder.reset()",function(){return this.iterator("table",function(t){t._colReorder.fnReset()})}),w.fn.dataTable.Api.register("colReorder.order()",function(e,n){return e?this.iterator("table",function(t){t._colReorder.fnOrder(e,n)}):this.context.length?this.context[0]._colReorder.fnOrder():null}),w.fn.dataTable.Api.register("colReorder.transpose()",function(t,e){return this.context.length&&this.context[0]._colReorder?this.context[0]._colReorder.fnTranspose(t,e):t}),w.fn.dataTable.Api.register("colReorder.move()",function(t,e,n,o){return this.context.length&&this.context[0]._colReorder.s.dt.oInstance.fnColReorder(t,e,n,o),this}),w.fn.dataTable.Api.register("colReorder.enable()",function(e){return this.iterator("table",function(t){t._colReorder&&t._colReorder.fnEnable(e)})}),w.fn.dataTable.Api.register("colReorder.disable()",function(){return this.iterator("table",function(t){t._colReorder&&t._colReorder.fnDisable()})}),s}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs4","datatables.net-colreorder"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net-bs4")(t,e).$),e.fn.dataTable.ColReorder||require("datatables.net-colreorder")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(t,e,n,o){return t.fn.dataTable}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(T,l,d,C){"use strict";var e,a=T.fn.dataTable,c=function(t,e){var n=this;if(this instanceof c){e!==C&&!0!==e||(e={});var o=T.fn.dataTable.camelToHungarian;o&&(o(c.defaults,c.defaults,!0),o(c.defaults,e));var r=new T.fn.dataTable.Api(t).settings()[0];if(this.s={dt:r,iTableColumns:r.aoColumns.length,aiOuterWidths:[],aiInnerWidths:[],rtl:"rtl"===T(r.nTable).css("direction")},this.dom={scroller:null,header:null,body:null,footer:null,grid:{wrapper:null,dt:null,left:{wrapper:null,head:null,body:null,foot:null},right:{wrapper:null,head:null,body:null,foot:null}},clone:{left:{header:null,body:null,footer:null},right:{header:null,body:null,footer:null}}},r._oFixedColumns)throw"FixedColumns already initialised on this table";r._oFixedColumns=this,r._bInitComplete?this._fnConstruct(e):r.oApi._fnCallbackReg(r,"aoInitComplete",function(){n._fnConstruct(e)},"FixedColumns")}else alert("FixedColumns warning: FixedColumns must be initialised with the 'new' keyword.")};return T.extend(c.prototype,{fnUpdate:function(){this._fnDraw(!0)},fnRedrawLayout:function(){this._fnColCalc(),this._fnGridLayout(),this.fnUpdate()},fnRecalculateHeight:function(t){delete t._DTTC_iHeight,t.style.height="auto"},fnSetRowHeight:function(t,e){t.style.height=e+"px"},fnGetPosition:function(t){var e,n=this.s.dt.oInstance;if(T(t).parents(".DTFC_Cloned").length){if("tr"===t.nodeName.toLowerCase())return e=T(t).index(),n.fnGetPosition(T("tr",this.s.dt.nTBody)[e]);var o=T(t).index();return e=T(t.parentNode).index(),[n.fnGetPosition(T("tr",this.s.dt.nTBody)[e]),o,n.oApi._fnVisibleToColumnIndex(this.s.dt,o)]}return n.fnGetPosition(t)},_fnConstruct:function(t){var a=this;if("function"==typeof this.s.dt.oInstance.fnVersionCheck&&!0===this.s.dt.oInstance.fnVersionCheck("1.8.0"))if(""!==this.s.dt.oScroll.sX){this.s=T.extend(!0,this.s,c.defaults,t);var e,n=this.s.dt.oClasses;this.dom.grid.dt=T(this.s.dt.nTable).parents("div."+n.sScrollWrapper)[0],this.dom.scroller=T("div."+n.sScrollBody,this.dom.grid.dt)[0],this._fnColCalc(),this._fnGridSetup();var o=!1;T(this.s.dt.nTableWrapper).on("mousedown.DTFC",function(t){0===t.button&&(o=!0,T(d).one("mouseup",function(){o=!1}))}),T(this.dom.scroller).on("mouseover.DTFC touchstart.DTFC",function(){o||(e="main")}).on("scroll.DTFC",function(t){!e&&t.originalEvent&&(e="main"),"main"===e&&(0<a.s.iLeftColumns&&(a.dom.grid.left.liner.scrollTop=a.dom.scroller.scrollTop),0<a.s.iRightColumns&&(a.dom.grid.right.liner.scrollTop=a.dom.scroller.scrollTop))});var r="onwheel"in d.createElement("div")?"wheel.DTFC":"mousewheel.DTFC";0<a.s.iLeftColumns&&T(a.dom.grid.left.liner).on("mouseover.DTFC touchstart.DTFC",function(){o||(e="left")}).on("scroll.DTFC",function(t){!e&&t.originalEvent&&(e="left"),"left"===e&&(a.dom.scroller.scrollTop=a.dom.grid.left.liner.scrollTop,0<a.s.iRightColumns&&(a.dom.grid.right.liner.scrollTop=a.dom.grid.left.liner.scrollTop))}).on(r,function(t){var e="wheel"===t.type?-t.originalEvent.deltaX:t.originalEvent.wheelDeltaX;a.dom.scroller.scrollLeft-=e}),0<a.s.iRightColumns&&T(a.dom.grid.right.liner).on("mouseover.DTFC touchstart.DTFC",function(){o||(e="right")}).on("scroll.DTFC",function(t){!e&&t.originalEvent&&(e="right"),"right"===e&&(a.dom.scroller.scrollTop=a.dom.grid.right.liner.scrollTop,0<a.s.iLeftColumns&&(a.dom.grid.left.liner.scrollTop=a.dom.grid.right.liner.scrollTop))}).on(r,function(t){var e="wheel"===t.type?-t.originalEvent.deltaX:t.originalEvent.wheelDeltaX;a.dom.scroller.scrollLeft-=e}),T(l).on("resize.DTFC",function(){a._fnGridLayout.call(a)});var i=!0,s=T(this.s.dt.nTable);s.on("draw.dt.DTFC",function(){a._fnColCalc(),a._fnDraw.call(a,i),i=!1}).on("column-sizing.dt.DTFC",function(){a._fnColCalc(),a._fnGridLayout(a)}).on("column-visibility.dt.DTFC",function(t,e,n,o,r){r!==C&&!r||(a._fnColCalc(),a._fnGridLayout(a),a._fnDraw(!0))}).on("select.dt.DTFC deselect.dt.DTFC",function(t,e,n,o){"dt"===t.namespace&&a._fnDraw(!1)}).on("destroy.dt.DTFC",function(){s.off(".DTFC"),T(a.dom.scroller).off(".DTFC"),T(l).off(".DTFC"),T(a.s.dt.nTableWrapper).off(".DTFC"),T(a.dom.grid.left.liner).off(".DTFC "+r),T(a.dom.grid.left.wrapper).remove(),T(a.dom.grid.right.liner).off(".DTFC "+r),T(a.dom.grid.right.wrapper).remove()}),this._fnGridLayout(),this.s.dt.oInstance.fnDraw(!1)}else this.s.dt.oInstance.oApi._fnLog(this.s.dt,1,"FixedColumns is not needed (no x-scrolling in DataTables enabled), so no action will be taken. Use 'FixedHeader' for column fixing when scrolling is not enabled");else alert("FixedColumns "+c.VERSION+" required DataTables 1.8.0 or later. Please upgrade your DataTables installation")},_fnColCalc:function(){var a=this,i=0,s=0;this.s.aiInnerWidths=[],this.s.aiOuterWidths=[],T.each(this.s.dt.aoColumns,function(t,e){var n,o=T(e.nTh);if(o.filter(":visible").length){var r=o.outerWidth();0===a.s.aiOuterWidths.length&&(r+="string"==typeof(n=T(a.s.dt.nTable).css("border-left-width"))&&-1===n.indexOf("px")?1:parseInt(n,10)),a.s.aiOuterWidths.length===a.s.dt.aoColumns.length-1&&(r+="string"==typeof(n=T(a.s.dt.nTable).css("border-right-width"))&&-1===n.indexOf("px")?1:parseInt(n,10)),a.s.aiOuterWidths.push(r),a.s.aiInnerWidths.push(o.width()),t<a.s.iLeftColumns&&(i+=r),a.s.iTableColumns-a.s.iRightColumns<=t&&(s+=r)}else a.s.aiInnerWidths.push(0),a.s.aiOuterWidths.push(0)}),this.s.iLeftWidth=i,this.s.iRightWidth=s},_fnGridSetup:function(){var t,e=this._fnDTOverflow();this.dom.body=this.s.dt.nTable,this.dom.header=this.s.dt.nTHead.parentNode,this.dom.header.parentNode.parentNode.style.position="relative";var n=T('<div class="DTFC_ScrollWrapper" style="position:relative; clear:both;"><div class="DTFC_LeftWrapper" style="position:absolute; top:0; left:0;" aria-hidden="true"><div class="DTFC_LeftHeadWrapper" style="position:relative; top:0; left:0; overflow:hidden;"></div><div class="DTFC_LeftBodyWrapper" style="position:relative; top:0; left:0; overflow:hidden;"><div class="DTFC_LeftBodyLiner" style="position:relative; top:0; left:0; overflow-y:scroll;"></div></div><div class="DTFC_LeftFootWrapper" style="position:relative; top:0; left:0; overflow:hidden;"></div></div><div class="DTFC_RightWrapper" style="position:absolute; top:0; right:0;" aria-hidden="true"><div class="DTFC_RightHeadWrapper" style="position:relative; top:0; left:0;"><div class="DTFC_RightHeadBlocker DTFC_Blocker" style="position:absolute; top:0; bottom:0;"></div></div><div class="DTFC_RightBodyWrapper" style="position:relative; top:0; left:0; overflow:hidden;"><div class="DTFC_RightBodyLiner" style="position:relative; top:0; left:0; overflow-y:scroll;"></div></div><div class="DTFC_RightFootWrapper" style="position:relative; top:0; left:0;"><div class="DTFC_RightFootBlocker DTFC_Blocker" style="position:absolute; top:0; bottom:0;"></div></div></div></div>')[0],o=n.childNodes[0],r=n.childNodes[1];this.dom.grid.dt.parentNode.insertBefore(n,this.dom.grid.dt),n.appendChild(this.dom.grid.dt),this.dom.grid.wrapper=n,0<this.s.iLeftColumns&&(this.dom.grid.left.wrapper=o,this.dom.grid.left.head=o.childNodes[0],this.dom.grid.left.body=o.childNodes[1],this.dom.grid.left.liner=T("div.DTFC_LeftBodyLiner",n)[0],n.appendChild(o)),0<this.s.iRightColumns&&(this.dom.grid.right.wrapper=r,this.dom.grid.right.head=r.childNodes[0],this.dom.grid.right.body=r.childNodes[1],this.dom.grid.right.liner=T("div.DTFC_RightBodyLiner",n)[0],r.style.right=e.bar+"px",(t=T("div.DTFC_RightHeadBlocker",n)[0]).style.width=e.bar+"px",t.style.right=-e.bar+"px",this.dom.grid.right.headBlock=t,(t=T("div.DTFC_RightFootBlocker",n)[0]).style.width=e.bar+"px",t.style.right=-e.bar+"px",this.dom.grid.right.footBlock=t,n.appendChild(r)),this.s.dt.nTFoot&&(this.dom.footer=this.s.dt.nTFoot.parentNode,0<this.s.iLeftColumns&&(this.dom.grid.left.foot=o.childNodes[2]),0<this.s.iRightColumns&&(this.dom.grid.right.foot=r.childNodes[2])),this.s.rtl&&T("div.DTFC_RightHeadBlocker",n).css({left:-e.bar+"px",right:""})},_fnGridLayout:function(){function t(t,e){i.bar?n._firefoxScrollError()?34<T(t).height()&&(t.style.width=e+i.bar+"px"):t.style.width=e+i.bar+"px":(t.style.width=e+20+"px",t.style.paddingRight="20px",t.style.boxSizing="border-box")}var e,n=this,o=this.dom.grid,r=(T(o.wrapper).width(),this.s.dt.nTable.parentNode.offsetHeight),a=this.s.dt.nTable.parentNode.parentNode.offsetHeight,i=this._fnDTOverflow(),s=this.s.iLeftWidth,l=this.s.iRightWidth,d="rtl"===T(this.dom.body).css("direction");i.x&&(r-=i.bar),o.wrapper.style.height=a+"px",0<this.s.iLeftColumns&&((e=o.left.wrapper).style.width=s+"px",e.style.height="1px",d?(e.style.left="",e.style.right=0):(e.style.left=0,e.style.right=""),o.left.body.style.height=r+"px",o.left.foot&&(o.left.foot.style.top=(i.x?i.bar:0)+"px"),t(o.left.liner,s),o.left.liner.style.height=r+"px",o.left.liner.style.maxHeight=r+"px"),0<this.s.iRightColumns&&((e=o.right.wrapper).style.width=l+"px",e.style.height="1px",this.s.rtl?(e.style.left=i.y?i.bar+"px":0,e.style.right=""):(e.style.left="",e.style.right=i.y?i.bar+"px":0),o.right.body.style.height=r+"px",o.right.foot&&(o.right.foot.style.top=(i.x?i.bar:0)+"px"),t(o.right.liner,l),o.right.liner.style.height=r+"px",o.right.liner.style.maxHeight=r+"px",o.right.headBlock.style.display=i.y?"block":"none",o.right.footBlock.style.display=i.y?"block":"none")},_fnDTOverflow:function(){var t=this.s.dt.nTable,e=t.parentNode,n={x:!1,y:!1,bar:this.s.dt.oScroll.iBarWidth};return t.offsetWidth>e.clientWidth&&(n.x=!0),t.offsetHeight>e.clientHeight&&(n.y=!0),n},_fnDraw:function(t){this._fnGridLayout(),this._fnCloneLeft(t),this._fnCloneRight(t),null!==this.s.fnDrawCallback&&this.s.fnDrawCallback.call(this,this.dom.clone.left,this.dom.clone.right),T(this).trigger("draw.dtfc",{leftClone:this.dom.clone.left,rightClone:this.dom.clone.right})},_fnCloneRight:function(t){if(!(this.s.iRightColumns<=0)){var e,n=[];for(e=this.s.iTableColumns-this.s.iRightColumns;e<this.s.iTableColumns;e++)this.s.dt.aoColumns[e].bVisible&&n.push(e);this._fnClone(this.dom.clone.right,this.dom.grid.right,n,t)}},_fnCloneLeft:function(t){if(!(this.s.iLeftColumns<=0)){var e,n=[];for(e=0;e<this.s.iLeftColumns;e++)this.s.dt.aoColumns[e].bVisible&&n.push(e);this._fnClone(this.dom.clone.left,this.dom.grid.left,n,t)}},_fnCopyLayout:function(t,e,n){for(var o=[],r=[],a=[],i=0,s=t.length;i<s;i++){var l=[];l.nTr=T(t[i].nTr).clone(n,!1)[0];for(var d=0,c=this.s.iTableColumns;d<c;d++)if(-1!==T.inArray(d,e)){var u=T.inArray(t[i][d].cell,a);if(-1===u){var f=T(t[i][d].cell).clone(n,!1)[0];r.push(f),a.push(t[i][d].cell),l.push({cell:f,unique:t[i][d].unique})}else l.push({cell:r[u],unique:t[i][d].unique})}o.push(l)}return o},_fnClone:function(t,e,r,n){var o,a,i,s,l,d,c,u,f,h,p=this,m=this.s.dt;if(n){for(T(t.header).remove(),t.header=T(this.dom.header).clone(!0,!1)[0],t.header.className+=" DTFC_Cloned",t.header.style.width="100%",e.head.appendChild(t.header),u=this._fnCopyLayout(m.aoHeader,r,!0),(f=T(">thead",t.header)).empty(),o=0,a=u.length;o<a;o++)f[0].appendChild(u[o].nTr);m.oApi._fnDrawHead(m,u,!0)}else for(u=this._fnCopyLayout(m.aoHeader,r,!1),h=[],m.oApi._fnDetectHeader(h,T(">thead",t.header)[0]),o=0,a=u.length;o<a;o++)for(i=0,s=u[o].length;i<s;i++)h[o][i].cell.className=u[o][i].cell.className,T("span.DataTables_sort_icon",h[o][i].cell).each(function(){this.className=T("span.DataTables_sort_icon",u[o][i].cell)[0].className});this._fnEqualiseHeights("thead",this.dom.header,t.header),"auto"==this.s.sHeightMatch&&T(">tbody>tr",p.dom.body).css("height","auto"),null!==t.body&&(T(t.body).remove(),t.body=null),t.body=T(this.dom.body).clone(!0)[0],t.body.className+=" DTFC_Cloned",t.body.style.paddingBottom=m.oScroll.iBarWidth+"px",t.body.style.marginBottom=2*m.oScroll.iBarWidth+"px",null!==t.body.getAttribute("id")&&t.body.removeAttribute("id"),T(">thead>tr",t.body).empty(),T(">tfoot",t.body).remove();var b=T("tbody",t.body)[0];if(T(b).empty(),0<m.aiDisplay.length){var g=T(">thead>tr",t.body)[0];for(c=0;c<r.length;c++){l=r[c],(d=T(m.aoColumns[l].nTh).clone(!0)[0]).innerHTML="";var v=d.style;v.paddingTop="0",v.paddingBottom="0",v.borderTopWidth="0",v.borderBottomWidth="0",v.height=0,v.width=p.s.aiInnerWidths[l]+"px",g.appendChild(d)}T(">tbody>tr",p.dom.body).each(function(t){var e=!1===p.s.dt.oFeatures.bServerSide?p.s.dt.aiDisplay[p.s.dt._iDisplayStart+t]:t,n=p.s.dt.aoData[e].anCells||T(this).children("td, th"),o=this.cloneNode(!1);for(o.removeAttribute("id"),o.setAttribute("data-dt-row",e),c=0;c<r.length;c++)l=r[c],0<n.length&&((d=T(n[l]).clone(!0,!0)[0]).removeAttribute("id"),d.setAttribute("data-dt-row",e),d.setAttribute("data-dt-column",l),o.appendChild(d));b.appendChild(o)})}else T(">tbody>tr",p.dom.body).each(function(t){(d=this.cloneNode(!0)).className+=" DTFC_NoData",T("td",d).html(""),b.appendChild(d)});if(t.body.style.width="100%",t.body.style.margin="0",t.body.style.padding="0",m.oScroller!==C){var y=m.oScroller.dom.force;e.forcer?e.forcer.style.height=y.style.height:(e.forcer=y.cloneNode(!0),e.liner.appendChild(e.forcer))}if(e.liner.appendChild(t.body),this._fnEqualiseHeights("tbody",p.dom.body,t.body),null!==m.nTFoot){if(n){null!==t.footer&&t.footer.parentNode.removeChild(t.footer),t.footer=T(this.dom.footer).clone(!0,!0)[0],t.footer.className+=" DTFC_Cloned",t.footer.style.width="100%",e.foot.appendChild(t.footer),u=this._fnCopyLayout(m.aoFooter,r,!0);var w=T(">tfoot",t.footer);for(w.empty(),o=0,a=u.length;o<a;o++)w[0].appendChild(u[o].nTr);m.oApi._fnDrawHead(m,u,!0)}else{u=this._fnCopyLayout(m.aoFooter,r,!1);var x=[];for(m.oApi._fnDetectHeader(x,T(">tfoot",t.footer)[0]),o=0,a=u.length;o<a;o++)for(i=0,s=u[o].length;i<s;i++)x[o][i].cell.className=u[o][i].cell.className}this._fnEqualiseHeights("tfoot",this.dom.footer,t.footer)}var _=m.oApi._fnGetUniqueThs(m,T(">thead",t.header)[0]);T(_).each(function(t){l=r[t],this.style.width=p.s.aiInnerWidths[l]+"px"}),null!==p.s.dt.nTFoot&&(_=m.oApi._fnGetUniqueThs(m,T(">tfoot",t.footer)[0]),T(_).each(function(t){l=r[t],this.style.width=p.s.aiInnerWidths[l]+"px"}))},_fnGetTrNodes:function(t){for(var e=[],n=0,o=t.childNodes.length;n<o;n++)"TR"==t.childNodes[n].nodeName.toUpperCase()&&e.push(t.childNodes[n]);return e},_fnEqualiseHeights:function(t,e,n){if("none"!=this.s.sHeightMatch||"thead"===t||"tfoot"===t){var o,r,a,i,s,l=e.getElementsByTagName(t)[0],d=n.getElementsByTagName(t)[0],c=T(">"+t+">tr:eq(0)",e).children(":first"),u=(c.outerHeight(),c.height(),this._fnGetTrNodes(l)),f=this._fnGetTrNodes(d),h=[];for(o=0,r=f.length;o<r;o++)a=(i=u[o].offsetHeight)<(s=f[o].offsetHeight)?s:i,"semiauto"==this.s.sHeightMatch&&(u[o]._DTTC_iHeight=a),h.push(a);for(o=0,r=f.length;o<r;o++)f[o].style.height=h[o]+"px",u[o].style.height=h[o]+"px"}},_firefoxScrollError:function(){if(e===C){var t=T("<div/>").css({position:"absolute",top:0,left:0,height:10,width:50,overflow:"scroll"}).appendTo("body");e=t[0].clientWidth===t[0].offsetWidth&&0!==this._fnDTOverflow().bar,t.remove()}return e}}),c.defaults={iLeftColumns:1,iRightColumns:0,fnDrawCallback:null,sHeightMatch:"semiauto"},c.version="3.2.6",a.Api.register("fixedColumns()",function(){return this}),a.Api.register("fixedColumns().update()",function(){return this.iterator("table",function(t){t._oFixedColumns&&t._oFixedColumns.fnUpdate()})}),a.Api.register("fixedColumns().relayout()",function(){return this.iterator("table",function(t){t._oFixedColumns&&t._oFixedColumns.fnRedrawLayout()})}),a.Api.register("rows().recalcHeight()",function(){return this.iterator("row",function(t,e){t._oFixedColumns&&t._oFixedColumns.fnRecalculateHeight(this.row(e).node())})}),a.Api.register("fixedColumns().rowIndex()",function(t){return(t=T(t)).parents(".DTFC_Cloned").length?this.rows({page:"current"}).indexes()[t.index()]:this.row(t).index()}),a.Api.register("fixedColumns().cellIndex()",function(t){if((t=T(t)).parents(".DTFC_Cloned").length){var e,n=t.parent().index(),o=this.rows({page:"current"}).indexes()[n];if(t.parents(".DTFC_LeftWrapper").length)e=t.index();else e=this.columns().flatten().length-this.context[0]._oFixedColumns.s.iRightColumns+t.index();return{row:o,column:this.column.index("toData",e),columnVisible:e}}return this.cell(t).index()}),T(d).on("init.dt.fixedColumns",function(t,e){if("dt"===t.namespace){var n=e.oInit.fixedColumns,o=a.defaults.fixedColumns;if(n||o){var r=T.extend({},n,o);!1!==n&&new c(e,r)}}}),T.fn.dataTable.FixedColumns=c,T.fn.DataTable.FixedColumns=c}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs4","datatables.net-fixedcolumns"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net-bs4")(t,e).$),e.fn.dataTable.FixedColumns||require("datatables.net-fixedcolumns")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(t,e,n,o){return t.fn.dataTable}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(s,r,l,a){"use strict";var i=s.fn.dataTable,o=0,d=function(t,e){if(!(this instanceof d))throw"FixedHeader must be initialised with the 'new' keyword.";!0===e&&(e={}),t=new i.Api(t),this.c=s.extend(!0,{},d.defaults,e),this.s={dt:t,position:{theadTop:0,tbodyTop:0,tfootTop:0,tfootBottom:0,width:0,left:0,tfootHeight:0,theadHeight:0,windowHeight:s(r).height(),visible:!0},headerMode:null,footerMode:null,autoWidth:t.settings()[0].oFeatures.bAutoWidth,namespace:".dtfc"+o++,scrollLeft:{header:-1,footer:-1},enable:!0},this.dom={floatingHeader:null,thead:s(t.table().header()),tbody:s(t.table().body()),tfoot:s(t.table().footer()),header:{host:null,floating:null,placeholder:null},footer:{host:null,floating:null,placeholder:null}},this.dom.header.host=this.dom.thead.parent(),this.dom.footer.host=this.dom.tfoot.parent();var n=t.settings()[0];if(n._fixedHeader)throw"FixedHeader already initialised on table "+n.nTable.id;(n._fixedHeader=this)._constructor()};return s.extend(d.prototype,{enable:function(t){this.s.enable=t,this.c.header&&this._modeChange("in-place","header",!0),this.c.footer&&this.dom.tfoot.length&&this._modeChange("in-place","footer",!0),this.update()},headerOffset:function(t){return t!==a&&(this.c.headerOffset=t,this.update()),this.c.headerOffset},footerOffset:function(t){return t!==a&&(this.c.footerOffset=t,this.update()),this.c.footerOffset},update:function(){this._positions(),this._scroll(!0)},_constructor:function(){var t=this,e=this.s.dt;s(r).on("scroll"+this.s.namespace,function(){t._scroll()}).on("resize"+this.s.namespace,i.util.throttle(function(){t.s.position.windowHeight=s(r).height(),t.update()},50));var n=s(".fh-fixedHeader");!this.c.headerOffset&&n.length&&(this.c.headerOffset=n.outerHeight());var o=s(".fh-fixedFooter");!this.c.footerOffset&&o.length&&(this.c.footerOffset=o.outerHeight()),e.on("column-reorder.dt.dtfc column-visibility.dt.dtfc draw.dt.dtfc column-sizing.dt.dtfc responsive-display.dt.dtfc",function(){t.update()}),e.on("destroy.dtfc",function(){t.c.header&&t._modeChange("in-place","header",!0),t.c.footer&&t.dom.tfoot.length&&t._modeChange("in-place","footer",!0),e.off(".dtfc"),s(r).off(t.s.namespace)}),this._positions(),this._scroll()},_clone:function(t,e){var n=this.s.dt,o=this.dom[t],r="header"===t?this.dom.thead:this.dom.tfoot;!e&&o.floating?o.floating.removeClass("fixedHeader-floating fixedHeader-locked"):(o.floating&&(o.placeholder.remove(),this._unsize(t),o.floating.children().detach(),o.floating.remove()),o.floating=s(n.table().node().cloneNode(!1)).css("table-layout","fixed").attr("aria-hidden","true").removeAttr("id").append(r).appendTo("body"),o.placeholder=r.clone(!1),o.placeholder.find("*[id]").removeAttr("id"),o.host.prepend(o.placeholder),this._matchWidths(o.placeholder,o.floating))},_matchWidths:function(e,n){function t(t){return s(t,e).map(function(){return s(this).width()}).toArray()}function o(t,e){s(t,n).each(function(t){s(this).css({width:e[t],minWidth:e[t]})})}var r=t("th"),a=t("td");o("th",r),o("td",a)},_unsize:function(t){var e=this.dom[t].floating;e&&("footer"===t||"header"===t&&!this.s.autoWidth)?s("th, td",e).css({width:"",minWidth:""}):e&&"header"===t&&s("th, td",e).css("min-width","")},_horizontal:function(t,e){var n=this.dom[t],o=this.s.position,r=this.s.scrollLeft;n.floating&&r[t]!==e&&(n.floating.css("left",o.left-e),r[t]=e)},_modeChange:function(t,e,n){this.s.dt;var o=this.dom[e],r=this.s.position,a=this.dom["footer"===e?"tfoot":"thead"],i=s.contains(a[0],l.activeElement)?l.activeElement:null;i&&i.blur(),"in-place"===t?(o.placeholder&&(o.placeholder.remove(),o.placeholder=null),this._unsize(e),"header"===e?o.host.prepend(a):o.host.append(a),o.floating&&(o.floating.remove(),o.floating=null)):"in"===t?(this._clone(e,n),o.floating.addClass("fixedHeader-floating").css("header"===e?"top":"bottom",this.c[e+"Offset"]).css("left",r.left+"px").css("width",r.width+"px"),"footer"===e&&o.floating.css("top","")):"below"===t?(this._clone(e,n),o.floating.addClass("fixedHeader-locked").css("top",r.tfootTop-r.theadHeight).css("left",r.left+"px").css("width",r.width+"px")):"above"===t&&(this._clone(e,n),o.floating.addClass("fixedHeader-locked").css("top",r.tbodyTop).css("left",r.left+"px").css("width",r.width+"px")),i&&i!==l.activeElement&&setTimeout(function(){i.focus()},10),this.s.scrollLeft.header=-1,this.s.scrollLeft.footer=-1,this.s[e+"Mode"]=t},_positions:function(){var t=this.s.dt.table(),e=this.s.position,n=this.dom,o=s(t.node()),r=o.children("thead"),a=o.children("tfoot"),i=n.tbody;e.visible=o.is(":visible"),e.width=o.outerWidth(),e.left=o.offset().left,e.theadTop=r.offset().top,e.tbodyTop=i.offset().top,e.theadHeight=e.tbodyTop-e.theadTop,a.length?(e.tfootTop=a.offset().top,e.tfootBottom=e.tfootTop+a.outerHeight(),e.tfootHeight=e.tfootBottom-e.tfootTop):(e.tfootTop=e.tbodyTop+i.outerHeight(),e.tfootBottom=e.tfootTop,e.tfootHeight=e.tfootTop)},_scroll:function(t){var e,n,o=s(l).scrollTop(),r=s(l).scrollLeft(),a=this.s.position;this.s.enable&&(this.c.header&&(e=!a.visible||o<=a.theadTop-this.c.headerOffset?"in-place":o<=a.tfootTop-a.theadHeight-this.c.headerOffset?"in":"below",!t&&e===this.s.headerMode||this._modeChange(e,"header",t),this._horizontal("header",r)),this.c.footer&&this.dom.tfoot.length&&(n=!a.visible||o+a.windowHeight>=a.tfootBottom+this.c.footerOffset?"in-place":a.windowHeight+o>a.tbodyTop+a.tfootHeight+this.c.footerOffset?"in":"above",!t&&n===this.s.footerMode||this._modeChange(n,"footer",t),this._horizontal("footer",r)))}}),d.version="3.1.5",d.defaults={header:!0,footer:!1,headerOffset:0,footerOffset:0},s.fn.dataTable.FixedHeader=d,s.fn.DataTable.FixedHeader=d,s(l).on("init.dt.dtfh",function(t,e,n){if("dt"===t.namespace){var o=e.oInit.fixedHeader,r=i.defaults.fixedHeader;if((o||r)&&!e._fixedHeader){var a=s.extend({},r,o);!1!==o&&new d(e,a)}}}),i.Api.register("fixedHeader()",function(){}),i.Api.register("fixedHeader.adjust()",function(){return this.iterator("table",function(t){var e=t._fixedHeader;e&&e.update()})}),i.Api.register("fixedHeader.enable()",function(n){return this.iterator("table",function(t){var e=t._fixedHeader;n=n===a||n,e&&n!==e.s.enable&&e.enable(n)})}),i.Api.register("fixedHeader.disable()",function(){return this.iterator("table",function(t){var e=t._fixedHeader;e&&e.s.enable&&e.enable(!1)})}),s.each(["header","footer"],function(t,o){i.Api.register("fixedHeader."+o+"Offset()",function(n){var t=this.context;return n===a?t.length&&t[0]._fixedHeader?t[0]._fixedHeader[o+"Offset"]():a:this.iterator("table",function(t){var e=t._fixedHeader;e&&e[o+"Offset"](n)})})}),d}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs4","datatables.net-fixedheader"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net-bs4")(t,e).$),e.fn.dataTable.FixedHeader||require("datatables.net-fixedheader")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(t,e,n,o){return t.fn.dataTable}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(p,m,b,g){"use strict";var i=p.fn.dataTable,s=function(t,e){if(!i.versionCheck||!i.versionCheck("1.10.8"))throw"KeyTable requires DataTables 1.10.8 or newer";this.c=p.extend(!0,{},i.defaults.keyTable,s.defaults,e),this.s={dt:new i.Api(t),enable:!0,focusDraw:!1,waitingForDraw:!1,lastFocus:null},this.dom={};var n=this.s.dt.settings()[0],o=n.keytable;if(o)return o;(n.keytable=this)._constructor()};return p.extend(s.prototype,{blur:function(){this._blur()},enable:function(t){this.s.enable=t},focus:function(t,e){this._focus(this.s.dt.cell(t,e))},focused:function(t){if(!this.s.lastFocus)return!1;var e=this.s.lastFocus.cell.index();return t.row===e.row&&t.column===e.column},_constructor:function(){this._tabInput();var a=this,i=this.s.dt,t=p(i.table().node());if("static"===t.css("position")&&t.css("position","relative"),p(i.table().body()).on("click.keyTable","th, td",function(t){if(!1!==a.s.enable){var e=i.cell(this);e.any()&&a._focus(e,null,!1,t)}}),p(b).on("keydown.keyTable",function(t){a._key(t)}),this.c.blurable&&p(b).on("mousedown.keyTable",function(t){p(t.target).parents(".dataTables_filter").length&&a._blur(),p(t.target).parents().filter(i.table().container()).length||p(t.target).parents("div.DTE").length||p(t.target).parents("div.editor-datetime").length||p(t.target).parents().filter(".DTFC_Cloned").length||a._blur()}),this.c.editor){var o=this.c.editor;o.on("open.keyTableMain",function(t,e,n){"inline"!==e&&a.s.enable&&(a.enable(!1),o.one("close.keyTable",function(){a.enable(!0)}))}),this.c.editOnFocus&&i.on("key-focus.keyTable key-refocus.keyTable",function(t,e,n,o){a._editor(null,o,!0)}),i.on("key.keyTable",function(t,e,n,o,r){a._editor(n,r,!1)}),p(i.table().body()).on("dblclick.keyTable","th, td",function(t){!1!==a.s.enable&&i.cell(this).any()&&a._editor(null,t,!0)})}i.settings()[0].oFeatures.bStateSave&&i.on("stateSaveParams.keyTable",function(t,e,n){n.keyTable=a.s.lastFocus?a.s.lastFocus.cell.index():null}),i.on("draw.keyTable",function(t){if(!a.s.focusDraw){var e=a.s.lastFocus;if(e&&e.node&&p(e.node).closest("body")===b.body){var n=a.s.lastFocus.relative,o=i.page.info(),r=n.row+o.start;if(0===o.recordsDisplay)return;r>=o.recordsDisplay&&(r=o.recordsDisplay-1),a._focus(r,n.column,!0,t)}}}),this.c.clipboard&&this._clipboard(),i.on("destroy.keyTable",function(){i.off(".keyTable"),p(i.table().body()).off("click.keyTable","th, td"),p(b).off("keydown.keyTable").off("click.keyTable").off("copy.keyTable").off("paste.keyTable")});var e=i.state.loaded();e&&e.keyTable?i.one("init",function(){var t=i.cell(e.keyTable);t.any()&&t.focus()}):this.c.focus&&i.cell(this.c.focus).focus()},_blur:function(){if(this.s.enable&&this.s.lastFocus){var t=this.s.lastFocus.cell;p(t.node()).removeClass(this.c.className),this.s.lastFocus=null,this._updateFixedColumns(t.index().column),this._emitEvent("key-blur",[this.s.dt,t])}},_clipboard:function(){var i=this.s.dt,s=this;m.getSelection&&(p(b).on("copy.keyTable",function(t){var e=t.originalEvent,n=m.getSelection().toString(),o=s.s.lastFocus;!n&&o&&(e.clipboardData.setData("text/plain",o.cell.render(s.c.clipboardOrthogonal)),e.preventDefault())}),p(b).on("paste.keyTable",function(t){var e,n=t.originalEvent,o=s.s.lastFocus,r=b.activeElement,a=s.c.editor;!o||r&&"body"!==r.nodeName.toLowerCase()||(n.preventDefault(),m.clipboardData&&m.clipboardData.getData?e=m.clipboardData.getData("Text"):n.clipboardData&&n.clipboardData.getData&&(e=n.clipboardData.getData("text/plain")),a?a.inline(o.cell.index()).set(a.displayed()[0],e).submit():(o.cell.data(e),i.draw(!1)))}))},_columns:function(){var t=this.s.dt,e=t.columns(this.c.columns).indexes(),n=[];return t.columns(":visible").every(function(t){-1!==e.indexOf(t)&&n.push(t)}),n},_editor:function(t,e,n){var o=this,r=this.s.dt,a=this.c.editor,i=this.s.lastFocus.cell;if(!(p("div.DTE",i.node()).length||null!==t&&(0<=t&&t<=9||11===t||12===t||14<=t&&t<=31||112<=t&&t<=123||127<=t&&t<=159))){e.stopPropagation(),13===t&&e.preventDefault();var s=function(){a.one("open.keyTable",function(){a.off("cancelOpen.keyTable"),n||p("div.DTE_Field_InputControl input, div.DTE_Field_InputControl textarea").select(),r.keys.enable(n?"tab-only":"navigation-only"),r.on("key-blur.editor",function(){a.displayed()&&a.submit()}),n&&p(r.table().container()).addClass("dtk-focus-alt"),a.on("submitUnsuccessful.keyTable",function(){o._focus(i,null,!1)}),a.one("close",function(){r.keys.enable(!0),r.off("key-blur.editor"),a.off(".keyTable"),p(r.table().container()).removeClass("dtk-focus-alt")})}).one("cancelOpen.keyTable",function(){a.off(".keyTable")}).inline(i.index())};13===t?(n=!0,p(b).one("keyup",function(){s()})):s()}},_emitEvent:function(n,o){this.s.dt.iterator("table",function(t,e){p(t.nTable).triggerHandler(n,o)})},_focus:function(t,e,n,o){var r=this,a=this.s.dt,i=a.page.info(),s=this.s.lastFocus;if(o||(o=null),this.s.enable){if("number"!=typeof t){if(!t.any())return;var l=t.index();if(e=l.column,(t=a.rows({filter:"applied",order:"applied"}).indexes().indexOf(l.row))<0)return;i.serverSide&&(t+=i.start)}if(-1!==i.length&&(t<i.start||t>=i.start+i.length))return this.s.focusDraw=!0,this.s.waitingForDraw=!0,void a.one("draw",function(){r.s.focusDraw=!1,r.s.waitingForDraw=!1,r._focus(t,e,g,o)}).page(Math.floor(t/i.length)).draw(!1);if(-1!==p.inArray(e,this._columns())){i.serverSide&&(t-=i.start);var d=a.cells(null,e,{search:"applied",order:"applied"}).flatten(),c=a.cell(d[t]);if(s){if(s.node===c.node())return void this._emitEvent("key-refocus",[this.s.dt,c,o||null]);this._blur()}var u=p(c.node());if(u.addClass(this.c.className),this._updateFixedColumns(e),n===g||!0===n){this._scroll(p(m),p(b.body),u,"offset");var f=a.table().body().parentNode;if(f!==a.table().header().parentNode){var h=p(f.parentNode);this._scroll(h,h,u,"position")}}this.s.lastFocus={cell:c,node:c.node(),relative:{row:a.rows({page:"current"}).indexes().indexOf(c.index().row),column:c.index().column}},this._emitEvent("key-focus",[this.s.dt,c,o||null]),a.state.save()}}},_key:function(t){if(this.s.waitingForDraw)t.preventDefault();else{var e=this.s.enable,n=!0===e||"navigation-only"===e;if(e)if(!(0===t.keyCode||t.ctrlKey||t.metaKey||t.altKey)||t.ctrlKey&&t.altKey)if(this.s.lastFocus){var o=this.s.dt,r=!!this.s.dt.settings()[0].oScroll.sY;if(!this.c.keys||-1!==p.inArray(t.keyCode,this.c.keys))switch(t.keyCode){case 9:this._shift(t,t.shiftKey?"left":"right",!0);break;case 27:this.s.blurable&&!0===e&&this._blur();break;case 33:case 34:n&&!r&&(t.preventDefault(),o.page(33===t.keyCode?"previous":"next").draw(!1));break;case 35:case 36:if(n){t.preventDefault();var a=o.cells({page:"current"}).indexes(),i=this._columns();this._focus(o.cell(a[35===t.keyCode?a.length-1:i[0]]),null,!0,t)}break;case 37:n&&this._shift(t,"left");break;case 38:n&&this._shift(t,"up");break;case 39:n&&this._shift(t,"right");break;case 40:n&&this._shift(t,"down");break;default:!0===e&&this._emitEvent("key",[o,t.keyCode,this.s.lastFocus.cell,t])}}}},_scroll:function(t,e,n,o){var r=n[o](),a=n.outerHeight(),i=n.outerWidth(),s=e.scrollTop(),l=e.scrollLeft(),d=t.height(),c=t.width();"position"===o&&(r.top+=parseInt(n.closest("table").css("top"),10)),r.top<s&&e.scrollTop(r.top),r.left<l&&e.scrollLeft(r.left),r.top+a>s+d&&a<d&&e.scrollTop(r.top+a-d),r.left+i>l+c&&i<c&&e.scrollLeft(r.left+i-c)},_shift:function(t,e,n){var o=this.s.dt,r=o.page.info(),a=r.recordsDisplay,i=this.s.lastFocus.cell,s=this._columns();if(i){var l=o.rows({filter:"applied",order:"applied"}).indexes().indexOf(i.index().row);r.serverSide&&(l+=r.start);var d=o.columns(s).indexes().indexOf(i.index().column),c=l,u=s[d];"right"===e?u=d>=s.length-1?(c++,s[0]):s[d+1]:"left"===e?u=0===d?(c--,s[s.length-1]):s[d-1]:"up"===e?c--:"down"===e&&c++,0<=c&&c<a&&-1!==p.inArray(u,s)?(t.preventDefault(),this._focus(c,u,!0,t)):n&&this.c.blurable?this._blur():t.preventDefault()}},_tabInput:function(){var e=this,n=this.s.dt,t=null!==this.c.tabIndex?this.c.tabIndex:n.settings()[0].iTabIndex;-1!=t&&p('<div><input type="text" tabindex="'+t+'"/></div>').css({position:"absolute",height:1,width:0,overflow:"hidden"}).insertBefore(n.table().node()).children().on("focus",function(t){n.cell(":eq(0)",{page:"current"}).any()&&e._focus(n.cell(":eq(0)","0:visible",{page:"current"}),null,!0,t)})},_updateFixedColumns:function(t){var e=this.s.dt,n=e.settings()[0];if(n._oFixedColumns){var o=n._oFixedColumns.s.iLeftColumns,r=n.aoColumns.length-n._oFixedColumns.s.iRightColumns;(t<o||r<=t)&&e.fixedColumns().update()}}}),s.defaults={blurable:!0,className:"focus",clipboard:!0,clipboardOrthogonal:"display",columns:"",editor:null,editOnFocus:!1,focus:null,keys:null,tabIndex:null},s.version="2.5.0",p.fn.dataTable.KeyTable=s,p.fn.DataTable.KeyTable=s,i.Api.register("cell.blur()",function(){return this.iterator("table",function(t){t.keytable&&t.keytable.blur()})}),i.Api.register("cell().focus()",function(){return this.iterator("cell",function(t,e,n){t.keytable&&t.keytable.focus(e,n)})}),i.Api.register("keys.disable()",function(){return this.iterator("table",function(t){t.keytable&&t.keytable.enable(!1)})}),i.Api.register("keys.enable()",function(e){return this.iterator("table",function(t){t.keytable&&t.keytable.enable(e===g||e)})}),i.ext.selector.cell.push(function(t,e,n){var o=e.focused,r=t.keytable,a=[];if(!r||o===g)return n;for(var i=0,s=n.length;i<s;i++)(!0===o&&r.focused(n[i])||!1===o&&!r.focused(n[i]))&&a.push(n[i]);return a}),p(b).on("preInit.dt.dtk",function(t,e,n){if("dt"===t.namespace){var o=e.oInit.keys,r=i.defaults.keys;if(o||r){var a=p.extend({},r,o);!1!==o&&new s(e,a)}}}),s}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs4","datatables.net-keytable"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net-bs4")(t,e).$),e.fn.dataTable.KeyTable||require("datatables.net-keytable")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(t,e,n,o){return t.fn.dataTable}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(p,h,i,f){"use strict";var a=p.fn.dataTable,r=function(t,e){if(!a.versionCheck||!a.versionCheck("1.10.10"))throw"DataTables Responsive requires DataTables 1.10.10 or newer";this.s={dt:new a.Api(t),columns:[],current:[]},this.s.dt.settings()[0].responsive||(e&&"string"==typeof e.details?e.details={type:e.details}:e&&!1===e.details?e.details={type:!1}:e&&!0===e.details&&(e.details={type:"inline"}),this.c=p.extend(!0,{},r.defaults,a.defaults.responsive,e),(t.responsive=this)._constructor())};p.extend(r.prototype,{_constructor:function(){var o=this,r=this.s.dt,t=r.settings()[0],e=p(h).width();r.settings()[0]._responsive=this,p(h).on("resize.dtr orientationchange.dtr",a.util.throttle(function(){var t=p(h).width();t!==e&&(o._resize(),e=t)})),t.oApi._fnCallbackReg(t,"aoRowCreatedCallback",function(t,e,n){-1!==p.inArray(!1,o.s.current)&&p(">td, >th",t).each(function(t){var e=r.column.index("toData",t);!1===o.s.current[e]&&p(this).css("display","none")})}),r.on("destroy.dtr",function(){r.off(".dtr"),p(r.table().body()).off(".dtr"),p(h).off("resize.dtr orientationchange.dtr"),p.each(o.s.current,function(t,e){!1===e&&o._setColumnVis(t,!0)})}),this.c.breakpoints.sort(function(t,e){return t.width<e.width?1:t.width>e.width?-1:0}),this._classLogic(),this._resizeAuto();var n=this.c.details;!1!==n.type&&(o._detailsInit(),r.on("column-visibility.dtr",function(){o._timer&&clearTimeout(o._timer),o._timer=setTimeout(function(){o._timer=null,o._classLogic(),o._resizeAuto(),o._resize(),o._redrawChildren()},100)}),r.on("draw.dtr",function(){o._redrawChildren()}),p(r.table().node()).addClass("dtr-"+n.type)),r.on("column-reorder.dtr",function(t,e,n){o._classLogic(),o._resizeAuto(),o._resize()}),r.on("column-sizing.dtr",function(){o._resizeAuto(),o._resize()}),r.on("preXhr.dtr",function(){var t=[];r.rows().every(function(){this.child.isShown()&&t.push(this.id(!0))}),r.one("draw.dtr",function(){o._resizeAuto(),o._resize(),r.rows(t).every(function(){o._detailsDisplay(this,!1)})})}),r.on("init.dtr",function(t,e,n){o._resizeAuto(),o._resize(),p.inArray(!1,o.s.current)&&r.columns.adjust()}),this._resize()},_columnsVisiblity:function(n){var t,e,o=this.s.dt,r=this.s.columns,a=r.map(function(t,e){return{columnIdx:e,priority:t.priority}}).sort(function(t,e){return t.priority!==e.priority?t.priority-e.priority:t.columnIdx-e.columnIdx}),i=p.map(r,function(t,e){return!1===o.column(e).visible()?"not-visible":(!t.auto||null!==t.minWidth)&&(!0===t.auto?"-":-1!==p.inArray(n,t.includeIn))}),s=0;for(t=0,e=i.length;t<e;t++)!0===i[t]&&(s+=r[t].minWidth);var l=o.settings()[0].oScroll,d=l.sY||l.sX?l.iBarWidth:0,c=o.table().container().offsetWidth-d-s;for(t=0,e=i.length;t<e;t++)r[t].control&&(c-=r[t].minWidth);var u=!1;for(t=0,e=a.length;t<e;t++){var f=a[t].columnIdx;"-"===i[f]&&!r[f].control&&r[f].minWidth&&(u||c-r[f].minWidth<0?(u=!0,i[f]=!1):i[f]=!0,c-=r[f].minWidth)}var h=!1;for(t=0,e=r.length;t<e;t++)if(!r[t].control&&!r[t].never&&!1===i[t]){h=!0;break}for(t=0,e=r.length;t<e;t++)r[t].control&&(i[t]=h),"not-visible"===i[t]&&(i[t]=!1);return-1===p.inArray(!0,i)&&(i[0]=!0),i},_classLogic:function(){function s(t,e){var n=u[t].includeIn;-1===p.inArray(e,n)&&n.push(e)}function l(t,e,n,o){var r,a,i;if(n){if("max-"===n)for(r=d._find(e).width,a=0,i=c.length;a<i;a++)c[a].width<=r&&s(t,c[a].name);else if("min-"===n)for(r=d._find(e).width,a=0,i=c.length;a<i;a++)c[a].width>=r&&s(t,c[a].name);else if("not-"===n)for(a=0,i=c.length;a<i;a++)-1===c[a].name.indexOf(o)&&s(t,c[a].name)}else u[t].includeIn.push(e)}var d=this,c=this.c.breakpoints,a=this.s.dt,u=a.columns().eq(0).map(function(t){var e=this.column(t),n=e.header().className,o=a.settings()[0].aoColumns[t].responsivePriority;if(o===f){var r=p(e.header()).data("priority");o=r!==f?1*r:1e4}return{className:n,includeIn:[],auto:!1,control:!1,never:!!n.match(/\bnever\b/),priority:o}});u.each(function(t,a){for(var e=t.className.split(" "),i=!1,n=0,o=e.length;n<o;n++){var s=p.trim(e[n]);if("all"===s)return i=!0,void(t.includeIn=p.map(c,function(t){return t.name}));if("none"===s||t.never)return void(i=!0);if("control"===s)return i=!0,void(t.control=!0);p.each(c,function(t,e){var n=e.name.split("-"),o=new RegExp("(min\\-|max\\-|not\\-)?("+n[0]+")(\\-[_a-zA-Z0-9])?"),r=s.match(o);r&&(i=!0,r[2]===n[0]&&r[3]==="-"+n[1]?l(a,e.name,r[1],r[2]+r[3]):r[2]!==n[0]||r[3]||l(a,e.name,r[1],r[2]))})}i||(t.auto=!0)}),this.s.columns=u},_detailsDisplay:function(t,e){var n=this,o=this.s.dt,r=this.c.details;if(r&&!1!==r.type){var a=r.display(t,e,function(){return r.renderer(o,t[0],n._detailsObj(t[0]))});!0!==a&&!1!==a||p(o.table().node()).triggerHandler("responsive-display.dt",[o,t,a,e])}},_detailsInit:function(){var o=this,r=this.s.dt,t=this.c.details;"inline"===t.type&&(t.target="td:first-child, th:first-child"),r.on("draw.dtr",function(){o._tabIndexes()}),o._tabIndexes(),p(r.table().body()).on("keyup.dtr","td, th",function(t){13===t.keyCode&&p(this).data("dtr-keyboard")&&p(this).click()});var a=t.target,e="string"==typeof a?a:"td, th";p(r.table().body()).on("click.dtr mousedown.dtr mouseup.dtr",e,function(t){if(p(r.table().node()).hasClass("collapsed")&&-1!==p.inArray(p(this).closest("tr").get(0),r.rows().nodes().toArray())){if("number"==typeof a){var e=a<0?r.columns().eq(0).length+a:a;if(r.cell(this).index().column!==e)return}var n=r.row(p(this).closest("tr"));"click"===t.type?o._detailsDisplay(n,!1):"mousedown"===t.type?p(this).css("outline","none"):"mouseup"===t.type&&p(this).blur().css("outline","")}})},_detailsObj:function(n){var o=this,r=this.s.dt;return p.map(this.s.columns,function(t,e){if(!t.never&&!t.control)return{title:r.settings()[0].aoColumns[e].sTitle,data:r.cell(n,e).render(o.c.orthogonal),hidden:r.column(e).visible()&&!o.s.current[e],columnIndex:e,rowIndex:n}})},_find:function(t){for(var e=this.c.breakpoints,n=0,o=e.length;n<o;n++)if(e[n].name===t)return e[n]},_redrawChildren:function(){var n=this,o=this.s.dt;o.rows({page:"current"}).iterator("row",function(t,e){o.row(e);n._detailsDisplay(o.row(e),!0)})},_resize:function(){var t,e,n=this,o=this.s.dt,r=p(h).width(),a=this.c.breakpoints,i=a[0].name,s=this.s.columns,l=this.s.current.slice();for(t=a.length-1;0<=t;t--)if(r<=a[t].width){i=a[t].name;break}var d=this._columnsVisiblity(i);this.s.current=d;var c=!1;for(t=0,e=s.length;t<e;t++)if(!1===d[t]&&!s[t].never&&!s[t].control&&!1==!o.column(t).visible()){c=!0;break}p(o.table().node()).toggleClass("collapsed",c);var u=!1,f=0;o.columns().eq(0).each(function(t,e){!0===d[e]&&f++,d[e]!==l[e]&&(u=!0,n._setColumnVis(t,d[e]))}),u&&(this._redrawChildren(),p(o.table().node()).trigger("responsive-resize.dt",[o,this.s.current]),0===o.page.info().recordsDisplay&&p("td",o.table().body()).eq(0).attr("colspan",f))},_resizeAuto:function(){var n=this.s.dt,o=this.s.columns;if(this.c.auto&&-1!==p.inArray(!0,p.map(o,function(t){return t.auto}))){p.isEmptyObject(u)||p.each(u,function(t){var e=t.split("-");c(n,1*e[0],1*e[1])});n.table().node().offsetWidth,n.columns;var t=n.table().node().cloneNode(!1),e=p(n.table().header().cloneNode(!1)).appendTo(t),r=p(n.table().body()).clone(!1,!1).empty().appendTo(t),a=n.columns().header().filter(function(t){return n.column(t).visible()}).to$().clone(!1).css("display","table-cell").css("min-width",0);p(r).append(p(n.rows({page:"current"}).nodes()).clone(!1)).find("th, td").css("display","");var i=n.table().footer();if(i){var s=p(i.cloneNode(!1)).appendTo(t),l=n.columns().footer().filter(function(t){return n.column(t).visible()}).to$().clone(!1).css("display","table-cell");p("<tr/>").append(l).appendTo(s)}p("<tr/>").append(a).appendTo(e),"inline"===this.c.details.type&&p(t).addClass("dtr-inline collapsed"),p(t).find("[name]").removeAttr("name"),p(t).css("position","relative");var d=p("<div/>").css({width:1,height:1,overflow:"hidden",clear:"both"}).append(t);d.insertBefore(n.table().node()),a.each(function(t){var e=n.column.index("fromVisible",t);o[e].minWidth=this.offsetWidth||0}),d.remove()}},_setColumnVis:function(t,e){var n=this.s.dt,o=e?"":"none";p(n.column(t).header()).css("display",o),p(n.column(t).footer()).css("display",o),n.column(t).nodes().to$().css("display",o),p.isEmptyObject(u)||n.cells(null,t).indexes().each(function(t){c(n,t.row,t.column)})},_tabIndexes:function(){var t=this.s.dt,e=t.cells({page:"current"}).nodes().to$(),n=t.settings()[0],o=this.c.details.target;e.filter("[data-dtr-keyboard]").removeData("[data-dtr-keyboard]"),"number"==typeof o?t.cells(null,o,{page:"current"}).nodes().to$().attr("tabIndex",n.iTabIndex).data("dtr-keyboard",1):("td:first-child, th:first-child"===o&&(o=">td:first-child, >th:first-child"),p(o,t.rows({page:"current"}).nodes()).attr("tabIndex",n.iTabIndex).data("dtr-keyboard",1))}}),r.breakpoints=[{name:"desktop",width:1/0},{name:"tablet-l",width:1024},{name:"tablet-p",width:768},{name:"mobile-l",width:480},{name:"mobile-p",width:320}],r.display={childRow:function(t,e,n){return e?p(t.node()).hasClass("parent")?(t.child(n(),"child").show(),!0):void 0:t.child.isShown()?(t.child(!1),p(t.node()).removeClass("parent"),!1):(t.child(n(),"child").show(),p(t.node()).addClass("parent"),!0)},childRowImmediate:function(t,e,n){return!e&&t.child.isShown()||!t.responsive.hasHidden()?(t.child(!1),p(t.node()).removeClass("parent"),!1):(t.child(n(),"child").show(),p(t.node()).addClass("parent"),!0)},modal:function(a){return function(t,e,n){if(e)p("div.dtr-modal-content").empty().append(n());else{var o=function(){r.remove(),p(i).off("keypress.dtr")},r=p('<div class="dtr-modal"/>').append(p('<div class="dtr-modal-display"/>').append(p('<div class="dtr-modal-content"/>').append(n())).append(p('<div class="dtr-modal-close">&times;</div>').click(function(){o()}))).append(p('<div class="dtr-modal-background"/>').click(function(){o()})).appendTo("body");p(i).on("keyup.dtr",function(t){27===t.keyCode&&(t.stopPropagation(),o())})}a&&a.header&&p("div.dtr-modal-content").prepend("<h2>"+a.header(t)+"</h2>")}}};var u={};function c(t,e,n){var o=e+"-"+n;if(u[o]){for(var r=t.cell(e,n).node(),a=u[o][0].parentNode.childNodes,i=[],s=0,l=a.length;s<l;s++)i.push(a[s]);for(var d=0,c=i.length;d<c;d++)r.appendChild(i[d]);u[o]=f}}r.renderer={listHiddenNodes:function(){return function(n,t,e){var o=p('<ul data-dtr-index="'+t+'" class="dtr-details"/>'),r=!1;p.each(e,function(t,e){e.hidden&&(p('<li data-dtr-index="'+e.columnIndex+'" data-dt-row="'+e.rowIndex+'" data-dt-column="'+e.columnIndex+'"><span class="dtr-title">'+e.title+"</span> </li>").append(p('<span class="dtr-data"/>').append(function(t,e,n){var o=e+"-"+n;if(u[o])return u[o];for(var r=[],a=t.cell(e,n).node().childNodes,i=0,s=a.length;i<s;i++)r.push(a[i]);return u[o]=r}(n,e.rowIndex,e.columnIndex))).appendTo(o),r=!0)});return!!r&&o}},listHidden:function(){return function(t,e,n){var o=p.map(n,function(t){return t.hidden?'<li data-dtr-index="'+t.columnIndex+'" data-dt-row="'+t.rowIndex+'" data-dt-column="'+t.columnIndex+'"><span class="dtr-title">'+t.title+'</span> <span class="dtr-data">'+t.data+"</span></li>":""}).join("");return!!o&&p('<ul data-dtr-index="'+e+'" class="dtr-details"/>').append(o)}},tableAll:function(r){return r=p.extend({tableClass:""},r),function(t,e,n){var o=p.map(n,function(t){return'<tr data-dt-row="'+t.rowIndex+'" data-dt-column="'+t.columnIndex+'"><td>'+t.title+":</td> <td>"+t.data+"</td></tr>"}).join("");return p('<table class="'+r.tableClass+' dtr-details" width="100%"/>').append(o)}}},r.defaults={breakpoints:r.breakpoints,auto:!0,details:{display:r.display.childRow,renderer:r.renderer.listHidden(),target:0,type:"inline"},orthogonal:"display"};var t=p.fn.dataTable.Api;return t.register("responsive()",function(){return this}),t.register("responsive.index()",function(t){return{column:(t=p(t)).data("dtr-index"),row:t.parent().data("dtr-index")}}),t.register("responsive.rebuild()",function(){return this.iterator("table",function(t){t._responsive&&t._responsive._classLogic()})}),t.register("responsive.recalc()",function(){return this.iterator("table",function(t){t._responsive&&(t._responsive._resizeAuto(),t._responsive._resize())})}),t.register("responsive.hasHidden()",function(){var t=this.context[0];return!!t._responsive&&-1!==p.inArray(!1,t._responsive.s.current)}),t.registerPlural("columns().responsiveHidden()","column().responsiveHidden()",function(){return this.iterator("column",function(t,e){return!!t._responsive&&t._responsive.s.current[e]},1)}),r.version="2.2.3",p.fn.dataTable.Responsive=r,p.fn.DataTable.Responsive=r,p(i).on("preInit.dt.dtr",function(t,e,n){if("dt"===t.namespace&&(p(e.nTable).hasClass("responsive")||p(e.nTable).hasClass("dt-responsive")||e.oInit.responsive||a.defaults.responsive)){var o=e.oInit.responsive;!1!==o&&new r(e,p.isPlainObject(o)?o:{})}}),r}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs4","datatables.net-responsive"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net-bs4")(t,e).$),e.fn.dataTable.Responsive||require("datatables.net-responsive")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(i,t,e,n){"use strict";var o=i.fn.dataTable,r=o.Responsive.display,s=r.modal,l=i('<div class="modal fade dtr-bs-modal" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"/></div></div></div>');return r.modal=function(a){return function(t,e,n){if(i.fn.modal){if(!e){if(a&&a.header){var o=l.find("div.modal-header"),r=o.find("button").detach();o.empty().append('<h4 class="modal-title">'+a.header(t)+"</h4>").append(r)}l.find("div.modal-body").empty().append(n()),l.appendTo("body").modal()}}else s(t,e,n)}},o.Responsive}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(u,t,e,f){"use strict";var h=u.fn.dataTable,i=function(t,e){if(!h.versionCheck||!h.versionCheck("1.10.8"))throw"RowGroup requires DataTables 1.10.8 or newer";this.c=u.extend(!0,{},h.defaults.rowGroup,i.defaults,e),this.s={dt:new h.Api(t)},this.dom={};var n=this.s.dt.settings()[0],o=n.rowGroup;if(o)return o;(n.rowGroup=this)._constructor()};return u.extend(i.prototype,{dataSrc:function(t){if(t===f)return this.c.dataSrc;var e=this.s.dt;return this.c.dataSrc=t,u(e.table().node()).triggerHandler("rowgroup-datasrc.dt",[e,t]),this},disable:function(){return this.c.enable=!1,this},enable:function(t){return!1===t?this.disable():(this.c.enable=!0,this)},_constructor:function(){var t=this,e=this.s.dt;e.on("draw.dtrg",function(){t.c.enable&&t._draw()}),e.on("column-visibility.dt.dtrg responsive-resize.dt.dtrg",function(){t._adjustColspan()}),e.on("destroy",function(){e.off(".dtrg")}),e.on("responsive-resize.dt",function(){t._adjustColspan()})},_adjustColspan:function(){u("tr."+this.c.className,this.s.dt.table().body()).find("td").attr("colspan",this._colspan())},_colspan:function(){return this.s.dt.columns().visible().reduce(function(t,e){return t+e},0)},_draw:function(){var t=this.s.dt,e=this._group(0,t.rows({page:"current"}).indexes());this._groupDisplay(0,e)},_group:function(t,e){for(var n,o=u.isArray(this.c.dataSrc)?this.c.dataSrc:[this.c.dataSrc],r=h.ext.oApi._fnGetObjectDataFn(o[t]),a=this.s.dt,i=[],s=0,l=e.length;s<l;s++){var d,c=e[s];null!==(d=r(a.row(c).data()))&&d!==f||(d=that.c.emptyDataGroup),n!==f&&d===n||(i.push({dataPoint:d,rows:[]}),n=d),i[i.length-1].rows.push(c)}if(o[t+1]!==f)for(s=0,l=i.length;s<l;s++)i[s].children=this._group(t+1,i[s].rows);return i},_groupDisplay:function(t,e){for(var n,o=this.s.dt,r=0,a=e.length;r<a;r++){var i,s=e[r],l=s.dataPoint,d=s.rows;this.c.startRender&&(n=this.c.startRender.call(this,o.rows(d),l,t),(i=this._rowWrap(n,this.c.startClassName,t))&&i.insertBefore(o.row(d[0]).node())),this.c.endRender&&(n=this.c.endRender.call(this,o.rows(d),l,t),(i=this._rowWrap(n,this.c.endClassName,t))&&i.insertAfter(o.row(d[d.length-1]).node())),s.children&&this._groupDisplay(t+1,s.children)}},_rowWrap:function(t,e,n){return null!==t&&""!==t||(t=this.c.emptyDataGroup),t===f?null:("object"==typeof t&&t.nodeName&&"tr"===t.nodeName.toLowerCase()?u(t):t instanceof u&&t.length&&"tr"===t[0].nodeName.toLowerCase()?t:u("<tr/>").append(u("<td/>").attr("colspan",this._colspan()).append(t))).addClass(this.c.className).addClass(e).addClass("dtrg-level-"+n)}}),i.defaults={className:"dtrg-group",dataSrc:0,emptyDataGroup:"No group",enable:!0,endClassName:"dtrg-end",endRender:null,startClassName:"dtrg-start",startRender:function(t,e){return e}},i.version="1.1.0",u.fn.dataTable.RowGroup=i,u.fn.DataTable.RowGroup=i,h.Api.register("rowGroup()",function(){return this}),h.Api.register("rowGroup().disable()",function(){return this.iterator("table",function(t){t.rowGroup&&t.rowGroup.enable(!1)})}),h.Api.register("rowGroup().enable()",function(e){return this.iterator("table",function(t){t.rowGroup&&t.rowGroup.enable(e===f||e)})}),h.Api.register("rowGroup().dataSrc()",function(e){return e===f?this.context[0].rowGroup.dataSrc():this.iterator("table",function(t){t.rowGroup&&t.rowGroup.dataSrc(e)})}),u(e).on("preInit.dt.dtrg",function(t,e,n){if("dt"===t.namespace){var o=e.oInit.rowGroup,r=h.defaults.rowGroup;if(o||r){var a=u.extend({},r,o);!1!==o&&new i(e,a)}}}),i}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs4","datatables.net-rowgroup"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net-bs4")(t,e).$),e.fn.dataTable.RowGroup||require("datatables.net-rowgroup")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(t,e,n,o){return t.fn.dataTable}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(v,s,y,t){"use strict";var i=v.fn.dataTable,l=function(t,e){if(!i.versionCheck||!i.versionCheck("1.10.8"))throw"DataTables RowReorder requires DataTables 1.10.8 or newer";this.c=v.extend(!0,{},i.defaults.rowReorder,l.defaults,e),this.s={bodyTop:null,dt:new i.Api(t),getDataFn:i.ext.oApi._fnGetObjectDataFn(this.c.dataSrc),middles:null,scroll:{},scrollInterval:null,setDataFn:i.ext.oApi._fnSetObjectDataFn(this.c.dataSrc),start:{top:0,left:0,offsetTop:0,offsetLeft:0,nodes:[]},windowHeight:0,documentOuterHeight:0,domCloneOuterHeight:0},this.dom={clone:null,dtScroll:v("div.dataTables_scrollBody",this.s.dt.table().container())};var n=this.s.dt.settings()[0],o=n.rowreorder;if(o)return o;(n.rowreorder=this)._constructor()};v.extend(l.prototype,{_constructor:function(){var o=this,r=this.s.dt,t=v(r.table().node());"static"===t.css("position")&&t.css("position","relative"),v(r.table().container()).on("mousedown.rowReorder touchstart.rowReorder",this.c.selector,function(t){if(o.c.enable){if(v(t.target).is(o.c.excludedChildren))return!0;var e=v(this).closest("tr"),n=r.row(e);return n.any()?(o._emitEvent("pre-row-reorder",{node:n.node(),index:n.index()}),o._mouseDown(t,e),!1):void 0}}),r.on("destroy.rowReorder",function(){v(r.table().container()).off(".rowReorder"),r.off(".rowReorder")})},_cachePositions:function(){var n=this.s.dt,o=v(n.table().node()).find("thead").outerHeight(),t=v.unique(n.rows({page:"current"}).nodes().toArray()),r=v.map(t,function(t,e){return v(t).position().top-o}),e=v.map(r,function(t,e){return r.length<e-1?(t+r[e+1])/2:(t+t+v(n.row(":last-child").node()).outerHeight())/2});this.s.middles=e,this.s.bodyTop=v(n.table().body()).offset().top,this.s.windowHeight=v(s).height(),this.s.documentOuterHeight=v(y).outerHeight()},_clone:function(t){var e=this.s.dt,n=v(e.table().node().cloneNode(!1)).addClass("dt-rowReorder-float").append("<tbody/>").append(t.clone(!1)),o=t.outerWidth(),r=t.outerHeight(),a=t.children().map(function(){return v(this).width()});n.width(o).height(r).find("tr").children().each(function(t){this.style.width=a[t]+"px"}),n.appendTo("body"),this.dom.clone=n,this.s.domCloneOuterHeight=n.outerHeight()},_clonePosition:function(t){var e,n=this.s.start,o=this._eventToPage(t,"Y")-n.top,r=this._eventToPage(t,"X")-n.left,a=this.c.snapX,i=o+n.offsetTop;e=!0===a?n.offsetLeft:"number"==typeof a?n.offsetLeft+a:r+n.offsetLeft,i<0?i=0:i+this.s.domCloneOuterHeight>this.s.documentOuterHeight&&(i=this.s.documentOuterHeight-this.s.domCloneOuterHeight),this.dom.clone.css({top:i,left:e})},_emitEvent:function(n,o){this.s.dt.iterator("table",function(t,e){v(t.nTable).triggerHandler(n+".dt",o)})},_eventToPage:function(t,e){return-1!==t.type.indexOf("touch")?t.originalEvent.touches[0]["page"+e]:t["page"+e]},_mouseDown:function(t,e){var n=this,o=this.s.dt,r=this.s.start,a=e.offset();r.top=this._eventToPage(t,"Y"),r.left=this._eventToPage(t,"X"),r.offsetTop=a.top,r.offsetLeft=a.left,r.nodes=v.unique(o.rows({page:"current"}).nodes().toArray()),this._cachePositions(),this._clone(e),this._clonePosition(t),(this.dom.target=e).addClass("dt-rowReorder-moving"),v(y).on("mouseup.rowReorder touchend.rowReorder",function(t){n._mouseUp(t)}).on("mousemove.rowReorder touchmove.rowReorder",function(t){n._mouseMove(t)}),v(s).width()===v(y).width()&&v(y.body).addClass("dt-rowReorder-noOverflow");var i=this.dom.dtScroll;this.s.scroll={windowHeight:v(s).height(),windowWidth:v(s).width(),dtTop:i.length?i.offset().top:null,dtLeft:i.length?i.offset().left:null,dtHeight:i.length?i.outerHeight():null,dtWidth:i.length?i.outerWidth():null}},_mouseMove:function(t){this._clonePosition(t);for(var e=this._eventToPage(t,"Y")-this.s.bodyTop,n=this.s.middles,o=null,r=this.s.dt,a=r.table().body(),i=0,s=n.length;i<s;i++)if(e<n[i]){o=i;break}if(null===o&&(o=n.length),null===this.s.lastInsert||this.s.lastInsert!==o){if(0===o)this.dom.target.prependTo(a);else{var l=v.unique(r.rows({page:"current"}).nodes().toArray());o>this.s.lastInsert?this.dom.target.insertAfter(l[o-1]):this.dom.target.insertBefore(l[o])}this._cachePositions(),this.s.lastInsert=o}this._shiftScroll(t)},_mouseUp:function(t){var e,n,o=this,r=this.s.dt,a=this.c.dataSrc;this.dom.clone.remove(),this.dom.clone=null,this.dom.target.removeClass("dt-rowReorder-moving"),v(y).off(".rowReorder"),v(y.body).removeClass("dt-rowReorder-noOverflow"),clearInterval(this.s.scrollInterval),this.s.scrollInterval=null;var i=this.s.start.nodes,s=v.unique(r.rows({page:"current"}).nodes().toArray()),l={},d=[],c=[],u=this.s.getDataFn,f=this.s.setDataFn;for(e=0,n=i.length;e<n;e++)if(i[e]!==s[e]){var h=r.row(s[e]).id(),p=r.row(s[e]).data(),m=r.row(i[e]).data();h&&(l[h]=u(m)),d.push({node:s[e],oldData:u(p),newData:u(m),newPosition:e,oldPosition:v.inArray(s[e],i)}),c.push(s[e])}var b=[d,{dataSrc:a,nodes:c,values:l,triggerRow:r.row(this.dom.target)}];this._emitEvent("row-reorder",b);function g(){if(o.c.update){for(e=0,n=d.length;e<n;e++){var t=r.row(d[e].node).data();f(t,d[e].newData),r.columns().every(function(){this.dataSrc()===a&&r.cell(d[e].node,this.index()).invalidate("data")})}o._emitEvent("row-reordered",b),r.draw(!1)}}this.c.editor?(this.c.enable=!1,this.c.editor.edit(c,!1,v.extend({submit:"changed"},this.c.formOptions)).multiSet(a,l).one("preSubmitCancelled.rowReorder",function(){o.c.enable=!0,o.c.editor.off(".rowReorder"),r.draw(!1)}).one("submitUnsuccessful.rowReorder",function(){r.draw(!1)}).one("submitSuccess.rowReorder",function(){g()}).one("submitComplete",function(){o.c.enable=!0,o.c.editor.off(".rowReorder")}).submit()):g()},_shiftScroll:function(t){var e,n,o=this,r=(this.s.dt,this.s.scroll),a=!1,i=t.pageY-y.body.scrollTop;i<65?e=-5:i>r.windowHeight-65&&(e=5),null!==r.dtTop&&t.pageY<r.dtTop+65?n=-5:null!==r.dtTop&&t.pageY>r.dtTop+r.dtHeight-65&&(n=5),e||n?(r.windowVert=e,r.dtVert=n,a=!0):this.s.scrollInterval&&(clearInterval(this.s.scrollInterval),this.s.scrollInterval=null),!this.s.scrollInterval&&a&&(this.s.scrollInterval=setInterval(function(){if(r.windowVert&&(y.body.scrollTop+=r.windowVert),r.dtVert){var t=o.dom.dtScroll[0];r.dtVert&&(t.scrollTop+=r.dtVert)}},20))}}),l.defaults={dataSrc:0,editor:null,enable:!0,formOptions:{},selector:"td:first-child",snapX:!1,update:!0,excludedChildren:"a"};var e=v.fn.dataTable.Api;return e.register("rowReorder()",function(){return this}),e.register("rowReorder.enable()",function(e){return e===t&&(e=!0),this.iterator("table",function(t){t.rowreorder&&(t.rowreorder.c.enable=e)})}),e.register("rowReorder.disable()",function(){return this.iterator("table",function(t){t.rowreorder&&(t.rowreorder.c.enable=!1)})}),l.version="1.2.5",v.fn.dataTable.RowReorder=l,v.fn.DataTable.RowReorder=l,v(y).on("init.dt.dtr",function(t,e,n){if("dt"===t.namespace){var o=e.oInit.rowReorder,r=i.defaults.rowReorder;if(o||r){var a=v.extend({},o,r);!1!==o&&new l(e,a)}}}),l}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs4","datatables.net-rowreorder"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net-bs4")(t,e).$),e.fn.dataTable.RowReorder||require("datatables.net-rowreorder")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(t,e,n,o){return t.fn.dataTable}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(g,i,o,a){"use strict";var s=g.fn.dataTable,l=function(t,e){if(this instanceof l){e===a&&(e={});var n=g.fn.dataTable.Api(t);this.s={dt:n.settings()[0],dtApi:n,tableTop:0,tableBottom:0,redrawTop:0,redrawBottom:0,autoHeight:!0,viewportRows:0,stateTO:null,drawTO:null,heights:{jump:null,page:null,virtual:null,scroll:null,row:null,viewport:null,labelFactor:1},topRowFloat:0,scrollDrawDiff:null,loaderVisible:!1,forceReposition:!1,baseRowTop:0,baseScrollTop:0,mousedown:!1,lastScrollTop:0},this.s=g.extend(this.s,l.oDefaults,e),this.s.heights.row=this.s.rowHeight,this.dom={force:o.createElement("div"),label:g('<div class="dts_label">0</div>'),scroller:null,table:null,loader:null},this.s.dt.oScroller||(this.s.dt.oScroller=this).construct()}else alert("Scroller warning: Scroller must be initialised with the 'new' keyword.")};g.extend(l.prototype,{measure:function(t){this.s.autoHeight&&this._calcRowHeight();var e=this.s.heights;e.row&&(e.viewport=g.contains(o,this.dom.scroller)?this.dom.scroller.clientHeight:this._parseHeight(g(this.dom.scroller).css("height")),e.viewport||(e.viewport=this._parseHeight(g(this.dom.scroller).css("max-height"))),this.s.viewportRows=parseInt(e.viewport/e.row,10)+1,this.s.dt._iDisplayLength=this.s.viewportRows*this.s.displayBuffer);var n=this.dom.label.outerHeight();e.labelFactor=(e.viewport-n)/e.scroll,t!==a&&!t||this.s.dt.oInstance.fnDraw(!1)},pageInfo:function(){var t=this.s.dt,e=this.dom.scroller.scrollTop,n=t.fnRecordsDisplay(),o=Math.ceil(this.pixelsToRow(e+this.s.heights.viewport,!1,this.s.ani));return{start:Math.floor(this.pixelsToRow(e,!1,this.s.ani)),end:n<o?n-1:o-1}},pixelsToRow:function(t,e,n){var o=t-this.s.baseScrollTop,r=n?(this._domain("physicalToVirtual",this.s.baseScrollTop)+o)/this.s.heights.row:o/this.s.heights.row+this.s.baseRowTop;return e||e===a?parseInt(r,10):r},rowToPixels:function(t,e,n){var o,r=t-this.s.baseRowTop;return o=n?this._domain("virtualToPhysical",this.s.baseScrollTop):this.s.baseScrollTop,o+=r*this.s.heights.row,e||e===a?parseInt(o,10):o},scrollToRow:function(t,e){var n=this,o=!1,r=this.rowToPixels(t),a=t-(this.s.displayBuffer-1)/2*this.s.viewportRows;a<0&&(a=0),(r>this.s.redrawBottom||r<this.s.redrawTop)&&this.s.dt._iDisplayStart!==a&&(o=!0,r=this._domain("virtualToPhysical",t*this.s.heights.row),this.s.redrawTop<r&&r<this.s.redrawBottom&&(e=!(this.s.forceReposition=!0))),void 0===e||e?(this.s.ani=o,g(this.dom.scroller).animate({scrollTop:r},function(){setTimeout(function(){n.s.ani=!1},25)})):g(this.dom.scroller).scrollTop(r)},construct:function(){var o=this,t=this.s.dtApi;if(this.s.dt.oFeatures.bPaginate){this.dom.force.style.position="relative",this.dom.force.style.top="0px",this.dom.force.style.left="0px",this.dom.force.style.width="1px",this.dom.scroller=g("div."+this.s.dt.oClasses.sScrollBody,this.s.dt.nTableWrapper)[0],this.dom.scroller.appendChild(this.dom.force),this.dom.scroller.style.position="relative",this.dom.table=g(">table",this.dom.scroller)[0],this.dom.table.style.position="absolute",this.dom.table.style.top="0px",this.dom.table.style.left="0px",g(t.table().container()).addClass("dts DTS"),this.s.loadingIndicator&&(this.dom.loader=g('<div class="dataTables_processing dts_loading">'+this.s.dt.oLanguage.sLoadingRecords+"</div>").css("display","none"),g(this.dom.scroller.parentNode).css("position","relative").append(this.dom.loader)),this.dom.label.appendTo(this.dom.scroller),this.s.heights.row&&"auto"!=this.s.heights.row&&(this.s.autoHeight=!1),this.measure(!1),this.s.ingnoreScroll=!0,this.s.stateSaveThrottle=this.s.dt.oApi._fnThrottle(function(){o.s.dtApi.state.save()},500),g(this.dom.scroller).on("scroll.dt-scroller",function(t){o._scroll.call(o)}),g(this.dom.scroller).on("touchstart.dt-scroller",function(){o._scroll.call(o)}),g(this.dom.scroller).on("mousedown.dt-scroller",function(){o.s.mousedown=!0}).on("mouseup.dt-scroller",function(){o.s.mouseup=!1,o.dom.label.css("display","none")}),g(i).on("resize.dt-scroller",function(){o.measure(!1),o._info()});var r=!0,a=t.state.loaded();t.on("stateSaveParams.scroller",function(t,e,n){n.scroller={topRow:r&&a&&a.scroller?a.scroller.topRow:o.s.topRowFloat,baseScrollTop:o.s.baseScrollTop,baseRowTop:o.s.baseRowTop},r=!1}),a&&a.scroller&&(this.s.topRowFloat=a.scroller.topRow,this.s.baseScrollTop=a.scroller.baseScrollTop,this.s.baseRowTop=a.scroller.baseRowTop),t.on("init.scroller",function(){o.measure(!1),o._draw(),t.on("draw.scroller",function(){o._draw()})}),t.on("preDraw.dt.scroller",function(){o._scrollForce()}),t.on("destroy.scroller",function(){g(i).off("resize.dt-scroller"),g(o.dom.scroller).off(".dt-scroller"),g(o.s.dt.nTable).off(".scroller"),g(o.s.dt.nTableWrapper).removeClass("DTS"),g("div.DTS_Loading",o.dom.scroller.parentNode).remove(),o.dom.table.style.position="",o.dom.table.style.top="",o.dom.table.style.left=""})}else this.s.dt.oApi._fnLog(this.s.dt,0,"Pagination must be enabled for Scroller")},_calcRowHeight:function(){var t=this.s.dt,e=t.nTable,n=e.cloneNode(!1),o=g("<tbody/>").appendTo(n),r=g('<div class="'+t.oClasses.sWrapper+' DTS"><div class="'+t.oClasses.sScrollWrapper+'"><div class="'+t.oClasses.sScrollBody+'"></div></div></div>');g("tbody tr:lt(4)",e).clone().appendTo(o);var a=g("tr",o).length;if(1===a)o.prepend("<tr><td>&#160;</td></tr>"),o.append("<tr><td>&#160;</td></tr>");else for(;a<3;a++)o.append("<tr><td>&#160;</td></tr>");g("div."+t.oClasses.sScrollBody,r).append(n);var i=this.s.dt.nHolding||e.parentNode;g(i).is(":visible")||(i="body"),r.appendTo(i),this.s.heights.row=g("tr",o).eq(1).outerHeight(),r.remove()},_draw:function(){var t=this,e=this.s.heights,n=this.dom.scroller.scrollTop,o=(e.viewport,g(this.s.dt.nTable).height()),r=this.s.dt._iDisplayStart,a=this.s.dt._iDisplayLength,i=this.s.dt.fnRecordsDisplay();this.s.skip=!0,!this.s.dt.bSorted&&!this.s.dt.bFiltered||0!==r||this.s.dt._drawHold||(this.s.topRowFloat=0),n="jump"===this.scrollType?this._domain("physicalToVirtual",this.s.topRowFloat*e.row):n,g(t.dom.scroller).scrollTop(n),this.s.baseScrollTop=n,this.s.baseRowTop=this.s.topRowFloat;var s=n-(this.s.topRowFloat-r)*e.row;0===r?s=0:i<=r+a&&(s=e.scroll-o),this.dom.table.style.top=s+"px",this.s.tableTop=s,this.s.tableBottom=o+this.s.tableTop;var l=(n-this.s.tableTop)*this.s.boundaryScale;if(this.s.redrawTop=n-l,this.s.redrawBottom=n+l>e.scroll-e.viewport-e.row?e.scroll-e.viewport-e.row:n+l,this.s.skip=!1,this.s.dt.oFeatures.bStateSave&&null!==this.s.dt.oLoadedState&&void 0!==this.s.dt.oLoadedState.iScroller){var d=!(!this.s.dt.sAjaxSource&&!t.s.dt.ajax||this.s.dt.oFeatures.bServerSide);(d&&2==this.s.dt.iDraw||!d&&1==this.s.dt.iDraw)&&setTimeout(function(){g(t.dom.scroller).scrollTop(t.s.dt.oLoadedState.iScroller),t.s.redrawTop=t.s.dt.oLoadedState.iScroller-e.viewport/2,setTimeout(function(){t.s.ingnoreScroll=!1},0)},0)}else t.s.ingnoreScroll=!1;this.s.dt.oFeatures.bInfo&&setTimeout(function(){t._info.call(t)},0),this.dom.loader&&this.s.loaderVisible&&(this.dom.loader.css("display","none"),this.s.loaderVisible=!1)},_domain:function(t,e){var n,o=this.s.heights;if(o.virtual===o.scroll)return e;if(e<1e4)return e;if("virtualToPhysical"===t&&e>o.virtual-1e4)return n=o.virtual-e,o.scroll-n;if("physicalToVirtual"===t&&e>o.scroll-1e4)return n=o.scroll-e,o.virtual-n;var r="virtualToPhysical"===t?o.virtual:o.scroll,a=(("virtualToPhysical"===t?o.scroll:o.virtual)-1e4)/(r-1e4);return a*e+(1e4-1e4*a)},_info:function(){if(this.s.dt.oFeatures.bInfo){var t,e=this.s.dt,n=e.oLanguage,o=this.dom.scroller.scrollTop,r=Math.floor(this.pixelsToRow(o,!1,this.s.ani)+1),a=e.fnRecordsTotal(),i=e.fnRecordsDisplay(),s=Math.ceil(this.pixelsToRow(o+this.s.heights.viewport,!1,this.s.ani)),l=i<s?i:s,d=e.fnFormatNumber(r),c=e.fnFormatNumber(l),u=e.fnFormatNumber(a),f=e.fnFormatNumber(i);t=0===e.fnRecordsDisplay()&&e.fnRecordsDisplay()==e.fnRecordsTotal()?n.sInfoEmpty+n.sInfoPostFix:0===e.fnRecordsDisplay()?n.sInfoEmpty+" "+n.sInfoFiltered.replace("_MAX_",u)+n.sInfoPostFix:e.fnRecordsDisplay()==e.fnRecordsTotal()?n.sInfo.replace("_START_",d).replace("_END_",c).replace("_MAX_",u).replace("_TOTAL_",f)+n.sInfoPostFix:n.sInfo.replace("_START_",d).replace("_END_",c).replace("_MAX_",u).replace("_TOTAL_",f)+" "+n.sInfoFiltered.replace("_MAX_",e.fnFormatNumber(e.fnRecordsTotal()))+n.sInfoPostFix;var h=n.fnInfoCallback;h&&(t=h.call(e.oInstance,e,r,l,a,i,t));var p=e.aanFeatures.i;if(void 0!==p)for(var m=0,b=p.length;m<b;m++)g(p[m]).html(t);g(e.nTable).triggerHandler("info.dt")}},_parseHeight:function(t){var e,n=/^([+-]?(?:\d+(?:\.\d+)?|\.\d+))(px|em|rem|vh)$/.exec(t);if(null===n)return 0;var o=parseFloat(n[1]),r=n[2];return"px"===r?e=o:"vh"===r?e=o/100*g(i).height():"rem"===r?e=o*parseFloat(g(":root").css("font-size")):"em"===r&&(e=o*parseFloat(g("body").css("font-size"))),e||0},_scroll:function(){var t,e=this,n=this.s.heights,o=this.dom.scroller.scrollTop;if(!this.s.skip&&!this.s.ingnoreScroll&&o!==this.s.lastScrollTop)if(this.s.dt.bFiltered||this.s.dt.bSorted)this.s.lastScrollTop=0;else{if(this._info(),clearTimeout(this.s.stateTO),this.s.stateTO=setTimeout(function(){e.s.dtApi.state.save()},250),this.s.scrollType=Math.abs(o-this.s.lastScrollTop)>n.viewport?"jump":"cont",this.s.topRowFloat="cont"===this.s.scrollType?this.pixelsToRow(o,!1,!1):this._domain("physicalToVirtual",o)/n.row,this.s.topRowFloat<0&&(this.s.topRowFloat=0),this.s.forceReposition||o<this.s.redrawTop||o>this.s.redrawBottom){var r=Math.ceil((this.s.displayBuffer-1)/2*this.s.viewportRows);if(t=parseInt(this.s.topRowFloat,10)-r,this.s.forceReposition=!1,t<=0?t=0:t+this.s.dt._iDisplayLength>this.s.dt.fnRecordsDisplay()?(t=this.s.dt.fnRecordsDisplay()-this.s.dt._iDisplayLength)<0&&(t=0):t%2!=0&&t++,t!=this.s.dt._iDisplayStart){this.s.tableTop=g(this.s.dt.nTable).offset().top,this.s.tableBottom=g(this.s.dt.nTable).height()+this.s.tableTop;var a=function(){null===e.s.scrollDrawReq&&(e.s.scrollDrawReq=o),e.s.dt._iDisplayStart=t,e.s.dt.oApi._fnDraw(e.s.dt)};this.s.dt.oFeatures.bServerSide?(clearTimeout(this.s.drawTO),this.s.drawTO=setTimeout(a,this.s.serverWait)):a(),this.dom.loader&&!this.s.loaderVisible&&(this.dom.loader.css("display","block"),this.s.loaderVisible=!0)}}else this.s.topRowFloat=this.pixelsToRow(o,!1,!0);this.s.lastScrollTop=o,this.s.stateSaveThrottle(),"jump"===this.s.scrollType&&this.s.mousedown&&this.dom.label.html(this.s.dt.fnFormatNumber(parseInt(this.s.topRowFloat,10)+1)).css("top",o+o*n.labelFactor).css("display","block")}},_scrollForce:function(){var t=this.s.heights;t.virtual=t.row*this.s.dt.fnRecordsDisplay(),t.scroll=t.virtual,1e6<t.scroll&&(t.scroll=1e6),this.dom.force.style.height=t.scroll>this.s.heights.row?t.scroll+"px":this.s.heights.row+"px"}}),l.defaults={boundaryScale:.5,displayBuffer:9,loadingIndicator:!1,rowHeight:"auto",serverWait:200},l.oDefaults=l.defaults,l.version="2.0.0",g(o).on("preInit.dt.dtscroller",function(t,e){if("dt"===t.namespace){var n=e.oInit.scroller,o=s.defaults.scroller;if(n||o){var r=g.extend({},n,o);!1!==n&&new l(e,r)}}}),g.fn.dataTable.Scroller=l,g.fn.DataTable.Scroller=l;var t=g.fn.dataTable.Api;return t.register("scroller()",function(){return this}),t.register("scroller().rowToPixels()",function(t,e,n){var o=this.context;if(o.length&&o[0].oScroller)return o[0].oScroller.rowToPixels(t,e,n)}),t.register("scroller().pixelsToRow()",function(t,e,n){var o=this.context;if(o.length&&o[0].oScroller)return o[0].oScroller.pixelsToRow(t,e,n)}),t.register(["scroller().scrollToRow()","scroller.toPosition()"],function(e,n){return this.iterator("table",function(t){t.oScroller&&t.oScroller.scrollToRow(e,n)}),this}),t.register("row().scrollTo()",function(o){var r=this;return this.iterator("row",function(t,e){if(t.oScroller){var n=r.rows({order:"applied",search:"applied"}).indexes().indexOf(e);t.oScroller.scrollToRow(n,o)}}),this}),t.register("scroller.measure()",function(e){return this.iterator("table",function(t){t.oScroller&&t.oScroller.measure(e)}),this}),t.register("scroller.page()",function(){var t=this.context;if(t.length&&t[0].oScroller)return t[0].oScroller.pageInfo()}),l}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs4","datatables.net-scroller"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net-bs4")(t,e).$),e.fn.dataTable.Scroller||require("datatables.net-scroller")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(t,e,n,o){return t.fn.dataTable}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(f,u,t,h){"use strict";var p=f.fn.dataTable;function l(a,t,e){function n(e,n){if(n<e){var t=n;n=e,e=t}var o=!1;return a.columns(":visible").indexes().filter(function(t){return t===e&&(o=!0),t===n?!(o=!1):o})}function o(e,n){var t=a.rows({search:"applied"}).indexes();if(t.indexOf(e)>t.indexOf(n)){var o=n;n=e,e=o}var r=!1;return t.filter(function(t){return t===e&&(r=!0),t===n?!(r=!1):r})}var r,i,s;s=a.cells({selected:!0}).any()||e?(i=n(e.column,t.column),o(e.row,t.row)):(i=n(0,t.column),o(0,t.row)),r=a.cells(s,i).flatten(),a.cells(t,{selected:!0}).any()?a.cells(r).deselect():a.cells(r).select()}function o(t){var e=t.settings()[0]._select.selector;f(t.table().container()).off("mousedown.dtSelect",e).off("mouseup.dtSelect",e).off("click.dtSelect",e),f("body").off("click.dtSelect"+t.table().node().id)}function r(d){var c,e=f(d.table().container()),n=d.settings()[0],o=n._select.selector;e.on("mousedown.dtSelect",o,function(t){(t.shiftKey||t.metaKey||t.ctrlKey)&&e.css("-moz-user-select","none").one("selectstart.dtSelect",o,function(){return!1}),u.getSelection&&(c=u.getSelection())}).on("mouseup.dtSelect",o,function(){e.css("-moz-user-select","")}).on("click.dtSelect",o,function(t){var e,n=d.select.items();if(c){var o=u.getSelection();if((!o.anchorNode||f(o.anchorNode).closest("table")[0]===d.table().node())&&o!==c)return}var r=d.settings()[0],a=f.trim(d.settings()[0].oClasses.sWrapper).replace(/ +/g,".");if(f(t.target).closest("div."+a)[0]==d.table().container()){var i=d.cell(f(t.target).closest("td, th"));if(i.any()){var s=f.Event("user-select.dt");if(m(d,s,[n,i,t]),!s.isDefaultPrevented()){var l=i.index();"row"===n?(e=l.row,b(t,d,r,"row",e)):"column"===n?(e=i.index().column,b(t,d,r,"column",e)):"cell"===n&&(e=i.index(),b(t,d,r,"cell",e)),r._select_lastCell=l}}}}),f("body").on("click.dtSelect"+d.table().node().id,function(t){if(n._select.blurable){if(f(t.target).parents().filter(d.table().container()).length)return;if(0===f(t.target).parents("html").length)return;if(f(t.target).parents("div.DTE").length)return;i(n,!0)}})}function m(t,e,n,o){o&&!t.flatten().length||("string"==typeof e&&(e+=".dt"),n.unshift(t),f(t.table().node()).trigger(e,n))}function a(o){var t=o.settings()[0];if(t._select.info&&t.aanFeatures.i&&"api"!==o.select.style()){var r=o.rows({selected:!0}).flatten().length,a=o.columns({selected:!0}).flatten().length,i=o.cells({selected:!0}).flatten().length,s=function(t,e,n){t.append(f('<span class="select-item"/>').append(o.i18n("select."+e+"s",{_:"%d "+e+"s selected",0:"",1:"1 "+e+" selected"},n)))};f.each(t.aanFeatures.i,function(t,e){e=f(e);var n=f('<span class="select-info"/>');s(n,"row",r),s(n,"column",a),s(n,"cell",i);var o=e.children("span.select-info");o.length&&o.remove(),""!==n.text()&&e.append(n)})}}function d(t,e,n,o){var r=t[e+"s"]({search:"applied"}).indexes(),a=f.inArray(o,r),i=f.inArray(n,r);if(t[e+"s"]({selected:!0}).any()||-1!==a){if(i<a){var s=i;i=a,a=s}r.splice(i+1,r.length),r.splice(0,a)}else r.splice(f.inArray(n,r)+1,r.length);t[e](n,{selected:!0}).any()?(r.splice(f.inArray(n,r),1),t[e+"s"](r).deselect()):t[e+"s"](r).select()}function i(t,e){if(e||"single"===t._select.style){var n=new p.Api(t);n.rows({selected:!0}).deselect(),n.columns({selected:!0}).deselect(),n.cells({selected:!0}).deselect()}}function b(t,e,n,o,r){var a=e.select.style(),i=e[o](r,{selected:!0}).any();if("os"===a)if(t.ctrlKey||t.metaKey)e[o](r).select(!i);else if(t.shiftKey)"cell"===o?l(e,r,n._select_lastCell||null):d(e,o,r,n._select_lastCell?n._select_lastCell[o]:null);else{var s=e[o+"s"]({selected:!0});i&&1===s.flatten().length?e[o](r).deselect():(s.deselect(),e[o](r).select())}else"multi+shift"==a&&t.shiftKey?"cell"===o?l(e,r,n._select_lastCell||null):d(e,o,r,n._select_lastCell?n._select_lastCell[o]:null):e[o](r).select(!i)}p.select={},p.select.version="1.3.0",p.select.init=function(t){var e=t.settings()[0],n=e.oInit.select,o=p.defaults.select,r=n===h?o:n,a="row",i="api",s=!1,l=!0,d="td, th",c="selected",u=!1;e._select={},!0===r?(i="os",u=!0):"string"==typeof r?(i=r,u=!0):f.isPlainObject(r)&&(r.blurable!==h&&(s=r.blurable),r.info!==h&&(l=r.info),r.items!==h&&(a=r.items),u=(i=r.style!==h?r.style:"os",!0),r.selector!==h&&(d=r.selector),r.className!==h&&(c=r.className)),t.select.selector(d),t.select.items(a),t.select.style(i),t.select.blurable(s),t.select.info(l),e._select.className=c,f.fn.dataTable.ext.order["select-checkbox"]=function(e,t){return this.api().column(t,{order:"index"}).nodes().map(function(t){return"row"===e._select.items?f(t).parent().hasClass(e._select.className):"cell"===e._select.items&&f(t).hasClass(e._select.className)})},!u&&f(t.table().node()).hasClass("selectable")&&t.select.style("os")},f.each([{type:"row",prop:"aoData"},{type:"column",prop:"aoColumns"}],function(t,l){p.ext.selector[l.type].push(function(t,e,n){var o,r=e.selected,a=[];if(!0!==r&&!1!==r)return n;for(var i=0,s=n.length;i<s;i++)o=t[l.prop][n[i]],(!0===r&&!0===o._select_selected||!1===r&&!o._select_selected)&&a.push(n[i]);return a})}),p.ext.selector.cell.push(function(t,e,n){var o,r=e.selected,a=[];if(r===h)return n;for(var i=0,s=n.length;i<s;i++)o=t.aoData[n[i].row],(!0!==r||!o._selected_cells||!0!==o._selected_cells[n[i].column])&&(!1!==r||o._selected_cells&&o._selected_cells[n[i].column])||a.push(n[i]);return a});var e=p.Api.register,n=p.Api.registerPlural;function s(e,n){return function(t){return t.i18n("buttons."+e,n)}}function c(t){var e=t._eventNamespace;return"draw.dt.DT"+e+" select.dt.DT"+e+" deselect.dt.DT"+e}e("select()",function(){return this.iterator("table",function(t){p.select.init(new p.Api(t))})}),e("select.blurable()",function(e){return e===h?this.context[0]._select.blurable:this.iterator("table",function(t){t._select.blurable=e})}),e("select.info()",function(e){return a===h?this.context[0]._select.info:this.iterator("table",function(t){t._select.info=e})}),e("select.items()",function(e){return e===h?this.context[0]._select.items:this.iterator("table",function(t){t._select.items=e,m(new p.Api(t),"selectItems",[e])})}),e("select.style()",function(n){return n===h?this.context[0]._select.style:this.iterator("table",function(t){t._select.style=n,t._select_init||function(i){var n=new p.Api(i);i.aoRowCreatedCallback.push({fn:function(t,e,n){var o,r,a=i.aoData[n];for(a._select_selected&&f(t).addClass(i._select.className),o=0,r=i.aoColumns.length;o<r;o++)(i.aoColumns[o]._select_selected||a._selected_cells&&a._selected_cells[o])&&f(a.anCells[o]).addClass(i._select.className)},sName:"select-deferRender"}),n.on("preXhr.dt.dtSelect",function(){var t=n.rows({selected:!0}).ids(!0).filter(function(t){return t!==h}),e=n.cells({selected:!0}).eq(0).map(function(t){var e=n.row(t.row).id(!0);return e?{row:e,column:t.column}:h}).filter(function(t){return t!==h});n.one("draw.dt.dtSelect",function(){n.rows(t).select(),e.any()&&e.each(function(t){n.cells(t.row,t.column).select()})})}),n.on("draw.dtSelect.dt select.dtSelect.dt deselect.dtSelect.dt info.dt",function(){a(n)}),n.on("destroy.dtSelect",function(){o(n),n.off(".dtSelect")})}(t);var e=new p.Api(t);o(e),"api"!==n&&r(e),m(new p.Api(t),"selectStyle",[n])})}),e("select.selector()",function(e){return e===h?this.context[0]._select.selector:this.iterator("table",function(t){o(new p.Api(t)),t._select.selector=e,"api"!==t._select.style&&r(new p.Api(t))})}),n("rows().select()","row().select()",function(t){var n=this;return!1===t?this.deselect():(this.iterator("row",function(t,e){i(t),t.aoData[e]._select_selected=!0,f(t.aoData[e].nTr).addClass(t._select.className)}),this.iterator("table",function(t,e){m(n,"select",["row",n[e]],!0)}),this)}),n("columns().select()","column().select()",function(t){var n=this;return!1===t?this.deselect():(this.iterator("column",function(t,e){i(t),t.aoColumns[e]._select_selected=!0;var n=new p.Api(t).column(e);f(n.header()).addClass(t._select.className),f(n.footer()).addClass(t._select.className),n.nodes().to$().addClass(t._select.className)}),this.iterator("table",function(t,e){m(n,"select",["column",n[e]],!0)}),this)}),n("cells().select()","cell().select()",function(t){var n=this;return!1===t?this.deselect():(this.iterator("cell",function(t,e,n){i(t);var o=t.aoData[e];o._selected_cells===h&&(o._selected_cells=[]),o._selected_cells[n]=!0,o.anCells&&f(o.anCells[n]).addClass(t._select.className)}),this.iterator("table",function(t,e){m(n,"select",["cell",n[e]],!0)}),this)}),n("rows().deselect()","row().deselect()",function(){var n=this;return this.iterator("row",function(t,e){t.aoData[e]._select_selected=!1,f(t.aoData[e].nTr).removeClass(t._select.className)}),this.iterator("table",function(t,e){m(n,"deselect",["row",n[e]],!0)}),this}),n("columns().deselect()","column().deselect()",function(){var n=this;return this.iterator("column",function(o,t){o.aoColumns[t]._select_selected=!1;var e=new p.Api(o),n=e.column(t);f(n.header()).removeClass(o._select.className),f(n.footer()).removeClass(o._select.className),e.cells(null,t).indexes().each(function(t){var e=o.aoData[t.row],n=e._selected_cells;!e.anCells||n&&n[t.column]||f(e.anCells[t.column]).removeClass(o._select.className)})}),this.iterator("table",function(t,e){m(n,"deselect",["column",n[e]],!0)}),this}),n("cells().deselect()","cell().deselect()",function(){var n=this;return this.iterator("cell",function(t,e,n){var o=t.aoData[e];o._selected_cells[n]=!1,o.anCells&&!t.aoColumns[n]._select_selected&&f(o.anCells[n]).removeClass(t._select.className)}),this.iterator("table",function(t,e){m(n,"deselect",["cell",n[e]],!0)}),this});var g=0;return f.extend(p.ext.buttons,{selected:{text:s("selected","Selected"),className:"buttons-selected",limitTo:["rows","columns","cells"],init:function(t,e,n){var o=this;n._eventNamespace=".select"+g++,t.on(c(n),function(){o.enable(function(t,e){return!(-1===f.inArray("rows",e.limitTo)||!t.rows({selected:!0}).any())||!(-1===f.inArray("columns",e.limitTo)||!t.columns({selected:!0}).any())||!(-1===f.inArray("cells",e.limitTo)||!t.cells({selected:!0}).any())}(t,n))}),this.disable()},destroy:function(t,e,n){t.off(n._eventNamespace)}},selectedSingle:{text:s("selectedSingle","Selected single"),className:"buttons-selected-single",init:function(e,t,n){var o=this;n._eventNamespace=".select"+g++,e.on(c(n),function(){var t=e.rows({selected:!0}).flatten().length+e.columns({selected:!0}).flatten().length+e.cells({selected:!0}).flatten().length;o.enable(1===t)}),this.disable()},destroy:function(t,e,n){t.off(n._eventNamespace)}},selectAll:{text:s("selectAll","Select all"),className:"buttons-select-all",action:function(){var t=this.select.items();this[t+"s"]().select()}},selectNone:{text:s("selectNone","Deselect all"),className:"buttons-select-none",action:function(){i(this.settings()[0],!0)},init:function(e,t,n){var o=this;n._eventNamespace=".select"+g++,e.on(c(n),function(){var t=e.rows({selected:!0}).flatten().length+e.columns({selected:!0}).flatten().length+e.cells({selected:!0}).flatten().length;o.enable(0<t)}),this.disable()},destroy:function(t,e,n){t.off(n._eventNamespace)}}}),f.each(["Row","Column","Cell"],function(t,e){var r=e.toLowerCase();p.ext.buttons["select"+e+"s"]={text:s("select"+e+"s","Select "+r+"s"),className:"buttons-select-"+r+"s",action:function(){this.select.items(r)},init:function(t){var o=this;t.on("selectItems.dt.DT",function(t,e,n){o.active(n===r)})}}}),f(t).on("preInit.dt.dtSelect",function(t,e){"dt"===t.namespace&&p.select.init(new p.Api(e))}),p.select}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net-bs4","datatables.net-select"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net-bs4")(t,e).$),e.fn.dataTable.select||require("datatables.net-select")(t,e),n(e,t,t.document)}:n(jQuery,window,document)}(function(t,e,n,o){return t.fn.dataTable}),function(n){"function"==typeof define&&define.amd?define(["jquery","datatables.net"],function(t){return n(t,window,document)}):"object"==typeof exports?module.exports=function(t,e){return t||(t=window),e&&e.fn.dataTable||(e=require("datatables.net")(t,e).$),n(e,t,t.document)}:n(jQuery,window,document)}(function(c,t,n,e){"use strict";var i=c.fn.dataTable,o=0,s=function(t,e){if(!i.versionCheck||!i.versionCheck("1.10.8"))throw"Warning: altEditor requires DataTables 1.10.8 or greater";this.c=c.extend(!0,{},i.defaults.altEditor,s.defaults,e),this.s={dt:new i.Api(t),namespace:".altEditor"+o++},this.dom={modal:c('<div class="dt-altEditor-handle"/>')},this._constructor()};return c.extend(s.prototype,{_constructor:function(){var t=this,e=this.s.dt;e.settings()[0].oInit.onAddRow&&(t.onAddRow=e.settings()[0].oInit.onAddRow),e.settings()[0].oInit.onDeleteRow&&(t.onDeleteRow=e.settings()[0].oInit.onDeleteRow),e.settings()[0].oInit.onEditRow&&(t.onEditRow=e.settings()[0].oInit.onEditRow),this._setup(),e.on("destroy.altEditor",function(){e.off(".altEditor"),c(e.table().body()).off(t.s.namespace),c(n.body).off(t.s.namespace)})},_setup:function(){var r=this,t=this.s.dt,e="altEditor-modal-"+(""+Math.random()).replace(".","");this.modal_selector="#"+e;var n='<div class="modal fade" id="'+e+'" tabindex="-1" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fal fa-times"></i></span></button></div><div class="modal-body"><p></p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button><input type="submit" form="altEditor-form" class="btn btn-primary"></input></div></div></div></div>';c("body").append(n),t.button("edit:name")&&(t.button("edit:name").action(function(t,e,n,o){r._openEditModal()}),c(this.modal_selector).on("click","#editRowBtn",function(t){r._inputValidation()&&(t.preventDefault(),t.stopPropagation(),r._editRowData())})),t.button("delete:name")&&(t.button("delete:name").action(function(t,e,n,o){r._openDeleteModal()}),c(this.modal_selector).on("click","#deleteRowBtn",function(t){t.preventDefault(),t.stopPropagation(),r._deleteRow(),c(this).prop("disabled",!0)})),t.button("add:name")&&(t.button("add:name").action(function(t,e,n,o){r._openAddModal()}),c(this.modal_selector).on("click","#addRowBtn",function(t){r._inputValidation()&&(t.preventDefault(),t.stopPropagation(),r._addRowData())})),this.s.dt.button("refresh:name")&&this.s.dt.button("refresh:name").action(function(t,e,n,o){e.ajax&&e.ajax.url()&&e.ajax.reload()})},_emitEvent:function(n,o){this.s.dt.iterator("table",function(t,e){c(t.nTable).triggerHandler(n+".dt",o)})},_openEditModal:function(){var t=this,e=this.s.dt,n=[];for(var o in e.context[0].aoColumns){var r=e.context[0].aoColumns[o];n[o]={title:r.sTitle,name:r.data?r.data:r.mData,type:r.type?r.type:"text",options:r.options?r.options:[],msg:r.errorMsg?r.errorMsg:"",hoverMsg:r.hoverMsg?r.hoverMsg:"",pattern:r.pattern?r.pattern:".*",special:r.special?r.special:"",unique:!!r.unique&&r.unique,uniqueMsg:r.uniqueMsg?r.uniqueMsg:"",placeholderMsg:r.placeholderMsg?r.placeholderMsg:"",maxLength:!!r.maxLength&&r.maxLength,multiple:!!r.multiple&&r.multiple,select2:!!r.select2&&r.select2,datepicker:!!r.datepicker&&r.datepicker}}var a=e.rows({selected:!0}),i="";for(var s in i+="<form name='altEditor-form' role='form' novalidate>",n)if(0<=n[s].type.indexOf("hidden"))i+="<input type='hidden' id='"+n[s].name+"' value='"+a.data()[0][n[s].name]+"'></input>";else{if(i+="<div class='form-group row'>",i+="<label for='"+n[s].name+"' class='col-lg-3 col-form-label form-label text-left text-lg-right'>"+n[s].title+":</label>",i+="<div class='col-lg-9'>",(0<=n[s].type.indexOf("text")||0<=n[s].type.indexOf("date")||0<=n[s].type.indexOf("email")||0<=n[s].type.indexOf("password")||0<=n[s].type.indexOf("number")||0<=n[s].type.indexOf("time"))&&(i+="<input type='"+t._quoteattr(n[s].type)+"' id='"+t._quoteattr(n[s].name)+"'  pattern='"+t._quoteattr(n[s].pattern)+"'  title='"+t._quoteattr(n[s].hoverMsg)+"' name='"+t._quoteattr(n[s].title)+"' placeholder='"+t._quoteattr(n[s].placeholderMsg)+"' data-special='"+t._quoteattr(n[s].special)+"' data-errorMsg='"+t._quoteattr(n[s].msg)+"' data-uniqueMsg='"+t._quoteattr(n[s].uniqueMsg)+"' data-unique='"+n[s].unique+"'"+(0==n[s].maxLength?"":" maxlength='"+n[s].maxLength+"'")+" style='overflow:hidden' class='form-control' value='"+t._quoteattr(a.data()[0][n[s].name])+"'>",i+="<label id='"+n[s].name+"label' class='errorLabel help-block text-danger' style='display: none'></label>"),0<=n[s].type.indexOf("readonly")&&(i+="<input type='text' readonly  id='"+n[s].name+"' name='"+n[s].title+"' placeholder='"+n[s].placeholderMsg+"' style='overflow:hidden' class='form-control' value='"+a.data()[0][n[s].name]+"'>"),0<=n[s].type.indexOf("select")){var l="";for(o=0;o<n[s].options.length;o++)0<=a.data()[0][n[s].name].indexOf(n[s].options[o])?l+="<option value='"+n[s].options[o]+"'selected>"+n[s].options[o]+"</option>":l+="<option value='"+n[s].options[o]+"'>"+n[s].options[o]+"</option>";i+="<select class='custom-select form-control"+(n[s].select2?" select2":"")+"' id='"+n[s].name+"' name='"+n[s].title+"' "+(n[s].multiple?"multiple":"")+">"+l+"</select>"}i+="</div><div style='clear:both;'></div></div>"}i+="</form>";var d=this.modal_selector;for(var s in c(d).on("show.bs.modal",function(){c(d).find(".modal-title").html("Edit Record"),c(d).find(".modal-body").html(i),c(d).find(".modal-footer").html('<button type="button" data-content="remove" class="btn btn-default" data-dismiss="modal">Cancel</button><button type="button" data-content="remove" class="btn btn-primary" id="editRowBtn">Save</button>')}),c(d).modal("show"),c(d+" input[0]").focus(),n)n[s].select2&&c(d).find("select#"+n[s].name).select2(n[s].select2);for(var s in n)n[s].datepicker&&c(d).find("#"+n[s].name).datepicker(n[s].datepicker)},_editRowData:function(){var a=this,t=this.s.dt,e={};t.rows({selected:!0});c('form[name="altEditor-form"] *').filter(":input").each(function(t){e[c(this).attr("id")]=c(this).val()}),console.log(e),a.onEditRow(a,e,function(t,e,n,o,r){a._editRowCallback(t,e,n,o,r)},function(t){a._errorCallback(t)})},_openDeleteModal:function(){var t=this.s.dt,e=[];for(var n in t.context[0].aoColumns)e.push({title:t.context[0].aoColumns[n].sTitle,type:t.context[0].aoColumns[n].type?t.context[0].aoColumns[n].type:"text",name:t.context[0].aoColumns[n].data?t.context[0].aoColumns[n].data:t.context[0].aoColumns[n].mData});var o=t.rows({selected:!0}),r="";for(var a in r+="<form name='altEditor-form' role='form'><div class='row'>",e)0<=e[a].type.indexOf("hidden")?r+="<input type='hidden' id='"+e[a].title+"' value='"+o.data()[0][e[a].name]+"' readonly></input>":r+="<div class='col-12 mb-2'><label class='form-label' for='"+this._quoteattr(e[a].name)+"'>"+e[a].title+":&nbsp</label> <input  type='hidden'  id='"+this._quoteattr(e[a].title)+"' name='"+this._quoteattr(e[a].title)+"' placeholder='"+this._quoteattr(e[a].placeholderMsg)+"' style='overflow:hidden'  class='form-control' value='"+this._quoteattr(o.data()[0][e[a].name])+"' >"+o.data()[0][e[a].name]+"</input></div>";r+="</div></form>";var i=this.modal_selector;c(i).on("show.bs.modal",function(){c(i).find(".modal-title").html("Delete Record"),c(i).find(".modal-body").html(r),c(i).find(".modal-footer").html('<button type="button" data-content="remove" class="btn btn-default" data-dismiss="modal">Cancel</button><button type="button"  data-content="remove" class="btn btn-danger" id="deleteRowBtn"><i class="fal fa-times"></i> Delete</button>')}),c(i).modal("show"),c(i+" input[0]").focus()},_deleteRow:function(){for(var e=this,t=this.s.dt,n={},o=t.rows({selected:!0}),r=0;r<t.context[0].aoColumns.length;r++){var a=t.context[0].aoColumns[r].data?t.context[0].aoColumns[r].data:t.context[0].aoColumns[r].mData?t.context[0].aoColumns[r].mData:t.context[0].aoColumns[r].idx;n[a]=o.data()[0][a]}e.onDeleteRow(e,n,function(t){e._deleteRowCallback(t)},function(t){e._errorCallback(t)})},_openAddModal:function(){var t=this,e=this.s.dt,n=[];for(var o in e.context[0].aoColumns){var r=e.context[0].aoColumns[o];n[o]={title:r.sTitle,name:r.data?r.data:r.mData,type:r.type?r.type:"text",defaultValue:r.defaultValue?r.defaultValue:"",options:r.options?r.options:[],msg:r.errorMsg?r.errorMsg:"",hoverMsg:r.hoverMsg?r.hoverMsg:"",pattern:r.pattern?r.pattern:".*",special:r.special?r.special:"",placeholderMsg:r.placeholderMsg?r.placeholderMsg:"",unique:!!r.unique&&r.unique,uniqueMsg:r.uniqueMsg?r.uniqueMsg:"",maxLength:!!r.maxLength&&r.maxLength,multiple:!!r.multiple&&r.multiple,select2:!!r.select2&&r.select2}}var a="";for(var i in a+="<form name='altEditor-form' role='form' class='needs-validation' novalidate=''>",n)if(0<=n[i].type.indexOf("hidden"));else{if(a+="<div class='form-group row'><label class='form-label col-sm-3 col-form-label text-left text-sm-right' for='"+n[i].name+"'>"+n[i].title+":</label><div class='col-lg-9'>",(0<=n[i].type.indexOf("text")||0<=n[i].type.indexOf("date")||0<=n[i].type.indexOf("email")||0<=n[i].type.indexOf("password")||0<=n[i].type.indexOf("number")||0<=n[i].type.indexOf("time"))&&(a+="<input type='"+t._quoteattr(n[i].type)+"' id='"+t._quoteattr(n[i].name)+"'  pattern='"+t._quoteattr(n[i].pattern)+"'  title='"+t._quoteattr(n[i].hoverMsg)+"' name='"+t._quoteattr(n[i].title)+"' placeholder='"+t._quoteattr(n[i].placeholderMsg)+"' value='"+t._quoteattr(n[i].defaultValue)+"' data-special='"+n[i].special+"' data-errorMsg='"+t._quoteattr(n[i].msg)+"' data-uniqueMsg='"+t._quoteattr(n[i].uniqueMsg)+"' data-unique='"+n[i].unique+"'"+(0==n[i].maxLength?"":" maxlength='"+n[i].maxLength+"'")+" style='overflow:hidden' class='form-control' value=''>",a+="<label id='"+t._quoteattr(n[i].name)+"label' class='errorLabel help-block text-danger' style='display:none'></label>"),0<=n[i].type.indexOf("readonly")&&(a+="<input type='text' readonly  id='"+t._quoteattr(n[i].name)+"' name='"+t._quoteattr(n[i].title)+"' placeholder='"+t._quoteattr(n[i].placeholderMsg)+"' style='overflow:hidden' class='form-control' value=''>"),0<=n[i].type.indexOf("select")){var s="";for(o=0;o<n[i].options.length;o++)s+="<option value='"+t._quoteattr(n[i].options[o])+"'>"+n[i].options[o]+"</option>";a+="<select class='custom-select form-control"+(n[i].select2?" select2":"")+"' id='"+t._quoteattr(n[i].name)+"' name='"+t._quoteattr(n[i].title)+"' "+(n[i].multiple?"multiple":"")+">"+s+"</select>"}a+="</div><div style='clear:both;'></div></div>"}a+="</form>";var l=this.modal_selector;for(var i in c(l).on("show.bs.modal",function(){c(l).find(".modal-title").html("Add Record"),c(l).find(".modal-body").html(a),c(l).find(".modal-footer").html('<button type="button" data-content="remove" class="btn btn-default" data-dismiss="modal">Cancel</button><button type="button"  data-content="remove" class="btn btn-primary" id="addRowBtn">Add</button>')}),c(l).modal("show"),c(l+" input[0]").focus(),n)n[i].select2&&c(l).find("select#"+n[i].name).select2(n[i].select2)},_addRowData:function(){var e=this,n=(this.s.dt,{});c('form[name="altEditor-form"] *').filter(":input").each(function(t){n[c(this).attr("id")]=c(this).val()}),e.onAddRow(e,n,function(t){e._addRowCallback(t)},function(t){e._errorCallback(t)})},_deleteRowCallback:function(t,e,n){var o=this.modal_selector;c(o+" .modal-body .alert").remove();c(o+" .modal-body").append('<div class="alert alert-success" role="alert"><strong>Success!</strong></div>'),this.s.dt.row({selected:!0}).remove(),this.s.dt.draw(),c("div"+o).find("button#addRowBtn").prop("disabled",!0),c("div"+o).find("button#editRowBtn").prop("disabled",!0),c("div"+o).find("button#deleteRowBtn").prop("disabled",!0),c(o).modal("hide")},_addRowCallback:function(t,e,n){var o="string"==typeof t?JSON.parse(t):t,r=this.modal_selector;c(r+" .modal-body .alert").remove();c(r+" .modal-body").append('<div class="alert alert-success" role="alert"><strong>Success!</strong></div>'),this.s.dt.row.add(o).draw(!1),c("div"+r).find("button#addRowBtn").prop("disabled",!0),c("div"+r).find("button#editRowBtn").prop("disabled",!0),c("div"+r).find("button#deleteRowBtn").prop("disabled",!0),c(r).modal("hide")},_editRowCallback:function(t,e,n){var o="string"==typeof t?JSON.parse(t):t,r=this.modal_selector;c(r+" .modal-body .alert").remove();c(r+" .modal-body").prepend('<div class="alert alert-success" role="alert"><strong>Success!</strong></div>'),this.s.dt.row({selected:!0}).data(o),this.s.dt.draw(),c("div"+r).find("button#addRowBtn").prop("disabled",!0),c("div"+r).find("button#editRowBtn").prop("disabled",!0),c("div"+r).find("button#deleteRowBtn").prop("disabled",!0),c(r).modal("hide")},_errorCallback:function(t,e,n){var o=t,r=this.modal_selector;c(r+" .modal-body .alert").remove();var a="There was an unknown error!";if(o.responseJSON&&o.responseJSON.errors)for(var i in a="",o.responseJSON.errors)a+=o.responseJSON.errors[i][0];var s='<div class="alert alert-danger" role="alert"><strong>Error!</strong> '+(null==o.status?"":"Response code: "+o.status)+" "+a+"</div>";c(r+" .modal-body").append(s)},onAddRow:function(t,e,n,o){console.log("Missing AJAX configuration for INSERT"),n(e)},onEditRow:function(t,e,n,o){console.log("Missing AJAX configuration for UPDATE"),n(e)},onDeleteRow:function(t,e,n,o){console.log("Missing AJAX configuration for DELETE"),n(e)},_inputValidation:function(){var a=this.s.dt,t=!1,i=0;return c('form[name="altEditor-form"] *').filter(":text").each(function(t){var e="#"+c(this).attr("id")+"label";if(c(e).hide(),c(e).empty(),c(this).val().match(c(this).attr("pattern"))){if("true"==c(this).attr("data-unique")){var n=a.column("th:contains('"+c(this).attr("name")+"')").data(),o=null;for(var r in null!=a.row({selected:!0}).index()&&(o=a.cell(a.row({selected:!0}).index(),a.column("th:contains('"+c(this).attr("name")+"')").index()).data()),n)c(this).val()==n[r]&&n[r]!=o&&(c(e).html(c(this).attr("data-uniqueMsg")),c(e).show(),i++)}}else c(e).html(c(this).attr("data-errorMsg")),c(e).show(),i++}),0==i&&(t=!0),t},_quoteattr:function(t,e){return null==t?"":(e=e?"&#13;":"\n",(""+t).replace(/&/g,"&amp;").replace(/'/g,"&apos;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\r\n/g,e).replace(/[\r\n]/g,e))}}),s.version="2.0",s.defaults={alwaysAsk:!1,focus:null,columns:"",update:null,editor:null},s.classes={btn:"btn"},c(n).on("preInit.dt.altEditor",function(t,e,n){if("dt"===t.namespace){var o=e.oInit.altEditor,r=i.defaults.altEditor;if(o||r){var a=c.extend({},o,r);!1!==o&&new s(e,a)}}}),i.altEditor=s});
+/*! DataTables 1.10.25
+ * ©2008-2021 SpryMedia Ltd - datatables.net/license
+ */
+
+/**
+ * @summary     DataTables
+ * @description Paginate, search and order HTML tables
+ * @version     1.10.25
+ * @file        jquery.dataTables.js
+ * @author      SpryMedia Ltd
+ * @contact     www.datatables.net
+ * @copyright   Copyright 2008-2021 SpryMedia Ltd.
+ *
+ * This source file is free software, available under the following license:
+ *   MIT license - http://datatables.net/license
+ *
+ * This source file is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
+ *
+ * For details please refer to: http://www.datatables.net
+ */
+
+/*jslint evil: true, undef: true, browser: true */
+/*globals $,require,jQuery,define,_selector_run,_selector_opts,_selector_first,_selector_row_indexes,_ext,_Api,_api_register,_api_registerPlural,_re_new_lines,_re_html,_re_formatted_numeric,_re_escape_regex,_empty,_intVal,_numToDecimal,_isNumber,_isHtml,_htmlNumeric,_pluck,_pluck_order,_range,_stripHtml,_unique,_fnBuildAjax,_fnAjaxUpdate,_fnAjaxParameters,_fnAjaxUpdateDraw,_fnAjaxDataSrc,_fnAddColumn,_fnColumnOptions,_fnAdjustColumnSizing,_fnVisibleToColumnIndex,_fnColumnIndexToVisible,_fnVisbleColumns,_fnGetColumns,_fnColumnTypes,_fnApplyColumnDefs,_fnHungarianMap,_fnCamelToHungarian,_fnLanguageCompat,_fnBrowserDetect,_fnAddData,_fnAddTr,_fnNodeToDataIndex,_fnNodeToColumnIndex,_fnGetCellData,_fnSetCellData,_fnSplitObjNotation,_fnGetObjectDataFn,_fnSetObjectDataFn,_fnGetDataMaster,_fnClearTable,_fnDeleteIndex,_fnInvalidate,_fnGetRowElements,_fnCreateTr,_fnBuildHead,_fnDrawHead,_fnDraw,_fnReDraw,_fnAddOptionsHtml,_fnDetectHeader,_fnGetUniqueThs,_fnFeatureHtmlFilter,_fnFilterComplete,_fnFilterCustom,_fnFilterColumn,_fnFilter,_fnFilterCreateSearch,_fnEscapeRegex,_fnFilterData,_fnFeatureHtmlInfo,_fnUpdateInfo,_fnInfoMacros,_fnInitialise,_fnInitComplete,_fnLengthChange,_fnFeatureHtmlLength,_fnFeatureHtmlPaginate,_fnPageChange,_fnFeatureHtmlProcessing,_fnProcessingDisplay,_fnFeatureHtmlTable,_fnScrollDraw,_fnApplyToChildren,_fnCalculateColumnWidths,_fnThrottle,_fnConvertToWidth,_fnGetWidestNode,_fnGetMaxLenString,_fnStringToCss,_fnSortFlatten,_fnSort,_fnSortAria,_fnSortListener,_fnSortAttachListener,_fnSortingClasses,_fnSortData,_fnSaveState,_fnLoadState,_fnSettingsFromNode,_fnLog,_fnMap,_fnBindAction,_fnCallbackReg,_fnCallbackFire,_fnLengthOverflow,_fnRenderer,_fnDataSource,_fnRowAttributes*/
+
+(function (factory) {
+	"use strict";
+
+	if (typeof define === 'function' && define.amd) {
+		// AMD
+		define(['jquery'], function ($) {
+			return factory($, window, document);
+		});
+	}
+	else if (typeof exports === 'object') {
+		// CommonJS
+		module.exports = function (root, $) {
+			if (!root) {
+				// CommonJS environments without a window global must pass a
+				// root. This will give an error otherwise
+				root = window;
+			}
+
+			if (!$) {
+				$ = typeof window !== 'undefined' ? // jQuery's factory checks for a global window
+					require('jquery') :
+					require('jquery')(root);
+			}
+
+			return factory($, root, root.document);
+		};
+	}
+	else {
+		// Browser
+		factory(jQuery, window, document);
+	}
+}
+	(function ($, window, document, undefined) {
+		"use strict";
+
+		/**
+		 * DataTables is a plug-in for the jQuery Javascript library. It is a highly
+		 * flexible tool, based upon the foundations of progressive enhancement,
+		 * which will add advanced interaction controls to any HTML table. For a
+		 * full list of features please refer to
+		 * [DataTables.net](href="http://datatables.net).
+		 *
+		 * Note that the `DataTable` object is not a global variable but is aliased
+		 * to `jQuery.fn.DataTable` and `jQuery.fn.dataTable` through which it may
+		 * be  accessed.
+		 *
+		 *  @class
+		 *  @param {object} [init={}] Configuration object for DataTables. Options
+		 *    are defined by {@link DataTable.defaults}
+		 *  @requires jQuery 1.7+
+		 *
+		 *  @example
+		 *    // Basic initialisation
+		 *    $(document).ready( function {
+		 *      $('#example').dataTable();
+		 *    } );
+		 *
+		 *  @example
+		 *    // Initialisation with configuration options - in this case, disable
+		 *    // pagination and sorting.
+		 *    $(document).ready( function {
+		 *      $('#example').dataTable( {
+		 *        "paginate": false,
+		 *        "sort": false
+		 *      } );
+		 *    } );
+		 */
+		var DataTable = function (options) {
+			/**
+			 * Perform a jQuery selector action on the table's TR elements (from the tbody) and
+			 * return the resulting jQuery object.
+			 *  @param {string|node|jQuery} sSelector jQuery selector or node collection to act on
+			 *  @param {object} [oOpts] Optional parameters for modifying the rows to be included
+			 *  @param {string} [oOpts.filter=none] Select TR elements that meet the current filter
+			 *    criterion ("applied") or all TR elements (i.e. no filter).
+			 *  @param {string} [oOpts.order=current] Order of the TR elements in the processed array.
+			 *    Can be either 'current', whereby the current sorting of the table is used, or
+			 *    'original' whereby the original order the data was read into the table is used.
+			 *  @param {string} [oOpts.page=all] Limit the selection to the currently displayed page
+			 *    ("current") or not ("all"). If 'current' is given, then order is assumed to be
+			 *    'current' and filter is 'applied', regardless of what they might be given as.
+			 *  @returns {object} jQuery object, filtered by the given selector.
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Highlight every second row
+			 *      oTable.$('tr:odd').css('backgroundColor', 'blue');
+			 *    } );
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Filter to rows with 'Webkit' in them, add a background colour and then
+			 *      // remove the filter, thus highlighting the 'Webkit' rows only.
+			 *      oTable.fnFilter('Webkit');
+			 *      oTable.$('tr', {"search": "applied"}).css('backgroundColor', 'blue');
+			 *      oTable.fnFilter('');
+			 *    } );
+			 */
+			this.$ = function (sSelector, oOpts) {
+				return this.api(true).$(sSelector, oOpts);
+			};
+
+
+			/**
+			 * Almost identical to $ in operation, but in this case returns the data for the matched
+			 * rows - as such, the jQuery selector used should match TR row nodes or TD/TH cell nodes
+			 * rather than any descendants, so the data can be obtained for the row/cell. If matching
+			 * rows are found, the data returned is the original data array/object that was used to
+			 * create the row (or a generated array if from a DOM source).
+			 *
+			 * This method is often useful in-combination with $ where both functions are given the
+			 * same parameters and the array indexes will match identically.
+			 *  @param {string|node|jQuery} sSelector jQuery selector or node collection to act on
+			 *  @param {object} [oOpts] Optional parameters for modifying the rows to be included
+			 *  @param {string} [oOpts.filter=none] Select elements that meet the current filter
+			 *    criterion ("applied") or all elements (i.e. no filter).
+			 *  @param {string} [oOpts.order=current] Order of the data in the processed array.
+			 *    Can be either 'current', whereby the current sorting of the table is used, or
+			 *    'original' whereby the original order the data was read into the table is used.
+			 *  @param {string} [oOpts.page=all] Limit the selection to the currently displayed page
+			 *    ("current") or not ("all"). If 'current' is given, then order is assumed to be
+			 *    'current' and filter is 'applied', regardless of what they might be given as.
+			 *  @returns {array} Data for the matched elements. If any elements, as a result of the
+			 *    selector, were not TR, TD or TH elements in the DataTable, they will have a null
+			 *    entry in the array.
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Get the data from the first row in the table
+			 *      var data = oTable._('tr:first');
+			 *
+			 *      // Do something useful with the data
+			 *      alert( "First cell is: "+data[0] );
+			 *    } );
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Filter to 'Webkit' and get all data for
+			 *      oTable.fnFilter('Webkit');
+			 *      var data = oTable._('tr', {"search": "applied"});
+			 *
+			 *      // Do something with the data
+			 *      alert( data.length+" rows matched the search" );
+			 *    } );
+			 */
+			this._ = function (sSelector, oOpts) {
+				return this.api(true).rows(sSelector, oOpts).data();
+			};
+
+
+			/**
+			 * Create a DataTables Api instance, with the currently selected tables for
+			 * the Api's context.
+			 * @param {boolean} [traditional=false] Set the API instance's context to be
+			 *   only the table referred to by the `DataTable.ext.iApiIndex` option, as was
+			 *   used in the API presented by DataTables 1.9- (i.e. the traditional mode),
+			 *   or if all tables captured in the jQuery object should be used.
+			 * @return {DataTables.Api}
+			 */
+			this.api = function (traditional) {
+				return traditional ?
+					new _Api(
+						_fnSettingsFromNode(this[_ext.iApiIndex])
+					) :
+					new _Api(this);
+			};
+
+
+			/**
+			 * Add a single new row or multiple rows of data to the table. Please note
+			 * that this is suitable for client-side processing only - if you are using
+			 * server-side processing (i.e. "bServerSide": true), then to add data, you
+			 * must add it to the data source, i.e. the server-side, through an Ajax call.
+			 *  @param {array|object} data The data to be added to the table. This can be:
+			 *    <ul>
+			 *      <li>1D array of data - add a single row with the data provided</li>
+			 *      <li>2D array of arrays - add multiple rows in a single call</li>
+			 *      <li>object - data object when using <i>mData</i></li>
+			 *      <li>array of objects - multiple data objects when using <i>mData</i></li>
+			 *    </ul>
+			 *  @param {bool} [redraw=true] redraw the table or not
+			 *  @returns {array} An array of integers, representing the list of indexes in
+			 *    <i>aoData</i> ({@link DataTable.models.oSettings}) that have been added to
+			 *    the table.
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    // Global var for counter
+			 *    var giCount = 2;
+			 *
+			 *    $(document).ready(function() {
+			 *      $('#example').dataTable();
+			 *    } );
+			 *
+			 *    function fnClickAddRow() {
+			 *      $('#example').dataTable().fnAddData( [
+			 *        giCount+".1",
+			 *        giCount+".2",
+			 *        giCount+".3",
+			 *        giCount+".4" ]
+			 *      );
+			 *
+			 *      giCount++;
+			 *    }
+			 */
+			this.fnAddData = function (data, redraw) {
+				var api = this.api(true);
+
+				/* Check if we want to add multiple rows or not */
+				var rows = Array.isArray(data) && (Array.isArray(data[0]) || $.isPlainObject(data[0])) ?
+					api.rows.add(data) :
+					api.row.add(data);
+
+				if (redraw === undefined || redraw) {
+					api.draw();
+				}
+
+				return rows.flatten().toArray();
+			};
+
+
+			/**
+			 * This function will make DataTables recalculate the column sizes, based on the data
+			 * contained in the table and the sizes applied to the columns (in the DOM, CSS or
+			 * through the sWidth parameter). This can be useful when the width of the table's
+			 * parent element changes (for example a window resize).
+			 *  @param {boolean} [bRedraw=true] Redraw the table or not, you will typically want to
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable( {
+			 *        "sScrollY": "200px",
+			 *        "bPaginate": false
+			 *      } );
+			 *
+			 *      $(window).on('resize', function () {
+			 *        oTable.fnAdjustColumnSizing();
+			 *      } );
+			 *    } );
+			 */
+			this.fnAdjustColumnSizing = function (bRedraw) {
+				var api = this.api(true).columns.adjust();
+				var settings = api.settings()[0];
+				var scroll = settings.oScroll;
+
+				if (bRedraw === undefined || bRedraw) {
+					api.draw(false);
+				}
+				else if (scroll.sX !== "" || scroll.sY !== "") {
+					/* If not redrawing, but scrolling, we want to apply the new column sizes anyway */
+					_fnScrollDraw(settings);
+				}
+			};
+
+
+			/**
+			 * Quickly and simply clear a table
+			 *  @param {bool} [bRedraw=true] redraw the table or not
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Immediately 'nuke' the current rows (perhaps waiting for an Ajax callback...)
+			 *      oTable.fnClearTable();
+			 *    } );
+			 */
+			this.fnClearTable = function (bRedraw) {
+				var api = this.api(true).clear();
+
+				if (bRedraw === undefined || bRedraw) {
+					api.draw();
+				}
+			};
+
+
+			/**
+			 * The exact opposite of 'opening' a row, this function will close any rows which
+			 * are currently 'open'.
+			 *  @param {node} nTr the table row to 'close'
+			 *  @returns {int} 0 on success, or 1 if failed (can't find the row)
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable;
+			 *
+			 *      // 'open' an information row when a row is clicked on
+			 *      $('#example tbody tr').click( function () {
+			 *        if ( oTable.fnIsOpen(this) ) {
+			 *          oTable.fnClose( this );
+			 *        } else {
+			 *          oTable.fnOpen( this, "Temporary row opened", "info_row" );
+			 *        }
+			 *      } );
+			 *
+			 *      oTable = $('#example').dataTable();
+			 *    } );
+			 */
+			this.fnClose = function (nTr) {
+				this.api(true).row(nTr).child.hide();
+			};
+
+
+			/**
+			 * Remove a row for the table
+			 *  @param {mixed} target The index of the row from aoData to be deleted, or
+			 *    the TR element you want to delete
+			 *  @param {function|null} [callBack] Callback function
+			 *  @param {bool} [redraw=true] Redraw the table or not
+			 *  @returns {array} The row that was deleted
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Immediately remove the first row
+			 *      oTable.fnDeleteRow( 0 );
+			 *    } );
+			 */
+			this.fnDeleteRow = function (target, callback, redraw) {
+				var api = this.api(true);
+				var rows = api.rows(target);
+				var settings = rows.settings()[0];
+				var data = settings.aoData[rows[0][0]];
+
+				rows.remove();
+
+				if (callback) {
+					callback.call(this, settings, data);
+				}
+
+				if (redraw === undefined || redraw) {
+					api.draw();
+				}
+
+				return data;
+			};
+
+
+			/**
+			 * Restore the table to it's original state in the DOM by removing all of DataTables
+			 * enhancements, alterations to the DOM structure of the table and event listeners.
+			 *  @param {boolean} [remove=false] Completely remove the table from the DOM
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      // This example is fairly pointless in reality, but shows how fnDestroy can be used
+			 *      var oTable = $('#example').dataTable();
+			 *      oTable.fnDestroy();
+			 *    } );
+			 */
+			this.fnDestroy = function (remove) {
+				this.api(true).destroy(remove);
+			};
+
+
+			/**
+			 * Redraw the table
+			 *  @param {bool} [complete=true] Re-filter and resort (if enabled) the table before the draw.
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Re-draw the table - you wouldn't want to do it here, but it's an example :-)
+			 *      oTable.fnDraw();
+			 *    } );
+			 */
+			this.fnDraw = function (complete) {
+				// Note that this isn't an exact match to the old call to _fnDraw - it takes
+				// into account the new data, but can hold position.
+				this.api(true).draw(complete);
+			};
+
+
+			/**
+			 * Filter the input based on data
+			 *  @param {string} sInput String to filter the table on
+			 *  @param {int|null} [iColumn] Column to limit filtering to
+			 *  @param {bool} [bRegex=false] Treat as regular expression or not
+			 *  @param {bool} [bSmart=true] Perform smart filtering or not
+			 *  @param {bool} [bShowGlobal=true] Show the input global filter in it's input box(es)
+			 *  @param {bool} [bCaseInsensitive=true] Do case-insensitive matching (true) or not (false)
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Sometime later - filter...
+			 *      oTable.fnFilter( 'test string' );
+			 *    } );
+			 */
+			this.fnFilter = function (sInput, iColumn, bRegex, bSmart, bShowGlobal, bCaseInsensitive) {
+				var api = this.api(true);
+
+				if (iColumn === null || iColumn === undefined) {
+					api.search(sInput, bRegex, bSmart, bCaseInsensitive);
+				}
+				else {
+					api.column(iColumn).search(sInput, bRegex, bSmart, bCaseInsensitive);
+				}
+
+				api.draw();
+			};
+
+
+			/**
+			 * Get the data for the whole table, an individual row or an individual cell based on the
+			 * provided parameters.
+			 *  @param {int|node} [src] A TR row node, TD/TH cell node or an integer. If given as
+			 *    a TR node then the data source for the whole row will be returned. If given as a
+			 *    TD/TH cell node then iCol will be automatically calculated and the data for the
+			 *    cell returned. If given as an integer, then this is treated as the aoData internal
+			 *    data index for the row (see fnGetPosition) and the data for that row used.
+			 *  @param {int} [col] Optional column index that you want the data of.
+			 *  @returns {array|object|string} If mRow is undefined, then the data for all rows is
+			 *    returned. If mRow is defined, just data for that row, and is iCol is
+			 *    defined, only data for the designated cell is returned.
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    // Row data
+			 *    $(document).ready(function() {
+			 *      oTable = $('#example').dataTable();
+			 *
+			 *      oTable.$('tr').click( function () {
+			 *        var data = oTable.fnGetData( this );
+			 *        // ... do something with the array / object of data for the row
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Individual cell data
+			 *    $(document).ready(function() {
+			 *      oTable = $('#example').dataTable();
+			 *
+			 *      oTable.$('td').click( function () {
+			 *        var sData = oTable.fnGetData( this );
+			 *        alert( 'The cell clicked on had the value of '+sData );
+			 *      } );
+			 *    } );
+			 */
+			this.fnGetData = function (src, col) {
+				var api = this.api(true);
+
+				if (src !== undefined) {
+					var type = src.nodeName ? src.nodeName.toLowerCase() : '';
+
+					return col !== undefined || type == 'td' || type == 'th' ?
+						api.cell(src, col).data() :
+						api.row(src).data() || null;
+				}
+
+				return api.data().toArray();
+			};
+
+
+			/**
+			 * Get an array of the TR nodes that are used in the table's body. Note that you will
+			 * typically want to use the '$' API method in preference to this as it is more
+			 * flexible.
+			 *  @param {int} [iRow] Optional row index for the TR element you want
+			 *  @returns {array|node} If iRow is undefined, returns an array of all TR elements
+			 *    in the table's body, or iRow is defined, just the TR element requested.
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Get the nodes from the table
+			 *      var nNodes = oTable.fnGetNodes( );
+			 *    } );
+			 */
+			this.fnGetNodes = function (iRow) {
+				var api = this.api(true);
+
+				return iRow !== undefined ?
+					api.row(iRow).node() :
+					api.rows().nodes().flatten().toArray();
+			};
+
+
+			/**
+			 * Get the array indexes of a particular cell from it's DOM element
+			 * and column index including hidden columns
+			 *  @param {node} node this can either be a TR, TD or TH in the table's body
+			 *  @returns {int} If nNode is given as a TR, then a single index is returned, or
+			 *    if given as a cell, an array of [row index, column index (visible),
+			 *    column index (all)] is given.
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      $('#example tbody td').click( function () {
+			 *        // Get the position of the current data from the node
+			 *        var aPos = oTable.fnGetPosition( this );
+			 *
+			 *        // Get the data array for this row
+			 *        var aData = oTable.fnGetData( aPos[0] );
+			 *
+			 *        // Update the data array and return the value
+			 *        aData[ aPos[1] ] = 'clicked';
+			 *        this.innerHTML = 'clicked';
+			 *      } );
+			 *
+			 *      // Init DataTables
+			 *      oTable = $('#example').dataTable();
+			 *    } );
+			 */
+			this.fnGetPosition = function (node) {
+				var api = this.api(true);
+				var nodeName = node.nodeName.toUpperCase();
+
+				if (nodeName == 'TR') {
+					return api.row(node).index();
+				}
+				else if (nodeName == 'TD' || nodeName == 'TH') {
+					var cell = api.cell(node).index();
+
+					return [
+						cell.row,
+						cell.columnVisible,
+						cell.column
+					];
+				}
+				return null;
+			};
+
+
+			/**
+			 * Check to see if a row is 'open' or not.
+			 *  @param {node} nTr the table row to check
+			 *  @returns {boolean} true if the row is currently open, false otherwise
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable;
+			 *
+			 *      // 'open' an information row when a row is clicked on
+			 *      $('#example tbody tr').click( function () {
+			 *        if ( oTable.fnIsOpen(this) ) {
+			 *          oTable.fnClose( this );
+			 *        } else {
+			 *          oTable.fnOpen( this, "Temporary row opened", "info_row" );
+			 *        }
+			 *      } );
+			 *
+			 *      oTable = $('#example').dataTable();
+			 *    } );
+			 */
+			this.fnIsOpen = function (nTr) {
+				return this.api(true).row(nTr).child.isShown();
+			};
+
+
+			/**
+			 * This function will place a new row directly after a row which is currently
+			 * on display on the page, with the HTML contents that is passed into the
+			 * function. This can be used, for example, to ask for confirmation that a
+			 * particular record should be deleted.
+			 *  @param {node} nTr The table row to 'open'
+			 *  @param {string|node|jQuery} mHtml The HTML to put into the row
+			 *  @param {string} sClass Class to give the new TD cell
+			 *  @returns {node} The row opened. Note that if the table row passed in as the
+			 *    first parameter, is not found in the table, this method will silently
+			 *    return.
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable;
+			 *
+			 *      // 'open' an information row when a row is clicked on
+			 *      $('#example tbody tr').click( function () {
+			 *        if ( oTable.fnIsOpen(this) ) {
+			 *          oTable.fnClose( this );
+			 *        } else {
+			 *          oTable.fnOpen( this, "Temporary row opened", "info_row" );
+			 *        }
+			 *      } );
+			 *
+			 *      oTable = $('#example').dataTable();
+			 *    } );
+			 */
+			this.fnOpen = function (nTr, mHtml, sClass) {
+				return this.api(true)
+					.row(nTr)
+					.child(mHtml, sClass)
+					.show()
+					.child()[0];
+			};
+
+
+			/**
+			 * Change the pagination - provides the internal logic for pagination in a simple API
+			 * function. With this function you can have a DataTables table go to the next,
+			 * previous, first or last pages.
+			 *  @param {string|int} mAction Paging action to take: "first", "previous", "next" or "last"
+			 *    or page number to jump to (integer), note that page 0 is the first page.
+			 *  @param {bool} [bRedraw=true] Redraw the table or not
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *      oTable.fnPageChange( 'next' );
+			 *    } );
+			 */
+			this.fnPageChange = function (mAction, bRedraw) {
+				var api = this.api(true).page(mAction);
+
+				if (bRedraw === undefined || bRedraw) {
+					api.draw(false);
+				}
+			};
+
+
+			/**
+			 * Show a particular column
+			 *  @param {int} iCol The column whose display should be changed
+			 *  @param {bool} bShow Show (true) or hide (false) the column
+			 *  @param {bool} [bRedraw=true] Redraw the table or not
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Hide the second column after initialisation
+			 *      oTable.fnSetColumnVis( 1, false );
+			 *    } );
+			 */
+			this.fnSetColumnVis = function (iCol, bShow, bRedraw) {
+				var api = this.api(true).column(iCol).visible(bShow);
+
+				if (bRedraw === undefined || bRedraw) {
+					api.columns.adjust().draw();
+				}
+			};
+
+
+			/**
+			 * Get the settings for a particular table for external manipulation
+			 *  @returns {object} DataTables settings object. See
+			 *    {@link DataTable.models.oSettings}
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *      var oSettings = oTable.fnSettings();
+			 *
+			 *      // Show an example parameter from the settings
+			 *      alert( oSettings._iDisplayStart );
+			 *    } );
+			 */
+			this.fnSettings = function () {
+				return _fnSettingsFromNode(this[_ext.iApiIndex]);
+			};
+
+
+			/**
+			 * Sort the table by a particular column
+			 *  @param {int} iCol the data index to sort on. Note that this will not match the
+			 *    'display index' if you have hidden data entries
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Sort immediately with columns 0 and 1
+			 *      oTable.fnSort( [ [0,'asc'], [1,'asc'] ] );
+			 *    } );
+			 */
+			this.fnSort = function (aaSort) {
+				this.api(true).order(aaSort).draw();
+			};
+
+
+			/**
+			 * Attach a sort listener to an element for a given column
+			 *  @param {node} nNode the element to attach the sort listener to
+			 *  @param {int} iColumn the column that a click on this node will sort on
+			 *  @param {function} [fnCallback] callback function when sort is run
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *
+			 *      // Sort on column 1, when 'sorter' is clicked on
+			 *      oTable.fnSortListener( document.getElementById('sorter'), 1 );
+			 *    } );
+			 */
+			this.fnSortListener = function (nNode, iColumn, fnCallback) {
+				this.api(true).order.listener(nNode, iColumn, fnCallback);
+			};
+
+
+			/**
+			 * Update a table cell or row - this method will accept either a single value to
+			 * update the cell with, an array of values with one element for each column or
+			 * an object in the same format as the original data source. The function is
+			 * self-referencing in order to make the multi column updates easier.
+			 *  @param {object|array|string} mData Data to update the cell/row with
+			 *  @param {node|int} mRow TR element you want to update or the aoData index
+			 *  @param {int} [iColumn] The column to update, give as null or undefined to
+			 *    update a whole row.
+			 *  @param {bool} [bRedraw=true] Redraw the table or not
+			 *  @param {bool} [bAction=true] Perform pre-draw actions or not
+			 *  @returns {int} 0 on success, 1 on error
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *      oTable.fnUpdate( 'Example update', 0, 0 ); // Single cell
+			 *      oTable.fnUpdate( ['a', 'b', 'c', 'd', 'e'], $('tbody tr')[0] ); // Row
+			 *    } );
+			 */
+			this.fnUpdate = function (mData, mRow, iColumn, bRedraw, bAction) {
+				var api = this.api(true);
+
+				if (iColumn === undefined || iColumn === null) {
+					api.row(mRow).data(mData);
+				}
+				else {
+					api.cell(mRow, iColumn).data(mData);
+				}
+
+				if (bAction === undefined || bAction) {
+					api.columns.adjust();
+				}
+
+				if (bRedraw === undefined || bRedraw) {
+					api.draw();
+				}
+				return 0;
+			};
+
+
+			/**
+			 * Provide a common method for plug-ins to check the version of DataTables being used, in order
+			 * to ensure compatibility.
+			 *  @param {string} sVersion Version string to check for, in the format "X.Y.Z". Note that the
+			 *    formats "X" and "X.Y" are also acceptable.
+			 *  @returns {boolean} true if this version of DataTables is greater or equal to the required
+			 *    version, or false if this version of DataTales is not suitable
+			 *  @method
+			 *  @dtopt API
+			 *  @deprecated Since v1.10
+			 *
+			 *  @example
+			 *    $(document).ready(function() {
+			 *      var oTable = $('#example').dataTable();
+			 *      alert( oTable.fnVersionCheck( '1.9.0' ) );
+			 *    } );
+			 */
+			this.fnVersionCheck = _ext.fnVersionCheck;
+
+
+			var _that = this;
+			var emptyInit = options === undefined;
+			var len = this.length;
+
+			if (emptyInit) {
+				options = {};
+			}
+
+			this.oApi = this.internal = _ext.internal;
+
+			// Extend with old style plug-in API methods
+			for (var fn in DataTable.ext.internal) {
+				if (fn) {
+					this[fn] = _fnExternApiFunc(fn);
+				}
+			}
+
+			this.each(function () {
+				// For each initialisation we want to give it a clean initialisation
+				// object that can be bashed around
+				var o = {};
+				var oInit = len > 1 ? // optimisation for single table case
+					_fnExtend(o, options, true) :
+					options;
+
+				/*global oInit,_that,emptyInit*/
+				var i = 0, iLen, j, jLen, k, kLen;
+				var sId = this.getAttribute('id');
+				var bInitHandedOff = false;
+				var defaults = DataTable.defaults;
+				var $this = $(this);
+
+
+				/* Sanity check */
+				if (this.nodeName.toLowerCase() != 'table') {
+					_fnLog(null, 0, 'Non-table node initialisation (' + this.nodeName + ')', 2);
+					return;
+				}
+
+				/* Backwards compatibility for the defaults */
+				_fnCompatOpts(defaults);
+				_fnCompatCols(defaults.column);
+
+				/* Convert the camel-case defaults to Hungarian */
+				_fnCamelToHungarian(defaults, defaults, true);
+				_fnCamelToHungarian(defaults.column, defaults.column, true);
+
+				/* Setting up the initialisation object */
+				_fnCamelToHungarian(defaults, $.extend(oInit, $this.data()), true);
+
+
+
+				/* Check to see if we are re-initialising a table */
+				var allSettings = DataTable.settings;
+				for (i = 0, iLen = allSettings.length; i < iLen; i++) {
+					var s = allSettings[i];
+
+					/* Base check on table node */
+					if (
+						s.nTable == this ||
+						(s.nTHead && s.nTHead.parentNode == this) ||
+						(s.nTFoot && s.nTFoot.parentNode == this)
+					) {
+						var bRetrieve = oInit.bRetrieve !== undefined ? oInit.bRetrieve : defaults.bRetrieve;
+						var bDestroy = oInit.bDestroy !== undefined ? oInit.bDestroy : defaults.bDestroy;
+
+						if (emptyInit || bRetrieve) {
+							return s.oInstance;
+						}
+						else if (bDestroy) {
+							s.oInstance.fnDestroy();
+							break;
+						}
+						else {
+							_fnLog(s, 0, 'Cannot reinitialise DataTable', 3);
+							return;
+						}
+					}
+
+					/* If the element we are initialising has the same ID as a table which was previously
+					 * initialised, but the table nodes don't match (from before) then we destroy the old
+					 * instance by simply deleting it. This is under the assumption that the table has been
+					 * destroyed by other methods. Anyone using non-id selectors will need to do this manually
+					 */
+					if (s.sTableId == this.id) {
+						allSettings.splice(i, 1);
+						break;
+					}
+				}
+
+				/* Ensure the table has an ID - required for accessibility */
+				if (sId === null || sId === "") {
+					sId = "DataTables_Table_" + (DataTable.ext._unique++);
+					this.id = sId;
+				}
+
+				/* Create the settings object for this table and set some of the default parameters */
+				var oSettings = $.extend(true, {}, DataTable.models.oSettings, {
+					"sDestroyWidth": $this[0].style.width,
+					"sInstance": sId,
+					"sTableId": sId
+				});
+				oSettings.nTable = this;
+				oSettings.oApi = _that.internal;
+				oSettings.oInit = oInit;
+
+				allSettings.push(oSettings);
+
+				// Need to add the instance after the instance after the settings object has been added
+				// to the settings array, so we can self reference the table instance if more than one
+				oSettings.oInstance = (_that.length === 1) ? _that : $this.dataTable();
+
+				// Backwards compatibility, before we apply all the defaults
+				_fnCompatOpts(oInit);
+				_fnLanguageCompat(oInit.oLanguage);
+
+				// If the length menu is given, but the init display length is not, use the length menu
+				if (oInit.aLengthMenu && !oInit.iDisplayLength) {
+					oInit.iDisplayLength = Array.isArray(oInit.aLengthMenu[0]) ?
+						oInit.aLengthMenu[0][0] : oInit.aLengthMenu[0];
+				}
+
+				// Apply the defaults and init options to make a single init object will all
+				// options defined from defaults and instance options.
+				oInit = _fnExtend($.extend(true, {}, defaults), oInit);
+
+
+				// Map the initialisation options onto the settings object
+				_fnMap(oSettings.oFeatures, oInit, [
+					"bPaginate",
+					"bLengthChange",
+					"bFilter",
+					"bSort",
+					"bSortMulti",
+					"bInfo",
+					"bProcessing",
+					"bAutoWidth",
+					"bSortClasses",
+					"bServerSide",
+					"bDeferRender"
+				]);
+				_fnMap(oSettings, oInit, [
+					"asStripeClasses",
+					"ajax",
+					"fnServerData",
+					"fnFormatNumber",
+					"sServerMethod",
+					"aaSorting",
+					"aaSortingFixed",
+					"aLengthMenu",
+					"sPaginationType",
+					"sAjaxSource",
+					"sAjaxDataProp",
+					"iStateDuration",
+					"sDom",
+					"bSortCellsTop",
+					"iTabIndex",
+					"fnStateLoadCallback",
+					"fnStateSaveCallback",
+					"renderer",
+					"searchDelay",
+					"rowId",
+					["iCookieDuration", "iStateDuration"], // backwards compat
+					["oSearch", "oPreviousSearch"],
+					["aoSearchCols", "aoPreSearchCols"],
+					["iDisplayLength", "_iDisplayLength"]
+				]);
+				_fnMap(oSettings.oScroll, oInit, [
+					["sScrollX", "sX"],
+					["sScrollXInner", "sXInner"],
+					["sScrollY", "sY"],
+					["bScrollCollapse", "bCollapse"]
+				]);
+				_fnMap(oSettings.oLanguage, oInit, "fnInfoCallback");
+
+				/* Callback functions which are array driven */
+				_fnCallbackReg(oSettings, 'aoDrawCallback', oInit.fnDrawCallback, 'user');
+				_fnCallbackReg(oSettings, 'aoServerParams', oInit.fnServerParams, 'user');
+				_fnCallbackReg(oSettings, 'aoStateSaveParams', oInit.fnStateSaveParams, 'user');
+				_fnCallbackReg(oSettings, 'aoStateLoadParams', oInit.fnStateLoadParams, 'user');
+				_fnCallbackReg(oSettings, 'aoStateLoaded', oInit.fnStateLoaded, 'user');
+				_fnCallbackReg(oSettings, 'aoRowCallback', oInit.fnRowCallback, 'user');
+				_fnCallbackReg(oSettings, 'aoRowCreatedCallback', oInit.fnCreatedRow, 'user');
+				_fnCallbackReg(oSettings, 'aoHeaderCallback', oInit.fnHeaderCallback, 'user');
+				_fnCallbackReg(oSettings, 'aoFooterCallback', oInit.fnFooterCallback, 'user');
+				_fnCallbackReg(oSettings, 'aoInitComplete', oInit.fnInitComplete, 'user');
+				_fnCallbackReg(oSettings, 'aoPreDrawCallback', oInit.fnPreDrawCallback, 'user');
+
+				oSettings.rowIdFn = _fnGetObjectDataFn(oInit.rowId);
+
+				/* Browser support detection */
+				_fnBrowserDetect(oSettings);
+
+				var oClasses = oSettings.oClasses;
+
+				$.extend(oClasses, DataTable.ext.classes, oInit.oClasses);
+				$this.addClass(oClasses.sTable);
+
+
+				if (oSettings.iInitDisplayStart === undefined) {
+					/* Display start point, taking into account the save saving */
+					oSettings.iInitDisplayStart = oInit.iDisplayStart;
+					oSettings._iDisplayStart = oInit.iDisplayStart;
+				}
+
+				if (oInit.iDeferLoading !== null) {
+					oSettings.bDeferLoading = true;
+					var tmp = Array.isArray(oInit.iDeferLoading);
+					oSettings._iRecordsDisplay = tmp ? oInit.iDeferLoading[0] : oInit.iDeferLoading;
+					oSettings._iRecordsTotal = tmp ? oInit.iDeferLoading[1] : oInit.iDeferLoading;
+				}
+
+				/* Language definitions */
+				var oLanguage = oSettings.oLanguage;
+				$.extend(true, oLanguage, oInit.oLanguage);
+
+				if (oLanguage.sUrl) {
+					/* Get the language definitions from a file - because this Ajax call makes the language
+					 * get async to the remainder of this function we use bInitHandedOff to indicate that
+					 * _fnInitialise will be fired by the returned Ajax handler, rather than the constructor
+					 */
+					$.ajax({
+						dataType: 'json',
+						url: oLanguage.sUrl,
+						success: function (json) {
+							_fnLanguageCompat(json);
+							_fnCamelToHungarian(defaults.oLanguage, json);
+							$.extend(true, oLanguage, json);
+
+							_fnCallbackFire(oSettings, null, 'i18n', [oSettings]);
+							_fnInitialise(oSettings);
+						},
+						error: function () {
+							// Error occurred loading language file, continue on as best we can
+							_fnInitialise(oSettings);
+						}
+					});
+					bInitHandedOff = true;
+				}
+				else {
+					_fnCallbackFire(oSettings, null, 'i18n', [oSettings]);
+				}
+
+				/*
+				 * Stripes
+				 */
+				if (oInit.asStripeClasses === null) {
+					oSettings.asStripeClasses = [
+						oClasses.sStripeOdd,
+						oClasses.sStripeEven
+					];
+				}
+
+				/* Remove row stripe classes if they are already on the table row */
+				var stripeClasses = oSettings.asStripeClasses;
+				var rowOne = $this.children('tbody').find('tr').eq(0);
+				if ($.inArray(true, $.map(stripeClasses, function (el, i) {
+					return rowOne.hasClass(el);
+				})) !== -1) {
+					$('tbody tr', this).removeClass(stripeClasses.join(' '));
+					oSettings.asDestroyStripes = stripeClasses.slice();
+				}
+
+				/*
+				 * Columns
+				 * See if we should load columns automatically or use defined ones
+				 */
+				var anThs = [];
+				var aoColumnsInit;
+				var nThead = this.getElementsByTagName('thead');
+				if (nThead.length !== 0) {
+					_fnDetectHeader(oSettings.aoHeader, nThead[0]);
+					anThs = _fnGetUniqueThs(oSettings);
+				}
+
+				/* If not given a column array, generate one with nulls */
+				if (oInit.aoColumns === null) {
+					aoColumnsInit = [];
+					for (i = 0, iLen = anThs.length; i < iLen; i++) {
+						aoColumnsInit.push(null);
+					}
+				}
+				else {
+					aoColumnsInit = oInit.aoColumns;
+				}
+
+				/* Add the columns */
+				for (i = 0, iLen = aoColumnsInit.length; i < iLen; i++) {
+					_fnAddColumn(oSettings, anThs ? anThs[i] : null);
+				}
+
+				/* Apply the column definitions */
+				_fnApplyColumnDefs(oSettings, oInit.aoColumnDefs, aoColumnsInit, function (iCol, oDef) {
+					_fnColumnOptions(oSettings, iCol, oDef);
+				});
+
+				/* HTML5 attribute detection - build an mData object automatically if the
+				 * attributes are found
+				 */
+				if (rowOne.length) {
+					var a = function (cell, name) {
+						return cell.getAttribute('data-' + name) !== null ? name : null;
+					};
+
+					$(rowOne[0]).children('th, td').each(function (i, cell) {
+						var col = oSettings.aoColumns[i];
+
+						if (col.mData === i) {
+							var sort = a(cell, 'sort') || a(cell, 'order');
+							var filter = a(cell, 'filter') || a(cell, 'search');
+
+							if (sort !== null || filter !== null) {
+								col.mData = {
+									_: i + '.display',
+									sort: sort !== null ? i + '.@data-' + sort : undefined,
+									type: sort !== null ? i + '.@data-' + sort : undefined,
+									filter: filter !== null ? i + '.@data-' + filter : undefined
+								};
+
+								_fnColumnOptions(oSettings, i);
+							}
+						}
+					});
+				}
+
+				var features = oSettings.oFeatures;
+				var loadedInit = function () {
+					/*
+					 * Sorting
+					 * @todo For modularisation (1.11) this needs to do into a sort start up handler
+					 */
+
+					// If aaSorting is not defined, then we use the first indicator in asSorting
+					// in case that has been altered, so the default sort reflects that option
+					if (oInit.aaSorting === undefined) {
+						var sorting = oSettings.aaSorting;
+						for (i = 0, iLen = sorting.length; i < iLen; i++) {
+							sorting[i][1] = oSettings.aoColumns[i].asSorting[0];
+						}
+					}
+
+					/* Do a first pass on the sorting classes (allows any size changes to be taken into
+					 * account, and also will apply sorting disabled classes if disabled
+					 */
+					_fnSortingClasses(oSettings);
+
+					if (features.bSort) {
+						_fnCallbackReg(oSettings, 'aoDrawCallback', function () {
+							if (oSettings.bSorted) {
+								var aSort = _fnSortFlatten(oSettings);
+								var sortedColumns = {};
+
+								$.each(aSort, function (i, val) {
+									sortedColumns[val.src] = val.dir;
+								});
+
+								_fnCallbackFire(oSettings, null, 'order', [oSettings, aSort, sortedColumns]);
+								_fnSortAria(oSettings);
+							}
+						});
+					}
+
+					_fnCallbackReg(oSettings, 'aoDrawCallback', function () {
+						if (oSettings.bSorted || _fnDataSource(oSettings) === 'ssp' || features.bDeferRender) {
+							_fnSortingClasses(oSettings);
+						}
+					}, 'sc');
+
+
+					/*
+					 * Final init
+					 * Cache the header, body and footer as required, creating them if needed
+					 */
+
+					// Work around for Webkit bug 83867 - store the caption-side before removing from doc
+					var captions = $this.children('caption').each(function () {
+						this._captionSide = $(this).css('caption-side');
+					});
+
+					var thead = $this.children('thead');
+					if (thead.length === 0) {
+						thead = $('<thead/>').appendTo($this);
+					}
+					oSettings.nTHead = thead[0];
+
+					var tbody = $this.children('tbody');
+					if (tbody.length === 0) {
+						tbody = $('<tbody/>').insertAfter(thead);
+					}
+					oSettings.nTBody = tbody[0];
+
+					var tfoot = $this.children('tfoot');
+					if (tfoot.length === 0 && captions.length > 0 && (oSettings.oScroll.sX !== "" || oSettings.oScroll.sY !== "")) {
+						// If we are a scrolling table, and no footer has been given, then we need to create
+						// a tfoot element for the caption element to be appended to
+						tfoot = $('<tfoot/>').appendTo($this);
+					}
+
+					if (tfoot.length === 0 || tfoot.children().length === 0) {
+						$this.addClass(oClasses.sNoFooter);
+					}
+					else if (tfoot.length > 0) {
+						oSettings.nTFoot = tfoot[0];
+						_fnDetectHeader(oSettings.aoFooter, oSettings.nTFoot);
+					}
+
+					/* Check if there is data passing into the constructor */
+					if (oInit.aaData) {
+						for (i = 0; i < oInit.aaData.length; i++) {
+							_fnAddData(oSettings, oInit.aaData[i]);
+						}
+					}
+					else if (oSettings.bDeferLoading || _fnDataSource(oSettings) == 'dom') {
+						/* Grab the data from the page - only do this when deferred loading or no Ajax
+						 * source since there is no point in reading the DOM data if we are then going
+						 * to replace it with Ajax data
+						 */
+						_fnAddTr(oSettings, $(oSettings.nTBody).children('tr'));
+					}
+
+					/* Copy the data index array */
+					oSettings.aiDisplay = oSettings.aiDisplayMaster.slice();
+
+					/* Initialisation complete - table can be drawn */
+					oSettings.bInitialised = true;
+
+					/* Check if we need to initialise the table (it might not have been handed off to the
+					 * language processor)
+					 */
+					if (bInitHandedOff === false) {
+						_fnInitialise(oSettings);
+					}
+				};
+
+				/* Must be done after everything which can be overridden by the state saving! */
+				if (oInit.bStateSave) {
+					features.bStateSave = true;
+					_fnCallbackReg(oSettings, 'aoDrawCallback', _fnSaveState, 'state_save');
+					_fnLoadState(oSettings, oInit, loadedInit);
+				}
+				else {
+					loadedInit();
+				}
+
+			});
+			_that = null;
+			return this;
+		};
+
+
+		/*
+		 * It is useful to have variables which are scoped locally so only the
+		 * DataTables functions can access them and they don't leak into global space.
+		 * At the same time these functions are often useful over multiple files in the
+		 * core and API, so we list, or at least document, all variables which are used
+		 * by DataTables as private variables here. This also ensures that there is no
+		 * clashing of variable names and that they can easily referenced for reuse.
+		 */
+
+
+		// Defined else where
+		//  _selector_run
+		//  _selector_opts
+		//  _selector_first
+		//  _selector_row_indexes
+
+		var _ext; // DataTable.ext
+		var _Api; // DataTable.Api
+		var _api_register; // DataTable.Api.register
+		var _api_registerPlural; // DataTable.Api.registerPlural
+
+		var _re_dic = {};
+		var _re_new_lines = /[\r\n\u2028]/g;
+		var _re_html = /<.*?>/g;
+
+		// This is not strict ISO8601 - Date.parse() is quite lax, although
+		// implementations differ between browsers.
+		var _re_date = /^\d{2,4}[\.\/\-]\d{1,2}[\.\/\-]\d{1,2}([T ]{1}\d{1,2}[:\.]\d{2}([\.:]\d{2})?)?$/;
+
+		// Escape regular expression special characters
+		var _re_escape_regex = new RegExp('(\\' + ['/', '.', '*', '+', '?', '|', '(', ')', '[', ']', '{', '}', '\\', '$', '^', '-'].join('|\\') + ')', 'g');
+
+		// http://en.wikipedia.org/wiki/Foreign_exchange_market
+		// - \u20BD - Russian ruble.
+		// - \u20a9 - South Korean Won
+		// - \u20BA - Turkish Lira
+		// - \u20B9 - Indian Rupee
+		// - R - Brazil (R$) and South Africa
+		// - fr - Swiss Franc
+		// - kr - Swedish krona, Norwegian krone and Danish krone
+		// - \u2009 is thin space and \u202F is narrow no-break space, both used in many
+		// - Ƀ - Bitcoin
+		// - Ξ - Ethereum
+		//   standards as thousands separators.
+		var _re_formatted_numeric = /['\u00A0,$£€¥%\u2009\u202F\u20BD\u20a9\u20BArfkɃΞ]/gi;
+
+
+		var _empty = function (d) {
+			return !d || d === true || d === '-' ? true : false;
+		};
+
+
+		var _intVal = function (s) {
+			var integer = parseInt(s, 10);
+			return !isNaN(integer) && isFinite(s) ? integer : null;
+		};
+
+		// Convert from a formatted number with characters other than `.` as the
+		// decimal place, to a Javascript number
+		var _numToDecimal = function (num, decimalPoint) {
+			// Cache created regular expressions for speed as this function is called often
+			if (!_re_dic[decimalPoint]) {
+				_re_dic[decimalPoint] = new RegExp(_fnEscapeRegex(decimalPoint), 'g');
+			}
+			return typeof num === 'string' && decimalPoint !== '.' ?
+				num.replace(/\./g, '').replace(_re_dic[decimalPoint], '.') :
+				num;
+		};
+
+
+		var _isNumber = function (d, decimalPoint, formatted) {
+			var strType = typeof d === 'string';
+
+			// If empty return immediately so there must be a number if it is a
+			// formatted string (this stops the string "k", or "kr", etc being detected
+			// as a formatted number for currency
+			if (_empty(d)) {
+				return true;
+			}
+
+			if (decimalPoint && strType) {
+				d = _numToDecimal(d, decimalPoint);
+			}
+
+			if (formatted && strType) {
+				d = d.replace(_re_formatted_numeric, '');
+			}
+
+			return !isNaN(parseFloat(d)) && isFinite(d);
+		};
+
+
+		// A string without HTML in it can be considered to be HTML still
+		var _isHtml = function (d) {
+			return _empty(d) || typeof d === 'string';
+		};
+
+
+		var _htmlNumeric = function (d, decimalPoint, formatted) {
+			if (_empty(d)) {
+				return true;
+			}
+
+			var html = _isHtml(d);
+			return !html ?
+				null :
+				_isNumber(_stripHtml(d), decimalPoint, formatted) ?
+					true :
+					null;
+		};
+
+
+		var _pluck = function (a, prop, prop2) {
+			var out = [];
+			var i = 0, ien = a.length;
+
+			// Could have the test in the loop for slightly smaller code, but speed
+			// is essential here
+			if (prop2 !== undefined) {
+				for (; i < ien; i++) {
+					if (a[i] && a[i][prop]) {
+						out.push(a[i][prop][prop2]);
+					}
+				}
+			}
+			else {
+				for (; i < ien; i++) {
+					if (a[i]) {
+						out.push(a[i][prop]);
+					}
+				}
+			}
+
+			return out;
+		};
+
+
+		// Basically the same as _pluck, but rather than looping over `a` we use `order`
+		// as the indexes to pick from `a`
+		var _pluck_order = function (a, order, prop, prop2) {
+			var out = [];
+			var i = 0, ien = order.length;
+
+			// Could have the test in the loop for slightly smaller code, but speed
+			// is essential here
+			if (prop2 !== undefined) {
+				for (; i < ien; i++) {
+					if (a[order[i]][prop]) {
+						out.push(a[order[i]][prop][prop2]);
+					}
+				}
+			}
+			else {
+				for (; i < ien; i++) {
+					out.push(a[order[i]][prop]);
+				}
+			}
+
+			return out;
+		};
+
+
+		var _range = function (len, start) {
+			var out = [];
+			var end;
+
+			if (start === undefined) {
+				start = 0;
+				end = len;
+			}
+			else {
+				end = start;
+				start = len;
+			}
+
+			for (var i = start; i < end; i++) {
+				out.push(i);
+			}
+
+			return out;
+		};
+
+
+		var _removeEmpty = function (a) {
+			var out = [];
+
+			for (var i = 0, ien = a.length; i < ien; i++) {
+				if (a[i]) { // careful - will remove all falsy values!
+					out.push(a[i]);
+				}
+			}
+
+			return out;
+		};
+
+
+		var _stripHtml = function (d) {
+			return d.replace(_re_html, '');
+		};
+
+
+		/**
+		 * Determine if all values in the array are unique. This means we can short
+		 * cut the _unique method at the cost of a single loop. A sorted array is used
+		 * to easily check the values.
+		 *
+		 * @param  {array} src Source array
+		 * @return {boolean} true if all unique, false otherwise
+		 * @ignore
+		 */
+		var _areAllUnique = function (src) {
+			if (src.length < 2) {
+				return true;
+			}
+
+			var sorted = src.slice().sort();
+			var last = sorted[0];
+
+			for (var i = 1, ien = sorted.length; i < ien; i++) {
+				if (sorted[i] === last) {
+					return false;
+				}
+
+				last = sorted[i];
+			}
+
+			return true;
+		};
+
+
+		/**
+		 * Find the unique elements in a source array.
+		 *
+		 * @param  {array} src Source array
+		 * @return {array} Array of unique items
+		 * @ignore
+		 */
+		var _unique = function (src) {
+			if (_areAllUnique(src)) {
+				return src.slice();
+			}
+
+			// A faster unique method is to use object keys to identify used values,
+			// but this doesn't work with arrays or objects, which we must also
+			// consider. See jsperf.com/compare-array-unique-versions/4 for more
+			// information.
+			var
+				out = [],
+				val,
+				i, ien = src.length,
+				j, k = 0;
+
+			again: for (i = 0; i < ien; i++) {
+				val = src[i];
+
+				for (j = 0; j < k; j++) {
+					if (out[j] === val) {
+						continue again;
+					}
+				}
+
+				out.push(val);
+				k++;
+			}
+
+			return out;
+		};
+
+		// Surprisingly this is faster than [].concat.apply
+		// https://jsperf.com/flatten-an-array-loop-vs-reduce/2
+		var _flatten = function (out, val) {
+			if (Array.isArray(val)) {
+				for (var i = 0; i < val.length; i++) {
+					_flatten(out, val[i]);
+				}
+			}
+			else {
+				out.push(val);
+			}
+
+			return out;
+		}
+
+		// Array.isArray polyfill.
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray
+		if (!Array.isArray) {
+			Array.isArray = function (arg) {
+				return Object.prototype.toString.call(arg) === '[object Array]';
+			};
+		}
+
+		// .trim() polyfill
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/trim
+		if (!String.prototype.trim) {
+			String.prototype.trim = function () {
+				return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+			};
+		}
+
+		/**
+		 * DataTables utility methods
+		 * 
+		 * This namespace provides helper methods that DataTables uses internally to
+		 * create a DataTable, but which are not exclusively used only for DataTables.
+		 * These methods can be used by extension authors to save the duplication of
+		 * code.
+		 *
+		 *  @namespace
+		 */
+		DataTable.util = {
+			/**
+			 * Throttle the calls to a function. Arguments and context are maintained
+			 * for the throttled function.
+			 *
+			 * @param {function} fn Function to be called
+			 * @param {integer} freq Call frequency in mS
+			 * @return {function} Wrapped function
+			 */
+			throttle: function (fn, freq) {
+				var
+					frequency = freq !== undefined ? freq : 200,
+					last,
+					timer;
+
+				return function () {
+					var
+						that = this,
+						now = +new Date(),
+						args = arguments;
+
+					if (last && now < last + frequency) {
+						clearTimeout(timer);
+
+						timer = setTimeout(function () {
+							last = undefined;
+							fn.apply(that, args);
+						}, frequency);
+					}
+					else {
+						last = now;
+						fn.apply(that, args);
+					}
+				};
+			},
+
+
+			/**
+			 * Escape a string such that it can be used in a regular expression
+			 *
+			 *  @param {string} val string to escape
+			 *  @returns {string} escaped string
+			 */
+			escapeRegex: function (val) {
+				return val.replace(_re_escape_regex, '\\$1');
+			}
+		};
+
+
+
+		/**
+		 * Create a mapping object that allows camel case parameters to be looked up
+		 * for their Hungarian counterparts. The mapping is stored in a private
+		 * parameter called `_hungarianMap` which can be accessed on the source object.
+		 *  @param {object} o
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnHungarianMap(o) {
+			var
+				hungarian = 'a aa ai ao as b fn i m o s ',
+				match,
+				newKey,
+				map = {};
+
+			$.each(o, function (key, val) {
+				match = key.match(/^([^A-Z]+?)([A-Z])/);
+
+				if (match && hungarian.indexOf(match[1] + ' ') !== -1) {
+					newKey = key.replace(match[0], match[2].toLowerCase());
+					map[newKey] = key;
+
+					if (match[1] === 'o') {
+						_fnHungarianMap(o[key]);
+					}
+				}
+			});
+
+			o._hungarianMap = map;
+		}
+
+
+		/**
+		 * Convert from camel case parameters to Hungarian, based on a Hungarian map
+		 * created by _fnHungarianMap.
+		 *  @param {object} src The model object which holds all parameters that can be
+		 *    mapped.
+		 *  @param {object} user The object to convert from camel case to Hungarian.
+		 *  @param {boolean} force When set to `true`, properties which already have a
+		 *    Hungarian value in the `user` object will be overwritten. Otherwise they
+		 *    won't be.
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnCamelToHungarian(src, user, force) {
+			if (!src._hungarianMap) {
+				_fnHungarianMap(src);
+			}
+
+			var hungarianKey;
+
+			$.each(user, function (key, val) {
+				hungarianKey = src._hungarianMap[key];
+
+				if (hungarianKey !== undefined && (force || user[hungarianKey] === undefined)) {
+					// For objects, we need to buzz down into the object to copy parameters
+					if (hungarianKey.charAt(0) === 'o') {
+						// Copy the camelCase options over to the hungarian
+						if (!user[hungarianKey]) {
+							user[hungarianKey] = {};
+						}
+						$.extend(true, user[hungarianKey], user[key]);
+
+						_fnCamelToHungarian(src[hungarianKey], user[hungarianKey], force);
+					}
+					else {
+						user[hungarianKey] = user[key];
+					}
+				}
+			});
+		}
+
+
+		/**
+		 * Language compatibility - when certain options are given, and others aren't, we
+		 * need to duplicate the values over, in order to provide backwards compatibility
+		 * with older language files.
+		 *  @param {object} oSettings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnLanguageCompat(lang) {
+			// Note the use of the Hungarian notation for the parameters in this method as
+			// this is called after the mapping of camelCase to Hungarian
+			var defaults = DataTable.defaults.oLanguage;
+
+			// Default mapping
+			var defaultDecimal = defaults.sDecimal;
+			if (defaultDecimal) {
+				_addNumericSort(defaultDecimal);
+			}
+
+			if (lang) {
+				var zeroRecords = lang.sZeroRecords;
+
+				// Backwards compatibility - if there is no sEmptyTable given, then use the same as
+				// sZeroRecords - assuming that is given.
+				if (!lang.sEmptyTable && zeroRecords &&
+					defaults.sEmptyTable === "No data available in table") {
+					_fnMap(lang, lang, 'sZeroRecords', 'sEmptyTable');
+				}
+
+				// Likewise with loading records
+				if (!lang.sLoadingRecords && zeroRecords &&
+					defaults.sLoadingRecords === "Loading...") {
+					_fnMap(lang, lang, 'sZeroRecords', 'sLoadingRecords');
+				}
+
+				// Old parameter name of the thousands separator mapped onto the new
+				if (lang.sInfoThousands) {
+					lang.sThousands = lang.sInfoThousands;
+				}
+
+				var decimal = lang.sDecimal;
+				if (decimal && defaultDecimal !== decimal) {
+					_addNumericSort(decimal);
+				}
+			}
+		}
+
+
+		/**
+		 * Map one parameter onto another
+		 *  @param {object} o Object to map
+		 *  @param {*} knew The new parameter name
+		 *  @param {*} old The old parameter name
+		 */
+		var _fnCompatMap = function (o, knew, old) {
+			if (o[knew] !== undefined) {
+				o[old] = o[knew];
+			}
+		};
+
+
+		/**
+		 * Provide backwards compatibility for the main DT options. Note that the new
+		 * options are mapped onto the old parameters, so this is an external interface
+		 * change only.
+		 *  @param {object} init Object to map
+		 */
+		function _fnCompatOpts(init) {
+			_fnCompatMap(init, 'ordering', 'bSort');
+			_fnCompatMap(init, 'orderMulti', 'bSortMulti');
+			_fnCompatMap(init, 'orderClasses', 'bSortClasses');
+			_fnCompatMap(init, 'orderCellsTop', 'bSortCellsTop');
+			_fnCompatMap(init, 'order', 'aaSorting');
+			_fnCompatMap(init, 'orderFixed', 'aaSortingFixed');
+			_fnCompatMap(init, 'paging', 'bPaginate');
+			_fnCompatMap(init, 'pagingType', 'sPaginationType');
+			_fnCompatMap(init, 'pageLength', 'iDisplayLength');
+			_fnCompatMap(init, 'searching', 'bFilter');
+
+			// Boolean initialisation of x-scrolling
+			if (typeof init.sScrollX === 'boolean') {
+				init.sScrollX = init.sScrollX ? '100%' : '';
+			}
+			if (typeof init.scrollX === 'boolean') {
+				init.scrollX = init.scrollX ? '100%' : '';
+			}
+
+			// Column search objects are in an array, so it needs to be converted
+			// element by element
+			var searchCols = init.aoSearchCols;
+
+			if (searchCols) {
+				for (var i = 0, ien = searchCols.length; i < ien; i++) {
+					if (searchCols[i]) {
+						_fnCamelToHungarian(DataTable.models.oSearch, searchCols[i]);
+					}
+				}
+			}
+		}
+
+
+		/**
+		 * Provide backwards compatibility for column options. Note that the new options
+		 * are mapped onto the old parameters, so this is an external interface change
+		 * only.
+		 *  @param {object} init Object to map
+		 */
+		function _fnCompatCols(init) {
+			_fnCompatMap(init, 'orderable', 'bSortable');
+			_fnCompatMap(init, 'orderData', 'aDataSort');
+			_fnCompatMap(init, 'orderSequence', 'asSorting');
+			_fnCompatMap(init, 'orderDataType', 'sortDataType');
+
+			// orderData can be given as an integer
+			var dataSort = init.aDataSort;
+			if (typeof dataSort === 'number' && !Array.isArray(dataSort)) {
+				init.aDataSort = [dataSort];
+			}
+		}
+
+
+		/**
+		 * Browser feature detection for capabilities, quirks
+		 *  @param {object} settings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnBrowserDetect(settings) {
+			// We don't need to do this every time DataTables is constructed, the values
+			// calculated are specific to the browser and OS configuration which we
+			// don't expect to change between initialisations
+			if (!DataTable.__browser) {
+				var browser = {};
+				DataTable.__browser = browser;
+
+				// Scrolling feature / quirks detection
+				var n = $('<div/>')
+					.css({
+						position: 'fixed',
+						top: 0,
+						left: $(window).scrollLeft() * -1, // allow for scrolling
+						height: 1,
+						width: 1,
+						overflow: 'hidden'
+					})
+					.append(
+						$('<div/>')
+							.css({
+								position: 'absolute',
+								top: 1,
+								left: 1,
+								width: 100,
+								overflow: 'scroll'
+							})
+							.append(
+								$('<div/>')
+									.css({
+										width: '100%',
+										height: 10
+									})
+							)
+					)
+					.appendTo('body');
+
+				var outer = n.children();
+				var inner = outer.children();
+
+				// Numbers below, in order, are:
+				// inner.offsetWidth, inner.clientWidth, outer.offsetWidth, outer.clientWidth
+				//
+				// IE6 XP:                           100 100 100  83
+				// IE7 Vista:                        100 100 100  83
+				// IE 8+ Windows:                     83  83 100  83
+				// Evergreen Windows:                 83  83 100  83
+				// Evergreen Mac with scrollbars:     85  85 100  85
+				// Evergreen Mac without scrollbars: 100 100 100 100
+
+				// Get scrollbar width
+				browser.barWidth = outer[0].offsetWidth - outer[0].clientWidth;
+
+				// IE6/7 will oversize a width 100% element inside a scrolling element, to
+				// include the width of the scrollbar, while other browsers ensure the inner
+				// element is contained without forcing scrolling
+				browser.bScrollOversize = inner[0].offsetWidth === 100 && outer[0].clientWidth !== 100;
+
+				// In rtl text layout, some browsers (most, but not all) will place the
+				// scrollbar on the left, rather than the right.
+				browser.bScrollbarLeft = Math.round(inner.offset().left) !== 1;
+
+				// IE8- don't provide height and width for getBoundingClientRect
+				browser.bBounding = n[0].getBoundingClientRect().width ? true : false;
+
+				n.remove();
+			}
+
+			$.extend(settings.oBrowser, DataTable.__browser);
+			settings.oScroll.iBarWidth = DataTable.__browser.barWidth;
+		}
+
+
+		/**
+		 * Array.prototype reduce[Right] method, used for browsers which don't support
+		 * JS 1.6. Done this way to reduce code size, since we iterate either way
+		 *  @param {object} settings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnReduce(that, fn, init, start, end, inc) {
+			var
+				i = start,
+				value,
+				isSet = false;
+
+			if (init !== undefined) {
+				value = init;
+				isSet = true;
+			}
+
+			while (i !== end) {
+				if (!that.hasOwnProperty(i)) {
+					continue;
+				}
+
+				value = isSet ?
+					fn(value, that[i], i, that) :
+					that[i];
+
+				isSet = true;
+				i += inc;
+			}
+
+			return value;
+		}
+
+		/**
+		 * Add a column to the list used for the table with default values
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {node} nTh The th element for this column
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnAddColumn(oSettings, nTh) {
+			// Add column to aoColumns array
+			var oDefaults = DataTable.defaults.column;
+			var iCol = oSettings.aoColumns.length;
+			var oCol = $.extend({}, DataTable.models.oColumn, oDefaults, {
+				"nTh": nTh ? nTh : document.createElement('th'),
+				"sTitle": oDefaults.sTitle ? oDefaults.sTitle : nTh ? nTh.innerHTML : '',
+				"aDataSort": oDefaults.aDataSort ? oDefaults.aDataSort : [iCol],
+				"mData": oDefaults.mData ? oDefaults.mData : iCol,
+				idx: iCol
+			});
+			oSettings.aoColumns.push(oCol);
+
+			// Add search object for column specific search. Note that the `searchCols[ iCol ]`
+			// passed into extend can be undefined. This allows the user to give a default
+			// with only some of the parameters defined, and also not give a default
+			var searchCols = oSettings.aoPreSearchCols;
+			searchCols[iCol] = $.extend({}, DataTable.models.oSearch, searchCols[iCol]);
+
+			// Use the default column options function to initialise classes etc
+			_fnColumnOptions(oSettings, iCol, $(nTh).data());
+		}
+
+
+		/**
+		 * Apply options for a column
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {int} iCol column index to consider
+		 *  @param {object} oOptions object with sType, bVisible and bSearchable etc
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnColumnOptions(oSettings, iCol, oOptions) {
+			var oCol = oSettings.aoColumns[iCol];
+			var oClasses = oSettings.oClasses;
+			var th = $(oCol.nTh);
+
+			// Try to get width information from the DOM. We can't get it from CSS
+			// as we'd need to parse the CSS stylesheet. `width` option can override
+			if (!oCol.sWidthOrig) {
+				// Width attribute
+				oCol.sWidthOrig = th.attr('width') || null;
+
+				// Style attribute
+				var t = (th.attr('style') || '').match(/width:\s*(\d+[pxem%]+)/);
+				if (t) {
+					oCol.sWidthOrig = t[1];
+				}
+			}
+
+			/* User specified column options */
+			if (oOptions !== undefined && oOptions !== null) {
+				// Backwards compatibility
+				_fnCompatCols(oOptions);
+
+				// Map camel case parameters to their Hungarian counterparts
+				_fnCamelToHungarian(DataTable.defaults.column, oOptions, true);
+
+				/* Backwards compatibility for mDataProp */
+				if (oOptions.mDataProp !== undefined && !oOptions.mData) {
+					oOptions.mData = oOptions.mDataProp;
+				}
+
+				if (oOptions.sType) {
+					oCol._sManualType = oOptions.sType;
+				}
+
+				// `class` is a reserved word in Javascript, so we need to provide
+				// the ability to use a valid name for the camel case input
+				if (oOptions.className && !oOptions.sClass) {
+					oOptions.sClass = oOptions.className;
+				}
+				if (oOptions.sClass) {
+					th.addClass(oOptions.sClass);
+				}
+
+				$.extend(oCol, oOptions);
+				_fnMap(oCol, oOptions, "sWidth", "sWidthOrig");
+
+				/* iDataSort to be applied (backwards compatibility), but aDataSort will take
+				 * priority if defined
+				 */
+				if (oOptions.iDataSort !== undefined) {
+					oCol.aDataSort = [oOptions.iDataSort];
+				}
+				_fnMap(oCol, oOptions, "aDataSort");
+			}
+
+			/* Cache the data get and set functions for speed */
+			var mDataSrc = oCol.mData;
+			var mData = _fnGetObjectDataFn(mDataSrc);
+			var mRender = oCol.mRender ? _fnGetObjectDataFn(oCol.mRender) : null;
+
+			var attrTest = function (src) {
+				return typeof src === 'string' && src.indexOf('@') !== -1;
+			};
+			oCol._bAttrSrc = $.isPlainObject(mDataSrc) && (
+				attrTest(mDataSrc.sort) || attrTest(mDataSrc.type) || attrTest(mDataSrc.filter)
+			);
+			oCol._setter = null;
+
+			oCol.fnGetData = function (rowData, type, meta) {
+				var innerData = mData(rowData, type, undefined, meta);
+
+				return mRender && type ?
+					mRender(innerData, type, rowData, meta) :
+					innerData;
+			};
+			oCol.fnSetData = function (rowData, val, meta) {
+				return _fnSetObjectDataFn(mDataSrc)(rowData, val, meta);
+			};
+
+			// Indicate if DataTables should read DOM data as an object or array
+			// Used in _fnGetRowElements
+			if (typeof mDataSrc !== 'number') {
+				oSettings._rowReadObject = true;
+			}
+
+			/* Feature sorting overrides column specific when off */
+			if (!oSettings.oFeatures.bSort) {
+				oCol.bSortable = false;
+				th.addClass(oClasses.sSortableNone); // Have to add class here as order event isn't called
+			}
+
+			/* Check that the class assignment is correct for sorting */
+			var bAsc = $.inArray('asc', oCol.asSorting) !== -1;
+			var bDesc = $.inArray('desc', oCol.asSorting) !== -1;
+			if (!oCol.bSortable || (!bAsc && !bDesc)) {
+				oCol.sSortingClass = oClasses.sSortableNone;
+				oCol.sSortingClassJUI = "";
+			}
+			else if (bAsc && !bDesc) {
+				oCol.sSortingClass = oClasses.sSortableAsc;
+				oCol.sSortingClassJUI = oClasses.sSortJUIAscAllowed;
+			}
+			else if (!bAsc && bDesc) {
+				oCol.sSortingClass = oClasses.sSortableDesc;
+				oCol.sSortingClassJUI = oClasses.sSortJUIDescAllowed;
+			}
+			else {
+				oCol.sSortingClass = oClasses.sSortable;
+				oCol.sSortingClassJUI = oClasses.sSortJUI;
+			}
+		}
+
+
+		/**
+		 * Adjust the table column widths for new data. Note: you would probably want to
+		 * do a redraw after calling this function!
+		 *  @param {object} settings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnAdjustColumnSizing(settings) {
+			/* Not interested in doing column width calculation if auto-width is disabled */
+			if (settings.oFeatures.bAutoWidth !== false) {
+				var columns = settings.aoColumns;
+
+				_fnCalculateColumnWidths(settings);
+				for (var i = 0, iLen = columns.length; i < iLen; i++) {
+					columns[i].nTh.style.width = columns[i].sWidth;
+				}
+			}
+
+			var scroll = settings.oScroll;
+			if (scroll.sY !== '' || scroll.sX !== '') {
+				_fnScrollDraw(settings);
+			}
+
+			_fnCallbackFire(settings, null, 'column-sizing', [settings]);
+		}
+
+
+		/**
+		 * Covert the index of a visible column to the index in the data array (take account
+		 * of hidden columns)
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {int} iMatch Visible column index to lookup
+		 *  @returns {int} i the data index
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnVisibleToColumnIndex(oSettings, iMatch) {
+			var aiVis = _fnGetColumns(oSettings, 'bVisible');
+
+			return typeof aiVis[iMatch] === 'number' ?
+				aiVis[iMatch] :
+				null;
+		}
+
+
+		/**
+		 * Covert the index of an index in the data array and convert it to the visible
+		 *   column index (take account of hidden columns)
+		 *  @param {int} iMatch Column index to lookup
+		 *  @param {object} oSettings dataTables settings object
+		 *  @returns {int} i the data index
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnColumnIndexToVisible(oSettings, iMatch) {
+			var aiVis = _fnGetColumns(oSettings, 'bVisible');
+			var iPos = $.inArray(iMatch, aiVis);
+
+			return iPos !== -1 ? iPos : null;
+		}
+
+
+		/**
+		 * Get the number of visible columns
+		 *  @param {object} oSettings dataTables settings object
+		 *  @returns {int} i the number of visible columns
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnVisbleColumns(oSettings) {
+			var vis = 0;
+
+			// No reduce in IE8, use a loop for now
+			$.each(oSettings.aoColumns, function (i, col) {
+				if (col.bVisible && $(col.nTh).css('display') !== 'none') {
+					vis++;
+				}
+			});
+
+			return vis;
+		}
+
+
+		/**
+		 * Get an array of column indexes that match a given property
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {string} sParam Parameter in aoColumns to look for - typically
+		 *    bVisible or bSearchable
+		 *  @returns {array} Array of indexes with matched properties
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnGetColumns(oSettings, sParam) {
+			var a = [];
+
+			$.map(oSettings.aoColumns, function (val, i) {
+				if (val[sParam]) {
+					a.push(i);
+				}
+			});
+
+			return a;
+		}
+
+
+		/**
+		 * Calculate the 'type' of a column
+		 *  @param {object} settings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnColumnTypes(settings) {
+			var columns = settings.aoColumns;
+			var data = settings.aoData;
+			var types = DataTable.ext.type.detect;
+			var i, ien, j, jen, k, ken;
+			var col, cell, detectedType, cache;
+
+			// For each column, spin over the 
+			for (i = 0, ien = columns.length; i < ien; i++) {
+				col = columns[i];
+				cache = [];
+
+				if (!col.sType && col._sManualType) {
+					col.sType = col._sManualType;
+				}
+				else if (!col.sType) {
+					for (j = 0, jen = types.length; j < jen; j++) {
+						for (k = 0, ken = data.length; k < ken; k++) {
+							// Use a cache array so we only need to get the type data
+							// from the formatter once (when using multiple detectors)
+							if (cache[k] === undefined) {
+								cache[k] = _fnGetCellData(settings, k, i, 'type');
+							}
+
+							detectedType = types[j](cache[k], settings);
+
+							// If null, then this type can't apply to this column, so
+							// rather than testing all cells, break out. There is an
+							// exception for the last type which is `html`. We need to
+							// scan all rows since it is possible to mix string and HTML
+							// types
+							if (!detectedType && j !== types.length - 1) {
+								break;
+							}
+
+							// Only a single match is needed for html type since it is
+							// bottom of the pile and very similar to string - but it
+							// must not be empty
+							if (detectedType === 'html' && !_empty(cache[k])) {
+								break;
+							}
+						}
+
+						// Type is valid for all data points in the column - use this
+						// type
+						if (detectedType) {
+							col.sType = detectedType;
+							break;
+						}
+					}
+
+					// Fall back - if no type was detected, always use string
+					if (!col.sType) {
+						col.sType = 'string';
+					}
+				}
+			}
+		}
+
+
+		/**
+		 * Take the column definitions and static columns arrays and calculate how
+		 * they relate to column indexes. The callback function will then apply the
+		 * definition found for a column to a suitable configuration object.
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {array} aoColDefs The aoColumnDefs array that is to be applied
+		 *  @param {array} aoCols The aoColumns array that defines columns individually
+		 *  @param {function} fn Callback function - takes two parameters, the calculated
+		 *    column index and the definition for that column.
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnApplyColumnDefs(oSettings, aoColDefs, aoCols, fn) {
+			var i, iLen, j, jLen, k, kLen, def;
+			var columns = oSettings.aoColumns;
+
+			// Column definitions with aTargets
+			if (aoColDefs) {
+				/* Loop over the definitions array - loop in reverse so first instance has priority */
+				for (i = aoColDefs.length - 1; i >= 0; i--) {
+					def = aoColDefs[i];
+
+					/* Each definition can target multiple columns, as it is an array */
+					var aTargets = def.targets !== undefined ?
+						def.targets :
+						def.aTargets;
+
+					if (!Array.isArray(aTargets)) {
+						aTargets = [aTargets];
+					}
+
+					for (j = 0, jLen = aTargets.length; j < jLen; j++) {
+						if (typeof aTargets[j] === 'number' && aTargets[j] >= 0) {
+							/* Add columns that we don't yet know about */
+							while (columns.length <= aTargets[j]) {
+								_fnAddColumn(oSettings);
+							}
+
+							/* Integer, basic index */
+							fn(aTargets[j], def);
+						}
+						else if (typeof aTargets[j] === 'number' && aTargets[j] < 0) {
+							/* Negative integer, right to left column counting */
+							fn(columns.length + aTargets[j], def);
+						}
+						else if (typeof aTargets[j] === 'string') {
+							/* Class name matching on TH element */
+							for (k = 0, kLen = columns.length; k < kLen; k++) {
+								if (aTargets[j] == "_all" ||
+									$(columns[k].nTh).hasClass(aTargets[j])) {
+									fn(k, def);
+								}
+							}
+						}
+					}
+				}
+			}
+
+			// Statically defined columns array
+			if (aoCols) {
+				for (i = 0, iLen = aoCols.length; i < iLen; i++) {
+					fn(i, aoCols[i]);
+				}
+			}
+		}
+
+		/**
+		 * Add a data array to the table, creating DOM node etc. This is the parallel to
+		 * _fnGatherData, but for adding rows from a Javascript source, rather than a
+		 * DOM source.
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {array} aData data array to be added
+		 *  @param {node} [nTr] TR element to add to the table - optional. If not given,
+		 *    DataTables will create a row automatically
+		 *  @param {array} [anTds] Array of TD|TH elements for the row - must be given
+		 *    if nTr is.
+		 *  @returns {int} >=0 if successful (index of new aoData entry), -1 if failed
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnAddData(oSettings, aDataIn, nTr, anTds) {
+			/* Create the object for storing information about this new row */
+			var iRow = oSettings.aoData.length;
+			var oData = $.extend(true, {}, DataTable.models.oRow, {
+				src: nTr ? 'dom' : 'data',
+				idx: iRow
+			});
+
+			oData._aData = aDataIn;
+			oSettings.aoData.push(oData);
+
+			/* Create the cells */
+			var nTd, sThisType;
+			var columns = oSettings.aoColumns;
+
+			// Invalidate the column types as the new data needs to be revalidated
+			for (var i = 0, iLen = columns.length; i < iLen; i++) {
+				columns[i].sType = null;
+			}
+
+			/* Add to the display array */
+			oSettings.aiDisplayMaster.push(iRow);
+
+			var id = oSettings.rowIdFn(aDataIn);
+			if (id !== undefined) {
+				oSettings.aIds[id] = oData;
+			}
+
+			/* Create the DOM information, or register it if already present */
+			if (nTr || !oSettings.oFeatures.bDeferRender) {
+				_fnCreateTr(oSettings, iRow, nTr, anTds);
+			}
+
+			return iRow;
+		}
+
+
+		/**
+		 * Add one or more TR elements to the table. Generally we'd expect to
+		 * use this for reading data from a DOM sourced table, but it could be
+		 * used for an TR element. Note that if a TR is given, it is used (i.e.
+		 * it is not cloned).
+		 *  @param {object} settings dataTables settings object
+		 *  @param {array|node|jQuery} trs The TR element(s) to add to the table
+		 *  @returns {array} Array of indexes for the added rows
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnAddTr(settings, trs) {
+			var row;
+
+			// Allow an individual node to be passed in
+			if (!(trs instanceof $)) {
+				trs = $(trs);
+			}
+
+			return trs.map(function (i, el) {
+				row = _fnGetRowElements(settings, el);
+				return _fnAddData(settings, row.data, el, row.cells);
+			});
+		}
+
+
+		/**
+		 * Take a TR element and convert it to an index in aoData
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {node} n the TR element to find
+		 *  @returns {int} index if the node is found, null if not
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnNodeToDataIndex(oSettings, n) {
+			return (n._DT_RowIndex !== undefined) ? n._DT_RowIndex : null;
+		}
+
+
+		/**
+		 * Take a TD element and convert it into a column data index (not the visible index)
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {int} iRow The row number the TD/TH can be found in
+		 *  @param {node} n The TD/TH element to find
+		 *  @returns {int} index if the node is found, -1 if not
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnNodeToColumnIndex(oSettings, iRow, n) {
+			return $.inArray(n, oSettings.aoData[iRow].anCells);
+		}
+
+
+		/**
+		 * Get the data for a given cell from the internal cache, taking into account data mapping
+		 *  @param {object} settings dataTables settings object
+		 *  @param {int} rowIdx aoData row id
+		 *  @param {int} colIdx Column index
+		 *  @param {string} type data get type ('display', 'type' 'filter' 'sort')
+		 *  @returns {*} Cell data
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnGetCellData(settings, rowIdx, colIdx, type) {
+			var draw = settings.iDraw;
+			var col = settings.aoColumns[colIdx];
+			var rowData = settings.aoData[rowIdx]._aData;
+			var defaultContent = col.sDefaultContent;
+			var cellData = col.fnGetData(rowData, type, {
+				settings: settings,
+				row: rowIdx,
+				col: colIdx
+			});
+
+			if (cellData === undefined) {
+				if (settings.iDrawError != draw && defaultContent === null) {
+					_fnLog(settings, 0, "Requested unknown parameter " +
+						(typeof col.mData == 'function' ? '{function}' : "'" + col.mData + "'") +
+						" for row " + rowIdx + ", column " + colIdx, 4);
+					settings.iDrawError = draw;
+				}
+				return defaultContent;
+			}
+
+			// When the data source is null and a specific data type is requested (i.e.
+			// not the original data), we can use default column data
+			if ((cellData === rowData || cellData === null) && defaultContent !== null && type !== undefined) {
+				cellData = defaultContent;
+			}
+			else if (typeof cellData === 'function') {
+				// If the data source is a function, then we run it and use the return,
+				// executing in the scope of the data object (for instances)
+				return cellData.call(rowData);
+			}
+
+			if (cellData === null && type == 'display') {
+				return '';
+			}
+			return cellData;
+		}
+
+
+		/**
+		 * Set the value for a specific cell, into the internal data cache
+		 *  @param {object} settings dataTables settings object
+		 *  @param {int} rowIdx aoData row id
+		 *  @param {int} colIdx Column index
+		 *  @param {*} val Value to set
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnSetCellData(settings, rowIdx, colIdx, val) {
+			var col = settings.aoColumns[colIdx];
+			var rowData = settings.aoData[rowIdx]._aData;
+
+			col.fnSetData(rowData, val, {
+				settings: settings,
+				row: rowIdx,
+				col: colIdx
+			});
+		}
+
+
+		// Private variable that is used to match action syntax in the data property object
+		var __reArray = /\[.*?\]$/;
+		var __reFn = /\(\)$/;
+
+		/**
+		 * Split string on periods, taking into account escaped periods
+		 * @param  {string} str String to split
+		 * @return {array} Split string
+		 */
+		function _fnSplitObjNotation(str) {
+			return $.map(str.match(/(\\.|[^\.])+/g) || [''], function (s) {
+				return s.replace(/\\\./g, '.');
+			});
+		}
+
+
+		/**
+		 * Return a function that can be used to get data from a source object, taking
+		 * into account the ability to use nested objects as a source
+		 *  @param {string|int|function} mSource The data source for the object
+		 *  @returns {function} Data get function
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnGetObjectDataFn(mSource) {
+			if ($.isPlainObject(mSource)) {
+				/* Build an object of get functions, and wrap them in a single call */
+				var o = {};
+				$.each(mSource, function (key, val) {
+					if (val) {
+						o[key] = _fnGetObjectDataFn(val);
+					}
+				});
+
+				return function (data, type, row, meta) {
+					var t = o[type] || o._;
+					return t !== undefined ?
+						t(data, type, row, meta) :
+						data;
+				};
+			}
+			else if (mSource === null) {
+				/* Give an empty string for rendering / sorting etc */
+				return function (data) { // type, row and meta also passed, but not used
+					return data;
+				};
+			}
+			else if (typeof mSource === 'function') {
+				return function (data, type, row, meta) {
+					return mSource(data, type, row, meta);
+				};
+			}
+			else if (typeof mSource === 'string' && (mSource.indexOf('.') !== -1 ||
+				mSource.indexOf('[') !== -1 || mSource.indexOf('(') !== -1)) {
+				/* If there is a . in the source string then the data source is in a
+				 * nested object so we loop over the data for each level to get the next
+				 * level down. On each loop we test for undefined, and if found immediately
+				 * return. This allows entire objects to be missing and sDefaultContent to
+				 * be used if defined, rather than throwing an error
+				 */
+				var fetchData = function (data, type, src) {
+					var arrayNotation, funcNotation, out, innerSrc;
+
+					if (src !== "") {
+						var a = _fnSplitObjNotation(src);
+
+						for (var i = 0, iLen = a.length; i < iLen; i++) {
+							// Check if we are dealing with special notation
+							arrayNotation = a[i].match(__reArray);
+							funcNotation = a[i].match(__reFn);
+
+							if (arrayNotation) {
+								// Array notation
+								a[i] = a[i].replace(__reArray, '');
+
+								// Condition allows simply [] to be passed in
+								if (a[i] !== "") {
+									data = data[a[i]];
+								}
+								out = [];
+
+								// Get the remainder of the nested object to get
+								a.splice(0, i + 1);
+								innerSrc = a.join('.');
+
+								// Traverse each entry in the array getting the properties requested
+								if (Array.isArray(data)) {
+									for (var j = 0, jLen = data.length; j < jLen; j++) {
+										out.push(fetchData(data[j], type, innerSrc));
+									}
+								}
+
+								// If a string is given in between the array notation indicators, that
+								// is used to join the strings together, otherwise an array is returned
+								var join = arrayNotation[0].substring(1, arrayNotation[0].length - 1);
+								data = (join === "") ? out : out.join(join);
+
+								// The inner call to fetchData has already traversed through the remainder
+								// of the source requested, so we exit from the loop
+								break;
+							}
+							else if (funcNotation) {
+								// Function call
+								a[i] = a[i].replace(__reFn, '');
+								data = data[a[i]]();
+								continue;
+							}
+
+							if (data === null || data[a[i]] === undefined) {
+								return undefined;
+							}
+							data = data[a[i]];
+						}
+					}
+
+					return data;
+				};
+
+				return function (data, type) { // row and meta also passed, but not used
+					return fetchData(data, type, mSource);
+				};
+			}
+			else {
+				/* Array or flat object mapping */
+				return function (data, type) { // row and meta also passed, but not used
+					return data[mSource];
+				};
+			}
+		}
+
+
+		/**
+		 * Return a function that can be used to set data from a source object, taking
+		 * into account the ability to use nested objects as a source
+		 *  @param {string|int|function} mSource The data source for the object
+		 *  @returns {function} Data set function
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnSetObjectDataFn(mSource) {
+			if ($.isPlainObject(mSource)) {
+				/* Unlike get, only the underscore (global) option is used for for
+				 * setting data since we don't know the type here. This is why an object
+				 * option is not documented for `mData` (which is read/write), but it is
+				 * for `mRender` which is read only.
+				 */
+				return _fnSetObjectDataFn(mSource._);
+			}
+			else if (mSource === null) {
+				/* Nothing to do when the data source is null */
+				return function () { };
+			}
+			else if (typeof mSource === 'function') {
+				return function (data, val, meta) {
+					mSource(data, 'set', val, meta);
+				};
+			}
+			else if (typeof mSource === 'string' && (mSource.indexOf('.') !== -1 ||
+				mSource.indexOf('[') !== -1 || mSource.indexOf('(') !== -1)) {
+				/* Like the get, we need to get data from a nested object */
+				var setData = function (data, val, src) {
+					var a = _fnSplitObjNotation(src), b;
+					var aLast = a[a.length - 1];
+					var arrayNotation, funcNotation, o, innerSrc;
+
+					for (var i = 0, iLen = a.length - 1; i < iLen; i++) {
+						// Protect against prototype pollution
+						if (a[i] === '__proto__' || a[i] === 'constructor') {
+							throw new Error('Cannot set prototype values');
+						}
+
+						// Check if we are dealing with an array notation request
+						arrayNotation = a[i].match(__reArray);
+						funcNotation = a[i].match(__reFn);
+
+						if (arrayNotation) {
+							a[i] = a[i].replace(__reArray, '');
+							data[a[i]] = [];
+
+							// Get the remainder of the nested object to set so we can recurse
+							b = a.slice();
+							b.splice(0, i + 1);
+							innerSrc = b.join('.');
+
+							// Traverse each entry in the array setting the properties requested
+							if (Array.isArray(val)) {
+								for (var j = 0, jLen = val.length; j < jLen; j++) {
+									o = {};
+									setData(o, val[j], innerSrc);
+									data[a[i]].push(o);
+								}
+							}
+							else {
+								// We've been asked to save data to an array, but it
+								// isn't array data to be saved. Best that can be done
+								// is to just save the value.
+								data[a[i]] = val;
+							}
+
+							// The inner call to setData has already traversed through the remainder
+							// of the source and has set the data, thus we can exit here
+							return;
+						}
+						else if (funcNotation) {
+							// Function call
+							a[i] = a[i].replace(__reFn, '');
+							data = data[a[i]](val);
+						}
+
+						// If the nested object doesn't currently exist - since we are
+						// trying to set the value - create it
+						if (data[a[i]] === null || data[a[i]] === undefined) {
+							data[a[i]] = {};
+						}
+						data = data[a[i]];
+					}
+
+					// Last item in the input - i.e, the actual set
+					if (aLast.match(__reFn)) {
+						// Function call
+						data = data[aLast.replace(__reFn, '')](val);
+					}
+					else {
+						// If array notation is used, we just want to strip it and use the property name
+						// and assign the value. If it isn't used, then we get the result we want anyway
+						data[aLast.replace(__reArray, '')] = val;
+					}
+				};
+
+				return function (data, val) { // meta is also passed in, but not used
+					return setData(data, val, mSource);
+				};
+			}
+			else {
+				/* Array or flat object mapping */
+				return function (data, val) { // meta is also passed in, but not used
+					data[mSource] = val;
+				};
+			}
+		}
+
+
+		/**
+		 * Return an array with the full table data
+		 *  @param {object} oSettings dataTables settings object
+		 *  @returns array {array} aData Master data array
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnGetDataMaster(settings) {
+			return _pluck(settings.aoData, '_aData');
+		}
+
+
+		/**
+		 * Nuke the table
+		 *  @param {object} oSettings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnClearTable(settings) {
+			settings.aoData.length = 0;
+			settings.aiDisplayMaster.length = 0;
+			settings.aiDisplay.length = 0;
+			settings.aIds = {};
+		}
+
+
+		/**
+		* Take an array of integers (index array) and remove a target integer (value - not
+		* the key!)
+		*  @param {array} a Index array to target
+		*  @param {int} iTarget value to find
+		*  @memberof DataTable#oApi
+		*/
+		function _fnDeleteIndex(a, iTarget, splice) {
+			var iTargetIndex = -1;
+
+			for (var i = 0, iLen = a.length; i < iLen; i++) {
+				if (a[i] == iTarget) {
+					iTargetIndex = i;
+				}
+				else if (a[i] > iTarget) {
+					a[i]--;
+				}
+			}
+
+			if (iTargetIndex != -1 && splice === undefined) {
+				a.splice(iTargetIndex, 1);
+			}
+		}
+
+
+		/**
+		 * Mark cached data as invalid such that a re-read of the data will occur when
+		 * the cached data is next requested. Also update from the data source object.
+		 *
+		 * @param {object} settings DataTables settings object
+		 * @param {int}    rowIdx   Row index to invalidate
+		 * @param {string} [src]    Source to invalidate from: undefined, 'auto', 'dom'
+		 *     or 'data'
+		 * @param {int}    [colIdx] Column index to invalidate. If undefined the whole
+		 *     row will be invalidated
+		 * @memberof DataTable#oApi
+		 *
+		 * @todo For the modularisation of v1.11 this will need to become a callback, so
+		 *   the sort and filter methods can subscribe to it. That will required
+		 *   initialisation options for sorting, which is why it is not already baked in
+		 */
+		function _fnInvalidate(settings, rowIdx, src, colIdx) {
+			var row = settings.aoData[rowIdx];
+			var i, ien;
+			var cellWrite = function (cell, col) {
+				// This is very frustrating, but in IE if you just write directly
+				// to innerHTML, and elements that are overwritten are GC'ed,
+				// even if there is a reference to them elsewhere
+				while (cell.childNodes.length) {
+					cell.removeChild(cell.firstChild);
+				}
+
+				cell.innerHTML = _fnGetCellData(settings, rowIdx, col, 'display');
+			};
+
+			// Are we reading last data from DOM or the data object?
+			if (src === 'dom' || ((!src || src === 'auto') && row.src === 'dom')) {
+				// Read the data from the DOM
+				row._aData = _fnGetRowElements(
+					settings, row, colIdx, colIdx === undefined ? undefined : row._aData
+				)
+					.data;
+			}
+			else {
+				// Reading from data object, update the DOM
+				var cells = row.anCells;
+
+				if (cells) {
+					if (colIdx !== undefined) {
+						cellWrite(cells[colIdx], colIdx);
+					}
+					else {
+						for (i = 0, ien = cells.length; i < ien; i++) {
+							cellWrite(cells[i], i);
+						}
+					}
+				}
+			}
+
+			// For both row and cell invalidation, the cached data for sorting and
+			// filtering is nulled out
+			row._aSortData = null;
+			row._aFilterData = null;
+
+			// Invalidate the type for a specific column (if given) or all columns since
+			// the data might have changed
+			var cols = settings.aoColumns;
+			if (colIdx !== undefined) {
+				cols[colIdx].sType = null;
+			}
+			else {
+				for (i = 0, ien = cols.length; i < ien; i++) {
+					cols[i].sType = null;
+				}
+
+				// Update DataTables special `DT_*` attributes for the row
+				_fnRowAttributes(settings, row);
+			}
+		}
+
+
+		/**
+		 * Build a data source object from an HTML row, reading the contents of the
+		 * cells that are in the row.
+		 *
+		 * @param {object} settings DataTables settings object
+		 * @param {node|object} TR element from which to read data or existing row
+		 *   object from which to re-read the data from the cells
+		 * @param {int} [colIdx] Optional column index
+		 * @param {array|object} [d] Data source object. If `colIdx` is given then this
+		 *   parameter should also be given and will be used to write the data into.
+		 *   Only the column in question will be written
+		 * @returns {object} Object with two parameters: `data` the data read, in
+		 *   document order, and `cells` and array of nodes (they can be useful to the
+		 *   caller, so rather than needing a second traversal to get them, just return
+		 *   them from here).
+		 * @memberof DataTable#oApi
+		 */
+		function _fnGetRowElements(settings, row, colIdx, d) {
+			var
+				tds = [],
+				td = row.firstChild,
+				name, col, o, i = 0, contents,
+				columns = settings.aoColumns,
+				objectRead = settings._rowReadObject;
+
+			// Allow the data object to be passed in, or construct
+			d = d !== undefined ?
+				d :
+				objectRead ?
+					{} :
+					[];
+
+			var attr = function (str, td) {
+				if (typeof str === 'string') {
+					var idx = str.indexOf('@');
+
+					if (idx !== -1) {
+						var attr = str.substring(idx + 1);
+						var setter = _fnSetObjectDataFn(str);
+						setter(d, td.getAttribute(attr));
+					}
+				}
+			};
+
+			// Read data from a cell and store into the data object
+			var cellProcess = function (cell) {
+				if (colIdx === undefined || colIdx === i) {
+					col = columns[i];
+					contents = (cell.innerHTML).trim();
+
+					if (col && col._bAttrSrc) {
+						var setter = _fnSetObjectDataFn(col.mData._);
+						setter(d, contents);
+
+						attr(col.mData.sort, cell);
+						attr(col.mData.type, cell);
+						attr(col.mData.filter, cell);
+					}
+					else {
+						// Depending on the `data` option for the columns the data can
+						// be read to either an object or an array.
+						if (objectRead) {
+							if (!col._setter) {
+								// Cache the setter function
+								col._setter = _fnSetObjectDataFn(col.mData);
+							}
+							col._setter(d, contents);
+						}
+						else {
+							d[i] = contents;
+						}
+					}
+				}
+
+				i++;
+			};
+
+			if (td) {
+				// `tr` element was passed in
+				while (td) {
+					name = td.nodeName.toUpperCase();
+
+					if (name == "TD" || name == "TH") {
+						cellProcess(td);
+						tds.push(td);
+					}
+
+					td = td.nextSibling;
+				}
+			}
+			else {
+				// Existing row object passed in
+				tds = row.anCells;
+
+				for (var j = 0, jen = tds.length; j < jen; j++) {
+					cellProcess(tds[j]);
+				}
+			}
+
+			// Read the ID from the DOM if present
+			var rowNode = row.firstChild ? row : row.nTr;
+
+			if (rowNode) {
+				var id = rowNode.getAttribute('id');
+
+				if (id) {
+					_fnSetObjectDataFn(settings.rowId)(d, id);
+				}
+			}
+
+			return {
+				data: d,
+				cells: tds
+			};
+		}
+		/**
+		 * Create a new TR element (and it's TD children) for a row
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {int} iRow Row to consider
+		 *  @param {node} [nTrIn] TR element to add to the table - optional. If not given,
+		 *    DataTables will create a row automatically
+		 *  @param {array} [anTds] Array of TD|TH elements for the row - must be given
+		 *    if nTr is.
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnCreateTr(oSettings, iRow, nTrIn, anTds) {
+			var
+				row = oSettings.aoData[iRow],
+				rowData = row._aData,
+				cells = [],
+				nTr, nTd, oCol,
+				i, iLen, create;
+
+			if (row.nTr === null) {
+				nTr = nTrIn || document.createElement('tr');
+
+				row.nTr = nTr;
+				row.anCells = cells;
+
+				/* Use a private property on the node to allow reserve mapping from the node
+				 * to the aoData array for fast look up
+				 */
+				nTr._DT_RowIndex = iRow;
+
+				/* Special parameters can be given by the data source to be used on the row */
+				_fnRowAttributes(oSettings, row);
+
+				/* Process each column */
+				for (i = 0, iLen = oSettings.aoColumns.length; i < iLen; i++) {
+					oCol = oSettings.aoColumns[i];
+					create = nTrIn ? false : true;
+
+					nTd = create ? document.createElement(oCol.sCellType) : anTds[i];
+					nTd._DT_CellIndex = {
+						row: iRow,
+						column: i
+					};
+
+					cells.push(nTd);
+
+					// Need to create the HTML if new, or if a rendering function is defined
+					if (create || ((oCol.mRender || oCol.mData !== i) &&
+						(!$.isPlainObject(oCol.mData) || oCol.mData._ !== i + '.display')
+					)) {
+						nTd.innerHTML = _fnGetCellData(oSettings, iRow, i, 'display');
+					}
+
+					/* Add user defined class */
+					if (oCol.sClass) {
+						nTd.className += ' ' + oCol.sClass;
+					}
+
+					// Visibility - add or remove as required
+					if (oCol.bVisible && !nTrIn) {
+						nTr.appendChild(nTd);
+					}
+					else if (!oCol.bVisible && nTrIn) {
+						nTd.parentNode.removeChild(nTd);
+					}
+
+					if (oCol.fnCreatedCell) {
+						oCol.fnCreatedCell.call(oSettings.oInstance,
+							nTd, _fnGetCellData(oSettings, iRow, i), rowData, iRow, i
+						);
+					}
+				}
+
+				_fnCallbackFire(oSettings, 'aoRowCreatedCallback', null, [nTr, rowData, iRow, cells]);
+			}
+		}
+
+
+		/**
+		 * Add attributes to a row based on the special `DT_*` parameters in a data
+		 * source object.
+		 *  @param {object} settings DataTables settings object
+		 *  @param {object} DataTables row object for the row to be modified
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnRowAttributes(settings, row) {
+			var tr = row.nTr;
+			var data = row._aData;
+
+			if (tr) {
+				var id = settings.rowIdFn(data);
+
+				if (id) {
+					tr.id = id;
+				}
+
+				if (data.DT_RowClass) {
+					// Remove any classes added by DT_RowClass before
+					var a = data.DT_RowClass.split(' ');
+					row.__rowc = row.__rowc ?
+						_unique(row.__rowc.concat(a)) :
+						a;
+
+					$(tr)
+						.removeClass(row.__rowc.join(' '))
+						.addClass(data.DT_RowClass);
+				}
+
+				if (data.DT_RowAttr) {
+					$(tr).attr(data.DT_RowAttr);
+				}
+
+				if (data.DT_RowData) {
+					$(tr).data(data.DT_RowData);
+				}
+			}
+		}
+
+
+		/**
+		 * Create the HTML header for the table
+		 *  @param {object} oSettings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnBuildHead(oSettings) {
+			var i, ien, cell, row, column;
+			var thead = oSettings.nTHead;
+			var tfoot = oSettings.nTFoot;
+			var createHeader = $('th, td', thead).length === 0;
+			var classes = oSettings.oClasses;
+			var columns = oSettings.aoColumns;
+
+			if (createHeader) {
+				row = $('<tr/>').appendTo(thead);
+			}
+
+			for (i = 0, ien = columns.length; i < ien; i++) {
+				column = columns[i];
+				cell = $(column.nTh).addClass(column.sClass);
+
+				if (createHeader) {
+					cell.appendTo(row);
+				}
+
+				// 1.11 move into sorting
+				if (oSettings.oFeatures.bSort) {
+					cell.addClass(column.sSortingClass);
+
+					if (column.bSortable !== false) {
+						cell
+							.attr('tabindex', oSettings.iTabIndex)
+							.attr('aria-controls', oSettings.sTableId);
+
+						_fnSortAttachListener(oSettings, column.nTh, i);
+					}
+				}
+
+				if (column.sTitle != cell[0].innerHTML) {
+					cell.html(column.sTitle);
+				}
+
+				_fnRenderer(oSettings, 'header')(
+					oSettings, cell, column, classes
+				);
+			}
+
+			if (createHeader) {
+				_fnDetectHeader(oSettings.aoHeader, thead);
+			}
+
+			/* ARIA role for the rows */
+			$(thead).children('tr').attr('role', 'row');
+
+			/* Deal with the footer - add classes if required */
+			$(thead).children('tr').children('th, td').addClass(classes.sHeaderTH);
+			$(tfoot).children('tr').children('th, td').addClass(classes.sFooterTH);
+
+			// Cache the footer cells. Note that we only take the cells from the first
+			// row in the footer. If there is more than one row the user wants to
+			// interact with, they need to use the table().foot() method. Note also this
+			// allows cells to be used for multiple columns using colspan
+			if (tfoot !== null) {
+				var cells = oSettings.aoFooter[0];
+
+				for (i = 0, ien = cells.length; i < ien; i++) {
+					column = columns[i];
+					column.nTf = cells[i].cell;
+
+					if (column.sClass) {
+						$(column.nTf).addClass(column.sClass);
+					}
+				}
+			}
+		}
+
+
+		/**
+		 * Draw the header (or footer) element based on the column visibility states. The
+		 * methodology here is to use the layout array from _fnDetectHeader, modified for
+		 * the instantaneous column visibility, to construct the new layout. The grid is
+		 * traversed over cell at a time in a rows x columns grid fashion, although each
+		 * cell insert can cover multiple elements in the grid - which is tracks using the
+		 * aApplied array. Cell inserts in the grid will only occur where there isn't
+		 * already a cell in that position.
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param array {objects} aoSource Layout array from _fnDetectHeader
+		 *  @param {boolean} [bIncludeHidden=false] If true then include the hidden columns in the calc,
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnDrawHead(oSettings, aoSource, bIncludeHidden) {
+			var i, iLen, j, jLen, k, kLen, n, nLocalTr;
+			var aoLocal = [];
+			var aApplied = [];
+			var iColumns = oSettings.aoColumns.length;
+			var iRowspan, iColspan;
+
+			if (!aoSource) {
+				return;
+			}
+
+			if (bIncludeHidden === undefined) {
+				bIncludeHidden = false;
+			}
+
+			/* Make a copy of the master layout array, but without the visible columns in it */
+			for (i = 0, iLen = aoSource.length; i < iLen; i++) {
+				aoLocal[i] = aoSource[i].slice();
+				aoLocal[i].nTr = aoSource[i].nTr;
+
+				/* Remove any columns which are currently hidden */
+				for (j = iColumns - 1; j >= 0; j--) {
+					if (!oSettings.aoColumns[j].bVisible && !bIncludeHidden) {
+						aoLocal[i].splice(j, 1);
+					}
+				}
+
+				/* Prep the applied array - it needs an element for each row */
+				aApplied.push([]);
+			}
+
+			for (i = 0, iLen = aoLocal.length; i < iLen; i++) {
+				nLocalTr = aoLocal[i].nTr;
+
+				/* All cells are going to be replaced, so empty out the row */
+				if (nLocalTr) {
+					while ((n = nLocalTr.firstChild)) {
+						nLocalTr.removeChild(n);
+					}
+				}
+
+				for (j = 0, jLen = aoLocal[i].length; j < jLen; j++) {
+					iRowspan = 1;
+					iColspan = 1;
+
+					/* Check to see if there is already a cell (row/colspan) covering our target
+					 * insert point. If there is, then there is nothing to do.
+					 */
+					if (aApplied[i][j] === undefined) {
+						nLocalTr.appendChild(aoLocal[i][j].cell);
+						aApplied[i][j] = 1;
+
+						/* Expand the cell to cover as many rows as needed */
+						while (aoLocal[i + iRowspan] !== undefined &&
+							aoLocal[i][j].cell == aoLocal[i + iRowspan][j].cell) {
+							aApplied[i + iRowspan][j] = 1;
+							iRowspan++;
+						}
+
+						/* Expand the cell to cover as many columns as needed */
+						while (aoLocal[i][j + iColspan] !== undefined &&
+							aoLocal[i][j].cell == aoLocal[i][j + iColspan].cell) {
+							/* Must update the applied array over the rows for the columns */
+							for (k = 0; k < iRowspan; k++) {
+								aApplied[i + k][j + iColspan] = 1;
+							}
+							iColspan++;
+						}
+
+						/* Do the actual expansion in the DOM */
+						$(aoLocal[i][j].cell)
+							.attr('rowspan', iRowspan)
+							.attr('colspan', iColspan);
+					}
+				}
+			}
+		}
+
+
+		/**
+		 * Insert the required TR nodes into the table for display
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param ajaxComplete true after ajax call to complete rendering
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnDraw(oSettings, ajaxComplete) {
+			/* Provide a pre-callback function which can be used to cancel the draw is false is returned */
+			var aPreDraw = _fnCallbackFire(oSettings, 'aoPreDrawCallback', 'preDraw', [oSettings]);
+			if ($.inArray(false, aPreDraw) !== -1) {
+				_fnProcessingDisplay(oSettings, false);
+				return;
+			}
+
+			var i, iLen, n;
+			var anRows = [];
+			var iRowCount = 0;
+			var asStripeClasses = oSettings.asStripeClasses;
+			var iStripes = asStripeClasses.length;
+			var iOpenRows = oSettings.aoOpenRows.length;
+			var oLang = oSettings.oLanguage;
+			var iInitDisplayStart = oSettings.iInitDisplayStart;
+			var bServerSide = _fnDataSource(oSettings) == 'ssp';
+			var aiDisplay = oSettings.aiDisplay;
+
+			oSettings.bDrawing = true;
+
+			/* Check and see if we have an initial draw position from state saving */
+			if (iInitDisplayStart !== undefined && iInitDisplayStart !== -1) {
+				oSettings._iDisplayStart = bServerSide ?
+					iInitDisplayStart :
+					iInitDisplayStart >= oSettings.fnRecordsDisplay() ?
+						0 :
+						iInitDisplayStart;
+
+				oSettings.iInitDisplayStart = -1;
+			}
+
+			var iDisplayStart = oSettings._iDisplayStart;
+			var iDisplayEnd = oSettings.fnDisplayEnd();
+
+			/* Server-side processing draw intercept */
+			if (oSettings.bDeferLoading) {
+				oSettings.bDeferLoading = false;
+				oSettings.iDraw++;
+				_fnProcessingDisplay(oSettings, false);
+			}
+			else if (!bServerSide) {
+				oSettings.iDraw++;
+			}
+			else if (!oSettings.bDestroying && !ajaxComplete) {
+				_fnAjaxUpdate(oSettings);
+				return;
+			}
+
+			if (aiDisplay.length !== 0) {
+				var iStart = bServerSide ? 0 : iDisplayStart;
+				var iEnd = bServerSide ? oSettings.aoData.length : iDisplayEnd;
+
+				for (var j = iStart; j < iEnd; j++) {
+					var iDataIndex = aiDisplay[j];
+					var aoData = oSettings.aoData[iDataIndex];
+					if (aoData.nTr === null) {
+						_fnCreateTr(oSettings, iDataIndex);
+					}
+
+					var nRow = aoData.nTr;
+
+					/* Remove the old striping classes and then add the new one */
+					if (iStripes !== 0) {
+						var sStripe = asStripeClasses[iRowCount % iStripes];
+						if (aoData._sRowStripe != sStripe) {
+							$(nRow).removeClass(aoData._sRowStripe).addClass(sStripe);
+							aoData._sRowStripe = sStripe;
+						}
+					}
+
+					// Row callback functions - might want to manipulate the row
+					// iRowCount and j are not currently documented. Are they at all
+					// useful?
+					_fnCallbackFire(oSettings, 'aoRowCallback', null,
+						[nRow, aoData._aData, iRowCount, j, iDataIndex]);
+
+					anRows.push(nRow);
+					iRowCount++;
+				}
+			}
+			else {
+				/* Table is empty - create a row with an empty message in it */
+				var sZero = oLang.sZeroRecords;
+				if (oSettings.iDraw == 1 && _fnDataSource(oSettings) == 'ajax') {
+					sZero = oLang.sLoadingRecords;
+				}
+				else if (oLang.sEmptyTable && oSettings.fnRecordsTotal() === 0) {
+					sZero = oLang.sEmptyTable;
+				}
+
+				anRows[0] = $('<tr/>', { 'class': iStripes ? asStripeClasses[0] : '' })
+					.append($('<td />', {
+						'valign': 'top',
+						'colSpan': _fnVisbleColumns(oSettings),
+						'class': oSettings.oClasses.sRowEmpty
+					}).html(sZero))[0];
+			}
+
+			/* Header and footer callbacks */
+			_fnCallbackFire(oSettings, 'aoHeaderCallback', 'header', [$(oSettings.nTHead).children('tr')[0],
+			_fnGetDataMaster(oSettings), iDisplayStart, iDisplayEnd, aiDisplay]);
+
+			_fnCallbackFire(oSettings, 'aoFooterCallback', 'footer', [$(oSettings.nTFoot).children('tr')[0],
+			_fnGetDataMaster(oSettings), iDisplayStart, iDisplayEnd, aiDisplay]);
+
+			var body = $(oSettings.nTBody);
+
+			body.children().detach();
+			body.append($(anRows));
+
+			/* Call all required callback functions for the end of a draw */
+			_fnCallbackFire(oSettings, 'aoDrawCallback', 'draw', [oSettings]);
+
+			/* Draw is complete, sorting and filtering must be as well */
+			oSettings.bSorted = false;
+			oSettings.bFiltered = false;
+			oSettings.bDrawing = false;
+		}
+
+
+		/**
+		 * Redraw the table - taking account of the various features which are enabled
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {boolean} [holdPosition] Keep the current paging position. By default
+		 *    the paging is reset to the first page
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnReDraw(settings, holdPosition) {
+			var
+				features = settings.oFeatures,
+				sort = features.bSort,
+				filter = features.bFilter;
+
+			if (sort) {
+				_fnSort(settings);
+			}
+
+			if (filter) {
+				_fnFilterComplete(settings, settings.oPreviousSearch);
+			}
+			else {
+				// No filtering, so we want to just use the display master
+				settings.aiDisplay = settings.aiDisplayMaster.slice();
+			}
+
+			if (holdPosition !== true) {
+				settings._iDisplayStart = 0;
+			}
+
+			// Let any modules know about the draw hold position state (used by
+			// scrolling internally)
+			settings._drawHold = holdPosition;
+
+			_fnDraw(settings);
+
+			settings._drawHold = false;
+		}
+
+
+		/**
+		 * Add the options to the page HTML for the table
+		 *  @param {object} oSettings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnAddOptionsHtml(oSettings) {
+			var classes = oSettings.oClasses;
+			var table = $(oSettings.nTable);
+			var holding = $('<div/>').insertBefore(table); // Holding element for speed
+			var features = oSettings.oFeatures;
+
+			// All DataTables are wrapped in a div
+			var insert = $('<div/>', {
+				id: oSettings.sTableId + '_wrapper',
+				'class': classes.sWrapper + (oSettings.nTFoot ? '' : ' ' + classes.sNoFooter)
+			});
+
+			oSettings.nHolding = holding[0];
+			oSettings.nTableWrapper = insert[0];
+			oSettings.nTableReinsertBefore = oSettings.nTable.nextSibling;
+
+			/* Loop over the user set positioning and place the elements as needed */
+			var aDom = oSettings.sDom.split('');
+			var featureNode, cOption, nNewNode, cNext, sAttr, j;
+			for (var i = 0; i < aDom.length; i++) {
+				featureNode = null;
+				cOption = aDom[i];
+
+				if (cOption == '<') {
+					/* New container div */
+					nNewNode = $('<div/>')[0];
+
+					/* Check to see if we should append an id and/or a class name to the container */
+					cNext = aDom[i + 1];
+					if (cNext == "'" || cNext == '"') {
+						sAttr = "";
+						j = 2;
+						while (aDom[i + j] != cNext) {
+							sAttr += aDom[i + j];
+							j++;
+						}
+
+						/* Replace jQuery UI constants @todo depreciated */
+						if (sAttr == "H") {
+							sAttr = classes.sJUIHeader;
+						}
+						else if (sAttr == "F") {
+							sAttr = classes.sJUIFooter;
+						}
+
+						/* The attribute can be in the format of "#id.class", "#id" or "class" This logic
+						 * breaks the string into parts and applies them as needed
+						 */
+						if (sAttr.indexOf('.') != -1) {
+							var aSplit = sAttr.split('.');
+							nNewNode.id = aSplit[0].substr(1, aSplit[0].length - 1);
+							nNewNode.className = aSplit[1];
+						}
+						else if (sAttr.charAt(0) == "#") {
+							nNewNode.id = sAttr.substr(1, sAttr.length - 1);
+						}
+						else {
+							nNewNode.className = sAttr;
+						}
+
+						i += j; /* Move along the position array */
+					}
+
+					insert.append(nNewNode);
+					insert = $(nNewNode);
+				}
+				else if (cOption == '>') {
+					/* End container div */
+					insert = insert.parent();
+				}
+				// @todo Move options into their own plugins?
+				else if (cOption == 'l' && features.bPaginate && features.bLengthChange) {
+					/* Length */
+					featureNode = _fnFeatureHtmlLength(oSettings);
+				}
+				else if (cOption == 'f' && features.bFilter) {
+					/* Filter */
+					featureNode = _fnFeatureHtmlFilter(oSettings);
+				}
+				else if (cOption == 'r' && features.bProcessing) {
+					/* pRocessing */
+					featureNode = _fnFeatureHtmlProcessing(oSettings);
+				}
+				else if (cOption == 't') {
+					/* Table */
+					featureNode = _fnFeatureHtmlTable(oSettings);
+				}
+				else if (cOption == 'i' && features.bInfo) {
+					/* Info */
+					featureNode = _fnFeatureHtmlInfo(oSettings);
+				}
+				else if (cOption == 'p' && features.bPaginate) {
+					/* Pagination */
+					featureNode = _fnFeatureHtmlPaginate(oSettings);
+				}
+				else if (DataTable.ext.feature.length !== 0) {
+					/* Plug-in features */
+					var aoFeatures = DataTable.ext.feature;
+					for (var k = 0, kLen = aoFeatures.length; k < kLen; k++) {
+						if (cOption == aoFeatures[k].cFeature) {
+							featureNode = aoFeatures[k].fnInit(oSettings);
+							break;
+						}
+					}
+				}
+
+				/* Add to the 2D features array */
+				if (featureNode) {
+					var aanFeatures = oSettings.aanFeatures;
+
+					if (!aanFeatures[cOption]) {
+						aanFeatures[cOption] = [];
+					}
+
+					aanFeatures[cOption].push(featureNode);
+					insert.append(featureNode);
+				}
+			}
+
+			/* Built our DOM structure - replace the holding div with what we want */
+			holding.replaceWith(insert);
+			oSettings.nHolding = null;
+		}
+
+
+		/**
+		 * Use the DOM source to create up an array of header cells. The idea here is to
+		 * create a layout grid (array) of rows x columns, which contains a reference
+		 * to the cell that that point in the grid (regardless of col/rowspan), such that
+		 * any column / row could be removed and the new grid constructed
+		 *  @param array {object} aLayout Array to store the calculated layout in
+		 *  @param {node} nThead The header/footer element for the table
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnDetectHeader(aLayout, nThead) {
+			var nTrs = $(nThead).children('tr');
+			var nTr, nCell;
+			var i, k, l, iLen, jLen, iColShifted, iColumn, iColspan, iRowspan;
+			var bUnique;
+			var fnShiftCol = function (a, i, j) {
+				var k = a[i];
+				while (k[j]) {
+					j++;
+				}
+				return j;
+			};
+
+			aLayout.splice(0, aLayout.length);
+
+			/* We know how many rows there are in the layout - so prep it */
+			for (i = 0, iLen = nTrs.length; i < iLen; i++) {
+				aLayout.push([]);
+			}
+
+			/* Calculate a layout array */
+			for (i = 0, iLen = nTrs.length; i < iLen; i++) {
+				nTr = nTrs[i];
+				iColumn = 0;
+
+				/* For every cell in the row... */
+				nCell = nTr.firstChild;
+				while (nCell) {
+					if (nCell.nodeName.toUpperCase() == "TD" ||
+						nCell.nodeName.toUpperCase() == "TH") {
+						/* Get the col and rowspan attributes from the DOM and sanitise them */
+						iColspan = nCell.getAttribute('colspan') * 1;
+						iRowspan = nCell.getAttribute('rowspan') * 1;
+						iColspan = (!iColspan || iColspan === 0 || iColspan === 1) ? 1 : iColspan;
+						iRowspan = (!iRowspan || iRowspan === 0 || iRowspan === 1) ? 1 : iRowspan;
+
+						/* There might be colspan cells already in this row, so shift our target
+						 * accordingly
+						 */
+						iColShifted = fnShiftCol(aLayout, i, iColumn);
+
+						/* Cache calculation for unique columns */
+						bUnique = iColspan === 1 ? true : false;
+
+						/* If there is col / rowspan, copy the information into the layout grid */
+						for (l = 0; l < iColspan; l++) {
+							for (k = 0; k < iRowspan; k++) {
+								aLayout[i + k][iColShifted + l] = {
+									"cell": nCell,
+									"unique": bUnique
+								};
+								aLayout[i + k].nTr = nTr;
+							}
+						}
+					}
+					nCell = nCell.nextSibling;
+				}
+			}
+		}
+
+
+		/**
+		 * Get an array of unique th elements, one for each column
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {node} nHeader automatically detect the layout from this node - optional
+		 *  @param {array} aLayout thead/tfoot layout from _fnDetectHeader - optional
+		 *  @returns array {node} aReturn list of unique th's
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnGetUniqueThs(oSettings, nHeader, aLayout) {
+			var aReturn = [];
+			if (!aLayout) {
+				aLayout = oSettings.aoHeader;
+				if (nHeader) {
+					aLayout = [];
+					_fnDetectHeader(aLayout, nHeader);
+				}
+			}
+
+			for (var i = 0, iLen = aLayout.length; i < iLen; i++) {
+				for (var j = 0, jLen = aLayout[i].length; j < jLen; j++) {
+					if (aLayout[i][j].unique &&
+						(!aReturn[j] || !oSettings.bSortCellsTop)) {
+						aReturn[j] = aLayout[i][j].cell;
+					}
+				}
+			}
+
+			return aReturn;
+		}
+
+		/**
+		 * Create an Ajax call based on the table's settings, taking into account that
+		 * parameters can have multiple forms, and backwards compatibility.
+		 *
+		 * @param {object} oSettings dataTables settings object
+		 * @param {array} data Data to send to the server, required by
+		 *     DataTables - may be augmented by developer callbacks
+		 * @param {function} fn Callback function to run when data is obtained
+		 */
+		function _fnBuildAjax(oSettings, data, fn) {
+			// Compatibility with 1.9-, allow fnServerData and event to manipulate
+			_fnCallbackFire(oSettings, 'aoServerParams', 'serverParams', [data]);
+
+			// Convert to object based for 1.10+ if using the old array scheme which can
+			// come from server-side processing or serverParams
+			if (data && Array.isArray(data)) {
+				var tmp = {};
+				var rbracket = /(.*?)\[\]$/;
+
+				$.each(data, function (key, val) {
+					var match = val.name.match(rbracket);
+
+					if (match) {
+						// Support for arrays
+						var name = match[0];
+
+						if (!tmp[name]) {
+							tmp[name] = [];
+						}
+						tmp[name].push(val.value);
+					}
+					else {
+						tmp[val.name] = val.value;
+					}
+				});
+				data = tmp;
+			}
+
+			var ajaxData;
+			var ajax = oSettings.ajax;
+			var instance = oSettings.oInstance;
+			var callback = function (json) {
+				_fnCallbackFire(oSettings, null, 'xhr', [oSettings, json, oSettings.jqXHR]);
+				fn(json);
+			};
+
+			if ($.isPlainObject(ajax) && ajax.data) {
+				ajaxData = ajax.data;
+
+				var newData = typeof ajaxData === 'function' ?
+					ajaxData(data, oSettings) :  // fn can manipulate data or return
+					ajaxData;                      // an object object or array to merge
+
+				// If the function returned something, use that alone
+				data = typeof ajaxData === 'function' && newData ?
+					newData :
+					$.extend(true, data, newData);
+
+				// Remove the data property as we've resolved it already and don't want
+				// jQuery to do it again (it is restored at the end of the function)
+				delete ajax.data;
+			}
+
+			var baseAjax = {
+				"data": data,
+				"success": function (json) {
+					var error = json.error || json.sError;
+					if (error) {
+						_fnLog(oSettings, 0, error);
+					}
+
+					oSettings.json = json;
+					callback(json);
+				},
+				"dataType": "json",
+				"cache": false,
+				"type": oSettings.sServerMethod,
+				"error": function (xhr, error, thrown) {
+					var ret = _fnCallbackFire(oSettings, null, 'xhr', [oSettings, null, oSettings.jqXHR]);
+
+					if ($.inArray(true, ret) === -1) {
+						if (error == "parsererror") {
+							_fnLog(oSettings, 0, 'Invalid JSON response', 1);
+						}
+						else if (xhr.readyState === 4) {
+							_fnLog(oSettings, 0, 'Ajax error', 7);
+						}
+					}
+
+					_fnProcessingDisplay(oSettings, false);
+				}
+			};
+
+			// Store the data submitted for the API
+			oSettings.oAjaxData = data;
+
+			// Allow plug-ins and external processes to modify the data
+			_fnCallbackFire(oSettings, null, 'preXhr', [oSettings, data]);
+
+			if (oSettings.fnServerData) {
+				// DataTables 1.9- compatibility
+				oSettings.fnServerData.call(instance,
+					oSettings.sAjaxSource,
+					$.map(data, function (val, key) { // Need to convert back to 1.9 trad format
+						return { name: key, value: val };
+					}),
+					callback,
+					oSettings
+				);
+			}
+			else if (oSettings.sAjaxSource || typeof ajax === 'string') {
+				// DataTables 1.9- compatibility
+				oSettings.jqXHR = $.ajax($.extend(baseAjax, {
+					url: ajax || oSettings.sAjaxSource
+				}));
+			}
+			else if (typeof ajax === 'function') {
+				// Is a function - let the caller define what needs to be done
+				oSettings.jqXHR = ajax.call(instance, data, callback, oSettings);
+			}
+			else {
+				// Object to extend the base settings
+				oSettings.jqXHR = $.ajax($.extend(baseAjax, ajax));
+
+				// Restore for next time around
+				ajax.data = ajaxData;
+			}
+		}
+
+
+		/**
+		 * Update the table using an Ajax call
+		 *  @param {object} settings dataTables settings object
+		 *  @returns {boolean} Block the table drawing or not
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnAjaxUpdate(settings) {
+			settings.iDraw++;
+			_fnProcessingDisplay(settings, true);
+
+			_fnBuildAjax(
+				settings,
+				_fnAjaxParameters(settings),
+				function (json) {
+					_fnAjaxUpdateDraw(settings, json);
+				}
+			);
+		}
+
+
+		/**
+		 * Build up the parameters in an object needed for a server-side processing
+		 * request. Note that this is basically done twice, is different ways - a modern
+		 * method which is used by default in DataTables 1.10 which uses objects and
+		 * arrays, or the 1.9- method with is name / value pairs. 1.9 method is used if
+		 * the sAjaxSource option is used in the initialisation, or the legacyAjax
+		 * option is set.
+		 *  @param {object} oSettings dataTables settings object
+		 *  @returns {bool} block the table drawing or not
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnAjaxParameters(settings) {
+			var
+				columns = settings.aoColumns,
+				columnCount = columns.length,
+				features = settings.oFeatures,
+				preSearch = settings.oPreviousSearch,
+				preColSearch = settings.aoPreSearchCols,
+				i, data = [], dataProp, column, columnSearch,
+				sort = _fnSortFlatten(settings),
+				displayStart = settings._iDisplayStart,
+				displayLength = features.bPaginate !== false ?
+					settings._iDisplayLength :
+					-1;
+
+			var param = function (name, value) {
+				data.push({ 'name': name, 'value': value });
+			};
+
+			// DataTables 1.9- compatible method
+			param('sEcho', settings.iDraw);
+			param('iColumns', columnCount);
+			param('sColumns', _pluck(columns, 'sName').join(','));
+			param('iDisplayStart', displayStart);
+			param('iDisplayLength', displayLength);
+
+			// DataTables 1.10+ method
+			var d = {
+				draw: settings.iDraw,
+				columns: [],
+				order: [],
+				start: displayStart,
+				length: displayLength,
+				search: {
+					value: preSearch.sSearch,
+					regex: preSearch.bRegex
+				}
+			};
+
+			for (i = 0; i < columnCount; i++) {
+				column = columns[i];
+				columnSearch = preColSearch[i];
+				dataProp = typeof column.mData == "function" ? 'function' : column.mData;
+
+				d.columns.push({
+					data: dataProp,
+					name: column.sName,
+					searchable: column.bSearchable,
+					orderable: column.bSortable,
+					search: {
+						value: columnSearch.sSearch,
+						regex: columnSearch.bRegex
+					}
+				});
+
+				param("mDataProp_" + i, dataProp);
+
+				if (features.bFilter) {
+					param('sSearch_' + i, columnSearch.sSearch);
+					param('bRegex_' + i, columnSearch.bRegex);
+					param('bSearchable_' + i, column.bSearchable);
+				}
+
+				if (features.bSort) {
+					param('bSortable_' + i, column.bSortable);
+				}
+			}
+
+			if (features.bFilter) {
+				param('sSearch', preSearch.sSearch);
+				param('bRegex', preSearch.bRegex);
+			}
+
+			if (features.bSort) {
+				$.each(sort, function (i, val) {
+					d.order.push({ column: val.col, dir: val.dir });
+
+					param('iSortCol_' + i, val.col);
+					param('sSortDir_' + i, val.dir);
+				});
+
+				param('iSortingCols', sort.length);
+			}
+
+			// If the legacy.ajax parameter is null, then we automatically decide which
+			// form to use, based on sAjaxSource
+			var legacy = DataTable.ext.legacy.ajax;
+			if (legacy === null) {
+				return settings.sAjaxSource ? data : d;
+			}
+
+			// Otherwise, if legacy has been specified then we use that to decide on the
+			// form
+			return legacy ? data : d;
+		}
+
+
+		/**
+		 * Data the data from the server (nuking the old) and redraw the table
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {object} json json data return from the server.
+		 *  @param {string} json.sEcho Tracking flag for DataTables to match requests
+		 *  @param {int} json.iTotalRecords Number of records in the data set, not accounting for filtering
+		 *  @param {int} json.iTotalDisplayRecords Number of records in the data set, accounting for filtering
+		 *  @param {array} json.aaData The data to display on this page
+		 *  @param {string} [json.sColumns] Column ordering (sName, comma separated)
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnAjaxUpdateDraw(settings, json) {
+			// v1.10 uses camelCase variables, while 1.9 uses Hungarian notation.
+			// Support both
+			var compat = function (old, modern) {
+				return json[old] !== undefined ? json[old] : json[modern];
+			};
+
+			var data = _fnAjaxDataSrc(settings, json);
+			var draw = compat('sEcho', 'draw');
+			var recordsTotal = compat('iTotalRecords', 'recordsTotal');
+			var recordsFiltered = compat('iTotalDisplayRecords', 'recordsFiltered');
+
+			if (draw !== undefined) {
+				// Protect against out of sequence returns
+				if (draw * 1 < settings.iDraw) {
+					return;
+				}
+				settings.iDraw = draw * 1;
+			}
+
+			_fnClearTable(settings);
+			settings._iRecordsTotal = parseInt(recordsTotal, 10);
+			settings._iRecordsDisplay = parseInt(recordsFiltered, 10);
+
+			for (var i = 0, ien = data.length; i < ien; i++) {
+				_fnAddData(settings, data[i]);
+			}
+			settings.aiDisplay = settings.aiDisplayMaster.slice();
+
+			_fnDraw(settings, true);
+
+			if (!settings._bInitComplete) {
+				_fnInitComplete(settings, json);
+			}
+
+			_fnProcessingDisplay(settings, false);
+		}
+
+
+		/**
+		 * Get the data from the JSON data source to use for drawing a table. Using
+		 * `_fnGetObjectDataFn` allows the data to be sourced from a property of the
+		 * source object, or from a processing function.
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param  {object} json Data source object / array from the server
+		 *  @return {array} Array of data to use
+		 */
+		function _fnAjaxDataSrc(oSettings, json) {
+			var dataSrc = $.isPlainObject(oSettings.ajax) && oSettings.ajax.dataSrc !== undefined ?
+				oSettings.ajax.dataSrc :
+				oSettings.sAjaxDataProp; // Compatibility with 1.9-.
+
+			// Compatibility with 1.9-. In order to read from aaData, check if the
+			// default has been changed, if not, check for aaData
+			if (dataSrc === 'data') {
+				return json.aaData || json[dataSrc];
+			}
+
+			return dataSrc !== "" ?
+				_fnGetObjectDataFn(dataSrc)(json) :
+				json;
+		}
+
+		/**
+		 * Generate the node required for filtering text
+		 *  @returns {node} Filter control element
+		 *  @param {object} oSettings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnFeatureHtmlFilter(settings) {
+			var classes = settings.oClasses;
+			var tableId = settings.sTableId;
+			var language = settings.oLanguage;
+			var previousSearch = settings.oPreviousSearch;
+			var features = settings.aanFeatures;
+			var input = '<input type="search" class="' + classes.sFilterInput + '"/>';
+
+			var str = language.sSearch;
+			str = str.match(/_INPUT_/) ?
+				str.replace('_INPUT_', input) :
+				str + input;
+
+			var filter = $('<div/>', {
+				'id': !features.f ? tableId + '_filter' : null,
+				'class': classes.sFilter
+			})
+				.append($('<label/>').append(str));
+
+			var searchFn = function () {
+				/* Update all other filter input elements for the new display */
+				var n = features.f;
+				var val = !this.value ? "" : this.value; // mental IE8 fix :-(
+
+				/* Now do the filter */
+				if (val != previousSearch.sSearch) {
+					_fnFilterComplete(settings, {
+						"sSearch": val,
+						"bRegex": previousSearch.bRegex,
+						"bSmart": previousSearch.bSmart,
+						"bCaseInsensitive": previousSearch.bCaseInsensitive
+					});
+
+					// Need to redraw, without resorting
+					settings._iDisplayStart = 0;
+					_fnDraw(settings);
+				}
+			};
+
+			var searchDelay = settings.searchDelay !== null ?
+				settings.searchDelay :
+				_fnDataSource(settings) === 'ssp' ?
+					400 :
+					0;
+
+			var jqFilter = $('input', filter)
+				.val(previousSearch.sSearch)
+				.attr('placeholder', language.sSearchPlaceholder)
+				.on(
+					'keyup.DT search.DT input.DT paste.DT cut.DT',
+					searchDelay ?
+						_fnThrottle(searchFn, searchDelay) :
+						searchFn
+				)
+				.on('mouseup', function (e) {
+					// Edge fix! Edge 17 does not trigger anything other than mouse events when clicking
+					// on the clear icon (Edge bug 17584515). This is safe in other browsers as `searchFn`
+					// checks the value to see if it has changed. In other browsers it won't have.
+					setTimeout(function () {
+						searchFn.call(jqFilter[0]);
+					}, 10);
+				})
+				.on('keypress.DT', function (e) {
+					/* Prevent form submission */
+					if (e.keyCode == 13) {
+						return false;
+					}
+				})
+				.attr('aria-controls', tableId);
+
+			// Update the input elements whenever the table is filtered
+			$(settings.nTable).on('search.dt.DT', function (ev, s) {
+				if (settings === s) {
+					// IE9 throws an 'unknown error' if document.activeElement is used
+					// inside an iframe or frame...
+					try {
+						if (jqFilter[0] !== document.activeElement) {
+							jqFilter.val(previousSearch.sSearch);
+						}
+					}
+					catch (e) { }
+				}
+			});
+
+			return filter[0];
+		}
+
+
+		/**
+		 * Filter the table using both the global filter and column based filtering
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {object} oSearch search information
+		 *  @param {int} [iForce] force a research of the master array (1) or not (undefined or 0)
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnFilterComplete(oSettings, oInput, iForce) {
+			var oPrevSearch = oSettings.oPreviousSearch;
+			var aoPrevSearch = oSettings.aoPreSearchCols;
+			var fnSaveFilter = function (oFilter) {
+				/* Save the filtering values */
+				oPrevSearch.sSearch = oFilter.sSearch;
+				oPrevSearch.bRegex = oFilter.bRegex;
+				oPrevSearch.bSmart = oFilter.bSmart;
+				oPrevSearch.bCaseInsensitive = oFilter.bCaseInsensitive;
+			};
+			var fnRegex = function (o) {
+				// Backwards compatibility with the bEscapeRegex option
+				return o.bEscapeRegex !== undefined ? !o.bEscapeRegex : o.bRegex;
+			};
+
+			// Resolve any column types that are unknown due to addition or invalidation
+			// @todo As per sort - can this be moved into an event handler?
+			_fnColumnTypes(oSettings);
+
+			/* In server-side processing all filtering is done by the server, so no point hanging around here */
+			if (_fnDataSource(oSettings) != 'ssp') {
+				/* Global filter */
+				_fnFilter(oSettings, oInput.sSearch, iForce, fnRegex(oInput), oInput.bSmart, oInput.bCaseInsensitive);
+				fnSaveFilter(oInput);
+
+				/* Now do the individual column filter */
+				for (var i = 0; i < aoPrevSearch.length; i++) {
+					_fnFilterColumn(oSettings, aoPrevSearch[i].sSearch, i, fnRegex(aoPrevSearch[i]),
+						aoPrevSearch[i].bSmart, aoPrevSearch[i].bCaseInsensitive);
+				}
+
+				/* Custom filtering */
+				_fnFilterCustom(oSettings);
+			}
+			else {
+				fnSaveFilter(oInput);
+			}
+
+			/* Tell the draw function we have been filtering */
+			oSettings.bFiltered = true;
+			_fnCallbackFire(oSettings, null, 'search', [oSettings]);
+		}
+
+
+		/**
+		 * Apply custom filtering functions
+		 *  @param {object} oSettings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnFilterCustom(settings) {
+			var filters = DataTable.ext.search;
+			var displayRows = settings.aiDisplay;
+			var row, rowIdx;
+
+			for (var i = 0, ien = filters.length; i < ien; i++) {
+				var rows = [];
+
+				// Loop over each row and see if it should be included
+				for (var j = 0, jen = displayRows.length; j < jen; j++) {
+					rowIdx = displayRows[j];
+					row = settings.aoData[rowIdx];
+
+					if (filters[i](settings, row._aFilterData, rowIdx, row._aData, j)) {
+						rows.push(rowIdx);
+					}
+				}
+
+				// So the array reference doesn't break set the results into the
+				// existing array
+				displayRows.length = 0;
+				$.merge(displayRows, rows);
+			}
+		}
+
+
+		/**
+		 * Filter the table on a per-column basis
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {string} sInput string to filter on
+		 *  @param {int} iColumn column to filter
+		 *  @param {bool} bRegex treat search string as a regular expression or not
+		 *  @param {bool} bSmart use smart filtering or not
+		 *  @param {bool} bCaseInsensitive Do case insenstive matching or not
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnFilterColumn(settings, searchStr, colIdx, regex, smart, caseInsensitive) {
+			if (searchStr === '') {
+				return;
+			}
+
+			var data;
+			var out = [];
+			var display = settings.aiDisplay;
+			var rpSearch = _fnFilterCreateSearch(searchStr, regex, smart, caseInsensitive);
+
+			for (var i = 0; i < display.length; i++) {
+				data = settings.aoData[display[i]]._aFilterData[colIdx];
+
+				if (rpSearch.test(data)) {
+					out.push(display[i]);
+				}
+			}
+
+			settings.aiDisplay = out;
+		}
+
+
+		/**
+		 * Filter the data table based on user input and draw the table
+		 *  @param {object} settings dataTables settings object
+		 *  @param {string} input string to filter on
+		 *  @param {int} force optional - force a research of the master array (1) or not (undefined or 0)
+		 *  @param {bool} regex treat as a regular expression or not
+		 *  @param {bool} smart perform smart filtering or not
+		 *  @param {bool} caseInsensitive Do case insenstive matching or not
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnFilter(settings, input, force, regex, smart, caseInsensitive) {
+			var rpSearch = _fnFilterCreateSearch(input, regex, smart, caseInsensitive);
+			var prevSearch = settings.oPreviousSearch.sSearch;
+			var displayMaster = settings.aiDisplayMaster;
+			var display, invalidated, i;
+			var filtered = [];
+
+			// Need to take account of custom filtering functions - always filter
+			if (DataTable.ext.search.length !== 0) {
+				force = true;
+			}
+
+			// Check if any of the rows were invalidated
+			invalidated = _fnFilterData(settings);
+
+			// If the input is blank - we just want the full data set
+			if (input.length <= 0) {
+				settings.aiDisplay = displayMaster.slice();
+			}
+			else {
+				// New search - start from the master array
+				if (invalidated ||
+					force ||
+					regex ||
+					prevSearch.length > input.length ||
+					input.indexOf(prevSearch) !== 0 ||
+					settings.bSorted // On resort, the display master needs to be
+					// re-filtered since indexes will have changed
+				) {
+					settings.aiDisplay = displayMaster.slice();
+				}
+
+				// Search the display array
+				display = settings.aiDisplay;
+
+				for (i = 0; i < display.length; i++) {
+					if (rpSearch.test(settings.aoData[display[i]]._sFilterRow)) {
+						filtered.push(display[i]);
+					}
+				}
+
+				settings.aiDisplay = filtered;
+			}
+		}
+
+
+		/**
+		 * Build a regular expression object suitable for searching a table
+		 *  @param {string} sSearch string to search for
+		 *  @param {bool} bRegex treat as a regular expression or not
+		 *  @param {bool} bSmart perform smart filtering or not
+		 *  @param {bool} bCaseInsensitive Do case insensitive matching or not
+		 *  @returns {RegExp} constructed object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnFilterCreateSearch(search, regex, smart, caseInsensitive) {
+			search = regex ?
+				search :
+				_fnEscapeRegex(search);
+
+			if (smart) {
+				/* For smart filtering we want to allow the search to work regardless of
+				 * word order. We also want double quoted text to be preserved, so word
+				 * order is important - a la google. So this is what we want to
+				 * generate:
+				 * 
+				 * ^(?=.*?\bone\b)(?=.*?\btwo three\b)(?=.*?\bfour\b).*$
+				 */
+				var a = $.map(search.match(/"[^"]+"|[^ ]+/g) || [''], function (word) {
+					if (word.charAt(0) === '"') {
+						var m = word.match(/^"(.*)"$/);
+						word = m ? m[1] : word;
+					}
+
+					return word.replace('"', '');
+				});
+
+				search = '^(?=.*?' + a.join(')(?=.*?') + ').*$';
+			}
+
+			return new RegExp(search, caseInsensitive ? 'i' : '');
+		}
+
+
+		/**
+		 * Escape a string such that it can be used in a regular expression
+		 *  @param {string} sVal string to escape
+		 *  @returns {string} escaped string
+		 *  @memberof DataTable#oApi
+		 */
+		var _fnEscapeRegex = DataTable.util.escapeRegex;
+
+		var __filter_div = $('<div>')[0];
+		var __filter_div_textContent = __filter_div.textContent !== undefined;
+
+		// Update the filtering data for each row if needed (by invalidation or first run)
+		function _fnFilterData(settings) {
+			var columns = settings.aoColumns;
+			var column;
+			var i, j, ien, jen, filterData, cellData, row;
+			var fomatters = DataTable.ext.type.search;
+			var wasInvalidated = false;
+
+			for (i = 0, ien = settings.aoData.length; i < ien; i++) {
+				row = settings.aoData[i];
+
+				if (!row._aFilterData) {
+					filterData = [];
+
+					for (j = 0, jen = columns.length; j < jen; j++) {
+						column = columns[j];
+
+						if (column.bSearchable) {
+							cellData = _fnGetCellData(settings, i, j, 'filter');
+
+							if (fomatters[column.sType]) {
+								cellData = fomatters[column.sType](cellData);
+							}
+
+							// Search in DataTables 1.10 is string based. In 1.11 this
+							// should be altered to also allow strict type checking.
+							if (cellData === null) {
+								cellData = '';
+							}
+
+							if (typeof cellData !== 'string' && cellData.toString) {
+								cellData = cellData.toString();
+							}
+						}
+						else {
+							cellData = '';
+						}
+
+						// If it looks like there is an HTML entity in the string,
+						// attempt to decode it so sorting works as expected. Note that
+						// we could use a single line of jQuery to do this, but the DOM
+						// method used here is much faster http://jsperf.com/html-decode
+						if (cellData.indexOf && cellData.indexOf('&') !== -1) {
+							__filter_div.innerHTML = cellData;
+							cellData = __filter_div_textContent ?
+								__filter_div.textContent :
+								__filter_div.innerText;
+						}
+
+						if (cellData.replace) {
+							cellData = cellData.replace(/[\r\n\u2028]/g, '');
+						}
+
+						filterData.push(cellData);
+					}
+
+					row._aFilterData = filterData;
+					row._sFilterRow = filterData.join('  ');
+					wasInvalidated = true;
+				}
+			}
+
+			return wasInvalidated;
+		}
+
+
+		/**
+		 * Convert from the internal Hungarian notation to camelCase for external
+		 * interaction
+		 *  @param {object} obj Object to convert
+		 *  @returns {object} Inverted object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnSearchToCamel(obj) {
+			return {
+				search: obj.sSearch,
+				smart: obj.bSmart,
+				regex: obj.bRegex,
+				caseInsensitive: obj.bCaseInsensitive
+			};
+		}
+
+
+
+		/**
+		 * Convert from camelCase notation to the internal Hungarian. We could use the
+		 * Hungarian convert function here, but this is cleaner
+		 *  @param {object} obj Object to convert
+		 *  @returns {object} Inverted object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnSearchToHung(obj) {
+			return {
+				sSearch: obj.search,
+				bSmart: obj.smart,
+				bRegex: obj.regex,
+				bCaseInsensitive: obj.caseInsensitive
+			};
+		}
+
+		/**
+		 * Generate the node required for the info display
+		 *  @param {object} oSettings dataTables settings object
+		 *  @returns {node} Information element
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnFeatureHtmlInfo(settings) {
+			var
+				tid = settings.sTableId,
+				nodes = settings.aanFeatures.i,
+				n = $('<div/>', {
+					'class': settings.oClasses.sInfo,
+					'id': !nodes ? tid + '_info' : null
+				});
+
+			if (!nodes) {
+				// Update display on each draw
+				settings.aoDrawCallback.push({
+					"fn": _fnUpdateInfo,
+					"sName": "information"
+				});
+
+				n
+					.attr('role', 'status')
+					.attr('aria-live', 'polite');
+
+				// Table is described by our info div
+				$(settings.nTable).attr('aria-describedby', tid + '_info');
+			}
+
+			return n[0];
+		}
+
+
+		/**
+		 * Update the information elements in the display
+		 *  @param {object} settings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnUpdateInfo(settings) {
+			/* Show information about the table */
+			var nodes = settings.aanFeatures.i;
+			if (nodes.length === 0) {
+				return;
+			}
+
+			var
+				lang = settings.oLanguage,
+				start = settings._iDisplayStart + 1,
+				end = settings.fnDisplayEnd(),
+				max = settings.fnRecordsTotal(),
+				total = settings.fnRecordsDisplay(),
+				out = total ?
+					lang.sInfo :
+					lang.sInfoEmpty;
+
+			if (total !== max) {
+				/* Record set after filtering */
+				out += ' ' + lang.sInfoFiltered;
+			}
+
+			// Convert the macros
+			out += lang.sInfoPostFix;
+			out = _fnInfoMacros(settings, out);
+
+			var callback = lang.fnInfoCallback;
+			if (callback !== null) {
+				out = callback.call(settings.oInstance,
+					settings, start, end, max, total, out
+				);
+			}
+
+			$(nodes).html(out);
+		}
+
+
+		function _fnInfoMacros(settings, str) {
+			// When infinite scrolling, we are always starting at 1. _iDisplayStart is used only
+			// internally
+			var
+				formatter = settings.fnFormatNumber,
+				start = settings._iDisplayStart + 1,
+				len = settings._iDisplayLength,
+				vis = settings.fnRecordsDisplay(),
+				all = len === -1;
+
+			return str.
+				replace(/_START_/g, formatter.call(settings, start)).
+				replace(/_END_/g, formatter.call(settings, settings.fnDisplayEnd())).
+				replace(/_MAX_/g, formatter.call(settings, settings.fnRecordsTotal())).
+				replace(/_TOTAL_/g, formatter.call(settings, vis)).
+				replace(/_PAGE_/g, formatter.call(settings, all ? 1 : Math.ceil(start / len))).
+				replace(/_PAGES_/g, formatter.call(settings, all ? 1 : Math.ceil(vis / len)));
+		}
+
+
+
+		/**
+		 * Draw the table for the first time, adding all required features
+		 *  @param {object} settings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnInitialise(settings) {
+			var i, iLen, iAjaxStart = settings.iInitDisplayStart;
+			var columns = settings.aoColumns, column;
+			var features = settings.oFeatures;
+			var deferLoading = settings.bDeferLoading; // value modified by the draw
+
+			/* Ensure that the table data is fully initialised */
+			if (!settings.bInitialised) {
+				setTimeout(function () { _fnInitialise(settings); }, 200);
+				return;
+			}
+
+			/* Show the display HTML options */
+			_fnAddOptionsHtml(settings);
+
+			/* Build and draw the header / footer for the table */
+			_fnBuildHead(settings);
+			_fnDrawHead(settings, settings.aoHeader);
+			_fnDrawHead(settings, settings.aoFooter);
+
+			/* Okay to show that something is going on now */
+			_fnProcessingDisplay(settings, true);
+
+			/* Calculate sizes for columns */
+			if (features.bAutoWidth) {
+				_fnCalculateColumnWidths(settings);
+			}
+
+			for (i = 0, iLen = columns.length; i < iLen; i++) {
+				column = columns[i];
+
+				if (column.sWidth) {
+					column.nTh.style.width = _fnStringToCss(column.sWidth);
+				}
+			}
+
+			_fnCallbackFire(settings, null, 'preInit', [settings]);
+
+			// If there is default sorting required - let's do it. The sort function
+			// will do the drawing for us. Otherwise we draw the table regardless of the
+			// Ajax source - this allows the table to look initialised for Ajax sourcing
+			// data (show 'loading' message possibly)
+			_fnReDraw(settings);
+
+			// Server-side processing init complete is done by _fnAjaxUpdateDraw
+			var dataSrc = _fnDataSource(settings);
+			if (dataSrc != 'ssp' || deferLoading) {
+				// if there is an ajax source load the data
+				if (dataSrc == 'ajax') {
+					_fnBuildAjax(settings, [], function (json) {
+						var aData = _fnAjaxDataSrc(settings, json);
+
+						// Got the data - add it to the table
+						for (i = 0; i < aData.length; i++) {
+							_fnAddData(settings, aData[i]);
+						}
+
+						// Reset the init display for cookie saving. We've already done
+						// a filter, and therefore cleared it before. So we need to make
+						// it appear 'fresh'
+						settings.iInitDisplayStart = iAjaxStart;
+
+						_fnReDraw(settings);
+
+						_fnProcessingDisplay(settings, false);
+						_fnInitComplete(settings, json);
+					}, settings);
+				}
+				else {
+					_fnProcessingDisplay(settings, false);
+					_fnInitComplete(settings);
+				}
+			}
+		}
+
+
+		/**
+		 * Draw the table for the first time, adding all required features
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {object} [json] JSON from the server that completed the table, if using Ajax source
+		 *    with client-side processing (optional)
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnInitComplete(settings, json) {
+			settings._bInitComplete = true;
+
+			// When data was added after the initialisation (data or Ajax) we need to
+			// calculate the column sizing
+			if (json || settings.oInit.aaData) {
+				_fnAdjustColumnSizing(settings);
+			}
+
+			_fnCallbackFire(settings, null, 'plugin-init', [settings, json]);
+			_fnCallbackFire(settings, 'aoInitComplete', 'init', [settings, json]);
+		}
+
+
+		function _fnLengthChange(settings, val) {
+			var len = parseInt(val, 10);
+			settings._iDisplayLength = len;
+
+			_fnLengthOverflow(settings);
+
+			// Fire length change event
+			_fnCallbackFire(settings, null, 'length', [settings, len]);
+		}
+
+
+		/**
+		 * Generate the node required for user display length changing
+		 *  @param {object} settings dataTables settings object
+		 *  @returns {node} Display length feature node
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnFeatureHtmlLength(settings) {
+			var
+				classes = settings.oClasses,
+				tableId = settings.sTableId,
+				menu = settings.aLengthMenu,
+				d2 = Array.isArray(menu[0]),
+				lengths = d2 ? menu[0] : menu,
+				language = d2 ? menu[1] : menu;
+
+			var select = $('<select/>', {
+				'name': tableId + '_length',
+				'aria-controls': tableId,
+				'class': classes.sLengthSelect
+			});
+
+			for (var i = 0, ien = lengths.length; i < ien; i++) {
+				select[0][i] = new Option(
+					typeof language[i] === 'number' ?
+						settings.fnFormatNumber(language[i]) :
+						language[i],
+					lengths[i]
+				);
+			}
+
+			var div = $('<div><label/></div>').addClass(classes.sLength);
+			if (!settings.aanFeatures.l) {
+				div[0].id = tableId + '_length';
+			}
+
+			div.children().append(
+				settings.oLanguage.sLengthMenu.replace('_MENU_', select[0].outerHTML)
+			);
+
+			// Can't use `select` variable as user might provide their own and the
+			// reference is broken by the use of outerHTML
+			$('select', div)
+				.val(settings._iDisplayLength)
+				.on('change.DT', function (e) {
+					_fnLengthChange(settings, $(this).val());
+					_fnDraw(settings);
+				});
+
+			// Update node value whenever anything changes the table's length
+			$(settings.nTable).on('length.dt.DT', function (e, s, len) {
+				if (settings === s) {
+					$('select', div).val(len);
+				}
+			});
+
+			return div[0];
+		}
+
+
+
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		 * Note that most of the paging logic is done in
+		 * DataTable.ext.pager
+		 */
+
+		/**
+		 * Generate the node required for default pagination
+		 *  @param {object} oSettings dataTables settings object
+		 *  @returns {node} Pagination feature node
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnFeatureHtmlPaginate(settings) {
+			var
+				type = settings.sPaginationType,
+				plugin = DataTable.ext.pager[type],
+				modern = typeof plugin === 'function',
+				redraw = function (settings) {
+					_fnDraw(settings);
+				},
+				node = $('<div/>').addClass(settings.oClasses.sPaging + type)[0],
+				features = settings.aanFeatures;
+
+			if (!modern) {
+				plugin.fnInit(settings, node, redraw);
+			}
+
+			/* Add a draw callback for the pagination on first instance, to update the paging display */
+			if (!features.p) {
+				node.id = settings.sTableId + '_paginate';
+
+				settings.aoDrawCallback.push({
+					"fn": function (settings) {
+						if (modern) {
+							var
+								start = settings._iDisplayStart,
+								len = settings._iDisplayLength,
+								visRecords = settings.fnRecordsDisplay(),
+								all = len === -1,
+								page = all ? 0 : Math.ceil(start / len),
+								pages = all ? 1 : Math.ceil(visRecords / len),
+								buttons = plugin(page, pages),
+								i, ien;
+
+							for (i = 0, ien = features.p.length; i < ien; i++) {
+								_fnRenderer(settings, 'pageButton')(
+									settings, features.p[i], i, buttons, page, pages
+								);
+							}
+						}
+						else {
+							plugin.fnUpdate(settings, redraw);
+						}
+					},
+					"sName": "pagination"
+				});
+			}
+
+			return node;
+		}
+
+
+		/**
+		 * Alter the display settings to change the page
+		 *  @param {object} settings DataTables settings object
+		 *  @param {string|int} action Paging action to take: "first", "previous",
+		 *    "next" or "last" or page number to jump to (integer)
+		 *  @param [bool] redraw Automatically draw the update or not
+		 *  @returns {bool} true page has changed, false - no change
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnPageChange(settings, action, redraw) {
+			var
+				start = settings._iDisplayStart,
+				len = settings._iDisplayLength,
+				records = settings.fnRecordsDisplay();
+
+			if (records === 0 || len === -1) {
+				start = 0;
+			}
+			else if (typeof action === "number") {
+				start = action * len;
+
+				if (start > records) {
+					start = 0;
+				}
+			}
+			else if (action == "first") {
+				start = 0;
+			}
+			else if (action == "previous") {
+				start = len >= 0 ?
+					start - len :
+					0;
+
+				if (start < 0) {
+					start = 0;
+				}
+			}
+			else if (action == "next") {
+				if (start + len < records) {
+					start += len;
+				}
+			}
+			else if (action == "last") {
+				start = Math.floor((records - 1) / len) * len;
+			}
+			else {
+				_fnLog(settings, 0, "Unknown paging action: " + action, 5);
+			}
+
+			var changed = settings._iDisplayStart !== start;
+			settings._iDisplayStart = start;
+
+			if (changed) {
+				_fnCallbackFire(settings, null, 'page', [settings]);
+
+				if (redraw) {
+					_fnDraw(settings);
+				}
+			}
+
+			return changed;
+		}
+
+
+
+		/**
+		 * Generate the node required for the processing node
+		 *  @param {object} settings dataTables settings object
+		 *  @returns {node} Processing element
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnFeatureHtmlProcessing(settings) {
+			return $('<div/>', {
+				'id': !settings.aanFeatures.r ? settings.sTableId + '_processing' : null,
+				'class': settings.oClasses.sProcessing
+			})
+				.html(settings.oLanguage.sProcessing)
+				.insertBefore(settings.nTable)[0];
+		}
+
+
+		/**
+		 * Display or hide the processing indicator
+		 *  @param {object} settings dataTables settings object
+		 *  @param {bool} show Show the processing indicator (true) or not (false)
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnProcessingDisplay(settings, show) {
+			if (settings.oFeatures.bProcessing) {
+				$(settings.aanFeatures.r).css('display', show ? 'block' : 'none');
+			}
+
+			_fnCallbackFire(settings, null, 'processing', [settings, show]);
+		}
+
+		/**
+		 * Add any control elements for the table - specifically scrolling
+		 *  @param {object} settings dataTables settings object
+		 *  @returns {node} Node to add to the DOM
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnFeatureHtmlTable(settings) {
+			var table = $(settings.nTable);
+
+			// Add the ARIA grid role to the table
+			table.attr('role', 'grid');
+
+			// Scrolling from here on in
+			var scroll = settings.oScroll;
+
+			if (scroll.sX === '' && scroll.sY === '') {
+				return settings.nTable;
+			}
+
+			var scrollX = scroll.sX;
+			var scrollY = scroll.sY;
+			var classes = settings.oClasses;
+			var caption = table.children('caption');
+			var captionSide = caption.length ? caption[0]._captionSide : null;
+			var headerClone = $(table[0].cloneNode(false));
+			var footerClone = $(table[0].cloneNode(false));
+			var footer = table.children('tfoot');
+			var _div = '<div/>';
+			var size = function (s) {
+				return !s ? null : _fnStringToCss(s);
+			};
+
+			if (!footer.length) {
+				footer = null;
+			}
+
+			/*
+			 * The HTML structure that we want to generate in this function is:
+			 *  div - scroller
+			 *    div - scroll head
+			 *      div - scroll head inner
+			 *        table - scroll head table
+			 *          thead - thead
+			 *    div - scroll body
+			 *      table - table (master table)
+			 *        thead - thead clone for sizing
+			 *        tbody - tbody
+			 *    div - scroll foot
+			 *      div - scroll foot inner
+			 *        table - scroll foot table
+			 *          tfoot - tfoot
+			 */
+			var scroller = $(_div, { 'class': classes.sScrollWrapper })
+				.append(
+					$(_div, { 'class': classes.sScrollHead })
+						.css({
+							overflow: 'hidden',
+							position: 'relative',
+							border: 0,
+							width: scrollX ? size(scrollX) : '100%'
+						})
+						.append(
+							$(_div, { 'class': classes.sScrollHeadInner })
+								.css({
+									'box-sizing': 'content-box',
+									width: scroll.sXInner || '100%'
+								})
+								.append(
+									headerClone
+										.removeAttr('id')
+										.css('margin-left', 0)
+										.append(captionSide === 'top' ? caption : null)
+										.append(
+											table.children('thead')
+										)
+								)
+						)
+				)
+				.append(
+					$(_div, { 'class': classes.sScrollBody })
+						.css({
+							position: 'relative',
+							overflow: 'auto',
+							width: size(scrollX)
+						})
+						.append(table)
+				);
+
+			if (footer) {
+				scroller.append(
+					$(_div, { 'class': classes.sScrollFoot })
+						.css({
+							overflow: 'hidden',
+							border: 0,
+							width: scrollX ? size(scrollX) : '100%'
+						})
+						.append(
+							$(_div, { 'class': classes.sScrollFootInner })
+								.append(
+									footerClone
+										.removeAttr('id')
+										.css('margin-left', 0)
+										.append(captionSide === 'bottom' ? caption : null)
+										.append(
+											table.children('tfoot')
+										)
+								)
+						)
+				);
+			}
+
+			var children = scroller.children();
+			var scrollHead = children[0];
+			var scrollBody = children[1];
+			var scrollFoot = footer ? children[2] : null;
+
+			// When the body is scrolled, then we also want to scroll the headers
+			if (scrollX) {
+				$(scrollBody).on('scroll.DT', function (e) {
+					var scrollLeft = this.scrollLeft;
+
+					scrollHead.scrollLeft = scrollLeft;
+
+					if (footer) {
+						scrollFoot.scrollLeft = scrollLeft;
+					}
+				});
+			}
+
+			$(scrollBody).css('max-height', scrollY);
+			if (!scroll.bCollapse) {
+				$(scrollBody).css('height', scrollY);
+			}
+
+			settings.nScrollHead = scrollHead;
+			settings.nScrollBody = scrollBody;
+			settings.nScrollFoot = scrollFoot;
+
+			// On redraw - align columns
+			settings.aoDrawCallback.push({
+				"fn": _fnScrollDraw,
+				"sName": "scrolling"
+			});
+
+			return scroller[0];
+		}
+
+
+
+		/**
+		 * Update the header, footer and body tables for resizing - i.e. column
+		 * alignment.
+		 *
+		 * Welcome to the most horrible function DataTables. The process that this
+		 * function follows is basically:
+		 *   1. Re-create the table inside the scrolling div
+		 *   2. Take live measurements from the DOM
+		 *   3. Apply the measurements to align the columns
+		 *   4. Clean up
+		 *
+		 *  @param {object} settings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnScrollDraw(settings) {
+			// Given that this is such a monster function, a lot of variables are use
+			// to try and keep the minimised size as small as possible
+			var
+				scroll = settings.oScroll,
+				scrollX = scroll.sX,
+				scrollXInner = scroll.sXInner,
+				scrollY = scroll.sY,
+				barWidth = scroll.iBarWidth,
+				divHeader = $(settings.nScrollHead),
+				divHeaderStyle = divHeader[0].style,
+				divHeaderInner = divHeader.children('div'),
+				divHeaderInnerStyle = divHeaderInner[0].style,
+				divHeaderTable = divHeaderInner.children('table'),
+				divBodyEl = settings.nScrollBody,
+				divBody = $(divBodyEl),
+				divBodyStyle = divBodyEl.style,
+				divFooter = $(settings.nScrollFoot),
+				divFooterInner = divFooter.children('div'),
+				divFooterTable = divFooterInner.children('table'),
+				header = $(settings.nTHead),
+				table = $(settings.nTable),
+				tableEl = table[0],
+				tableStyle = tableEl.style,
+				footer = settings.nTFoot ? $(settings.nTFoot) : null,
+				browser = settings.oBrowser,
+				ie67 = browser.bScrollOversize,
+				dtHeaderCells = _pluck(settings.aoColumns, 'nTh'),
+				headerTrgEls, footerTrgEls,
+				headerSrcEls, footerSrcEls,
+				headerCopy, footerCopy,
+				headerWidths = [], footerWidths = [],
+				headerContent = [], footerContent = [],
+				idx, correction, sanityWidth,
+				zeroOut = function (nSizer) {
+					var style = nSizer.style;
+					style.paddingTop = "0";
+					style.paddingBottom = "0";
+					style.borderTopWidth = "0";
+					style.borderBottomWidth = "0";
+					style.height = 0;
+				};
+
+			// If the scrollbar visibility has changed from the last draw, we need to
+			// adjust the column sizes as the table width will have changed to account
+			// for the scrollbar
+			var scrollBarVis = divBodyEl.scrollHeight > divBodyEl.clientHeight;
+
+			if (settings.scrollBarVis !== scrollBarVis && settings.scrollBarVis !== undefined) {
+				settings.scrollBarVis = scrollBarVis;
+				_fnAdjustColumnSizing(settings);
+				return; // adjust column sizing will call this function again
+			}
+			else {
+				settings.scrollBarVis = scrollBarVis;
+			}
+
+			/*
+			 * 1. Re-create the table inside the scrolling div
+			 */
+
+			// Remove the old minimised thead and tfoot elements in the inner table
+			table.children('thead, tfoot').remove();
+
+			if (footer) {
+				footerCopy = footer.clone().prependTo(table);
+				footerTrgEls = footer.find('tr'); // the original tfoot is in its own table and must be sized
+				footerSrcEls = footerCopy.find('tr');
+			}
+
+			// Clone the current header and footer elements and then place it into the inner table
+			headerCopy = header.clone().prependTo(table);
+			headerTrgEls = header.find('tr'); // original header is in its own table
+			headerSrcEls = headerCopy.find('tr');
+			headerCopy.find('th, td').removeAttr('tabindex');
+
+
+			/*
+			 * 2. Take live measurements from the DOM - do not alter the DOM itself!
+			 */
+
+			// Remove old sizing and apply the calculated column widths
+			// Get the unique column headers in the newly created (cloned) header. We want to apply the
+			// calculated sizes to this header
+			if (!scrollX) {
+				divBodyStyle.width = '100%';
+				divHeader[0].style.width = '100%';
+			}
+
+			$.each(_fnGetUniqueThs(settings, headerCopy), function (i, el) {
+				idx = _fnVisibleToColumnIndex(settings, i);
+				el.style.width = settings.aoColumns[idx].sWidth;
+			});
+
+			if (footer) {
+				_fnApplyToChildren(function (n) {
+					n.style.width = "";
+				}, footerSrcEls);
+			}
+
+			// Size the table as a whole
+			sanityWidth = table.outerWidth();
+			if (scrollX === "") {
+				// No x scrolling
+				tableStyle.width = "100%";
+
+				// IE7 will make the width of the table when 100% include the scrollbar
+				// - which is shouldn't. When there is a scrollbar we need to take this
+				// into account.
+				if (ie67 && (table.find('tbody').height() > divBodyEl.offsetHeight ||
+					divBody.css('overflow-y') == "scroll")
+				) {
+					tableStyle.width = _fnStringToCss(table.outerWidth() - barWidth);
+				}
+
+				// Recalculate the sanity width
+				sanityWidth = table.outerWidth();
+			}
+			else if (scrollXInner !== "") {
+				// legacy x scroll inner has been given - use it
+				tableStyle.width = _fnStringToCss(scrollXInner);
+
+				// Recalculate the sanity width
+				sanityWidth = table.outerWidth();
+			}
+
+			// Hidden header should have zero height, so remove padding and borders. Then
+			// set the width based on the real headers
+
+			// Apply all styles in one pass
+			_fnApplyToChildren(zeroOut, headerSrcEls);
+
+			// Read all widths in next pass
+			_fnApplyToChildren(function (nSizer) {
+				headerContent.push(nSizer.innerHTML);
+				headerWidths.push(_fnStringToCss($(nSizer).css('width')));
+			}, headerSrcEls);
+
+			// Apply all widths in final pass
+			_fnApplyToChildren(function (nToSize, i) {
+				// Only apply widths to the DataTables detected header cells - this
+				// prevents complex headers from having contradictory sizes applied
+				if ($.inArray(nToSize, dtHeaderCells) !== -1) {
+					nToSize.style.width = headerWidths[i];
+				}
+			}, headerTrgEls);
+
+			$(headerSrcEls).height(0);
+
+			/* Same again with the footer if we have one */
+			if (footer) {
+				_fnApplyToChildren(zeroOut, footerSrcEls);
+
+				_fnApplyToChildren(function (nSizer) {
+					footerContent.push(nSizer.innerHTML);
+					footerWidths.push(_fnStringToCss($(nSizer).css('width')));
+				}, footerSrcEls);
+
+				_fnApplyToChildren(function (nToSize, i) {
+					nToSize.style.width = footerWidths[i];
+				}, footerTrgEls);
+
+				$(footerSrcEls).height(0);
+			}
+
+
+			/*
+			 * 3. Apply the measurements
+			 */
+
+			// "Hide" the header and footer that we used for the sizing. We need to keep
+			// the content of the cell so that the width applied to the header and body
+			// both match, but we want to hide it completely. We want to also fix their
+			// width to what they currently are
+			_fnApplyToChildren(function (nSizer, i) {
+				nSizer.innerHTML = '<div class="dataTables_sizing">' + headerContent[i] + '</div>';
+				nSizer.childNodes[0].style.height = "0";
+				nSizer.childNodes[0].style.overflow = "hidden";
+				nSizer.style.width = headerWidths[i];
+			}, headerSrcEls);
+
+			if (footer) {
+				_fnApplyToChildren(function (nSizer, i) {
+					nSizer.innerHTML = '<div class="dataTables_sizing">' + footerContent[i] + '</div>';
+					nSizer.childNodes[0].style.height = "0";
+					nSizer.childNodes[0].style.overflow = "hidden";
+					nSizer.style.width = footerWidths[i];
+				}, footerSrcEls);
+			}
+
+			// Sanity check that the table is of a sensible width. If not then we are going to get
+			// misalignment - try to prevent this by not allowing the table to shrink below its min width
+			if (table.outerWidth() < sanityWidth) {
+				// The min width depends upon if we have a vertical scrollbar visible or not */
+				correction = ((divBodyEl.scrollHeight > divBodyEl.offsetHeight ||
+					divBody.css('overflow-y') == "scroll")) ?
+					sanityWidth + barWidth :
+					sanityWidth;
+
+				// IE6/7 are a law unto themselves...
+				if (ie67 && (divBodyEl.scrollHeight >
+					divBodyEl.offsetHeight || divBody.css('overflow-y') == "scroll")
+				) {
+					tableStyle.width = _fnStringToCss(correction - barWidth);
+				}
+
+				// And give the user a warning that we've stopped the table getting too small
+				if (scrollX === "" || scrollXInner !== "") {
+					_fnLog(settings, 1, 'Possible column misalignment', 6);
+				}
+			}
+			else {
+				correction = '100%';
+			}
+
+			// Apply to the container elements
+			divBodyStyle.width = _fnStringToCss(correction);
+			divHeaderStyle.width = _fnStringToCss(correction);
+
+			if (footer) {
+				settings.nScrollFoot.style.width = _fnStringToCss(correction);
+			}
+
+
+			/*
+			 * 4. Clean up
+			 */
+			if (!scrollY) {
+				/* IE7< puts a vertical scrollbar in place (when it shouldn't be) due to subtracting
+				 * the scrollbar height from the visible display, rather than adding it on. We need to
+				 * set the height in order to sort this. Don't want to do it in any other browsers.
+				 */
+				if (ie67) {
+					divBodyStyle.height = _fnStringToCss(tableEl.offsetHeight + barWidth);
+				}
+			}
+
+			/* Finally set the width's of the header and footer tables */
+			var iOuterWidth = table.outerWidth();
+			divHeaderTable[0].style.width = _fnStringToCss(iOuterWidth);
+			divHeaderInnerStyle.width = _fnStringToCss(iOuterWidth);
+
+			// Figure out if there are scrollbar present - if so then we need a the header and footer to
+			// provide a bit more space to allow "overflow" scrolling (i.e. past the scrollbar)
+			var bScrolling = table.height() > divBodyEl.clientHeight || divBody.css('overflow-y') == "scroll";
+			var padding = 'padding' + (browser.bScrollbarLeft ? 'Left' : 'Right');
+			divHeaderInnerStyle[padding] = bScrolling ? barWidth + "px" : "0px";
+
+			if (footer) {
+				divFooterTable[0].style.width = _fnStringToCss(iOuterWidth);
+				divFooterInner[0].style.width = _fnStringToCss(iOuterWidth);
+				divFooterInner[0].style[padding] = bScrolling ? barWidth + "px" : "0px";
+			}
+
+			// Correct DOM ordering for colgroup - comes before the thead
+			table.children('colgroup').insertBefore(table.children('thead'));
+
+			/* Adjust the position of the header in case we loose the y-scrollbar */
+			divBody.trigger('scroll');
+
+			// If sorting or filtering has occurred, jump the scrolling back to the top
+			// only if we aren't holding the position
+			if ((settings.bSorted || settings.bFiltered) && !settings._drawHold) {
+				divBodyEl.scrollTop = 0;
+			}
+		}
+
+
+
+		/**
+		 * Apply a given function to the display child nodes of an element array (typically
+		 * TD children of TR rows
+		 *  @param {function} fn Method to apply to the objects
+		 *  @param array {nodes} an1 List of elements to look through for display children
+		 *  @param array {nodes} an2 Another list (identical structure to the first) - optional
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnApplyToChildren(fn, an1, an2) {
+			var index = 0, i = 0, iLen = an1.length;
+			var nNode1, nNode2;
+
+			while (i < iLen) {
+				nNode1 = an1[i].firstChild;
+				nNode2 = an2 ? an2[i].firstChild : null;
+
+				while (nNode1) {
+					if (nNode1.nodeType === 1) {
+						if (an2) {
+							fn(nNode1, nNode2, index);
+						}
+						else {
+							fn(nNode1, index);
+						}
+
+						index++;
+					}
+
+					nNode1 = nNode1.nextSibling;
+					nNode2 = an2 ? nNode2.nextSibling : null;
+				}
+
+				i++;
+			}
+		}
+
+
+
+		var __re_html_remove = /<.*?>/g;
+
+
+		/**
+		 * Calculate the width of columns for the table
+		 *  @param {object} oSettings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnCalculateColumnWidths(oSettings) {
+			var
+				table = oSettings.nTable,
+				columns = oSettings.aoColumns,
+				scroll = oSettings.oScroll,
+				scrollY = scroll.sY,
+				scrollX = scroll.sX,
+				scrollXInner = scroll.sXInner,
+				columnCount = columns.length,
+				visibleColumns = _fnGetColumns(oSettings, 'bVisible'),
+				headerCells = $('th', oSettings.nTHead),
+				tableWidthAttr = table.getAttribute('width'), // from DOM element
+				tableContainer = table.parentNode,
+				userInputs = false,
+				i, column, columnIdx, width, outerWidth,
+				browser = oSettings.oBrowser,
+				ie67 = browser.bScrollOversize;
+
+			var styleWidth = table.style.width;
+			if (styleWidth && styleWidth.indexOf('%') !== -1) {
+				tableWidthAttr = styleWidth;
+			}
+
+			/* Convert any user input sizes into pixel sizes */
+			for (i = 0; i < visibleColumns.length; i++) {
+				column = columns[visibleColumns[i]];
+
+				if (column.sWidth !== null) {
+					column.sWidth = _fnConvertToWidth(column.sWidthOrig, tableContainer);
+
+					userInputs = true;
+				}
+			}
+
+			/* If the number of columns in the DOM equals the number that we have to
+			 * process in DataTables, then we can use the offsets that are created by
+			 * the web- browser. No custom sizes can be set in order for this to happen,
+			 * nor scrolling used
+			 */
+			if (ie67 || !userInputs && !scrollX && !scrollY &&
+				columnCount == _fnVisbleColumns(oSettings) &&
+				columnCount == headerCells.length
+			) {
+				for (i = 0; i < columnCount; i++) {
+					var colIdx = _fnVisibleToColumnIndex(oSettings, i);
+
+					if (colIdx !== null) {
+						columns[colIdx].sWidth = _fnStringToCss(headerCells.eq(i).width());
+					}
+				}
+			}
+			else {
+				// Otherwise construct a single row, worst case, table with the widest
+				// node in the data, assign any user defined widths, then insert it into
+				// the DOM and allow the browser to do all the hard work of calculating
+				// table widths
+				var tmpTable = $(table).clone() // don't use cloneNode - IE8 will remove events on the main table
+					.css('visibility', 'hidden')
+					.removeAttr('id');
+
+				// Clean up the table body
+				tmpTable.find('tbody tr').remove();
+				var tr = $('<tr/>').appendTo(tmpTable.find('tbody'));
+
+				// Clone the table header and footer - we can't use the header / footer
+				// from the cloned table, since if scrolling is active, the table's
+				// real header and footer are contained in different table tags
+				tmpTable.find('thead, tfoot').remove();
+				tmpTable
+					.append($(oSettings.nTHead).clone())
+					.append($(oSettings.nTFoot).clone());
+
+				// Remove any assigned widths from the footer (from scrolling)
+				tmpTable.find('tfoot th, tfoot td').css('width', '');
+
+				// Apply custom sizing to the cloned header
+				headerCells = _fnGetUniqueThs(oSettings, tmpTable.find('thead')[0]);
+
+				for (i = 0; i < visibleColumns.length; i++) {
+					column = columns[visibleColumns[i]];
+
+					headerCells[i].style.width = column.sWidthOrig !== null && column.sWidthOrig !== '' ?
+						_fnStringToCss(column.sWidthOrig) :
+						'';
+
+					// For scrollX we need to force the column width otherwise the
+					// browser will collapse it. If this width is smaller than the
+					// width the column requires, then it will have no effect
+					if (column.sWidthOrig && scrollX) {
+						$(headerCells[i]).append($('<div/>').css({
+							width: column.sWidthOrig,
+							margin: 0,
+							padding: 0,
+							border: 0,
+							height: 1
+						}));
+					}
+				}
+
+				// Find the widest cell for each column and put it into the table
+				if (oSettings.aoData.length) {
+					for (i = 0; i < visibleColumns.length; i++) {
+						columnIdx = visibleColumns[i];
+						column = columns[columnIdx];
+
+						$(_fnGetWidestNode(oSettings, columnIdx))
+							.clone(false)
+							.append(column.sContentPadding)
+							.appendTo(tr);
+					}
+				}
+
+				// Tidy the temporary table - remove name attributes so there aren't
+				// duplicated in the dom (radio elements for example)
+				$('[name]', tmpTable).removeAttr('name');
+
+				// Table has been built, attach to the document so we can work with it.
+				// A holding element is used, positioned at the top of the container
+				// with minimal height, so it has no effect on if the container scrolls
+				// or not. Otherwise it might trigger scrolling when it actually isn't
+				// needed
+				var holder = $('<div/>').css(scrollX || scrollY ?
+					{
+						position: 'absolute',
+						top: 0,
+						left: 0,
+						height: 1,
+						right: 0,
+						overflow: 'hidden'
+					} :
+					{}
+				)
+					.append(tmpTable)
+					.appendTo(tableContainer);
+
+				// When scrolling (X or Y) we want to set the width of the table as 
+				// appropriate. However, when not scrolling leave the table width as it
+				// is. This results in slightly different, but I think correct behaviour
+				if (scrollX && scrollXInner) {
+					tmpTable.width(scrollXInner);
+				}
+				else if (scrollX) {
+					tmpTable.css('width', 'auto');
+					tmpTable.removeAttr('width');
+
+					// If there is no width attribute or style, then allow the table to
+					// collapse
+					if (tmpTable.width() < tableContainer.clientWidth && tableWidthAttr) {
+						tmpTable.width(tableContainer.clientWidth);
+					}
+				}
+				else if (scrollY) {
+					tmpTable.width(tableContainer.clientWidth);
+				}
+				else if (tableWidthAttr) {
+					tmpTable.width(tableWidthAttr);
+				}
+
+				// Get the width of each column in the constructed table - we need to
+				// know the inner width (so it can be assigned to the other table's
+				// cells) and the outer width so we can calculate the full width of the
+				// table. This is safe since DataTables requires a unique cell for each
+				// column, but if ever a header can span multiple columns, this will
+				// need to be modified.
+				var total = 0;
+				for (i = 0; i < visibleColumns.length; i++) {
+					var cell = $(headerCells[i]);
+					var border = cell.outerWidth() - cell.width();
+
+					// Use getBounding... where possible (not IE8-) because it can give
+					// sub-pixel accuracy, which we then want to round up!
+					var bounding = browser.bBounding ?
+						Math.ceil(headerCells[i].getBoundingClientRect().width) :
+						cell.outerWidth();
+
+					// Total is tracked to remove any sub-pixel errors as the outerWidth
+					// of the table might not equal the total given here (IE!).
+					total += bounding;
+
+					// Width for each column to use
+					columns[visibleColumns[i]].sWidth = _fnStringToCss(bounding - border);
+				}
+
+				table.style.width = _fnStringToCss(total);
+
+				// Finished with the table - ditch it
+				holder.remove();
+			}
+
+			// If there is a width attr, we want to attach an event listener which
+			// allows the table sizing to automatically adjust when the window is
+			// resized. Use the width attr rather than CSS, since we can't know if the
+			// CSS is a relative value or absolute - DOM read is always px.
+			if (tableWidthAttr) {
+				table.style.width = _fnStringToCss(tableWidthAttr);
+			}
+
+			if ((tableWidthAttr || scrollX) && !oSettings._reszEvt) {
+				var bindResize = function () {
+					$(window).on('resize.DT-' + oSettings.sInstance, _fnThrottle(function () {
+						_fnAdjustColumnSizing(oSettings);
+					}));
+				};
+
+				// IE6/7 will crash if we bind a resize event handler on page load.
+				// To be removed in 1.11 which drops IE6/7 support
+				if (ie67) {
+					setTimeout(bindResize, 1000);
+				}
+				else {
+					bindResize();
+				}
+
+				oSettings._reszEvt = true;
+			}
+		}
+
+
+		/**
+		 * Throttle the calls to a function. Arguments and context are maintained for
+		 * the throttled function
+		 *  @param {function} fn Function to be called
+		 *  @param {int} [freq=200] call frequency in mS
+		 *  @returns {function} wrapped function
+		 *  @memberof DataTable#oApi
+		 */
+		var _fnThrottle = DataTable.util.throttle;
+
+
+		/**
+		 * Convert a CSS unit width to pixels (e.g. 2em)
+		 *  @param {string} width width to be converted
+		 *  @param {node} parent parent to get the with for (required for relative widths) - optional
+		 *  @returns {int} width in pixels
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnConvertToWidth(width, parent) {
+			if (!width) {
+				return 0;
+			}
+
+			var n = $('<div/>')
+				.css('width', _fnStringToCss(width))
+				.appendTo(parent || document.body);
+
+			var val = n[0].offsetWidth;
+			n.remove();
+
+			return val;
+		}
+
+
+		/**
+		 * Get the widest node
+		 *  @param {object} settings dataTables settings object
+		 *  @param {int} colIdx column of interest
+		 *  @returns {node} widest table node
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnGetWidestNode(settings, colIdx) {
+			var idx = _fnGetMaxLenString(settings, colIdx);
+			if (idx < 0) {
+				return null;
+			}
+
+			var data = settings.aoData[idx];
+			return !data.nTr ? // Might not have been created when deferred rendering
+				$('<td/>').html(_fnGetCellData(settings, idx, colIdx, 'display'))[0] :
+				data.anCells[colIdx];
+		}
+
+
+		/**
+		 * Get the maximum strlen for each data column
+		 *  @param {object} settings dataTables settings object
+		 *  @param {int} colIdx column of interest
+		 *  @returns {string} max string length for each column
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnGetMaxLenString(settings, colIdx) {
+			var s, max = -1, maxIdx = -1;
+
+			for (var i = 0, ien = settings.aoData.length; i < ien; i++) {
+				s = _fnGetCellData(settings, i, colIdx, 'display') + '';
+				s = s.replace(__re_html_remove, '');
+				s = s.replace(/&nbsp;/g, ' ');
+
+				if (s.length > max) {
+					max = s.length;
+					maxIdx = i;
+				}
+			}
+
+			return maxIdx;
+		}
+
+
+		/**
+		 * Append a CSS unit (only if required) to a string
+		 *  @param {string} value to css-ify
+		 *  @returns {string} value with css unit
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnStringToCss(s) {
+			if (s === null) {
+				return '0px';
+			}
+
+			if (typeof s == 'number') {
+				return s < 0 ?
+					'0px' :
+					s + 'px';
+			}
+
+			// Check it has a unit character already
+			return s.match(/\d$/) ?
+				s + 'px' :
+				s;
+		}
+
+
+
+		function _fnSortFlatten(settings) {
+			var
+				i, iLen, k, kLen,
+				aSort = [],
+				aiOrig = [],
+				aoColumns = settings.aoColumns,
+				aDataSort, iCol, sType, srcCol,
+				fixed = settings.aaSortingFixed,
+				fixedObj = $.isPlainObject(fixed),
+				nestedSort = [],
+				add = function (a) {
+					if (a.length && !Array.isArray(a[0])) {
+						// 1D array
+						nestedSort.push(a);
+					}
+					else {
+						// 2D array
+						$.merge(nestedSort, a);
+					}
+				};
+
+			// Build the sort array, with pre-fix and post-fix options if they have been
+			// specified
+			if (Array.isArray(fixed)) {
+				add(fixed);
+			}
+
+			if (fixedObj && fixed.pre) {
+				add(fixed.pre);
+			}
+
+			add(settings.aaSorting);
+
+			if (fixedObj && fixed.post) {
+				add(fixed.post);
+			}
+
+			for (i = 0; i < nestedSort.length; i++) {
+				srcCol = nestedSort[i][0];
+				aDataSort = aoColumns[srcCol].aDataSort;
+
+				for (k = 0, kLen = aDataSort.length; k < kLen; k++) {
+					iCol = aDataSort[k];
+					sType = aoColumns[iCol].sType || 'string';
+
+					if (nestedSort[i]._idx === undefined) {
+						nestedSort[i]._idx = $.inArray(nestedSort[i][1], aoColumns[iCol].asSorting);
+					}
+
+					aSort.push({
+						src: srcCol,
+						col: iCol,
+						dir: nestedSort[i][1],
+						index: nestedSort[i]._idx,
+						type: sType,
+						formatter: DataTable.ext.type.order[sType + "-pre"]
+					});
+				}
+			}
+
+			return aSort;
+		}
+
+		/**
+		 * Change the order of the table
+		 *  @param {object} oSettings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 *  @todo This really needs split up!
+		 */
+		function _fnSort(oSettings) {
+			var
+				i, ien, iLen, j, jLen, k, kLen,
+				sDataType, nTh,
+				aiOrig = [],
+				oExtSort = DataTable.ext.type.order,
+				aoData = oSettings.aoData,
+				aoColumns = oSettings.aoColumns,
+				aDataSort, data, iCol, sType, oSort,
+				formatters = 0,
+				sortCol,
+				displayMaster = oSettings.aiDisplayMaster,
+				aSort;
+
+			// Resolve any column types that are unknown due to addition or invalidation
+			// @todo Can this be moved into a 'data-ready' handler which is called when
+			//   data is going to be used in the table?
+			_fnColumnTypes(oSettings);
+
+			aSort = _fnSortFlatten(oSettings);
+
+			for (i = 0, ien = aSort.length; i < ien; i++) {
+				sortCol = aSort[i];
+
+				// Track if we can use the fast sort algorithm
+				if (sortCol.formatter) {
+					formatters++;
+				}
+
+				// Load the data needed for the sort, for each cell
+				_fnSortData(oSettings, sortCol.col);
+			}
+
+			/* No sorting required if server-side or no sorting array */
+			if (_fnDataSource(oSettings) != 'ssp' && aSort.length !== 0) {
+				// Create a value - key array of the current row positions such that we can use their
+				// current position during the sort, if values match, in order to perform stable sorting
+				for (i = 0, iLen = displayMaster.length; i < iLen; i++) {
+					aiOrig[displayMaster[i]] = i;
+				}
+
+				/* Do the sort - here we want multi-column sorting based on a given data source (column)
+				 * and sorting function (from oSort) in a certain direction. It's reasonably complex to
+				 * follow on it's own, but this is what we want (example two column sorting):
+				 *  fnLocalSorting = function(a,b){
+				 *    var iTest;
+				 *    iTest = oSort['string-asc']('data11', 'data12');
+				 *      if (iTest !== 0)
+				 *        return iTest;
+				 *    iTest = oSort['numeric-desc']('data21', 'data22');
+				 *    if (iTest !== 0)
+				 *      return iTest;
+				 *    return oSort['numeric-asc']( aiOrig[a], aiOrig[b] );
+				 *  }
+				 * Basically we have a test for each sorting column, if the data in that column is equal,
+				 * test the next column. If all columns match, then we use a numeric sort on the row
+				 * positions in the original data array to provide a stable sort.
+				 *
+				 * Note - I know it seems excessive to have two sorting methods, but the first is around
+				 * 15% faster, so the second is only maintained for backwards compatibility with sorting
+				 * methods which do not have a pre-sort formatting function.
+				 */
+				if (formatters === aSort.length) {
+					// All sort types have formatting functions
+					displayMaster.sort(function (a, b) {
+						var
+							x, y, k, test, sort,
+							len = aSort.length,
+							dataA = aoData[a]._aSortData,
+							dataB = aoData[b]._aSortData;
+
+						for (k = 0; k < len; k++) {
+							sort = aSort[k];
+
+							x = dataA[sort.col];
+							y = dataB[sort.col];
+
+							test = x < y ? -1 : x > y ? 1 : 0;
+							if (test !== 0) {
+								return sort.dir === 'asc' ? test : -test;
+							}
+						}
+
+						x = aiOrig[a];
+						y = aiOrig[b];
+						return x < y ? -1 : x > y ? 1 : 0;
+					});
+				}
+				else {
+					// Depreciated - remove in 1.11 (providing a plug-in option)
+					// Not all sort types have formatting methods, so we have to call their sorting
+					// methods.
+					displayMaster.sort(function (a, b) {
+						var
+							x, y, k, l, test, sort, fn,
+							len = aSort.length,
+							dataA = aoData[a]._aSortData,
+							dataB = aoData[b]._aSortData;
+
+						for (k = 0; k < len; k++) {
+							sort = aSort[k];
+
+							x = dataA[sort.col];
+							y = dataB[sort.col];
+
+							fn = oExtSort[sort.type + "-" + sort.dir] || oExtSort["string-" + sort.dir];
+							test = fn(x, y);
+							if (test !== 0) {
+								return test;
+							}
+						}
+
+						x = aiOrig[a];
+						y = aiOrig[b];
+						return x < y ? -1 : x > y ? 1 : 0;
+					});
+				}
+			}
+
+			/* Tell the draw function that we have sorted the data */
+			oSettings.bSorted = true;
+		}
+
+
+		function _fnSortAria(settings) {
+			var label;
+			var nextSort;
+			var columns = settings.aoColumns;
+			var aSort = _fnSortFlatten(settings);
+			var oAria = settings.oLanguage.oAria;
+
+			// ARIA attributes - need to loop all columns, to update all (removing old
+			// attributes as needed)
+			for (var i = 0, iLen = columns.length; i < iLen; i++) {
+				var col = columns[i];
+				var asSorting = col.asSorting;
+				var sTitle = col.ariaTitle || col.sTitle.replace(/<.*?>/g, "");
+				var th = col.nTh;
+
+				// IE7 is throwing an error when setting these properties with jQuery's
+				// attr() and removeAttr() methods...
+				th.removeAttribute('aria-sort');
+
+				/* In ARIA only the first sorting column can be marked as sorting - no multi-sort option */
+				if (col.bSortable) {
+					if (aSort.length > 0 && aSort[0].col == i) {
+						th.setAttribute('aria-sort', aSort[0].dir == "asc" ? "ascending" : "descending");
+						nextSort = asSorting[aSort[0].index + 1] || asSorting[0];
+					}
+					else {
+						nextSort = asSorting[0];
+					}
+
+					label = sTitle + (nextSort === "asc" ?
+						oAria.sSortAscending :
+						oAria.sSortDescending
+					);
+				}
+				else {
+					label = sTitle;
+				}
+
+				th.setAttribute('aria-label', label);
+			}
+		}
+
+
+		/**
+		 * Function to run on user sort request
+		 *  @param {object} settings dataTables settings object
+		 *  @param {node} attachTo node to attach the handler to
+		 *  @param {int} colIdx column sorting index
+		 *  @param {boolean} [append=false] Append the requested sort to the existing
+		 *    sort if true (i.e. multi-column sort)
+		 *  @param {function} [callback] callback function
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnSortListener(settings, colIdx, append, callback) {
+			var col = settings.aoColumns[colIdx];
+			var sorting = settings.aaSorting;
+			var asSorting = col.asSorting;
+			var nextSortIdx;
+			var next = function (a, overflow) {
+				var idx = a._idx;
+				if (idx === undefined) {
+					idx = $.inArray(a[1], asSorting);
+				}
+
+				return idx + 1 < asSorting.length ?
+					idx + 1 :
+					overflow ?
+						null :
+						0;
+			};
+
+			// Convert to 2D array if needed
+			if (typeof sorting[0] === 'number') {
+				sorting = settings.aaSorting = [sorting];
+			}
+
+			// If appending the sort then we are multi-column sorting
+			if (append && settings.oFeatures.bSortMulti) {
+				// Are we already doing some kind of sort on this column?
+				var sortIdx = $.inArray(colIdx, _pluck(sorting, '0'));
+
+				if (sortIdx !== -1) {
+					// Yes, modify the sort
+					nextSortIdx = next(sorting[sortIdx], true);
+
+					if (nextSortIdx === null && sorting.length === 1) {
+						nextSortIdx = 0; // can't remove sorting completely
+					}
+
+					if (nextSortIdx === null) {
+						sorting.splice(sortIdx, 1);
+					}
+					else {
+						sorting[sortIdx][1] = asSorting[nextSortIdx];
+						sorting[sortIdx]._idx = nextSortIdx;
+					}
+				}
+				else {
+					// No sort on this column yet
+					sorting.push([colIdx, asSorting[0], 0]);
+					sorting[sorting.length - 1]._idx = 0;
+				}
+			}
+			else if (sorting.length && sorting[0][0] == colIdx) {
+				// Single column - already sorting on this column, modify the sort
+				nextSortIdx = next(sorting[0]);
+
+				sorting.length = 1;
+				sorting[0][1] = asSorting[nextSortIdx];
+				sorting[0]._idx = nextSortIdx;
+			}
+			else {
+				// Single column - sort only on this column
+				sorting.length = 0;
+				sorting.push([colIdx, asSorting[0]]);
+				sorting[0]._idx = 0;
+			}
+
+			// Run the sort by calling a full redraw
+			_fnReDraw(settings);
+
+			// callback used for async user interaction
+			if (typeof callback == 'function') {
+				callback(settings);
+			}
+		}
+
+
+		/**
+		 * Attach a sort handler (click) to a node
+		 *  @param {object} settings dataTables settings object
+		 *  @param {node} attachTo node to attach the handler to
+		 *  @param {int} colIdx column sorting index
+		 *  @param {function} [callback] callback function
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnSortAttachListener(settings, attachTo, colIdx, callback) {
+			var col = settings.aoColumns[colIdx];
+
+			_fnBindAction(attachTo, {}, function (e) {
+				/* If the column is not sortable - don't to anything */
+				if (col.bSortable === false) {
+					return;
+				}
+
+				// If processing is enabled use a timeout to allow the processing
+				// display to be shown - otherwise to it synchronously
+				if (settings.oFeatures.bProcessing) {
+					_fnProcessingDisplay(settings, true);
+
+					setTimeout(function () {
+						_fnSortListener(settings, colIdx, e.shiftKey, callback);
+
+						// In server-side processing, the draw callback will remove the
+						// processing display
+						if (_fnDataSource(settings) !== 'ssp') {
+							_fnProcessingDisplay(settings, false);
+						}
+					}, 0);
+				}
+				else {
+					_fnSortListener(settings, colIdx, e.shiftKey, callback);
+				}
+			});
+		}
+
+
+		/**
+		 * Set the sorting classes on table's body, Note: it is safe to call this function
+		 * when bSort and bSortClasses are false
+		 *  @param {object} oSettings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnSortingClasses(settings) {
+			var oldSort = settings.aLastSort;
+			var sortClass = settings.oClasses.sSortColumn;
+			var sort = _fnSortFlatten(settings);
+			var features = settings.oFeatures;
+			var i, ien, colIdx;
+
+			if (features.bSort && features.bSortClasses) {
+				// Remove old sorting classes
+				for (i = 0, ien = oldSort.length; i < ien; i++) {
+					colIdx = oldSort[i].src;
+
+					// Remove column sorting
+					$(_pluck(settings.aoData, 'anCells', colIdx))
+						.removeClass(sortClass + (i < 2 ? i + 1 : 3));
+				}
+
+				// Add new column sorting
+				for (i = 0, ien = sort.length; i < ien; i++) {
+					colIdx = sort[i].src;
+
+					$(_pluck(settings.aoData, 'anCells', colIdx))
+						.addClass(sortClass + (i < 2 ? i + 1 : 3));
+				}
+			}
+
+			settings.aLastSort = sort;
+		}
+
+
+		// Get the data to sort a column, be it from cache, fresh (populating the
+		// cache), or from a sort formatter
+		function _fnSortData(settings, idx) {
+			// Custom sorting function - provided by the sort data type
+			var column = settings.aoColumns[idx];
+			var customSort = DataTable.ext.order[column.sSortDataType];
+			var customData;
+
+			if (customSort) {
+				customData = customSort.call(settings.oInstance, settings, idx,
+					_fnColumnIndexToVisible(settings, idx)
+				);
+			}
+
+			// Use / populate cache
+			var row, cellData;
+			var formatter = DataTable.ext.type.order[column.sType + "-pre"];
+
+			for (var i = 0, ien = settings.aoData.length; i < ien; i++) {
+				row = settings.aoData[i];
+
+				if (!row._aSortData) {
+					row._aSortData = [];
+				}
+
+				if (!row._aSortData[idx] || customSort) {
+					cellData = customSort ?
+						customData[i] : // If there was a custom sort function, use data from there
+						_fnGetCellData(settings, i, idx, 'sort');
+
+					row._aSortData[idx] = formatter ?
+						formatter(cellData) :
+						cellData;
+				}
+			}
+		}
+
+
+
+		/**
+		 * Save the state of a table
+		 *  @param {object} oSettings dataTables settings object
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnSaveState(settings) {
+			if (!settings.oFeatures.bStateSave || settings.bDestroying) {
+				return;
+			}
+
+			/* Store the interesting variables */
+			var state = {
+				time: +new Date(),
+				start: settings._iDisplayStart,
+				length: settings._iDisplayLength,
+				order: $.extend(true, [], settings.aaSorting),
+				search: _fnSearchToCamel(settings.oPreviousSearch),
+				columns: $.map(settings.aoColumns, function (col, i) {
+					return {
+						visible: col.bVisible,
+						search: _fnSearchToCamel(settings.aoPreSearchCols[i])
+					};
+				})
+			};
+
+			_fnCallbackFire(settings, "aoStateSaveParams", 'stateSaveParams', [settings, state]);
+
+			settings.oSavedState = state;
+			settings.fnStateSaveCallback.call(settings.oInstance, settings, state);
+		}
+
+
+		/**
+		 * Attempt to load a saved table state
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {object} oInit DataTables init object so we can override settings
+		 *  @param {function} callback Callback to execute when the state has been loaded
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnLoadState(settings, oInit, callback) {
+			var i, ien;
+			var columns = settings.aoColumns;
+			var loaded = function (s) {
+				if (!s || !s.time) {
+					callback();
+					return;
+				}
+
+				// Allow custom and plug-in manipulation functions to alter the saved data set and
+				// cancelling of loading by returning false
+				var abStateLoad = _fnCallbackFire(settings, 'aoStateLoadParams', 'stateLoadParams', [settings, s]);
+				if ($.inArray(false, abStateLoad) !== -1) {
+					callback();
+					return;
+				}
+
+				// Reject old data
+				var duration = settings.iStateDuration;
+				if (duration > 0 && s.time < +new Date() - (duration * 1000)) {
+					callback();
+					return;
+				}
+
+				// Number of columns have changed - all bets are off, no restore of settings
+				if (s.columns && columns.length !== s.columns.length) {
+					callback();
+					return;
+				}
+
+				// Store the saved state so it might be accessed at any time
+				settings.oLoadedState = $.extend(true, {}, s);
+
+				// Restore key features - todo - for 1.11 this needs to be done by
+				// subscribed events
+				if (s.start !== undefined) {
+					settings._iDisplayStart = s.start;
+					settings.iInitDisplayStart = s.start;
+				}
+				if (s.length !== undefined) {
+					settings._iDisplayLength = s.length;
+				}
+
+				// Order
+				if (s.order !== undefined) {
+					settings.aaSorting = [];
+					$.each(s.order, function (i, col) {
+						settings.aaSorting.push(col[0] >= columns.length ?
+							[0, col[1]] :
+							col
+						);
+					});
+				}
+
+				// Search
+				if (s.search !== undefined) {
+					$.extend(settings.oPreviousSearch, _fnSearchToHung(s.search));
+				}
+
+				// Columns
+				//
+				if (s.columns) {
+					for (i = 0, ien = s.columns.length; i < ien; i++) {
+						var col = s.columns[i];
+
+						// Visibility
+						if (col.visible !== undefined) {
+							columns[i].bVisible = col.visible;
+						}
+
+						// Search
+						if (col.search !== undefined) {
+							$.extend(settings.aoPreSearchCols[i], _fnSearchToHung(col.search));
+						}
+					}
+				}
+
+				_fnCallbackFire(settings, 'aoStateLoaded', 'stateLoaded', [settings, s]);
+				callback();
+			};
+
+			if (!settings.oFeatures.bStateSave) {
+				callback();
+				return;
+			}
+
+			var state = settings.fnStateLoadCallback.call(settings.oInstance, settings, loaded);
+
+			if (state !== undefined) {
+				loaded(state);
+			}
+			// otherwise, wait for the loaded callback to be executed
+		}
+
+
+		/**
+		 * Return the settings object for a particular table
+		 *  @param {node} table table we are using as a dataTable
+		 *  @returns {object} Settings object - or null if not found
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnSettingsFromNode(table) {
+			var settings = DataTable.settings;
+			var idx = $.inArray(table, _pluck(settings, 'nTable'));
+
+			return idx !== -1 ?
+				settings[idx] :
+				null;
+		}
+
+
+		/**
+		 * Log an error message
+		 *  @param {object} settings dataTables settings object
+		 *  @param {int} level log error messages, or display them to the user
+		 *  @param {string} msg error message
+		 *  @param {int} tn Technical note id to get more information about the error.
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnLog(settings, level, msg, tn) {
+			msg = 'DataTables warning: ' +
+				(settings ? 'table id=' + settings.sTableId + ' - ' : '') + msg;
+
+			if (tn) {
+				msg += '. For more information about this error, please see ' +
+					'http://datatables.net/tn/' + tn;
+			}
+
+			if (!level) {
+				// Backwards compatibility pre 1.10
+				var ext = DataTable.ext;
+				var type = ext.sErrMode || ext.errMode;
+
+				if (settings) {
+					_fnCallbackFire(settings, null, 'error', [settings, tn, msg]);
+				}
+
+				if (type == 'alert') {
+					alert(msg);
+				}
+				else if (type == 'throw') {
+					throw new Error(msg);
+				}
+				else if (typeof type == 'function') {
+					type(settings, tn, msg);
+				}
+			}
+			else if (window.console && console.log) {
+				console.log(msg);
+			}
+		}
+
+
+		/**
+		 * See if a property is defined on one object, if so assign it to the other object
+		 *  @param {object} ret target object
+		 *  @param {object} src source object
+		 *  @param {string} name property
+		 *  @param {string} [mappedName] name to map too - optional, name used if not given
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnMap(ret, src, name, mappedName) {
+			if (Array.isArray(name)) {
+				$.each(name, function (i, val) {
+					if (Array.isArray(val)) {
+						_fnMap(ret, src, val[0], val[1]);
+					}
+					else {
+						_fnMap(ret, src, val);
+					}
+				});
+
+				return;
+			}
+
+			if (mappedName === undefined) {
+				mappedName = name;
+			}
+
+			if (src[name] !== undefined) {
+				ret[mappedName] = src[name];
+			}
+		}
+
+
+		/**
+		 * Extend objects - very similar to jQuery.extend, but deep copy objects, and
+		 * shallow copy arrays. The reason we need to do this, is that we don't want to
+		 * deep copy array init values (such as aaSorting) since the dev wouldn't be
+		 * able to override them, but we do want to deep copy arrays.
+		 *  @param {object} out Object to extend
+		 *  @param {object} extender Object from which the properties will be applied to
+		 *      out
+		 *  @param {boolean} breakRefs If true, then arrays will be sliced to take an
+		 *      independent copy with the exception of the `data` or `aaData` parameters
+		 *      if they are present. This is so you can pass in a collection to
+		 *      DataTables and have that used as your data source without breaking the
+		 *      references
+		 *  @returns {object} out Reference, just for convenience - out === the return.
+		 *  @memberof DataTable#oApi
+		 *  @todo This doesn't take account of arrays inside the deep copied objects.
+		 */
+		function _fnExtend(out, extender, breakRefs) {
+			var val;
+
+			for (var prop in extender) {
+				if (extender.hasOwnProperty(prop)) {
+					val = extender[prop];
+
+					if ($.isPlainObject(val)) {
+						if (!$.isPlainObject(out[prop])) {
+							out[prop] = {};
+						}
+						$.extend(true, out[prop], val);
+					}
+					else if (breakRefs && prop !== 'data' && prop !== 'aaData' && Array.isArray(val)) {
+						out[prop] = val.slice();
+					}
+					else {
+						out[prop] = val;
+					}
+				}
+			}
+
+			return out;
+		}
+
+
+		/**
+		 * Bind an event handers to allow a click or return key to activate the callback.
+		 * This is good for accessibility since a return on the keyboard will have the
+		 * same effect as a click, if the element has focus.
+		 *  @param {element} n Element to bind the action to
+		 *  @param {object} oData Data object to pass to the triggered function
+		 *  @param {function} fn Callback function for when the event is triggered
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnBindAction(n, oData, fn) {
+			$(n)
+				.on('click.DT', oData, function (e) {
+					$(n).trigger('blur'); // Remove focus outline for mouse users
+					fn(e);
+				})
+				.on('keypress.DT', oData, function (e) {
+					if (e.which === 13) {
+						e.preventDefault();
+						fn(e);
+					}
+				})
+				.on('selectstart.DT', function () {
+					/* Take the brutal approach to cancelling text selection */
+					return false;
+				});
+		}
+
+
+		/**
+		 * Register a callback function. Easily allows a callback function to be added to
+		 * an array store of callback functions that can then all be called together.
+		 *  @param {object} oSettings dataTables settings object
+		 *  @param {string} sStore Name of the array storage for the callbacks in oSettings
+		 *  @param {function} fn Function to be called back
+		 *  @param {string} sName Identifying name for the callback (i.e. a label)
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnCallbackReg(oSettings, sStore, fn, sName) {
+			if (fn) {
+				oSettings[sStore].push({
+					"fn": fn,
+					"sName": sName
+				});
+			}
+		}
+
+
+		/**
+		 * Fire callback functions and trigger events. Note that the loop over the
+		 * callback array store is done backwards! Further note that you do not want to
+		 * fire off triggers in time sensitive applications (for example cell creation)
+		 * as its slow.
+		 *  @param {object} settings dataTables settings object
+		 *  @param {string} callbackArr Name of the array storage for the callbacks in
+		 *      oSettings
+		 *  @param {string} eventName Name of the jQuery custom event to trigger. If
+		 *      null no trigger is fired
+		 *  @param {array} args Array of arguments to pass to the callback function /
+		 *      trigger
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnCallbackFire(settings, callbackArr, eventName, args) {
+			var ret = [];
+
+			if (callbackArr) {
+				ret = $.map(settings[callbackArr].slice().reverse(), function (val, i) {
+					return val.fn.apply(settings.oInstance, args);
+				});
+			}
+
+			if (eventName !== null) {
+				var e = $.Event(eventName + '.dt');
+
+				$(settings.nTable).trigger(e, args);
+
+				ret.push(e.result);
+			}
+
+			return ret;
+		}
+
+
+		function _fnLengthOverflow(settings) {
+			var
+				start = settings._iDisplayStart,
+				end = settings.fnDisplayEnd(),
+				len = settings._iDisplayLength;
+
+			/* If we have space to show extra rows (backing up from the end point - then do so */
+			if (start >= end) {
+				start = end - len;
+			}
+
+			// Keep the start record on the current page
+			start -= (start % len);
+
+			if (len === -1 || start < 0) {
+				start = 0;
+			}
+
+			settings._iDisplayStart = start;
+		}
+
+
+		function _fnRenderer(settings, type) {
+			var renderer = settings.renderer;
+			var host = DataTable.ext.renderer[type];
+
+			if ($.isPlainObject(renderer) && renderer[type]) {
+				// Specific renderer for this type. If available use it, otherwise use
+				// the default.
+				return host[renderer[type]] || host._;
+			}
+			else if (typeof renderer === 'string') {
+				// Common renderer - if there is one available for this type use it,
+				// otherwise use the default
+				return host[renderer] || host._;
+			}
+
+			// Use the default
+			return host._;
+		}
+
+
+		/**
+		 * Detect the data source being used for the table. Used to simplify the code
+		 * a little (ajax) and to make it compress a little smaller.
+		 *
+		 *  @param {object} settings dataTables settings object
+		 *  @returns {string} Data source
+		 *  @memberof DataTable#oApi
+		 */
+		function _fnDataSource(settings) {
+			if (settings.oFeatures.bServerSide) {
+				return 'ssp';
+			}
+			else if (settings.ajax || settings.sAjaxSource) {
+				return 'ajax';
+			}
+			return 'dom';
+		}
+
+
+
+
+		/**
+		 * Computed structure of the DataTables API, defined by the options passed to
+		 * `DataTable.Api.register()` when building the API.
+		 *
+		 * The structure is built in order to speed creation and extension of the Api
+		 * objects since the extensions are effectively pre-parsed.
+		 *
+		 * The array is an array of objects with the following structure, where this
+		 * base array represents the Api prototype base:
+		 *
+		 *     [
+		 *       {
+		 *         name:      'data'                -- string   - Property name
+		 *         val:       function () {},       -- function - Api method (or undefined if just an object
+		 *         methodExt: [ ... ],              -- array    - Array of Api object definitions to extend the method result
+		 *         propExt:   [ ... ]               -- array    - Array of Api object definitions to extend the property
+		 *       },
+		 *       {
+		 *         name:     'row'
+		 *         val:       {},
+		 *         methodExt: [ ... ],
+		 *         propExt:   [
+		 *           {
+		 *             name:      'data'
+		 *             val:       function () {},
+		 *             methodExt: [ ... ],
+		 *             propExt:   [ ... ]
+		 *           },
+		 *           ...
+		 *         ]
+		 *       }
+		 *     ]
+		 *
+		 * @type {Array}
+		 * @ignore
+		 */
+		var __apiStruct = [];
+
+
+		/**
+		 * `Array.prototype` reference.
+		 *
+		 * @type object
+		 * @ignore
+		 */
+		var __arrayProto = Array.prototype;
+
+
+		/**
+		 * Abstraction for `context` parameter of the `Api` constructor to allow it to
+		 * take several different forms for ease of use.
+		 *
+		 * Each of the input parameter types will be converted to a DataTables settings
+		 * object where possible.
+		 *
+		 * @param  {string|node|jQuery|object} mixed DataTable identifier. Can be one
+		 *   of:
+		 *
+		 *   * `string` - jQuery selector. Any DataTables' matching the given selector
+		 *     with be found and used.
+		 *   * `node` - `TABLE` node which has already been formed into a DataTable.
+		 *   * `jQuery` - A jQuery object of `TABLE` nodes.
+		 *   * `object` - DataTables settings object
+		 *   * `DataTables.Api` - API instance
+		 * @return {array|null} Matching DataTables settings objects. `null` or
+		 *   `undefined` is returned if no matching DataTable is found.
+		 * @ignore
+		 */
+		var _toSettings = function (mixed) {
+			var idx, jq;
+			var settings = DataTable.settings;
+			var tables = $.map(settings, function (el, i) {
+				return el.nTable;
+			});
+
+			if (!mixed) {
+				return [];
+			}
+			else if (mixed.nTable && mixed.oApi) {
+				// DataTables settings object
+				return [mixed];
+			}
+			else if (mixed.nodeName && mixed.nodeName.toLowerCase() === 'table') {
+				// Table node
+				idx = $.inArray(mixed, tables);
+				return idx !== -1 ? [settings[idx]] : null;
+			}
+			else if (mixed && typeof mixed.settings === 'function') {
+				return mixed.settings().toArray();
+			}
+			else if (typeof mixed === 'string') {
+				// jQuery selector
+				jq = $(mixed);
+			}
+			else if (mixed instanceof $) {
+				// jQuery object (also DataTables instance)
+				jq = mixed;
+			}
+
+			if (jq) {
+				return jq.map(function (i) {
+					idx = $.inArray(this, tables);
+					return idx !== -1 ? settings[idx] : null;
+				}).toArray();
+			}
+		};
+
+
+		/**
+		 * DataTables API class - used to control and interface with  one or more
+		 * DataTables enhanced tables.
+		 *
+		 * The API class is heavily based on jQuery, presenting a chainable interface
+		 * that you can use to interact with tables. Each instance of the API class has
+		 * a "context" - i.e. the tables that it will operate on. This could be a single
+		 * table, all tables on a page or a sub-set thereof.
+		 *
+		 * Additionally the API is designed to allow you to easily work with the data in
+		 * the tables, retrieving and manipulating it as required. This is done by
+		 * presenting the API class as an array like interface. The contents of the
+		 * array depend upon the actions requested by each method (for example
+		 * `rows().nodes()` will return an array of nodes, while `rows().data()` will
+		 * return an array of objects or arrays depending upon your table's
+		 * configuration). The API object has a number of array like methods (`push`,
+		 * `pop`, `reverse` etc) as well as additional helper methods (`each`, `pluck`,
+		 * `unique` etc) to assist your working with the data held in a table.
+		 *
+		 * Most methods (those which return an Api instance) are chainable, which means
+		 * the return from a method call also has all of the methods available that the
+		 * top level object had. For example, these two calls are equivalent:
+		 *
+		 *     // Not chained
+		 *     api.row.add( {...} );
+		 *     api.draw();
+		 *
+		 *     // Chained
+		 *     api.row.add( {...} ).draw();
+		 *
+		 * @class DataTable.Api
+		 * @param {array|object|string|jQuery} context DataTable identifier. This is
+		 *   used to define which DataTables enhanced tables this API will operate on.
+		 *   Can be one of:
+		 *
+		 *   * `string` - jQuery selector. Any DataTables' matching the given selector
+		 *     with be found and used.
+		 *   * `node` - `TABLE` node which has already been formed into a DataTable.
+		 *   * `jQuery` - A jQuery object of `TABLE` nodes.
+		 *   * `object` - DataTables settings object
+		 * @param {array} [data] Data to initialise the Api instance with.
+		 *
+		 * @example
+		 *   // Direct initialisation during DataTables construction
+		 *   var api = $('#example').DataTable();
+		 *
+		 * @example
+		 *   // Initialisation using a DataTables jQuery object
+		 *   var api = $('#example').dataTable().api();
+		 *
+		 * @example
+		 *   // Initialisation as a constructor
+		 *   var api = new $.fn.DataTable.Api( 'table.dataTable' );
+		 */
+		_Api = function (context, data) {
+			if (!(this instanceof _Api)) {
+				return new _Api(context, data);
+			}
+
+			var settings = [];
+			var ctxSettings = function (o) {
+				var a = _toSettings(o);
+				if (a) {
+					settings.push.apply(settings, a);
+				}
+			};
+
+			if (Array.isArray(context)) {
+				for (var i = 0, ien = context.length; i < ien; i++) {
+					ctxSettings(context[i]);
+				}
+			}
+			else {
+				ctxSettings(context);
+			}
+
+			// Remove duplicates
+			this.context = _unique(settings);
+
+			// Initial data
+			if (data) {
+				$.merge(this, data);
+			}
+
+			// selector
+			this.selector = {
+				rows: null,
+				cols: null,
+				opts: null
+			};
+
+			_Api.extend(this, this, __apiStruct);
+		};
+
+		DataTable.Api = _Api;
+
+		// Don't destroy the existing prototype, just extend it. Required for jQuery 2's
+		// isPlainObject.
+		$.extend(_Api.prototype, {
+			any: function () {
+				return this.count() !== 0;
+			},
+
+
+			concat: __arrayProto.concat,
+
+
+			context: [], // array of table settings objects
+
+
+			count: function () {
+				return this.flatten().length;
+			},
+
+
+			each: function (fn) {
+				for (var i = 0, ien = this.length; i < ien; i++) {
+					fn.call(this, this[i], i, this);
+				}
+
+				return this;
+			},
+
+
+			eq: function (idx) {
+				var ctx = this.context;
+
+				return ctx.length > idx ?
+					new _Api(ctx[idx], this[idx]) :
+					null;
+			},
+
+
+			filter: function (fn) {
+				var a = [];
+
+				if (__arrayProto.filter) {
+					a = __arrayProto.filter.call(this, fn, this);
+				}
+				else {
+					// Compatibility for browsers without EMCA-252-5 (JS 1.6)
+					for (var i = 0, ien = this.length; i < ien; i++) {
+						if (fn.call(this, this[i], i, this)) {
+							a.push(this[i]);
+						}
+					}
+				}
+
+				return new _Api(this.context, a);
+			},
+
+
+			flatten: function () {
+				var a = [];
+				return new _Api(this.context, a.concat.apply(a, this.toArray()));
+			},
+
+
+			join: __arrayProto.join,
+
+
+			indexOf: __arrayProto.indexOf || function (obj, start) {
+				for (var i = (start || 0), ien = this.length; i < ien; i++) {
+					if (this[i] === obj) {
+						return i;
+					}
+				}
+				return -1;
+			},
+
+			iterator: function (flatten, type, fn, alwaysNew) {
+				var
+					a = [], ret,
+					i, ien, j, jen,
+					context = this.context,
+					rows, items, item,
+					selector = this.selector;
+
+				// Argument shifting
+				if (typeof flatten === 'string') {
+					alwaysNew = fn;
+					fn = type;
+					type = flatten;
+					flatten = false;
+				}
+
+				for (i = 0, ien = context.length; i < ien; i++) {
+					var apiInst = new _Api(context[i]);
+
+					if (type === 'table') {
+						ret = fn.call(apiInst, context[i], i);
+
+						if (ret !== undefined) {
+							a.push(ret);
+						}
+					}
+					else if (type === 'columns' || type === 'rows') {
+						// this has same length as context - one entry for each table
+						ret = fn.call(apiInst, context[i], this[i], i);
+
+						if (ret !== undefined) {
+							a.push(ret);
+						}
+					}
+					else if (type === 'column' || type === 'column-rows' || type === 'row' || type === 'cell') {
+						// columns and rows share the same structure.
+						// 'this' is an array of column indexes for each context
+						items = this[i];
+
+						if (type === 'column-rows') {
+							rows = _selector_row_indexes(context[i], selector.opts);
+						}
+
+						for (j = 0, jen = items.length; j < jen; j++) {
+							item = items[j];
+
+							if (type === 'cell') {
+								ret = fn.call(apiInst, context[i], item.row, item.column, i, j);
+							}
+							else {
+								ret = fn.call(apiInst, context[i], item, i, j, rows);
+							}
+
+							if (ret !== undefined) {
+								a.push(ret);
+							}
+						}
+					}
+				}
+
+				if (a.length || alwaysNew) {
+					var api = new _Api(context, flatten ? a.concat.apply([], a) : a);
+					var apiSelector = api.selector;
+					apiSelector.rows = selector.rows;
+					apiSelector.cols = selector.cols;
+					apiSelector.opts = selector.opts;
+					return api;
+				}
+				return this;
+			},
+
+
+			lastIndexOf: __arrayProto.lastIndexOf || function (obj, start) {
+				// Bit cheeky...
+				return this.indexOf.apply(this.toArray.reverse(), arguments);
+			},
+
+
+			length: 0,
+
+
+			map: function (fn) {
+				var a = [];
+
+				if (__arrayProto.map) {
+					a = __arrayProto.map.call(this, fn, this);
+				}
+				else {
+					// Compatibility for browsers without EMCA-252-5 (JS 1.6)
+					for (var i = 0, ien = this.length; i < ien; i++) {
+						a.push(fn.call(this, this[i], i));
+					}
+				}
+
+				return new _Api(this.context, a);
+			},
+
+
+			pluck: function (prop) {
+				return this.map(function (el) {
+					return el[prop];
+				});
+			},
+
+			pop: __arrayProto.pop,
+
+
+			push: __arrayProto.push,
+
+
+			// Does not return an API instance
+			reduce: __arrayProto.reduce || function (fn, init) {
+				return _fnReduce(this, fn, init, 0, this.length, 1);
+			},
+
+
+			reduceRight: __arrayProto.reduceRight || function (fn, init) {
+				return _fnReduce(this, fn, init, this.length - 1, -1, -1);
+			},
+
+
+			reverse: __arrayProto.reverse,
+
+
+			// Object with rows, columns and opts
+			selector: null,
+
+
+			shift: __arrayProto.shift,
+
+
+			slice: function () {
+				return new _Api(this.context, this);
+			},
+
+
+			sort: __arrayProto.sort, // ? name - order?
+
+
+			splice: __arrayProto.splice,
+
+
+			toArray: function () {
+				return __arrayProto.slice.call(this);
+			},
+
+
+			to$: function () {
+				return $(this);
+			},
+
+
+			toJQuery: function () {
+				return $(this);
+			},
+
+
+			unique: function () {
+				return new _Api(this.context, _unique(this));
+			},
+
+
+			unshift: __arrayProto.unshift
+		});
+
+
+		_Api.extend = function (scope, obj, ext) {
+			// Only extend API instances and static properties of the API
+			if (!ext.length || !obj || (!(obj instanceof _Api) && !obj.__dt_wrapper)) {
+				return;
+			}
+
+			var
+				i, ien,
+				struct,
+				methodScoping = function (scope, fn, struc) {
+					return function () {
+						var ret = fn.apply(scope, arguments);
+
+						// Method extension
+						_Api.extend(ret, ret, struc.methodExt);
+						return ret;
+					};
+				};
+
+			for (i = 0, ien = ext.length; i < ien; i++) {
+				struct = ext[i];
+
+				// Value
+				obj[struct.name] = struct.type === 'function' ?
+					methodScoping(scope, struct.val, struct) :
+					struct.type === 'object' ?
+						{} :
+						struct.val;
+
+				obj[struct.name].__dt_wrapper = true;
+
+				// Property extension
+				_Api.extend(scope, obj[struct.name], struct.propExt);
+			}
+		};
+
+
+		// @todo - Is there need for an augment function?
+		// _Api.augment = function ( inst, name )
+		// {
+		// 	// Find src object in the structure from the name
+		// 	var parts = name.split('.');
+
+		// 	_Api.extend( inst, obj );
+		// };
+
+
+		//     [
+		//       {
+		//         name:      'data'                -- string   - Property name
+		//         val:       function () {},       -- function - Api method (or undefined if just an object
+		//         methodExt: [ ... ],              -- array    - Array of Api object definitions to extend the method result
+		//         propExt:   [ ... ]               -- array    - Array of Api object definitions to extend the property
+		//       },
+		//       {
+		//         name:     'row'
+		//         val:       {},
+		//         methodExt: [ ... ],
+		//         propExt:   [
+		//           {
+		//             name:      'data'
+		//             val:       function () {},
+		//             methodExt: [ ... ],
+		//             propExt:   [ ... ]
+		//           },
+		//           ...
+		//         ]
+		//       }
+		//     ]
+
+		_Api.register = _api_register = function (name, val) {
+			if (Array.isArray(name)) {
+				for (var j = 0, jen = name.length; j < jen; j++) {
+					_Api.register(name[j], val);
+				}
+				return;
+			}
+
+			var
+				i, ien,
+				heir = name.split('.'),
+				struct = __apiStruct,
+				key, method;
+
+			var find = function (src, name) {
+				for (var i = 0, ien = src.length; i < ien; i++) {
+					if (src[i].name === name) {
+						return src[i];
+					}
+				}
+				return null;
+			};
+
+			for (i = 0, ien = heir.length; i < ien; i++) {
+				method = heir[i].indexOf('()') !== -1;
+				key = method ?
+					heir[i].replace('()', '') :
+					heir[i];
+
+				var src = find(struct, key);
+				if (!src) {
+					src = {
+						name: key,
+						val: {},
+						methodExt: [],
+						propExt: [],
+						type: 'object'
+					};
+					struct.push(src);
+				}
+
+				if (i === ien - 1) {
+					src.val = val;
+					src.type = typeof val === 'function' ?
+						'function' :
+						$.isPlainObject(val) ?
+							'object' :
+							'other';
+				}
+				else {
+					struct = method ?
+						src.methodExt :
+						src.propExt;
+				}
+			}
+		};
+
+		_Api.registerPlural = _api_registerPlural = function (pluralName, singularName, val) {
+			_Api.register(pluralName, val);
+
+			_Api.register(singularName, function () {
+				var ret = val.apply(this, arguments);
+
+				if (ret === this) {
+					// Returned item is the API instance that was passed in, return it
+					return this;
+				}
+				else if (ret instanceof _Api) {
+					// New API instance returned, want the value from the first item
+					// in the returned array for the singular result.
+					return ret.length ?
+						Array.isArray(ret[0]) ?
+							new _Api(ret.context, ret[0]) : // Array results are 'enhanced'
+							ret[0] :
+						undefined;
+				}
+
+				// Non-API return - just fire it back
+				return ret;
+			});
+		};
+
+
+		/**
+		 * Selector for HTML tables. Apply the given selector to the give array of
+		 * DataTables settings objects.
+		 *
+		 * @param {string|integer} [selector] jQuery selector string or integer
+		 * @param  {array} Array of DataTables settings objects to be filtered
+		 * @return {array}
+		 * @ignore
+		 */
+		var __table_selector = function (selector, a) {
+			if (Array.isArray(selector)) {
+				return $.map(selector, function (item) {
+					return __table_selector(item, a);
+				});
+			}
+
+			// Integer is used to pick out a table by index
+			if (typeof selector === 'number') {
+				return [a[selector]];
+			}
+
+			// Perform a jQuery selector on the table nodes
+			var nodes = $.map(a, function (el, i) {
+				return el.nTable;
+			});
+
+			return $(nodes)
+				.filter(selector)
+				.map(function (i) {
+					// Need to translate back from the table node to the settings
+					var idx = $.inArray(this, nodes);
+					return a[idx];
+				})
+				.toArray();
+		};
+
+
+
+		/**
+		 * Context selector for the API's context (i.e. the tables the API instance
+		 * refers to.
+		 *
+		 * @name    DataTable.Api#tables
+		 * @param {string|integer} [selector] Selector to pick which tables the iterator
+		 *   should operate on. If not given, all tables in the current context are
+		 *   used. This can be given as a jQuery selector (for example `':gt(0)'`) to
+		 *   select multiple tables or as an integer to select a single table.
+		 * @returns {DataTable.Api} Returns a new API instance if a selector is given.
+		 */
+		_api_register('tables()', function (selector) {
+			// A new instance is created if there was a selector specified
+			return selector !== undefined && selector !== null ?
+				new _Api(__table_selector(selector, this.context)) :
+				this;
+		});
+
+
+		_api_register('table()', function (selector) {
+			var tables = this.tables(selector);
+			var ctx = tables.context;
+
+			// Truncate to the first matched table
+			return ctx.length ?
+				new _Api(ctx[0]) :
+				tables;
+		});
+
+
+		_api_registerPlural('tables().nodes()', 'table().node()', function () {
+			return this.iterator('table', function (ctx) {
+				return ctx.nTable;
+			}, 1);
+		});
+
+
+		_api_registerPlural('tables().body()', 'table().body()', function () {
+			return this.iterator('table', function (ctx) {
+				return ctx.nTBody;
+			}, 1);
+		});
+
+
+		_api_registerPlural('tables().header()', 'table().header()', function () {
+			return this.iterator('table', function (ctx) {
+				return ctx.nTHead;
+			}, 1);
+		});
+
+
+		_api_registerPlural('tables().footer()', 'table().footer()', function () {
+			return this.iterator('table', function (ctx) {
+				return ctx.nTFoot;
+			}, 1);
+		});
+
+
+		_api_registerPlural('tables().containers()', 'table().container()', function () {
+			return this.iterator('table', function (ctx) {
+				return ctx.nTableWrapper;
+			}, 1);
+		});
+
+
+
+		/**
+		 * Redraw the tables in the current context.
+		 */
+		_api_register('draw()', function (paging) {
+			return this.iterator('table', function (settings) {
+				if (paging === 'page') {
+					_fnDraw(settings);
+				}
+				else {
+					if (typeof paging === 'string') {
+						paging = paging === 'full-hold' ?
+							false :
+							true;
+					}
+
+					_fnReDraw(settings, paging === false);
+				}
+			});
+		});
+
+
+
+		/**
+		 * Get the current page index.
+		 *
+		 * @return {integer} Current page index (zero based)
+		 *//**
+		* Set the current page.
+		*
+		* Note that if you attempt to show a page which does not exist, DataTables will
+		* not throw an error, but rather reset the paging.
+		*
+		* @param {integer|string} action The paging action to take. This can be one of:
+		*  * `integer` - The page index to jump to
+		*  * `string` - An action to take:
+		*    * `first` - Jump to first page.
+		*    * `next` - Jump to the next page
+		*    * `previous` - Jump to previous page
+		*    * `last` - Jump to the last page.
+		* @returns {DataTables.Api} this
+		*/
+		_api_register('page()', function (action) {
+			if (action === undefined) {
+				return this.page.info().page; // not an expensive call
+			}
+
+			// else, have an action to take on all tables
+			return this.iterator('table', function (settings) {
+				_fnPageChange(settings, action);
+			});
+		});
+
+
+		/**
+		 * Paging information for the first table in the current context.
+		 *
+		 * If you require paging information for another table, use the `table()` method
+		 * with a suitable selector.
+		 *
+		 * @return {object} Object with the following properties set:
+		 *  * `page` - Current page index (zero based - i.e. the first page is `0`)
+		 *  * `pages` - Total number of pages
+		 *  * `start` - Display index for the first record shown on the current page
+		 *  * `end` - Display index for the last record shown on the current page
+		 *  * `length` - Display length (number of records). Note that generally `start
+		 *    + length = end`, but this is not always true, for example if there are
+		 *    only 2 records to show on the final page, with a length of 10.
+		 *  * `recordsTotal` - Full data set length
+		 *  * `recordsDisplay` - Data set length once the current filtering criterion
+		 *    are applied.
+		 */
+		_api_register('page.info()', function (action) {
+			if (this.context.length === 0) {
+				return undefined;
+			}
+
+			var
+				settings = this.context[0],
+				start = settings._iDisplayStart,
+				len = settings.oFeatures.bPaginate ? settings._iDisplayLength : -1,
+				visRecords = settings.fnRecordsDisplay(),
+				all = len === -1;
+
+			return {
+				"page": all ? 0 : Math.floor(start / len),
+				"pages": all ? 1 : Math.ceil(visRecords / len),
+				"start": start,
+				"end": settings.fnDisplayEnd(),
+				"length": len,
+				"recordsTotal": settings.fnRecordsTotal(),
+				"recordsDisplay": visRecords,
+				"serverSide": _fnDataSource(settings) === 'ssp'
+			};
+		});
+
+
+		/**
+		 * Get the current page length.
+		 *
+		 * @return {integer} Current page length. Note `-1` indicates that all records
+		 *   are to be shown.
+		 *//**
+		* Set the current page length.
+		*
+		* @param {integer} Page length to set. Use `-1` to show all records.
+		* @returns {DataTables.Api} this
+		*/
+		_api_register('page.len()', function (len) {
+			// Note that we can't call this function 'length()' because `length`
+			// is a Javascript property of functions which defines how many arguments
+			// the function expects.
+			if (len === undefined) {
+				return this.context.length !== 0 ?
+					this.context[0]._iDisplayLength :
+					undefined;
+			}
+
+			// else, set the page length
+			return this.iterator('table', function (settings) {
+				_fnLengthChange(settings, len);
+			});
+		});
+
+
+
+		var __reload = function (settings, holdPosition, callback) {
+			// Use the draw event to trigger a callback
+			if (callback) {
+				var api = new _Api(settings);
+
+				api.one('draw', function () {
+					callback(api.ajax.json());
+				});
+			}
+
+			if (_fnDataSource(settings) == 'ssp') {
+				_fnReDraw(settings, holdPosition);
+			}
+			else {
+				_fnProcessingDisplay(settings, true);
+
+				// Cancel an existing request
+				var xhr = settings.jqXHR;
+				if (xhr && xhr.readyState !== 4) {
+					xhr.abort();
+				}
+
+				// Trigger xhr
+				_fnBuildAjax(settings, [], function (json) {
+					_fnClearTable(settings);
+
+					var data = _fnAjaxDataSrc(settings, json);
+					for (var i = 0, ien = data.length; i < ien; i++) {
+						_fnAddData(settings, data[i]);
+					}
+
+					_fnReDraw(settings, holdPosition);
+					_fnProcessingDisplay(settings, false);
+				});
+			}
+		};
+
+
+		/**
+		 * Get the JSON response from the last Ajax request that DataTables made to the
+		 * server. Note that this returns the JSON from the first table in the current
+		 * context.
+		 *
+		 * @return {object} JSON received from the server.
+		 */
+		_api_register('ajax.json()', function () {
+			var ctx = this.context;
+
+			if (ctx.length > 0) {
+				return ctx[0].json;
+			}
+
+			// else return undefined;
+		});
+
+
+		/**
+		 * Get the data submitted in the last Ajax request
+		 */
+		_api_register('ajax.params()', function () {
+			var ctx = this.context;
+
+			if (ctx.length > 0) {
+				return ctx[0].oAjaxData;
+			}
+
+			// else return undefined;
+		});
+
+
+		/**
+		 * Reload tables from the Ajax data source. Note that this function will
+		 * automatically re-draw the table when the remote data has been loaded.
+		 *
+		 * @param {boolean} [reset=true] Reset (default) or hold the current paging
+		 *   position. A full re-sort and re-filter is performed when this method is
+		 *   called, which is why the pagination reset is the default action.
+		 * @returns {DataTables.Api} this
+		 */
+		_api_register('ajax.reload()', function (callback, resetPaging) {
+			return this.iterator('table', function (settings) {
+				__reload(settings, resetPaging === false, callback);
+			});
+		});
+
+
+		/**
+		 * Get the current Ajax URL. Note that this returns the URL from the first
+		 * table in the current context.
+		 *
+		 * @return {string} Current Ajax source URL
+		 *//**
+		* Set the Ajax URL. Note that this will set the URL for all tables in the
+		* current context.
+		*
+		* @param {string} url URL to set.
+		* @returns {DataTables.Api} this
+		*/
+		_api_register('ajax.url()', function (url) {
+			var ctx = this.context;
+
+			if (url === undefined) {
+				// get
+				if (ctx.length === 0) {
+					return undefined;
+				}
+				ctx = ctx[0];
+
+				return ctx.ajax ?
+					$.isPlainObject(ctx.ajax) ?
+						ctx.ajax.url :
+						ctx.ajax :
+					ctx.sAjaxSource;
+			}
+
+			// set
+			return this.iterator('table', function (settings) {
+				if ($.isPlainObject(settings.ajax)) {
+					settings.ajax.url = url;
+				}
+				else {
+					settings.ajax = url;
+				}
+				// No need to consider sAjaxSource here since DataTables gives priority
+				// to `ajax` over `sAjaxSource`. So setting `ajax` here, renders any
+				// value of `sAjaxSource` redundant.
+			});
+		});
+
+
+		/**
+		 * Load data from the newly set Ajax URL. Note that this method is only
+		 * available when `ajax.url()` is used to set a URL. Additionally, this method
+		 * has the same effect as calling `ajax.reload()` but is provided for
+		 * convenience when setting a new URL. Like `ajax.reload()` it will
+		 * automatically redraw the table once the remote data has been loaded.
+		 *
+		 * @returns {DataTables.Api} this
+		 */
+		_api_register('ajax.url().load()', function (callback, resetPaging) {
+			// Same as a reload, but makes sense to present it for easy access after a
+			// url change
+			return this.iterator('table', function (ctx) {
+				__reload(ctx, resetPaging === false, callback);
+			});
+		});
+
+
+
+
+		var _selector_run = function (type, selector, selectFn, settings, opts) {
+			var
+				out = [], res,
+				a, i, ien, j, jen,
+				selectorType = typeof selector;
+
+			// Can't just check for isArray here, as an API or jQuery instance might be
+			// given with their array like look
+			if (!selector || selectorType === 'string' || selectorType === 'function' || selector.length === undefined) {
+				selector = [selector];
+			}
+
+			for (i = 0, ien = selector.length; i < ien; i++) {
+				// Only split on simple strings - complex expressions will be jQuery selectors
+				a = selector[i] && selector[i].split && !selector[i].match(/[\[\(:]/) ?
+					selector[i].split(',') :
+					[selector[i]];
+
+				for (j = 0, jen = a.length; j < jen; j++) {
+					res = selectFn(typeof a[j] === 'string' ? (a[j]).trim() : a[j]);
+
+					if (res && res.length) {
+						out = out.concat(res);
+					}
+				}
+			}
+
+			// selector extensions
+			var ext = _ext.selector[type];
+			if (ext.length) {
+				for (i = 0, ien = ext.length; i < ien; i++) {
+					out = ext[i](settings, opts, out);
+				}
+			}
+
+			return _unique(out);
+		};
+
+
+		var _selector_opts = function (opts) {
+			if (!opts) {
+				opts = {};
+			}
+
+			// Backwards compatibility for 1.9- which used the terminology filter rather
+			// than search
+			if (opts.filter && opts.search === undefined) {
+				opts.search = opts.filter;
+			}
+
+			return $.extend({
+				search: 'none',
+				order: 'current',
+				page: 'all'
+			}, opts);
+		};
+
+
+		var _selector_first = function (inst) {
+			// Reduce the API instance to the first item found
+			for (var i = 0, ien = inst.length; i < ien; i++) {
+				if (inst[i].length > 0) {
+					// Assign the first element to the first item in the instance
+					// and truncate the instance and context
+					inst[0] = inst[i];
+					inst[0].length = 1;
+					inst.length = 1;
+					inst.context = [inst.context[i]];
+
+					return inst;
+				}
+			}
+
+			// Not found - return an empty instance
+			inst.length = 0;
+			return inst;
+		};
+
+
+		var _selector_row_indexes = function (settings, opts) {
+			var
+				i, ien, tmp, a = [],
+				displayFiltered = settings.aiDisplay,
+				displayMaster = settings.aiDisplayMaster;
+
+			var
+				search = opts.search,  // none, applied, removed
+				order = opts.order,   // applied, current, index (original - compatibility with 1.9)
+				page = opts.page;    // all, current
+
+			if (_fnDataSource(settings) == 'ssp') {
+				// In server-side processing mode, most options are irrelevant since
+				// rows not shown don't exist and the index order is the applied order
+				// Removed is a special case - for consistency just return an empty
+				// array
+				return search === 'removed' ?
+					[] :
+					_range(0, displayMaster.length);
+			}
+			else if (page == 'current') {
+				// Current page implies that order=current and fitler=applied, since it is
+				// fairly senseless otherwise, regardless of what order and search actually
+				// are
+				for (i = settings._iDisplayStart, ien = settings.fnDisplayEnd(); i < ien; i++) {
+					a.push(displayFiltered[i]);
+				}
+			}
+			else if (order == 'current' || order == 'applied') {
+				if (search == 'none') {
+					a = displayMaster.slice();
+				}
+				else if (search == 'applied') {
+					a = displayFiltered.slice();
+				}
+				else if (search == 'removed') {
+					// O(n+m) solution by creating a hash map
+					var displayFilteredMap = {};
+
+					for (var i = 0, ien = displayFiltered.length; i < ien; i++) {
+						displayFilteredMap[displayFiltered[i]] = null;
+					}
+
+					a = $.map(displayMaster, function (el) {
+						return !displayFilteredMap.hasOwnProperty(el) ?
+							el :
+							null;
+					});
+				}
+			}
+			else if (order == 'index' || order == 'original') {
+				for (i = 0, ien = settings.aoData.length; i < ien; i++) {
+					if (search == 'none') {
+						a.push(i);
+					}
+					else { // applied | removed
+						tmp = $.inArray(i, displayFiltered);
+
+						if ((tmp === -1 && search == 'removed') ||
+							(tmp >= 0 && search == 'applied')) {
+							a.push(i);
+						}
+					}
+				}
+			}
+
+			return a;
+		};
+
+
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		 * Rows
+		 *
+		 * {}          - no selector - use all available rows
+		 * {integer}   - row aoData index
+		 * {node}      - TR node
+		 * {string}    - jQuery selector to apply to the TR elements
+		 * {array}     - jQuery array of nodes, or simply an array of TR nodes
+		 *
+		 */
+		var __row_selector = function (settings, selector, opts) {
+			var rows;
+			var run = function (sel) {
+				var selInt = _intVal(sel);
+				var i, ien;
+				var aoData = settings.aoData;
+
+				// Short cut - selector is a number and no options provided (default is
+				// all records, so no need to check if the index is in there, since it
+				// must be - dev error if the index doesn't exist).
+				if (selInt !== null && !opts) {
+					return [selInt];
+				}
+
+				if (!rows) {
+					rows = _selector_row_indexes(settings, opts);
+				}
+
+				if (selInt !== null && $.inArray(selInt, rows) !== -1) {
+					// Selector - integer
+					return [selInt];
+				}
+				else if (sel === null || sel === undefined || sel === '') {
+					// Selector - none
+					return rows;
+				}
+
+				// Selector - function
+				if (typeof sel === 'function') {
+					return $.map(rows, function (idx) {
+						var row = aoData[idx];
+						return sel(idx, row._aData, row.nTr) ? idx : null;
+					});
+				}
+
+				// Selector - node
+				if (sel.nodeName) {
+					var rowIdx = sel._DT_RowIndex;  // Property added by DT for fast lookup
+					var cellIdx = sel._DT_CellIndex;
+
+					if (rowIdx !== undefined) {
+						// Make sure that the row is actually still present in the table
+						return aoData[rowIdx] && aoData[rowIdx].nTr === sel ?
+							[rowIdx] :
+							[];
+					}
+					else if (cellIdx) {
+						return aoData[cellIdx.row] && aoData[cellIdx.row].nTr === sel.parentNode ?
+							[cellIdx.row] :
+							[];
+					}
+					else {
+						var host = $(sel).closest('*[data-dt-row]');
+						return host.length ?
+							[host.data('dt-row')] :
+							[];
+					}
+				}
+
+				// ID selector. Want to always be able to select rows by id, regardless
+				// of if the tr element has been created or not, so can't rely upon
+				// jQuery here - hence a custom implementation. This does not match
+				// Sizzle's fast selector or HTML4 - in HTML5 the ID can be anything,
+				// but to select it using a CSS selector engine (like Sizzle or
+				// querySelect) it would need to need to be escaped for some characters.
+				// DataTables simplifies this for row selectors since you can select
+				// only a row. A # indicates an id any anything that follows is the id -
+				// unescaped.
+				if (typeof sel === 'string' && sel.charAt(0) === '#') {
+					// get row index from id
+					var rowObj = settings.aIds[sel.replace(/^#/, '')];
+					if (rowObj !== undefined) {
+						return [rowObj.idx];
+					}
+
+					// need to fall through to jQuery in case there is DOM id that
+					// matches
+				}
+
+				// Get nodes in the order from the `rows` array with null values removed
+				var nodes = _removeEmpty(
+					_pluck_order(settings.aoData, rows, 'nTr')
+				);
+
+				// Selector - jQuery selector string, array of nodes or jQuery object/
+				// As jQuery's .filter() allows jQuery objects to be passed in filter,
+				// it also allows arrays, so this will cope with all three options
+				return $(nodes)
+					.filter(sel)
+					.map(function () {
+						return this._DT_RowIndex;
+					})
+					.toArray();
+			};
+
+			return _selector_run('row', selector, run, settings, opts);
+		};
+
+
+		_api_register('rows()', function (selector, opts) {
+			// argument shifting
+			if (selector === undefined) {
+				selector = '';
+			}
+			else if ($.isPlainObject(selector)) {
+				opts = selector;
+				selector = '';
+			}
+
+			opts = _selector_opts(opts);
+
+			var inst = this.iterator('table', function (settings) {
+				return __row_selector(settings, selector, opts);
+			}, 1);
+
+			// Want argument shifting here and in __row_selector?
+			inst.selector.rows = selector;
+			inst.selector.opts = opts;
+
+			return inst;
+		});
+
+		_api_register('rows().nodes()', function () {
+			return this.iterator('row', function (settings, row) {
+				return settings.aoData[row].nTr || undefined;
+			}, 1);
+		});
+
+		_api_register('rows().data()', function () {
+			return this.iterator(true, 'rows', function (settings, rows) {
+				return _pluck_order(settings.aoData, rows, '_aData');
+			}, 1);
+		});
+
+		_api_registerPlural('rows().cache()', 'row().cache()', function (type) {
+			return this.iterator('row', function (settings, row) {
+				var r = settings.aoData[row];
+				return type === 'search' ? r._aFilterData : r._aSortData;
+			}, 1);
+		});
+
+		_api_registerPlural('rows().invalidate()', 'row().invalidate()', function (src) {
+			return this.iterator('row', function (settings, row) {
+				_fnInvalidate(settings, row, src);
+			});
+		});
+
+		_api_registerPlural('rows().indexes()', 'row().index()', function () {
+			return this.iterator('row', function (settings, row) {
+				return row;
+			}, 1);
+		});
+
+		_api_registerPlural('rows().ids()', 'row().id()', function (hash) {
+			var a = [];
+			var context = this.context;
+
+			// `iterator` will drop undefined values, but in this case we want them
+			for (var i = 0, ien = context.length; i < ien; i++) {
+				for (var j = 0, jen = this[i].length; j < jen; j++) {
+					var id = context[i].rowIdFn(context[i].aoData[this[i][j]]._aData);
+					a.push((hash === true ? '#' : '') + id);
+				}
+			}
+
+			return new _Api(context, a);
+		});
+
+		_api_registerPlural('rows().remove()', 'row().remove()', function () {
+			var that = this;
+
+			this.iterator('row', function (settings, row, thatIdx) {
+				var data = settings.aoData;
+				var rowData = data[row];
+				var i, ien, j, jen;
+				var loopRow, loopCells;
+
+				data.splice(row, 1);
+
+				// Update the cached indexes
+				for (i = 0, ien = data.length; i < ien; i++) {
+					loopRow = data[i];
+					loopCells = loopRow.anCells;
+
+					// Rows
+					if (loopRow.nTr !== null) {
+						loopRow.nTr._DT_RowIndex = i;
+					}
+
+					// Cells
+					if (loopCells !== null) {
+						for (j = 0, jen = loopCells.length; j < jen; j++) {
+							loopCells[j]._DT_CellIndex.row = i;
+						}
+					}
+				}
+
+				// Delete from the display arrays
+				_fnDeleteIndex(settings.aiDisplayMaster, row);
+				_fnDeleteIndex(settings.aiDisplay, row);
+				_fnDeleteIndex(that[thatIdx], row, false); // maintain local indexes
+
+				// For server-side processing tables - subtract the deleted row from the count
+				if (settings._iRecordsDisplay > 0) {
+					settings._iRecordsDisplay--;
+				}
+
+				// Check for an 'overflow' they case for displaying the table
+				_fnLengthOverflow(settings);
+
+				// Remove the row's ID reference if there is one
+				var id = settings.rowIdFn(rowData._aData);
+				if (id !== undefined) {
+					delete settings.aIds[id];
+				}
+			});
+
+			this.iterator('table', function (settings) {
+				for (var i = 0, ien = settings.aoData.length; i < ien; i++) {
+					settings.aoData[i].idx = i;
+				}
+			});
+
+			return this;
+		});
+
+
+		_api_register('rows.add()', function (rows) {
+			var newRows = this.iterator('table', function (settings) {
+				var row, i, ien;
+				var out = [];
+
+				for (i = 0, ien = rows.length; i < ien; i++) {
+					row = rows[i];
+
+					if (row.nodeName && row.nodeName.toUpperCase() === 'TR') {
+						out.push(_fnAddTr(settings, row)[0]);
+					}
+					else {
+						out.push(_fnAddData(settings, row));
+					}
+				}
+
+				return out;
+			}, 1);
+
+			// Return an Api.rows() extended instance, so rows().nodes() etc can be used
+			var modRows = this.rows(-1);
+			modRows.pop();
+			$.merge(modRows, newRows);
+
+			return modRows;
+		});
+
+
+
+
+
+		/**
+		 *
+		 */
+		_api_register('row()', function (selector, opts) {
+			return _selector_first(this.rows(selector, opts));
+		});
+
+
+		_api_register('row().data()', function (data) {
+			var ctx = this.context;
+
+			if (data === undefined) {
+				// Get
+				return ctx.length && this.length ?
+					ctx[0].aoData[this[0]]._aData :
+					undefined;
+			}
+
+			// Set
+			var row = ctx[0].aoData[this[0]];
+			row._aData = data;
+
+			// If the DOM has an id, and the data source is an array
+			if (Array.isArray(data) && row.nTr && row.nTr.id) {
+				_fnSetObjectDataFn(ctx[0].rowId)(data, row.nTr.id);
+			}
+
+			// Automatically invalidate
+			_fnInvalidate(ctx[0], this[0], 'data');
+
+			return this;
+		});
+
+
+		_api_register('row().node()', function () {
+			var ctx = this.context;
+
+			return ctx.length && this.length ?
+				ctx[0].aoData[this[0]].nTr || null :
+				null;
+		});
+
+
+		_api_register('row.add()', function (row) {
+			// Allow a jQuery object to be passed in - only a single row is added from
+			// it though - the first element in the set
+			if (row instanceof $ && row.length) {
+				row = row[0];
+			}
+
+			var rows = this.iterator('table', function (settings) {
+				if (row.nodeName && row.nodeName.toUpperCase() === 'TR') {
+					return _fnAddTr(settings, row)[0];
+				}
+				return _fnAddData(settings, row);
+			});
+
+			// Return an Api.rows() extended instance, with the newly added row selected
+			return this.row(rows[0]);
+		});
+
+
+
+		var __details_add = function (ctx, row, data, klass) {
+			// Convert to array of TR elements
+			var rows = [];
+			var addRow = function (r, k) {
+				// Recursion to allow for arrays of jQuery objects
+				if (Array.isArray(r) || r instanceof $) {
+					for (var i = 0, ien = r.length; i < ien; i++) {
+						addRow(r[i], k);
+					}
+					return;
+				}
+
+				// If we get a TR element, then just add it directly - up to the dev
+				// to add the correct number of columns etc
+				if (r.nodeName && r.nodeName.toLowerCase() === 'tr') {
+					rows.push(r);
+				}
+				else {
+					// Otherwise create a row with a wrapper
+					var created = $('<tr><td></td></tr>').addClass(k);
+					$('td', created)
+						.addClass(k)
+						.html(r)
+					[0].colSpan = _fnVisbleColumns(ctx);
+
+					rows.push(created[0]);
+				}
+			};
+
+			addRow(data, klass);
+
+			if (row._details) {
+				row._details.detach();
+			}
+
+			row._details = $(rows);
+
+			// If the children were already shown, that state should be retained
+			if (row._detailsShow) {
+				row._details.insertAfter(row.nTr);
+			}
+		};
+
+
+		var __details_remove = function (api, idx) {
+			var ctx = api.context;
+
+			if (ctx.length) {
+				var row = ctx[0].aoData[idx !== undefined ? idx : api[0]];
+
+				if (row && row._details) {
+					row._details.remove();
+
+					row._detailsShow = undefined;
+					row._details = undefined;
+				}
+			}
+		};
+
+
+		var __details_display = function (api, show) {
+			var ctx = api.context;
+
+			if (ctx.length && api.length) {
+				var row = ctx[0].aoData[api[0]];
+
+				if (row._details) {
+					row._detailsShow = show;
+
+					if (show) {
+						row._details.insertAfter(row.nTr);
+					}
+					else {
+						row._details.detach();
+					}
+
+					__details_events(ctx[0]);
+				}
+			}
+		};
+
+
+		var __details_events = function (settings) {
+			var api = new _Api(settings);
+			var namespace = '.dt.DT_details';
+			var drawEvent = 'draw' + namespace;
+			var colvisEvent = 'column-visibility' + namespace;
+			var destroyEvent = 'destroy' + namespace;
+			var data = settings.aoData;
+
+			api.off(drawEvent + ' ' + colvisEvent + ' ' + destroyEvent);
+
+			if (_pluck(data, '_details').length > 0) {
+				// On each draw, insert the required elements into the document
+				api.on(drawEvent, function (e, ctx) {
+					if (settings !== ctx) {
+						return;
+					}
+
+					api.rows({ page: 'current' }).eq(0).each(function (idx) {
+						// Internal data grab
+						var row = data[idx];
+
+						if (row._detailsShow) {
+							row._details.insertAfter(row.nTr);
+						}
+					});
+				});
+
+				// Column visibility change - update the colspan
+				api.on(colvisEvent, function (e, ctx, idx, vis) {
+					if (settings !== ctx) {
+						return;
+					}
+
+					// Update the colspan for the details rows (note, only if it already has
+					// a colspan)
+					var row, visible = _fnVisbleColumns(ctx);
+
+					for (var i = 0, ien = data.length; i < ien; i++) {
+						row = data[i];
+
+						if (row._details) {
+							row._details.children('td[colspan]').attr('colspan', visible);
+						}
+					}
+				});
+
+				// Table destroyed - nuke any child rows
+				api.on(destroyEvent, function (e, ctx) {
+					if (settings !== ctx) {
+						return;
+					}
+
+					for (var i = 0, ien = data.length; i < ien; i++) {
+						if (data[i]._details) {
+							__details_remove(api, i);
+						}
+					}
+				});
+			}
+		};
+
+		// Strings for the method names to help minification
+		var _emp = '';
+		var _child_obj = _emp + 'row().child';
+		var _child_mth = _child_obj + '()';
+
+		// data can be:
+		//  tr
+		//  string
+		//  jQuery or array of any of the above
+		_api_register(_child_mth, function (data, klass) {
+			var ctx = this.context;
+
+			if (data === undefined) {
+				// get
+				return ctx.length && this.length ?
+					ctx[0].aoData[this[0]]._details :
+					undefined;
+			}
+			else if (data === true) {
+				// show
+				this.child.show();
+			}
+			else if (data === false) {
+				// remove
+				__details_remove(this);
+			}
+			else if (ctx.length && this.length) {
+				// set
+				__details_add(ctx[0], ctx[0].aoData[this[0]], data, klass);
+			}
+
+			return this;
+		});
+
+
+		_api_register([
+			_child_obj + '.show()',
+			_child_mth + '.show()' // only when `child()` was called with parameters (without
+		], function (show) {   // it returns an object and this method is not executed)
+			__details_display(this, true);
+			return this;
+		});
+
+
+		_api_register([
+			_child_obj + '.hide()',
+			_child_mth + '.hide()' // only when `child()` was called with parameters (without
+		], function () {         // it returns an object and this method is not executed)
+			__details_display(this, false);
+			return this;
+		});
+
+
+		_api_register([
+			_child_obj + '.remove()',
+			_child_mth + '.remove()' // only when `child()` was called with parameters (without
+		], function () {           // it returns an object and this method is not executed)
+			__details_remove(this);
+			return this;
+		});
+
+
+		_api_register(_child_obj + '.isShown()', function () {
+			var ctx = this.context;
+
+			if (ctx.length && this.length) {
+				// _detailsShown as false or undefined will fall through to return false
+				return ctx[0].aoData[this[0]]._detailsShow || false;
+			}
+			return false;
+		});
+
+
+
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		 * Columns
+		 *
+		 * {integer}           - column index (>=0 count from left, <0 count from right)
+		 * "{integer}:visIdx"  - visible column index (i.e. translate to column index)  (>=0 count from left, <0 count from right)
+		 * "{integer}:visible" - alias for {integer}:visIdx  (>=0 count from left, <0 count from right)
+		 * "{string}:name"     - column name
+		 * "{string}"          - jQuery selector on column header nodes
+		 *
+		 */
+
+		// can be an array of these items, comma separated list, or an array of comma
+		// separated lists
+
+		var __re_column_selector = /^([^:]+):(name|visIdx|visible)$/;
+
+
+		// r1 and r2 are redundant - but it means that the parameters match for the
+		// iterator callback in columns().data()
+		var __columnData = function (settings, column, r1, r2, rows) {
+			var a = [];
+			for (var row = 0, ien = rows.length; row < ien; row++) {
+				a.push(_fnGetCellData(settings, rows[row], column));
+			}
+			return a;
+		};
+
+
+		var __column_selector = function (settings, selector, opts) {
+			var
+				columns = settings.aoColumns,
+				names = _pluck(columns, 'sName'),
+				nodes = _pluck(columns, 'nTh');
+
+			var run = function (s) {
+				var selInt = _intVal(s);
+
+				// Selector - all
+				if (s === '') {
+					return _range(columns.length);
+				}
+
+				// Selector - index
+				if (selInt !== null) {
+					return [selInt >= 0 ?
+						selInt : // Count from left
+						columns.length + selInt // Count from right (+ because its a negative value)
+					];
+				}
+
+				// Selector = function
+				if (typeof s === 'function') {
+					var rows = _selector_row_indexes(settings, opts);
+
+					return $.map(columns, function (col, idx) {
+						return s(
+							idx,
+							__columnData(settings, idx, 0, 0, rows),
+							nodes[idx]
+						) ? idx : null;
+					});
+				}
+
+				// jQuery or string selector
+				var match = typeof s === 'string' ?
+					s.match(__re_column_selector) :
+					'';
+
+				if (match) {
+					switch (match[2]) {
+						case 'visIdx':
+						case 'visible':
+							var idx = parseInt(match[1], 10);
+							// Visible index given, convert to column index
+							if (idx < 0) {
+								// Counting from the right
+								var visColumns = $.map(columns, function (col, i) {
+									return col.bVisible ? i : null;
+								});
+								return [visColumns[visColumns.length + idx]];
+							}
+							// Counting from the left
+							return [_fnVisibleToColumnIndex(settings, idx)];
+
+						case 'name':
+							// match by name. `names` is column index complete and in order
+							return $.map(names, function (name, i) {
+								return name === match[1] ? i : null;
+							});
+
+						default:
+							return [];
+					}
+				}
+
+				// Cell in the table body
+				if (s.nodeName && s._DT_CellIndex) {
+					return [s._DT_CellIndex.column];
+				}
+
+				// jQuery selector on the TH elements for the columns
+				var jqResult = $(nodes)
+					.filter(s)
+					.map(function () {
+						return $.inArray(this, nodes); // `nodes` is column index complete and in order
+					})
+					.toArray();
+
+				if (jqResult.length || !s.nodeName) {
+					return jqResult;
+				}
+
+				// Otherwise a node which might have a `dt-column` data attribute, or be
+				// a child or such an element
+				var host = $(s).closest('*[data-dt-column]');
+				return host.length ?
+					[host.data('dt-column')] :
+					[];
+			};
+
+			return _selector_run('column', selector, run, settings, opts);
+		};
+
+
+		var __setColumnVis = function (settings, column, vis) {
+			var
+				cols = settings.aoColumns,
+				col = cols[column],
+				data = settings.aoData,
+				row, cells, i, ien, tr;
+
+			// Get
+			if (vis === undefined) {
+				return col.bVisible;
+			}
+
+			// Set
+			// No change
+			if (col.bVisible === vis) {
+				return;
+			}
+
+			if (vis) {
+				// Insert column
+				// Need to decide if we should use appendChild or insertBefore
+				var insertBefore = $.inArray(true, _pluck(cols, 'bVisible'), column + 1);
+
+				for (i = 0, ien = data.length; i < ien; i++) {
+					tr = data[i].nTr;
+					cells = data[i].anCells;
+
+					if (tr) {
+						// insertBefore can act like appendChild if 2nd arg is null
+						tr.insertBefore(cells[column], cells[insertBefore] || null);
+					}
+				}
+			}
+			else {
+				// Remove column
+				$(_pluck(settings.aoData, 'anCells', column)).detach();
+			}
+
+			// Common actions
+			col.bVisible = vis;
+		};
+
+
+		_api_register('columns()', function (selector, opts) {
+			// argument shifting
+			if (selector === undefined) {
+				selector = '';
+			}
+			else if ($.isPlainObject(selector)) {
+				opts = selector;
+				selector = '';
+			}
+
+			opts = _selector_opts(opts);
+
+			var inst = this.iterator('table', function (settings) {
+				return __column_selector(settings, selector, opts);
+			}, 1);
+
+			// Want argument shifting here and in _row_selector?
+			inst.selector.cols = selector;
+			inst.selector.opts = opts;
+
+			return inst;
+		});
+
+		_api_registerPlural('columns().header()', 'column().header()', function (selector, opts) {
+			return this.iterator('column', function (settings, column) {
+				return settings.aoColumns[column].nTh;
+			}, 1);
+		});
+
+		_api_registerPlural('columns().footer()', 'column().footer()', function (selector, opts) {
+			return this.iterator('column', function (settings, column) {
+				return settings.aoColumns[column].nTf;
+			}, 1);
+		});
+
+		_api_registerPlural('columns().data()', 'column().data()', function () {
+			return this.iterator('column-rows', __columnData, 1);
+		});
+
+		_api_registerPlural('columns().dataSrc()', 'column().dataSrc()', function () {
+			return this.iterator('column', function (settings, column) {
+				return settings.aoColumns[column].mData;
+			}, 1);
+		});
+
+		_api_registerPlural('columns().cache()', 'column().cache()', function (type) {
+			return this.iterator('column-rows', function (settings, column, i, j, rows) {
+				return _pluck_order(settings.aoData, rows,
+					type === 'search' ? '_aFilterData' : '_aSortData', column
+				);
+			}, 1);
+		});
+
+		_api_registerPlural('columns().nodes()', 'column().nodes()', function () {
+			return this.iterator('column-rows', function (settings, column, i, j, rows) {
+				return _pluck_order(settings.aoData, rows, 'anCells', column);
+			}, 1);
+		});
+
+		_api_registerPlural('columns().visible()', 'column().visible()', function (vis, calc) {
+			var that = this;
+			var ret = this.iterator('column', function (settings, column) {
+				if (vis === undefined) {
+					return settings.aoColumns[column].bVisible;
+				} // else
+				__setColumnVis(settings, column, vis);
+			});
+
+			// Group the column visibility changes
+			if (vis !== undefined) {
+				this.iterator('table', function (settings) {
+					// Redraw the header after changes
+					_fnDrawHead(settings, settings.aoHeader);
+					_fnDrawHead(settings, settings.aoFooter);
+
+					// Update colspan for no records display. Child rows and extensions will use their own
+					// listeners to do this - only need to update the empty table item here
+					if (!settings.aiDisplay.length) {
+						$(settings.nTBody).find('td[colspan]').attr('colspan', _fnVisbleColumns(settings));
+					}
+
+					_fnSaveState(settings);
+
+					// Second loop once the first is done for events
+					that.iterator('column', function (settings, column) {
+						_fnCallbackFire(settings, null, 'column-visibility', [settings, column, vis, calc]);
+					});
+
+					if (calc === undefined || calc) {
+						that.columns.adjust();
+					}
+				});
+			}
+
+			return ret;
+		});
+
+		_api_registerPlural('columns().indexes()', 'column().index()', function (type) {
+			return this.iterator('column', function (settings, column) {
+				return type === 'visible' ?
+					_fnColumnIndexToVisible(settings, column) :
+					column;
+			}, 1);
+		});
+
+		_api_register('columns.adjust()', function () {
+			return this.iterator('table', function (settings) {
+				_fnAdjustColumnSizing(settings);
+			}, 1);
+		});
+
+		_api_register('column.index()', function (type, idx) {
+			if (this.context.length !== 0) {
+				var ctx = this.context[0];
+
+				if (type === 'fromVisible' || type === 'toData') {
+					return _fnVisibleToColumnIndex(ctx, idx);
+				}
+				else if (type === 'fromData' || type === 'toVisible') {
+					return _fnColumnIndexToVisible(ctx, idx);
+				}
+			}
+		});
+
+		_api_register('column()', function (selector, opts) {
+			return _selector_first(this.columns(selector, opts));
+		});
+
+		var __cell_selector = function (settings, selector, opts) {
+			var data = settings.aoData;
+			var rows = _selector_row_indexes(settings, opts);
+			var cells = _removeEmpty(_pluck_order(data, rows, 'anCells'));
+			var allCells = $(_flatten([], cells));
+			var row;
+			var columns = settings.aoColumns.length;
+			var a, i, ien, j, o, host;
+
+			var run = function (s) {
+				var fnSelector = typeof s === 'function';
+
+				if (s === null || s === undefined || fnSelector) {
+					// All cells and function selectors
+					a = [];
+
+					for (i = 0, ien = rows.length; i < ien; i++) {
+						row = rows[i];
+
+						for (j = 0; j < columns; j++) {
+							o = {
+								row: row,
+								column: j
+							};
+
+							if (fnSelector) {
+								// Selector - function
+								host = data[row];
+
+								if (s(o, _fnGetCellData(settings, row, j), host.anCells ? host.anCells[j] : null)) {
+									a.push(o);
+								}
+							}
+							else {
+								// Selector - all
+								a.push(o);
+							}
+						}
+					}
+
+					return a;
+				}
+
+				// Selector - index
+				if ($.isPlainObject(s)) {
+					// Valid cell index and its in the array of selectable rows
+					return s.column !== undefined && s.row !== undefined && $.inArray(s.row, rows) !== -1 ?
+						[s] :
+						[];
+				}
+
+				// Selector - jQuery filtered cells
+				var jqResult = allCells
+					.filter(s)
+					.map(function (i, el) {
+						return { // use a new object, in case someone changes the values
+							row: el._DT_CellIndex.row,
+							column: el._DT_CellIndex.column
+						};
+					})
+					.toArray();
+
+				if (jqResult.length || !s.nodeName) {
+					return jqResult;
+				}
+
+				// Otherwise the selector is a node, and there is one last option - the
+				// element might be a child of an element which has dt-row and dt-column
+				// data attributes
+				host = $(s).closest('*[data-dt-row]');
+				return host.length ?
+					[{
+						row: host.data('dt-row'),
+						column: host.data('dt-column')
+					}] :
+					[];
+			};
+
+			return _selector_run('cell', selector, run, settings, opts);
+		};
+
+
+
+
+		_api_register('cells()', function (rowSelector, columnSelector, opts) {
+			// Argument shifting
+			if ($.isPlainObject(rowSelector)) {
+				// Indexes
+				if (rowSelector.row === undefined) {
+					// Selector options in first parameter
+					opts = rowSelector;
+					rowSelector = null;
+				}
+				else {
+					// Cell index objects in first parameter
+					opts = columnSelector;
+					columnSelector = null;
+				}
+			}
+			if ($.isPlainObject(columnSelector)) {
+				opts = columnSelector;
+				columnSelector = null;
+			}
+
+			// Cell selector
+			if (columnSelector === null || columnSelector === undefined) {
+				return this.iterator('table', function (settings) {
+					return __cell_selector(settings, rowSelector, _selector_opts(opts));
+				});
+			}
+
+			// The default built in options need to apply to row and columns
+			var internalOpts = opts ? {
+				page: opts.page,
+				order: opts.order,
+				search: opts.search
+			} : {};
+
+			// Row + column selector
+			var columns = this.columns(columnSelector, internalOpts);
+			var rows = this.rows(rowSelector, internalOpts);
+			var i, ien, j, jen;
+
+			var cellsNoOpts = this.iterator('table', function (settings, idx) {
+				var a = [];
+
+				for (i = 0, ien = rows[idx].length; i < ien; i++) {
+					for (j = 0, jen = columns[idx].length; j < jen; j++) {
+						a.push({
+							row: rows[idx][i],
+							column: columns[idx][j]
+						});
+					}
+				}
+
+				return a;
+			}, 1);
+
+			// There is currently only one extension which uses a cell selector extension
+			// It is a _major_ performance drag to run this if it isn't needed, so this is
+			// an extension specific check at the moment
+			var cells = opts && opts.selected ?
+				this.cells(cellsNoOpts, opts) :
+				cellsNoOpts;
+
+			$.extend(cells.selector, {
+				cols: columnSelector,
+				rows: rowSelector,
+				opts: opts
+			});
+
+			return cells;
+		});
+
+
+		_api_registerPlural('cells().nodes()', 'cell().node()', function () {
+			return this.iterator('cell', function (settings, row, column) {
+				var data = settings.aoData[row];
+
+				return data && data.anCells ?
+					data.anCells[column] :
+					undefined;
+			}, 1);
+		});
+
+
+		_api_register('cells().data()', function () {
+			return this.iterator('cell', function (settings, row, column) {
+				return _fnGetCellData(settings, row, column);
+			}, 1);
+		});
+
+
+		_api_registerPlural('cells().cache()', 'cell().cache()', function (type) {
+			type = type === 'search' ? '_aFilterData' : '_aSortData';
+
+			return this.iterator('cell', function (settings, row, column) {
+				return settings.aoData[row][type][column];
+			}, 1);
+		});
+
+
+		_api_registerPlural('cells().render()', 'cell().render()', function (type) {
+			return this.iterator('cell', function (settings, row, column) {
+				return _fnGetCellData(settings, row, column, type);
+			}, 1);
+		});
+
+
+		_api_registerPlural('cells().indexes()', 'cell().index()', function () {
+			return this.iterator('cell', function (settings, row, column) {
+				return {
+					row: row,
+					column: column,
+					columnVisible: _fnColumnIndexToVisible(settings, column)
+				};
+			}, 1);
+		});
+
+
+		_api_registerPlural('cells().invalidate()', 'cell().invalidate()', function (src) {
+			return this.iterator('cell', function (settings, row, column) {
+				_fnInvalidate(settings, row, src, column);
+			});
+		});
+
+
+
+		_api_register('cell()', function (rowSelector, columnSelector, opts) {
+			return _selector_first(this.cells(rowSelector, columnSelector, opts));
+		});
+
+
+		_api_register('cell().data()', function (data) {
+			var ctx = this.context;
+			var cell = this[0];
+
+			if (data === undefined) {
+				// Get
+				return ctx.length && cell.length ?
+					_fnGetCellData(ctx[0], cell[0].row, cell[0].column) :
+					undefined;
+			}
+
+			// Set
+			_fnSetCellData(ctx[0], cell[0].row, cell[0].column, data);
+			_fnInvalidate(ctx[0], cell[0].row, 'data', cell[0].column);
+
+			return this;
+		});
+
+
+
+		/**
+		 * Get current ordering (sorting) that has been applied to the table.
+		 *
+		 * @returns {array} 2D array containing the sorting information for the first
+		 *   table in the current context. Each element in the parent array represents
+		 *   a column being sorted upon (i.e. multi-sorting with two columns would have
+		 *   2 inner arrays). The inner arrays may have 2 or 3 elements. The first is
+		 *   the column index that the sorting condition applies to, the second is the
+		 *   direction of the sort (`desc` or `asc`) and, optionally, the third is the
+		 *   index of the sorting order from the `column.sorting` initialisation array.
+		 *//**
+		* Set the ordering for the table.
+		*
+		* @param {integer} order Column index to sort upon.
+		* @param {string} direction Direction of the sort to be applied (`asc` or `desc`)
+		* @returns {DataTables.Api} this
+		*//**
+		* Set the ordering for the table.
+		*
+		* @param {array} order 1D array of sorting information to be applied.
+		* @param {array} [...] Optional additional sorting conditions
+		* @returns {DataTables.Api} this
+		*//**
+		* Set the ordering for the table.
+		*
+		* @param {array} order 2D array of sorting information to be applied.
+		* @returns {DataTables.Api} this
+		*/
+		_api_register('order()', function (order, dir) {
+			var ctx = this.context;
+
+			if (order === undefined) {
+				// get
+				return ctx.length !== 0 ?
+					ctx[0].aaSorting :
+					undefined;
+			}
+
+			// set
+			if (typeof order === 'number') {
+				// Simple column / direction passed in
+				order = [[order, dir]];
+			}
+			else if (order.length && !Array.isArray(order[0])) {
+				// Arguments passed in (list of 1D arrays)
+				order = Array.prototype.slice.call(arguments);
+			}
+			// otherwise a 2D array was passed in
+
+			return this.iterator('table', function (settings) {
+				settings.aaSorting = order.slice();
+			});
+		});
+
+
+		/**
+		 * Attach a sort listener to an element for a given column
+		 *
+		 * @param {node|jQuery|string} node Identifier for the element(s) to attach the
+		 *   listener to. This can take the form of a single DOM node, a jQuery
+		 *   collection of nodes or a jQuery selector which will identify the node(s).
+		 * @param {integer} column the column that a click on this node will sort on
+		 * @param {function} [callback] callback function when sort is run
+		 * @returns {DataTables.Api} this
+		 */
+		_api_register('order.listener()', function (node, column, callback) {
+			return this.iterator('table', function (settings) {
+				_fnSortAttachListener(settings, node, column, callback);
+			});
+		});
+
+
+		_api_register('order.fixed()', function (set) {
+			if (!set) {
+				var ctx = this.context;
+				var fixed = ctx.length ?
+					ctx[0].aaSortingFixed :
+					undefined;
+
+				return Array.isArray(fixed) ?
+					{ pre: fixed } :
+					fixed;
+			}
+
+			return this.iterator('table', function (settings) {
+				settings.aaSortingFixed = $.extend(true, {}, set);
+			});
+		});
+
+
+		// Order by the selected column(s)
+		_api_register([
+			'columns().order()',
+			'column().order()'
+		], function (dir) {
+			var that = this;
+
+			return this.iterator('table', function (settings, i) {
+				var sort = [];
+
+				$.each(that[i], function (j, col) {
+					sort.push([col, dir]);
+				});
+
+				settings.aaSorting = sort;
+			});
+		});
+
+
+
+		_api_register('search()', function (input, regex, smart, caseInsen) {
+			var ctx = this.context;
+
+			if (input === undefined) {
+				// get
+				return ctx.length !== 0 ?
+					ctx[0].oPreviousSearch.sSearch :
+					undefined;
+			}
+
+			// set
+			return this.iterator('table', function (settings) {
+				if (!settings.oFeatures.bFilter) {
+					return;
+				}
+
+				_fnFilterComplete(settings, $.extend({}, settings.oPreviousSearch, {
+					"sSearch": input + "",
+					"bRegex": regex === null ? false : regex,
+					"bSmart": smart === null ? true : smart,
+					"bCaseInsensitive": caseInsen === null ? true : caseInsen
+				}), 1);
+			});
+		});
+
+
+		_api_registerPlural(
+			'columns().search()',
+			'column().search()',
+			function (input, regex, smart, caseInsen) {
+				return this.iterator('column', function (settings, column) {
+					var preSearch = settings.aoPreSearchCols;
+
+					if (input === undefined) {
+						// get
+						return preSearch[column].sSearch;
+					}
+
+					// set
+					if (!settings.oFeatures.bFilter) {
+						return;
+					}
+
+					$.extend(preSearch[column], {
+						"sSearch": input + "",
+						"bRegex": regex === null ? false : regex,
+						"bSmart": smart === null ? true : smart,
+						"bCaseInsensitive": caseInsen === null ? true : caseInsen
+					});
+
+					_fnFilterComplete(settings, settings.oPreviousSearch, 1);
+				});
+			}
+		);
+
+		/*
+		 * State API methods
+		 */
+
+		_api_register('state()', function () {
+			return this.context.length ?
+				this.context[0].oSavedState :
+				null;
+		});
+
+
+		_api_register('state.clear()', function () {
+			return this.iterator('table', function (settings) {
+				// Save an empty object
+				settings.fnStateSaveCallback.call(settings.oInstance, settings, {});
+			});
+		});
+
+
+		_api_register('state.loaded()', function () {
+			return this.context.length ?
+				this.context[0].oLoadedState :
+				null;
+		});
+
+
+		_api_register('state.save()', function () {
+			return this.iterator('table', function (settings) {
+				_fnSaveState(settings);
+			});
+		});
+
+
+
+		/**
+		 * Provide a common method for plug-ins to check the version of DataTables being
+		 * used, in order to ensure compatibility.
+		 *
+		 *  @param {string} version Version string to check for, in the format "X.Y.Z".
+		 *    Note that the formats "X" and "X.Y" are also acceptable.
+		 *  @returns {boolean} true if this version of DataTables is greater or equal to
+		 *    the required version, or false if this version of DataTales is not
+		 *    suitable
+		 *  @static
+		 *  @dtopt API-Static
+		 *
+		 *  @example
+		 *    alert( $.fn.dataTable.versionCheck( '1.9.0' ) );
+		 */
+		DataTable.versionCheck = DataTable.fnVersionCheck = function (version) {
+			var aThis = DataTable.version.split('.');
+			var aThat = version.split('.');
+			var iThis, iThat;
+
+			for (var i = 0, iLen = aThat.length; i < iLen; i++) {
+				iThis = parseInt(aThis[i], 10) || 0;
+				iThat = parseInt(aThat[i], 10) || 0;
+
+				// Parts are the same, keep comparing
+				if (iThis === iThat) {
+					continue;
+				}
+
+				// Parts are different, return immediately
+				return iThis > iThat;
+			}
+
+			return true;
+		};
+
+
+		/**
+		 * Check if a `<table>` node is a DataTable table already or not.
+		 *
+		 *  @param {node|jquery|string} table Table node, jQuery object or jQuery
+		 *      selector for the table to test. Note that if more than more than one
+		 *      table is passed on, only the first will be checked
+		 *  @returns {boolean} true the table given is a DataTable, or false otherwise
+		 *  @static
+		 *  @dtopt API-Static
+		 *
+		 *  @example
+		 *    if ( ! $.fn.DataTable.isDataTable( '#example' ) ) {
+		 *      $('#example').dataTable();
+		 *    }
+		 */
+		DataTable.isDataTable = DataTable.fnIsDataTable = function (table) {
+			var t = $(table).get(0);
+			var is = false;
+
+			if (table instanceof DataTable.Api) {
+				return true;
+			}
+
+			$.each(DataTable.settings, function (i, o) {
+				var head = o.nScrollHead ? $('table', o.nScrollHead)[0] : null;
+				var foot = o.nScrollFoot ? $('table', o.nScrollFoot)[0] : null;
+
+				if (o.nTable === t || head === t || foot === t) {
+					is = true;
+				}
+			});
+
+			return is;
+		};
+
+
+		/**
+		 * Get all DataTable tables that have been initialised - optionally you can
+		 * select to get only currently visible tables.
+		 *
+		 *  @param {boolean} [visible=false] Flag to indicate if you want all (default)
+		 *    or visible tables only.
+		 *  @returns {array} Array of `table` nodes (not DataTable instances) which are
+		 *    DataTables
+		 *  @static
+		 *  @dtopt API-Static
+		 *
+		 *  @example
+		 *    $.each( $.fn.dataTable.tables(true), function () {
+		 *      $(table).DataTable().columns.adjust();
+		 *    } );
+		 */
+		DataTable.tables = DataTable.fnTables = function (visible) {
+			var api = false;
+
+			if ($.isPlainObject(visible)) {
+				api = visible.api;
+				visible = visible.visible;
+			}
+
+			var a = $.map(DataTable.settings, function (o) {
+				if (!visible || (visible && $(o.nTable).is(':visible'))) {
+					return o.nTable;
+				}
+			});
+
+			return api ?
+				new _Api(a) :
+				a;
+		};
+
+
+		/**
+		 * Convert from camel case parameters to Hungarian notation. This is made public
+		 * for the extensions to provide the same ability as DataTables core to accept
+		 * either the 1.9 style Hungarian notation, or the 1.10+ style camelCase
+		 * parameters.
+		 *
+		 *  @param {object} src The model object which holds all parameters that can be
+		 *    mapped.
+		 *  @param {object} user The object to convert from camel case to Hungarian.
+		 *  @param {boolean} force When set to `true`, properties which already have a
+		 *    Hungarian value in the `user` object will be overwritten. Otherwise they
+		 *    won't be.
+		 */
+		DataTable.camelToHungarian = _fnCamelToHungarian;
+
+
+
+		/**
+		 *
+		 */
+		_api_register('$()', function (selector, opts) {
+			var
+				rows = this.rows(opts).nodes(), // Get all rows
+				jqRows = $(rows);
+
+			return $([].concat(
+				jqRows.filter(selector).toArray(),
+				jqRows.find(selector).toArray()
+			));
+		});
+
+
+		// jQuery functions to operate on the tables
+		$.each(['on', 'one', 'off'], function (i, key) {
+			_api_register(key + '()', function ( /* event, handler */) {
+				var args = Array.prototype.slice.call(arguments);
+
+				// Add the `dt` namespace automatically if it isn't already present
+				args[0] = $.map(args[0].split(/\s/), function (e) {
+					return !e.match(/\.dt\b/) ?
+						e + '.dt' :
+						e;
+				}).join(' ');
+
+				var inst = $(this.tables().nodes());
+				inst[key].apply(inst, args);
+				return this;
+			});
+		});
+
+
+		_api_register('clear()', function () {
+			return this.iterator('table', function (settings) {
+				_fnClearTable(settings);
+			});
+		});
+
+
+		_api_register('settings()', function () {
+			return new _Api(this.context, this.context);
+		});
+
+
+		_api_register('init()', function () {
+			var ctx = this.context;
+			return ctx.length ? ctx[0].oInit : null;
+		});
+
+
+		_api_register('data()', function () {
+			return this.iterator('table', function (settings) {
+				return _pluck(settings.aoData, '_aData');
+			}).flatten();
+		});
+
+
+		_api_register('destroy()', function (remove) {
+			remove = remove || false;
+
+			return this.iterator('table', function (settings) {
+				var orig = settings.nTableWrapper.parentNode;
+				var classes = settings.oClasses;
+				var table = settings.nTable;
+				var tbody = settings.nTBody;
+				var thead = settings.nTHead;
+				var tfoot = settings.nTFoot;
+				var jqTable = $(table);
+				var jqTbody = $(tbody);
+				var jqWrapper = $(settings.nTableWrapper);
+				var rows = $.map(settings.aoData, function (r) { return r.nTr; });
+				var i, ien;
+
+				// Flag to note that the table is currently being destroyed - no action
+				// should be taken
+				settings.bDestroying = true;
+
+				// Fire off the destroy callbacks for plug-ins etc
+				_fnCallbackFire(settings, "aoDestroyCallback", "destroy", [settings]);
+
+				// If not being removed from the document, make all columns visible
+				if (!remove) {
+					new _Api(settings).columns().visible(true);
+				}
+
+				// Blitz all `DT` namespaced events (these are internal events, the
+				// lowercase, `dt` events are user subscribed and they are responsible
+				// for removing them
+				jqWrapper.off('.DT').find(':not(tbody *)').off('.DT');
+				$(window).off('.DT-' + settings.sInstance);
+
+				// When scrolling we had to break the table up - restore it
+				if (table != thead.parentNode) {
+					jqTable.children('thead').detach();
+					jqTable.append(thead);
+				}
+
+				if (tfoot && table != tfoot.parentNode) {
+					jqTable.children('tfoot').detach();
+					jqTable.append(tfoot);
+				}
+
+				settings.aaSorting = [];
+				settings.aaSortingFixed = [];
+				_fnSortingClasses(settings);
+
+				$(rows).removeClass(settings.asStripeClasses.join(' '));
+
+				$('th, td', thead).removeClass(classes.sSortable + ' ' +
+					classes.sSortableAsc + ' ' + classes.sSortableDesc + ' ' + classes.sSortableNone
+				);
+
+				// Add the TR elements back into the table in their original order
+				jqTbody.children().detach();
+				jqTbody.append(rows);
+
+				// Remove the DataTables generated nodes, events and classes
+				var removedMethod = remove ? 'remove' : 'detach';
+				jqTable[removedMethod]();
+				jqWrapper[removedMethod]();
+
+				// If we need to reattach the table to the document
+				if (!remove && orig) {
+					// insertBefore acts like appendChild if !arg[1]
+					orig.insertBefore(table, settings.nTableReinsertBefore);
+
+					// Restore the width of the original table - was read from the style property,
+					// so we can restore directly to that
+					jqTable
+						.css('width', settings.sDestroyWidth)
+						.removeClass(classes.sTable);
+
+					// If the were originally stripe classes - then we add them back here.
+					// Note this is not fool proof (for example if not all rows had stripe
+					// classes - but it's a good effort without getting carried away
+					ien = settings.asDestroyStripes.length;
+
+					if (ien) {
+						jqTbody.children().each(function (i) {
+							$(this).addClass(settings.asDestroyStripes[i % ien]);
+						});
+					}
+				}
+
+				/* Remove the settings object from the settings array */
+				var idx = $.inArray(settings, DataTable.settings);
+				if (idx !== -1) {
+					DataTable.settings.splice(idx, 1);
+				}
+			});
+		});
+
+
+		// Add the `every()` method for rows, columns and cells in a compact form
+		$.each(['column', 'row', 'cell'], function (i, type) {
+			_api_register(type + 's().every()', function (fn) {
+				var opts = this.selector.opts;
+				var api = this;
+
+				return this.iterator(type, function (settings, arg1, arg2, arg3, arg4) {
+					// Rows and columns:
+					//  arg1 - index
+					//  arg2 - table counter
+					//  arg3 - loop counter
+					//  arg4 - undefined
+					// Cells:
+					//  arg1 - row index
+					//  arg2 - column index
+					//  arg3 - table counter
+					//  arg4 - loop counter
+					fn.call(
+						api[type](
+							arg1,
+							type === 'cell' ? arg2 : opts,
+							type === 'cell' ? opts : undefined
+						),
+						arg1, arg2, arg3, arg4
+					);
+				});
+			});
+		});
+
+
+		// i18n method for extensions to be able to use the language object from the
+		// DataTable
+		_api_register('i18n()', function (token, def, plural) {
+			var ctx = this.context[0];
+			var resolved = _fnGetObjectDataFn(token)(ctx.oLanguage);
+
+			if (resolved === undefined) {
+				resolved = def;
+			}
+
+			if (plural !== undefined && $.isPlainObject(resolved)) {
+				resolved = resolved[plural] !== undefined ?
+					resolved[plural] :
+					resolved._;
+			}
+
+			return resolved.replace('%d', plural); // nb: plural might be undefined,
+		});
+		/**
+		 * Version string for plug-ins to check compatibility. Allowed format is
+		 * `a.b.c-d` where: a:int, b:int, c:int, d:string(dev|beta|alpha). `d` is used
+		 * only for non-release builds. See http://semver.org/ for more information.
+		 *  @member
+		 *  @type string
+		 *  @default Version number
+		 */
+		DataTable.version = "1.10.25";
+
+		/**
+		 * Private data store, containing all of the settings objects that are
+		 * created for the tables on a given page.
+		 *
+		 * Note that the `DataTable.settings` object is aliased to
+		 * `jQuery.fn.dataTableExt` through which it may be accessed and
+		 * manipulated, or `jQuery.fn.dataTable.settings`.
+		 *  @member
+		 *  @type array
+		 *  @default []
+		 *  @private
+		 */
+		DataTable.settings = [];
+
+		/**
+		 * Object models container, for the various models that DataTables has
+		 * available to it. These models define the objects that are used to hold
+		 * the active state and configuration of the table.
+		 *  @namespace
+		 */
+		DataTable.models = {};
+
+
+
+		/**
+		 * Template object for the way in which DataTables holds information about
+		 * search information for the global filter and individual column filters.
+		 *  @namespace
+		 */
+		DataTable.models.oSearch = {
+			/**
+			 * Flag to indicate if the filtering should be case insensitive or not
+			 *  @type boolean
+			 *  @default true
+			 */
+			"bCaseInsensitive": true,
+
+			/**
+			 * Applied search term
+			 *  @type string
+			 *  @default <i>Empty string</i>
+			 */
+			"sSearch": "",
+
+			/**
+			 * Flag to indicate if the search term should be interpreted as a
+			 * regular expression (true) or not (false) and therefore and special
+			 * regex characters escaped.
+			 *  @type boolean
+			 *  @default false
+			 */
+			"bRegex": false,
+
+			/**
+			 * Flag to indicate if DataTables is to use its smart filtering or not.
+			 *  @type boolean
+			 *  @default true
+			 */
+			"bSmart": true
+		};
+
+
+
+
+		/**
+		 * Template object for the way in which DataTables holds information about
+		 * each individual row. This is the object format used for the settings
+		 * aoData array.
+		 *  @namespace
+		 */
+		DataTable.models.oRow = {
+			/**
+			 * TR element for the row
+			 *  @type node
+			 *  @default null
+			 */
+			"nTr": null,
+
+			/**
+			 * Array of TD elements for each row. This is null until the row has been
+			 * created.
+			 *  @type array nodes
+			 *  @default []
+			 */
+			"anCells": null,
+
+			/**
+			 * Data object from the original data source for the row. This is either
+			 * an array if using the traditional form of DataTables, or an object if
+			 * using mData options. The exact type will depend on the passed in
+			 * data from the data source, or will be an array if using DOM a data
+			 * source.
+			 *  @type array|object
+			 *  @default []
+			 */
+			"_aData": [],
+
+			/**
+			 * Sorting data cache - this array is ostensibly the same length as the
+			 * number of columns (although each index is generated only as it is
+			 * needed), and holds the data that is used for sorting each column in the
+			 * row. We do this cache generation at the start of the sort in order that
+			 * the formatting of the sort data need be done only once for each cell
+			 * per sort. This array should not be read from or written to by anything
+			 * other than the master sorting methods.
+			 *  @type array
+			 *  @default null
+			 *  @private
+			 */
+			"_aSortData": null,
+
+			/**
+			 * Per cell filtering data cache. As per the sort data cache, used to
+			 * increase the performance of the filtering in DataTables
+			 *  @type array
+			 *  @default null
+			 *  @private
+			 */
+			"_aFilterData": null,
+
+			/**
+			 * Filtering data cache. This is the same as the cell filtering cache, but
+			 * in this case a string rather than an array. This is easily computed with
+			 * a join on `_aFilterData`, but is provided as a cache so the join isn't
+			 * needed on every search (memory traded for performance)
+			 *  @type array
+			 *  @default null
+			 *  @private
+			 */
+			"_sFilterRow": null,
+
+			/**
+			 * Cache of the class name that DataTables has applied to the row, so we
+			 * can quickly look at this variable rather than needing to do a DOM check
+			 * on className for the nTr property.
+			 *  @type string
+			 *  @default <i>Empty string</i>
+			 *  @private
+			 */
+			"_sRowStripe": "",
+
+			/**
+			 * Denote if the original data source was from the DOM, or the data source
+			 * object. This is used for invalidating data, so DataTables can
+			 * automatically read data from the original source, unless uninstructed
+			 * otherwise.
+			 *  @type string
+			 *  @default null
+			 *  @private
+			 */
+			"src": null,
+
+			/**
+			 * Index in the aoData array. This saves an indexOf lookup when we have the
+			 * object, but want to know the index
+			 *  @type integer
+			 *  @default -1
+			 *  @private
+			 */
+			"idx": -1
+		};
+
+
+		/**
+		 * Template object for the column information object in DataTables. This object
+		 * is held in the settings aoColumns array and contains all the information that
+		 * DataTables needs about each individual column.
+		 *
+		 * Note that this object is related to {@link DataTable.defaults.column}
+		 * but this one is the internal data store for DataTables's cache of columns.
+		 * It should NOT be manipulated outside of DataTables. Any configuration should
+		 * be done through the initialisation options.
+		 *  @namespace
+		 */
+		DataTable.models.oColumn = {
+			/**
+			 * Column index. This could be worked out on-the-fly with $.inArray, but it
+			 * is faster to just hold it as a variable
+			 *  @type integer
+			 *  @default null
+			 */
+			"idx": null,
+
+			/**
+			 * A list of the columns that sorting should occur on when this column
+			 * is sorted. That this property is an array allows multi-column sorting
+			 * to be defined for a column (for example first name / last name columns
+			 * would benefit from this). The values are integers pointing to the
+			 * columns to be sorted on (typically it will be a single integer pointing
+			 * at itself, but that doesn't need to be the case).
+			 *  @type array
+			 */
+			"aDataSort": null,
+
+			/**
+			 * Define the sorting directions that are applied to the column, in sequence
+			 * as the column is repeatedly sorted upon - i.e. the first value is used
+			 * as the sorting direction when the column if first sorted (clicked on).
+			 * Sort it again (click again) and it will move on to the next index.
+			 * Repeat until loop.
+			 *  @type array
+			 */
+			"asSorting": null,
+
+			/**
+			 * Flag to indicate if the column is searchable, and thus should be included
+			 * in the filtering or not.
+			 *  @type boolean
+			 */
+			"bSearchable": null,
+
+			/**
+			 * Flag to indicate if the column is sortable or not.
+			 *  @type boolean
+			 */
+			"bSortable": null,
+
+			/**
+			 * Flag to indicate if the column is currently visible in the table or not
+			 *  @type boolean
+			 */
+			"bVisible": null,
+
+			/**
+			 * Store for manual type assignment using the `column.type` option. This
+			 * is held in store so we can manipulate the column's `sType` property.
+			 *  @type string
+			 *  @default null
+			 *  @private
+			 */
+			"_sManualType": null,
+
+			/**
+			 * Flag to indicate if HTML5 data attributes should be used as the data
+			 * source for filtering or sorting. True is either are.
+			 *  @type boolean
+			 *  @default false
+			 *  @private
+			 */
+			"_bAttrSrc": false,
+
+			/**
+			 * Developer definable function that is called whenever a cell is created (Ajax source,
+			 * etc) or processed for input (DOM source). This can be used as a compliment to mRender
+			 * allowing you to modify the DOM element (add background colour for example) when the
+			 * element is available.
+			 *  @type function
+			 *  @param {element} nTd The TD node that has been created
+			 *  @param {*} sData The Data for the cell
+			 *  @param {array|object} oData The data for the whole row
+			 *  @param {int} iRow The row index for the aoData data store
+			 *  @default null
+			 */
+			"fnCreatedCell": null,
+
+			/**
+			 * Function to get data from a cell in a column. You should <b>never</b>
+			 * access data directly through _aData internally in DataTables - always use
+			 * the method attached to this property. It allows mData to function as
+			 * required. This function is automatically assigned by the column
+			 * initialisation method
+			 *  @type function
+			 *  @param {array|object} oData The data array/object for the array
+			 *    (i.e. aoData[]._aData)
+			 *  @param {string} sSpecific The specific data type you want to get -
+			 *    'display', 'type' 'filter' 'sort'
+			 *  @returns {*} The data for the cell from the given row's data
+			 *  @default null
+			 */
+			"fnGetData": null,
+
+			/**
+			 * Function to set data for a cell in the column. You should <b>never</b>
+			 * set the data directly to _aData internally in DataTables - always use
+			 * this method. It allows mData to function as required. This function
+			 * is automatically assigned by the column initialisation method
+			 *  @type function
+			 *  @param {array|object} oData The data array/object for the array
+			 *    (i.e. aoData[]._aData)
+			 *  @param {*} sValue Value to set
+			 *  @default null
+			 */
+			"fnSetData": null,
+
+			/**
+			 * Property to read the value for the cells in the column from the data
+			 * source array / object. If null, then the default content is used, if a
+			 * function is given then the return from the function is used.
+			 *  @type function|int|string|null
+			 *  @default null
+			 */
+			"mData": null,
+
+			/**
+			 * Partner property to mData which is used (only when defined) to get
+			 * the data - i.e. it is basically the same as mData, but without the
+			 * 'set' option, and also the data fed to it is the result from mData.
+			 * This is the rendering method to match the data method of mData.
+			 *  @type function|int|string|null
+			 *  @default null
+			 */
+			"mRender": null,
+
+			/**
+			 * Unique header TH/TD element for this column - this is what the sorting
+			 * listener is attached to (if sorting is enabled.)
+			 *  @type node
+			 *  @default null
+			 */
+			"nTh": null,
+
+			/**
+			 * Unique footer TH/TD element for this column (if there is one). Not used
+			 * in DataTables as such, but can be used for plug-ins to reference the
+			 * footer for each column.
+			 *  @type node
+			 *  @default null
+			 */
+			"nTf": null,
+
+			/**
+			 * The class to apply to all TD elements in the table's TBODY for the column
+			 *  @type string
+			 *  @default null
+			 */
+			"sClass": null,
+
+			/**
+			 * When DataTables calculates the column widths to assign to each column,
+			 * it finds the longest string in each column and then constructs a
+			 * temporary table and reads the widths from that. The problem with this
+			 * is that "mmm" is much wider then "iiii", but the latter is a longer
+			 * string - thus the calculation can go wrong (doing it properly and putting
+			 * it into an DOM object and measuring that is horribly(!) slow). Thus as
+			 * a "work around" we provide this option. It will append its value to the
+			 * text that is found to be the longest string for the column - i.e. padding.
+			 *  @type string
+			 */
+			"sContentPadding": null,
+
+			/**
+			 * Allows a default value to be given for a column's data, and will be used
+			 * whenever a null data source is encountered (this can be because mData
+			 * is set to null, or because the data source itself is null).
+			 *  @type string
+			 *  @default null
+			 */
+			"sDefaultContent": null,
+
+			/**
+			 * Name for the column, allowing reference to the column by name as well as
+			 * by index (needs a lookup to work by name).
+			 *  @type string
+			 */
+			"sName": null,
+
+			/**
+			 * Custom sorting data type - defines which of the available plug-ins in
+			 * afnSortData the custom sorting will use - if any is defined.
+			 *  @type string
+			 *  @default std
+			 */
+			"sSortDataType": 'std',
+
+			/**
+			 * Class to be applied to the header element when sorting on this column
+			 *  @type string
+			 *  @default null
+			 */
+			"sSortingClass": null,
+
+			/**
+			 * Class to be applied to the header element when sorting on this column -
+			 * when jQuery UI theming is used.
+			 *  @type string
+			 *  @default null
+			 */
+			"sSortingClassJUI": null,
+
+			/**
+			 * Title of the column - what is seen in the TH element (nTh).
+			 *  @type string
+			 */
+			"sTitle": null,
+
+			/**
+			 * Column sorting and filtering type
+			 *  @type string
+			 *  @default null
+			 */
+			"sType": null,
+
+			/**
+			 * Width of the column
+			 *  @type string
+			 *  @default null
+			 */
+			"sWidth": null,
+
+			/**
+			 * Width of the column when it was first "encountered"
+			 *  @type string
+			 *  @default null
+			 */
+			"sWidthOrig": null
+		};
+
+
+		/*
+		 * Developer note: The properties of the object below are given in Hungarian
+		 * notation, that was used as the interface for DataTables prior to v1.10, however
+		 * from v1.10 onwards the primary interface is camel case. In order to avoid
+		 * breaking backwards compatibility utterly with this change, the Hungarian
+		 * version is still, internally the primary interface, but is is not documented
+		 * - hence the @name tags in each doc comment. This allows a Javascript function
+		 * to create a map from Hungarian notation to camel case (going the other direction
+		 * would require each property to be listed, which would add around 3K to the size
+		 * of DataTables, while this method is about a 0.5K hit).
+		 *
+		 * Ultimately this does pave the way for Hungarian notation to be dropped
+		 * completely, but that is a massive amount of work and will break current
+		 * installs (therefore is on-hold until v2).
+		 */
+
+		/**
+		 * Initialisation options that can be given to DataTables at initialisation
+		 * time.
+		 *  @namespace
+		 */
+		DataTable.defaults = {
+			/**
+			 * An array of data to use for the table, passed in at initialisation which
+			 * will be used in preference to any data which is already in the DOM. This is
+			 * particularly useful for constructing tables purely in Javascript, for
+			 * example with a custom Ajax call.
+			 *  @type array
+			 *  @default null
+			 *
+			 *  @dtopt Option
+			 *  @name DataTable.defaults.data
+			 *
+			 *  @example
+			 *    // Using a 2D array data source
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "data": [
+			 *          ['Trident', 'Internet Explorer 4.0', 'Win 95+', 4, 'X'],
+			 *          ['Trident', 'Internet Explorer 5.0', 'Win 95+', 5, 'C'],
+			 *        ],
+			 *        "columns": [
+			 *          { "title": "Engine" },
+			 *          { "title": "Browser" },
+			 *          { "title": "Platform" },
+			 *          { "title": "Version" },
+			 *          { "title": "Grade" }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using an array of objects as a data source (`data`)
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "data": [
+			 *          {
+			 *            "engine":   "Trident",
+			 *            "browser":  "Internet Explorer 4.0",
+			 *            "platform": "Win 95+",
+			 *            "version":  4,
+			 *            "grade":    "X"
+			 *          },
+			 *          {
+			 *            "engine":   "Trident",
+			 *            "browser":  "Internet Explorer 5.0",
+			 *            "platform": "Win 95+",
+			 *            "version":  5,
+			 *            "grade":    "C"
+			 *          }
+			 *        ],
+			 *        "columns": [
+			 *          { "title": "Engine",   "data": "engine" },
+			 *          { "title": "Browser",  "data": "browser" },
+			 *          { "title": "Platform", "data": "platform" },
+			 *          { "title": "Version",  "data": "version" },
+			 *          { "title": "Grade",    "data": "grade" }
+			 *        ]
+			 *      } );
+			 *    } );
+			 */
+			"aaData": null,
+
+
+			/**
+			 * If ordering is enabled, then DataTables will perform a first pass sort on
+			 * initialisation. You can define which column(s) the sort is performed
+			 * upon, and the sorting direction, with this variable. The `sorting` array
+			 * should contain an array for each column to be sorted initially containing
+			 * the column's index and a direction string ('asc' or 'desc').
+			 *  @type array
+			 *  @default [[0,'asc']]
+			 *
+			 *  @dtopt Option
+			 *  @name DataTable.defaults.order
+			 *
+			 *  @example
+			 *    // Sort by 3rd column first, and then 4th column
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "order": [[2,'asc'], [3,'desc']]
+			 *      } );
+			 *    } );
+			 *
+			 *    // No initial sorting
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "order": []
+			 *      } );
+			 *    } );
+			 */
+			"aaSorting": [[0, 'asc']],
+
+
+			/**
+			 * This parameter is basically identical to the `sorting` parameter, but
+			 * cannot be overridden by user interaction with the table. What this means
+			 * is that you could have a column (visible or hidden) which the sorting
+			 * will always be forced on first - any sorting after that (from the user)
+			 * will then be performed as required. This can be useful for grouping rows
+			 * together.
+			 *  @type array
+			 *  @default null
+			 *
+			 *  @dtopt Option
+			 *  @name DataTable.defaults.orderFixed
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "orderFixed": [[0,'asc']]
+			 *      } );
+			 *    } )
+			 */
+			"aaSortingFixed": [],
+
+
+			/**
+			 * DataTables can be instructed to load data to display in the table from a
+			 * Ajax source. This option defines how that Ajax call is made and where to.
+			 *
+			 * The `ajax` property has three different modes of operation, depending on
+			 * how it is defined. These are:
+			 *
+			 * * `string` - Set the URL from where the data should be loaded from.
+			 * * `object` - Define properties for `jQuery.ajax`.
+			 * * `function` - Custom data get function
+			 *
+			 * `string`
+			 * --------
+			 *
+			 * As a string, the `ajax` property simply defines the URL from which
+			 * DataTables will load data.
+			 *
+			 * `object`
+			 * --------
+			 *
+			 * As an object, the parameters in the object are passed to
+			 * [jQuery.ajax](http://api.jquery.com/jQuery.ajax/) allowing fine control
+			 * of the Ajax request. DataTables has a number of default parameters which
+			 * you can override using this option. Please refer to the jQuery
+			 * documentation for a full description of the options available, although
+			 * the following parameters provide additional options in DataTables or
+			 * require special consideration:
+			 *
+			 * * `data` - As with jQuery, `data` can be provided as an object, but it
+			 *   can also be used as a function to manipulate the data DataTables sends
+			 *   to the server. The function takes a single parameter, an object of
+			 *   parameters with the values that DataTables has readied for sending. An
+			 *   object may be returned which will be merged into the DataTables
+			 *   defaults, or you can add the items to the object that was passed in and
+			 *   not return anything from the function. This supersedes `fnServerParams`
+			 *   from DataTables 1.9-.
+			 *
+			 * * `dataSrc` - By default DataTables will look for the property `data` (or
+			 *   `aaData` for compatibility with DataTables 1.9-) when obtaining data
+			 *   from an Ajax source or for server-side processing - this parameter
+			 *   allows that property to be changed. You can use Javascript dotted
+			 *   object notation to get a data source for multiple levels of nesting, or
+			 *   it my be used as a function. As a function it takes a single parameter,
+			 *   the JSON returned from the server, which can be manipulated as
+			 *   required, with the returned value being that used by DataTables as the
+			 *   data source for the table. This supersedes `sAjaxDataProp` from
+			 *   DataTables 1.9-.
+			 *
+			 * * `success` - Should not be overridden it is used internally in
+			 *   DataTables. To manipulate / transform the data returned by the server
+			 *   use `ajax.dataSrc`, or use `ajax` as a function (see below).
+			 *
+			 * `function`
+			 * ----------
+			 *
+			 * As a function, making the Ajax call is left up to yourself allowing
+			 * complete control of the Ajax request. Indeed, if desired, a method other
+			 * than Ajax could be used to obtain the required data, such as Web storage
+			 * or an AIR database.
+			 *
+			 * The function is given four parameters and no return is required. The
+			 * parameters are:
+			 *
+			 * 1. _object_ - Data to send to the server
+			 * 2. _function_ - Callback function that must be executed when the required
+			 *    data has been obtained. That data should be passed into the callback
+			 *    as the only parameter
+			 * 3. _object_ - DataTables settings object for the table
+			 *
+			 * Note that this supersedes `fnServerData` from DataTables 1.9-.
+			 *
+			 *  @type string|object|function
+			 *  @default null
+			 *
+			 *  @dtopt Option
+			 *  @name DataTable.defaults.ajax
+			 *  @since 1.10.0
+			 *
+			 * @example
+			 *   // Get JSON data from a file via Ajax.
+			 *   // Note DataTables expects data in the form `{ data: [ ...data... ] }` by default).
+			 *   $('#example').dataTable( {
+			 *     "ajax": "data.json"
+			 *   } );
+			 *
+			 * @example
+			 *   // Get JSON data from a file via Ajax, using `dataSrc` to change
+			 *   // `data` to `tableData` (i.e. `{ tableData: [ ...data... ] }`)
+			 *   $('#example').dataTable( {
+			 *     "ajax": {
+			 *       "url": "data.json",
+			 *       "dataSrc": "tableData"
+			 *     }
+			 *   } );
+			 *
+			 * @example
+			 *   // Get JSON data from a file via Ajax, using `dataSrc` to read data
+			 *   // from a plain array rather than an array in an object
+			 *   $('#example').dataTable( {
+			 *     "ajax": {
+			 *       "url": "data.json",
+			 *       "dataSrc": ""
+			 *     }
+			 *   } );
+			 *
+			 * @example
+			 *   // Manipulate the data returned from the server - add a link to data
+			 *   // (note this can, should, be done using `render` for the column - this
+			 *   // is just a simple example of how the data can be manipulated).
+			 *   $('#example').dataTable( {
+			 *     "ajax": {
+			 *       "url": "data.json",
+			 *       "dataSrc": function ( json ) {
+			 *         for ( var i=0, ien=json.length ; i<ien ; i++ ) {
+			 *           json[i][0] = '<a href="/message/'+json[i][0]+'>View message</a>';
+			 *         }
+			 *         return json;
+			 *       }
+			 *     }
+			 *   } );
+			 *
+			 * @example
+			 *   // Add data to the request
+			 *   $('#example').dataTable( {
+			 *     "ajax": {
+			 *       "url": "data.json",
+			 *       "data": function ( d ) {
+			 *         return {
+			 *           "extra_search": $('#extra').val()
+			 *         };
+			 *       }
+			 *     }
+			 *   } );
+			 *
+			 * @example
+			 *   // Send request as POST
+			 *   $('#example').dataTable( {
+			 *     "ajax": {
+			 *       "url": "data.json",
+			 *       "type": "POST"
+			 *     }
+			 *   } );
+			 *
+			 * @example
+			 *   // Get the data from localStorage (could interface with a form for
+			 *   // adding, editing and removing rows).
+			 *   $('#example').dataTable( {
+			 *     "ajax": function (data, callback, settings) {
+			 *       callback(
+			 *         JSON.parse( localStorage.getItem('dataTablesData') )
+			 *       );
+			 *     }
+			 *   } );
+			 */
+			"ajax": null,
+
+
+			/**
+			 * This parameter allows you to readily specify the entries in the length drop
+			 * down menu that DataTables shows when pagination is enabled. It can be
+			 * either a 1D array of options which will be used for both the displayed
+			 * option and the value, or a 2D array which will use the array in the first
+			 * position as the value, and the array in the second position as the
+			 * displayed options (useful for language strings such as 'All').
+			 *
+			 * Note that the `pageLength` property will be automatically set to the
+			 * first value given in this array, unless `pageLength` is also provided.
+			 *  @type array
+			 *  @default [ 10, 25, 50, 100 ]
+			 *
+			 *  @dtopt Option
+			 *  @name DataTable.defaults.lengthMenu
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+			 *      } );
+			 *    } );
+			 */
+			"aLengthMenu": [10, 25, 50, 100],
+
+
+			/**
+			 * The `columns` option in the initialisation parameter allows you to define
+			 * details about the way individual columns behave. For a full list of
+			 * column options that can be set, please see
+			 * {@link DataTable.defaults.column}. Note that if you use `columns` to
+			 * define your columns, you must have an entry in the array for every single
+			 * column that you have in your table (these can be null if you don't which
+			 * to specify any options).
+			 *  @member
+			 *
+			 *  @name DataTable.defaults.column
+			 */
+			"aoColumns": null,
+
+			/**
+			 * Very similar to `columns`, `columnDefs` allows you to target a specific
+			 * column, multiple columns, or all columns, using the `targets` property of
+			 * each object in the array. This allows great flexibility when creating
+			 * tables, as the `columnDefs` arrays can be of any length, targeting the
+			 * columns you specifically want. `columnDefs` may use any of the column
+			 * options available: {@link DataTable.defaults.column}, but it _must_
+			 * have `targets` defined in each object in the array. Values in the `targets`
+			 * array may be:
+			 *   <ul>
+			 *     <li>a string - class name will be matched on the TH for the column</li>
+			 *     <li>0 or a positive integer - column index counting from the left</li>
+			 *     <li>a negative integer - column index counting from the right</li>
+			 *     <li>the string "_all" - all columns (i.e. assign a default)</li>
+			 *   </ul>
+			 *  @member
+			 *
+			 *  @name DataTable.defaults.columnDefs
+			 */
+			"aoColumnDefs": null,
+
+
+			/**
+			 * Basically the same as `search`, this parameter defines the individual column
+			 * filtering state at initialisation time. The array must be of the same size
+			 * as the number of columns, and each element be an object with the parameters
+			 * `search` and `escapeRegex` (the latter is optional). 'null' is also
+			 * accepted and the default will be used.
+			 *  @type array
+			 *  @default []
+			 *
+			 *  @dtopt Option
+			 *  @name DataTable.defaults.searchCols
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "searchCols": [
+			 *          null,
+			 *          { "search": "My filter" },
+			 *          null,
+			 *          { "search": "^[0-9]", "escapeRegex": false }
+			 *        ]
+			 *      } );
+			 *    } )
+			 */
+			"aoSearchCols": [],
+
+
+			/**
+			 * An array of CSS classes that should be applied to displayed rows. This
+			 * array may be of any length, and DataTables will apply each class
+			 * sequentially, looping when required.
+			 *  @type array
+			 *  @default null <i>Will take the values determined by the `oClasses.stripe*`
+			 *    options</i>
+			 *
+			 *  @dtopt Option
+			 *  @name DataTable.defaults.stripeClasses
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "stripeClasses": [ 'strip1', 'strip2', 'strip3' ]
+			 *      } );
+			 *    } )
+			 */
+			"asStripeClasses": null,
+
+
+			/**
+			 * Enable or disable automatic column width calculation. This can be disabled
+			 * as an optimisation (it takes some time to calculate the widths) if the
+			 * tables widths are passed in using `columns`.
+			 *  @type boolean
+			 *  @default true
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.autoWidth
+			 *
+			 *  @example
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "autoWidth": false
+			 *      } );
+			 *    } );
+			 */
+			"bAutoWidth": true,
+
+
+			/**
+			 * Deferred rendering can provide DataTables with a huge speed boost when you
+			 * are using an Ajax or JS data source for the table. This option, when set to
+			 * true, will cause DataTables to defer the creation of the table elements for
+			 * each row until they are needed for a draw - saving a significant amount of
+			 * time.
+			 *  @type boolean
+			 *  @default false
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.deferRender
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "ajax": "sources/arrays.txt",
+			 *        "deferRender": true
+			 *      } );
+			 *    } );
+			 */
+			"bDeferRender": false,
+
+
+			/**
+			 * Replace a DataTable which matches the given selector and replace it with
+			 * one which has the properties of the new initialisation object passed. If no
+			 * table matches the selector, then the new DataTable will be constructed as
+			 * per normal.
+			 *  @type boolean
+			 *  @default false
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.destroy
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "srollY": "200px",
+			 *        "paginate": false
+			 *      } );
+			 *
+			 *      // Some time later....
+			 *      $('#example').dataTable( {
+			 *        "filter": false,
+			 *        "destroy": true
+			 *      } );
+			 *    } );
+			 */
+			"bDestroy": false,
+
+
+			/**
+			 * Enable or disable filtering of data. Filtering in DataTables is "smart" in
+			 * that it allows the end user to input multiple words (space separated) and
+			 * will match a row containing those words, even if not in the order that was
+			 * specified (this allow matching across multiple columns). Note that if you
+			 * wish to use filtering in DataTables this must remain 'true' - to remove the
+			 * default filtering input box and retain filtering abilities, please use
+			 * {@link DataTable.defaults.dom}.
+			 *  @type boolean
+			 *  @default true
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.searching
+			 *
+			 *  @example
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "searching": false
+			 *      } );
+			 *    } );
+			 */
+			"bFilter": true,
+
+
+			/**
+			 * Enable or disable the table information display. This shows information
+			 * about the data that is currently visible on the page, including information
+			 * about filtered data if that action is being performed.
+			 *  @type boolean
+			 *  @default true
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.info
+			 *
+			 *  @example
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "info": false
+			 *      } );
+			 *    } );
+			 */
+			"bInfo": true,
+
+
+			/**
+			 * Allows the end user to select the size of a formatted page from a select
+			 * menu (sizes are 10, 25, 50 and 100). Requires pagination (`paginate`).
+			 *  @type boolean
+			 *  @default true
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.lengthChange
+			 *
+			 *  @example
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "lengthChange": false
+			 *      } );
+			 *    } );
+			 */
+			"bLengthChange": true,
+
+
+			/**
+			 * Enable or disable pagination.
+			 *  @type boolean
+			 *  @default true
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.paging
+			 *
+			 *  @example
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "paging": false
+			 *      } );
+			 *    } );
+			 */
+			"bPaginate": true,
+
+
+			/**
+			 * Enable or disable the display of a 'processing' indicator when the table is
+			 * being processed (e.g. a sort). This is particularly useful for tables with
+			 * large amounts of data where it can take a noticeable amount of time to sort
+			 * the entries.
+			 *  @type boolean
+			 *  @default false
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.processing
+			 *
+			 *  @example
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "processing": true
+			 *      } );
+			 *    } );
+			 */
+			"bProcessing": false,
+
+
+			/**
+			 * Retrieve the DataTables object for the given selector. Note that if the
+			 * table has already been initialised, this parameter will cause DataTables
+			 * to simply return the object that has already been set up - it will not take
+			 * account of any changes you might have made to the initialisation object
+			 * passed to DataTables (setting this parameter to true is an acknowledgement
+			 * that you understand this). `destroy` can be used to reinitialise a table if
+			 * you need.
+			 *  @type boolean
+			 *  @default false
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.retrieve
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      initTable();
+			 *      tableActions();
+			 *    } );
+			 *
+			 *    function initTable ()
+			 *    {
+			 *      return $('#example').dataTable( {
+			 *        "scrollY": "200px",
+			 *        "paginate": false,
+			 *        "retrieve": true
+			 *      } );
+			 *    }
+			 *
+			 *    function tableActions ()
+			 *    {
+			 *      var table = initTable();
+			 *      // perform API operations with oTable
+			 *    }
+			 */
+			"bRetrieve": false,
+
+
+			/**
+			 * When vertical (y) scrolling is enabled, DataTables will force the height of
+			 * the table's viewport to the given height at all times (useful for layout).
+			 * However, this can look odd when filtering data down to a small data set,
+			 * and the footer is left "floating" further down. This parameter (when
+			 * enabled) will cause DataTables to collapse the table's viewport down when
+			 * the result set will fit within the given Y height.
+			 *  @type boolean
+			 *  @default false
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.scrollCollapse
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "scrollY": "200",
+			 *        "scrollCollapse": true
+			 *      } );
+			 *    } );
+			 */
+			"bScrollCollapse": false,
+
+
+			/**
+			 * Configure DataTables to use server-side processing. Note that the
+			 * `ajax` parameter must also be given in order to give DataTables a
+			 * source to obtain the required data for each draw.
+			 *  @type boolean
+			 *  @default false
+			 *
+			 *  @dtopt Features
+			 *  @dtopt Server-side
+			 *  @name DataTable.defaults.serverSide
+			 *
+			 *  @example
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "serverSide": true,
+			 *        "ajax": "xhr.php"
+			 *      } );
+			 *    } );
+			 */
+			"bServerSide": false,
+
+
+			/**
+			 * Enable or disable sorting of columns. Sorting of individual columns can be
+			 * disabled by the `sortable` option for each column.
+			 *  @type boolean
+			 *  @default true
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.ordering
+			 *
+			 *  @example
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "ordering": false
+			 *      } );
+			 *    } );
+			 */
+			"bSort": true,
+
+
+			/**
+			 * Enable or display DataTables' ability to sort multiple columns at the
+			 * same time (activated by shift-click by the user).
+			 *  @type boolean
+			 *  @default true
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.orderMulti
+			 *
+			 *  @example
+			 *    // Disable multiple column sorting ability
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "orderMulti": false
+			 *      } );
+			 *    } );
+			 */
+			"bSortMulti": true,
+
+
+			/**
+			 * Allows control over whether DataTables should use the top (true) unique
+			 * cell that is found for a single column, or the bottom (false - default).
+			 * This is useful when using complex headers.
+			 *  @type boolean
+			 *  @default false
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.orderCellsTop
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "orderCellsTop": true
+			 *      } );
+			 *    } );
+			 */
+			"bSortCellsTop": false,
+
+
+			/**
+			 * Enable or disable the addition of the classes `sorting\_1`, `sorting\_2` and
+			 * `sorting\_3` to the columns which are currently being sorted on. This is
+			 * presented as a feature switch as it can increase processing time (while
+			 * classes are removed and added) so for large data sets you might want to
+			 * turn this off.
+			 *  @type boolean
+			 *  @default true
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.orderClasses
+			 *
+			 *  @example
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "orderClasses": false
+			 *      } );
+			 *    } );
+			 */
+			"bSortClasses": true,
+
+
+			/**
+			 * Enable or disable state saving. When enabled HTML5 `localStorage` will be
+			 * used to save table display information such as pagination information,
+			 * display length, filtering and sorting. As such when the end user reloads
+			 * the page the display display will match what thy had previously set up.
+			 *
+			 * Due to the use of `localStorage` the default state saving is not supported
+			 * in IE6 or 7. If state saving is required in those browsers, use
+			 * `stateSaveCallback` to provide a storage solution such as cookies.
+			 *  @type boolean
+			 *  @default false
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.stateSave
+			 *
+			 *  @example
+			 *    $(document).ready( function () {
+			 *      $('#example').dataTable( {
+			 *        "stateSave": true
+			 *      } );
+			 *    } );
+			 */
+			"bStateSave": false,
+
+
+			/**
+			 * This function is called when a TR element is created (and all TD child
+			 * elements have been inserted), or registered if using a DOM source, allowing
+			 * manipulation of the TR element (adding classes etc).
+			 *  @type function
+			 *  @param {node} row "TR" element for the current row
+			 *  @param {array} data Raw data array for this row
+			 *  @param {int} dataIndex The index of this row in the internal aoData array
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.createdRow
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "createdRow": function( row, data, dataIndex ) {
+			 *          // Bold the grade for all 'A' grade browsers
+			 *          if ( data[4] == "A" )
+			 *          {
+			 *            $('td:eq(4)', row).html( '<b>A</b>' );
+			 *          }
+			 *        }
+			 *      } );
+			 *    } );
+			 */
+			"fnCreatedRow": null,
+
+
+			/**
+			 * This function is called on every 'draw' event, and allows you to
+			 * dynamically modify any aspect you want about the created DOM.
+			 *  @type function
+			 *  @param {object} settings DataTables settings object
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.drawCallback
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "drawCallback": function( settings ) {
+			 *          alert( 'DataTables has redrawn the table' );
+			 *        }
+			 *      } );
+			 *    } );
+			 */
+			"fnDrawCallback": null,
+
+
+			/**
+			 * Identical to fnHeaderCallback() but for the table footer this function
+			 * allows you to modify the table footer on every 'draw' event.
+			 *  @type function
+			 *  @param {node} foot "TR" element for the footer
+			 *  @param {array} data Full table data (as derived from the original HTML)
+			 *  @param {int} start Index for the current display starting point in the
+			 *    display array
+			 *  @param {int} end Index for the current display ending point in the
+			 *    display array
+			 *  @param {array int} display Index array to translate the visual position
+			 *    to the full data array
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.footerCallback
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "footerCallback": function( tfoot, data, start, end, display ) {
+			 *          tfoot.getElementsByTagName('th')[0].innerHTML = "Starting index is "+start;
+			 *        }
+			 *      } );
+			 *    } )
+			 */
+			"fnFooterCallback": null,
+
+
+			/**
+			 * When rendering large numbers in the information element for the table
+			 * (i.e. "Showing 1 to 10 of 57 entries") DataTables will render large numbers
+			 * to have a comma separator for the 'thousands' units (e.g. 1 million is
+			 * rendered as "1,000,000") to help readability for the end user. This
+			 * function will override the default method DataTables uses.
+			 *  @type function
+			 *  @member
+			 *  @param {int} toFormat number to be formatted
+			 *  @returns {string} formatted string for DataTables to show the number
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.formatNumber
+			 *
+			 *  @example
+			 *    // Format a number using a single quote for the separator (note that
+			 *    // this can also be done with the language.thousands option)
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "formatNumber": function ( toFormat ) {
+			 *          return toFormat.toString().replace(
+			 *            /\B(?=(\d{3})+(?!\d))/g, "'"
+			 *          );
+			 *        };
+			 *      } );
+			 *    } );
+			 */
+			"fnFormatNumber": function (toFormat) {
+				return toFormat.toString().replace(
+					/\B(?=(\d{3})+(?!\d))/g,
+					this.oLanguage.sThousands
+				);
+			},
+
+
+			/**
+			 * This function is called on every 'draw' event, and allows you to
+			 * dynamically modify the header row. This can be used to calculate and
+			 * display useful information about the table.
+			 *  @type function
+			 *  @param {node} head "TR" element for the header
+			 *  @param {array} data Full table data (as derived from the original HTML)
+			 *  @param {int} start Index for the current display starting point in the
+			 *    display array
+			 *  @param {int} end Index for the current display ending point in the
+			 *    display array
+			 *  @param {array int} display Index array to translate the visual position
+			 *    to the full data array
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.headerCallback
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "fheaderCallback": function( head, data, start, end, display ) {
+			 *          head.getElementsByTagName('th')[0].innerHTML = "Displaying "+(end-start)+" records";
+			 *        }
+			 *      } );
+			 *    } )
+			 */
+			"fnHeaderCallback": null,
+
+
+			/**
+			 * The information element can be used to convey information about the current
+			 * state of the table. Although the internationalisation options presented by
+			 * DataTables are quite capable of dealing with most customisations, there may
+			 * be times where you wish to customise the string further. This callback
+			 * allows you to do exactly that.
+			 *  @type function
+			 *  @param {object} oSettings DataTables settings object
+			 *  @param {int} start Starting position in data for the draw
+			 *  @param {int} end End position in data for the draw
+			 *  @param {int} max Total number of rows in the table (regardless of
+			 *    filtering)
+			 *  @param {int} total Total number of rows in the data set, after filtering
+			 *  @param {string} pre The string that DataTables has formatted using it's
+			 *    own rules
+			 *  @returns {string} The string to be displayed in the information element.
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.infoCallback
+			 *
+			 *  @example
+			 *    $('#example').dataTable( {
+			 *      "infoCallback": function( settings, start, end, max, total, pre ) {
+			 *        return start +" to "+ end;
+			 *      }
+			 *    } );
+			 */
+			"fnInfoCallback": null,
+
+
+			/**
+			 * Called when the table has been initialised. Normally DataTables will
+			 * initialise sequentially and there will be no need for this function,
+			 * however, this does not hold true when using external language information
+			 * since that is obtained using an async XHR call.
+			 *  @type function
+			 *  @param {object} settings DataTables settings object
+			 *  @param {object} json The JSON object request from the server - only
+			 *    present if client-side Ajax sourced data is used
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.initComplete
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "initComplete": function(settings, json) {
+			 *          alert( 'DataTables has finished its initialisation.' );
+			 *        }
+			 *      } );
+			 *    } )
+			 */
+			"fnInitComplete": null,
+
+
+			/**
+			 * Called at the very start of each table draw and can be used to cancel the
+			 * draw by returning false, any other return (including undefined) results in
+			 * the full draw occurring).
+			 *  @type function
+			 *  @param {object} settings DataTables settings object
+			 *  @returns {boolean} False will cancel the draw, anything else (including no
+			 *    return) will allow it to complete.
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.preDrawCallback
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "preDrawCallback": function( settings ) {
+			 *          if ( $('#test').val() == 1 ) {
+			 *            return false;
+			 *          }
+			 *        }
+			 *      } );
+			 *    } );
+			 */
+			"fnPreDrawCallback": null,
+
+
+			/**
+			 * This function allows you to 'post process' each row after it have been
+			 * generated for each table draw, but before it is rendered on screen. This
+			 * function might be used for setting the row class name etc.
+			 *  @type function
+			 *  @param {node} row "TR" element for the current row
+			 *  @param {array} data Raw data array for this row
+			 *  @param {int} displayIndex The display index for the current table draw
+			 *  @param {int} displayIndexFull The index of the data in the full list of
+			 *    rows (after filtering)
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.rowCallback
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "rowCallback": function( row, data, displayIndex, displayIndexFull ) {
+			 *          // Bold the grade for all 'A' grade browsers
+			 *          if ( data[4] == "A" ) {
+			 *            $('td:eq(4)', row).html( '<b>A</b>' );
+			 *          }
+			 *        }
+			 *      } );
+			 *    } );
+			 */
+			"fnRowCallback": null,
+
+
+			/**
+			 * __Deprecated__ The functionality provided by this parameter has now been
+			 * superseded by that provided through `ajax`, which should be used instead.
+			 *
+			 * This parameter allows you to override the default function which obtains
+			 * the data from the server so something more suitable for your application.
+			 * For example you could use POST data, or pull information from a Gears or
+			 * AIR database.
+			 *  @type function
+			 *  @member
+			 *  @param {string} source HTTP source to obtain the data from (`ajax`)
+			 *  @param {array} data A key/value pair object containing the data to send
+			 *    to the server
+			 *  @param {function} callback to be called on completion of the data get
+			 *    process that will draw the data on the page.
+			 *  @param {object} settings DataTables settings object
+			 *
+			 *  @dtopt Callbacks
+			 *  @dtopt Server-side
+			 *  @name DataTable.defaults.serverData
+			 *
+			 *  @deprecated 1.10. Please use `ajax` for this functionality now.
+			 */
+			"fnServerData": null,
+
+
+			/**
+			 * __Deprecated__ The functionality provided by this parameter has now been
+			 * superseded by that provided through `ajax`, which should be used instead.
+			 *
+			 *  It is often useful to send extra data to the server when making an Ajax
+			 * request - for example custom filtering information, and this callback
+			 * function makes it trivial to send extra information to the server. The
+			 * passed in parameter is the data set that has been constructed by
+			 * DataTables, and you can add to this or modify it as you require.
+			 *  @type function
+			 *  @param {array} data Data array (array of objects which are name/value
+			 *    pairs) that has been constructed by DataTables and will be sent to the
+			 *    server. In the case of Ajax sourced data with server-side processing
+			 *    this will be an empty array, for server-side processing there will be a
+			 *    significant number of parameters!
+			 *  @returns {undefined} Ensure that you modify the data array passed in,
+			 *    as this is passed by reference.
+			 *
+			 *  @dtopt Callbacks
+			 *  @dtopt Server-side
+			 *  @name DataTable.defaults.serverParams
+			 *
+			 *  @deprecated 1.10. Please use `ajax` for this functionality now.
+			 */
+			"fnServerParams": null,
+
+
+			/**
+			 * Load the table state. With this function you can define from where, and how, the
+			 * state of a table is loaded. By default DataTables will load from `localStorage`
+			 * but you might wish to use a server-side database or cookies.
+			 *  @type function
+			 *  @member
+			 *  @param {object} settings DataTables settings object
+			 *  @param {object} callback Callback that can be executed when done. It
+			 *    should be passed the loaded state object.
+			 *  @return {object} The DataTables state object to be loaded
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.stateLoadCallback
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "stateSave": true,
+			 *        "stateLoadCallback": function (settings, callback) {
+			 *          $.ajax( {
+			 *            "url": "/state_load",
+			 *            "dataType": "json",
+			 *            "success": function (json) {
+			 *              callback( json );
+			 *            }
+			 *          } );
+			 *        }
+			 *      } );
+			 *    } );
+			 */
+			"fnStateLoadCallback": function (settings) {
+				try {
+					return JSON.parse(
+						(settings.iStateDuration === -1 ? sessionStorage : localStorage).getItem(
+							'DataTables_' + settings.sInstance + '_' + location.pathname
+						)
+					);
+				} catch (e) {
+					return {};
+				}
+			},
+
+
+			/**
+			 * Callback which allows modification of the saved state prior to loading that state.
+			 * This callback is called when the table is loading state from the stored data, but
+			 * prior to the settings object being modified by the saved state. Note that for
+			 * plug-in authors, you should use the `stateLoadParams` event to load parameters for
+			 * a plug-in.
+			 *  @type function
+			 *  @param {object} settings DataTables settings object
+			 *  @param {object} data The state object that is to be loaded
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.stateLoadParams
+			 *
+			 *  @example
+			 *    // Remove a saved filter, so filtering is never loaded
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "stateSave": true,
+			 *        "stateLoadParams": function (settings, data) {
+			 *          data.oSearch.sSearch = "";
+			 *        }
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Disallow state loading by returning false
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "stateSave": true,
+			 *        "stateLoadParams": function (settings, data) {
+			 *          return false;
+			 *        }
+			 *      } );
+			 *    } );
+			 */
+			"fnStateLoadParams": null,
+
+
+			/**
+			 * Callback that is called when the state has been loaded from the state saving method
+			 * and the DataTables settings object has been modified as a result of the loaded state.
+			 *  @type function
+			 *  @param {object} settings DataTables settings object
+			 *  @param {object} data The state object that was loaded
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.stateLoaded
+			 *
+			 *  @example
+			 *    // Show an alert with the filtering value that was saved
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "stateSave": true,
+			 *        "stateLoaded": function (settings, data) {
+			 *          alert( 'Saved filter was: '+data.oSearch.sSearch );
+			 *        }
+			 *      } );
+			 *    } );
+			 */
+			"fnStateLoaded": null,
+
+
+			/**
+			 * Save the table state. This function allows you to define where and how the state
+			 * information for the table is stored By default DataTables will use `localStorage`
+			 * but you might wish to use a server-side database or cookies.
+			 *  @type function
+			 *  @member
+			 *  @param {object} settings DataTables settings object
+			 *  @param {object} data The state object to be saved
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.stateSaveCallback
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "stateSave": true,
+			 *        "stateSaveCallback": function (settings, data) {
+			 *          // Send an Ajax request to the server with the state object
+			 *          $.ajax( {
+			 *            "url": "/state_save",
+			 *            "data": data,
+			 *            "dataType": "json",
+			 *            "method": "POST"
+			 *            "success": function () {}
+			 *          } );
+			 *        }
+			 *      } );
+			 *    } );
+			 */
+			"fnStateSaveCallback": function (settings, data) {
+				try {
+					(settings.iStateDuration === -1 ? sessionStorage : localStorage).setItem(
+						'DataTables_' + settings.sInstance + '_' + location.pathname,
+						JSON.stringify(data)
+					);
+				} catch (e) { }
+			},
+
+
+			/**
+			 * Callback which allows modification of the state to be saved. Called when the table
+			 * has changed state a new state save is required. This method allows modification of
+			 * the state saving object prior to actually doing the save, including addition or
+			 * other state properties or modification. Note that for plug-in authors, you should
+			 * use the `stateSaveParams` event to save parameters for a plug-in.
+			 *  @type function
+			 *  @param {object} settings DataTables settings object
+			 *  @param {object} data The state object to be saved
+			 *
+			 *  @dtopt Callbacks
+			 *  @name DataTable.defaults.stateSaveParams
+			 *
+			 *  @example
+			 *    // Remove a saved filter, so filtering is never saved
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "stateSave": true,
+			 *        "stateSaveParams": function (settings, data) {
+			 *          data.oSearch.sSearch = "";
+			 *        }
+			 *      } );
+			 *    } );
+			 */
+			"fnStateSaveParams": null,
+
+
+			/**
+			 * Duration for which the saved state information is considered valid. After this period
+			 * has elapsed the state will be returned to the default.
+			 * Value is given in seconds.
+			 *  @type int
+			 *  @default 7200 <i>(2 hours)</i>
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.stateDuration
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "stateDuration": 60*60*24; // 1 day
+			 *      } );
+			 *    } )
+			 */
+			"iStateDuration": 7200,
+
+
+			/**
+			 * When enabled DataTables will not make a request to the server for the first
+			 * page draw - rather it will use the data already on the page (no sorting etc
+			 * will be applied to it), thus saving on an XHR at load time. `deferLoading`
+			 * is used to indicate that deferred loading is required, but it is also used
+			 * to tell DataTables how many records there are in the full table (allowing
+			 * the information element and pagination to be displayed correctly). In the case
+			 * where a filtering is applied to the table on initial load, this can be
+			 * indicated by giving the parameter as an array, where the first element is
+			 * the number of records available after filtering and the second element is the
+			 * number of records without filtering (allowing the table information element
+			 * to be shown correctly).
+			 *  @type int | array
+			 *  @default null
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.deferLoading
+			 *
+			 *  @example
+			 *    // 57 records available in the table, no filtering applied
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "serverSide": true,
+			 *        "ajax": "scripts/server_processing.php",
+			 *        "deferLoading": 57
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // 57 records after filtering, 100 without filtering (an initial filter applied)
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "serverSide": true,
+			 *        "ajax": "scripts/server_processing.php",
+			 *        "deferLoading": [ 57, 100 ],
+			 *        "search": {
+			 *          "search": "my_filter"
+			 *        }
+			 *      } );
+			 *    } );
+			 */
+			"iDeferLoading": null,
+
+
+			/**
+			 * Number of rows to display on a single page when using pagination. If
+			 * feature enabled (`lengthChange`) then the end user will be able to override
+			 * this to a custom setting using a pop-up menu.
+			 *  @type int
+			 *  @default 10
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.pageLength
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "pageLength": 50
+			 *      } );
+			 *    } )
+			 */
+			"iDisplayLength": 10,
+
+
+			/**
+			 * Define the starting point for data display when using DataTables with
+			 * pagination. Note that this parameter is the number of records, rather than
+			 * the page number, so if you have 10 records per page and want to start on
+			 * the third page, it should be "20".
+			 *  @type int
+			 *  @default 0
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.displayStart
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "displayStart": 20
+			 *      } );
+			 *    } )
+			 */
+			"iDisplayStart": 0,
+
+
+			/**
+			 * By default DataTables allows keyboard navigation of the table (sorting, paging,
+			 * and filtering) by adding a `tabindex` attribute to the required elements. This
+			 * allows you to tab through the controls and press the enter key to activate them.
+			 * The tabindex is default 0, meaning that the tab follows the flow of the document.
+			 * You can overrule this using this parameter if you wish. Use a value of -1 to
+			 * disable built-in keyboard navigation.
+			 *  @type int
+			 *  @default 0
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.tabIndex
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "tabIndex": 1
+			 *      } );
+			 *    } );
+			 */
+			"iTabIndex": 0,
+
+
+			/**
+			 * Classes that DataTables assigns to the various components and features
+			 * that it adds to the HTML table. This allows classes to be configured
+			 * during initialisation in addition to through the static
+			 * {@link DataTable.ext.oStdClasses} object).
+			 *  @namespace
+			 *  @name DataTable.defaults.classes
+			 */
+			"oClasses": {},
+
+
+			/**
+			 * All strings that DataTables uses in the user interface that it creates
+			 * are defined in this object, allowing you to modified them individually or
+			 * completely replace them all as required.
+			 *  @namespace
+			 *  @name DataTable.defaults.language
+			 */
+			"oLanguage": {
+				/**
+				 * Strings that are used for WAI-ARIA labels and controls only (these are not
+				 * actually visible on the page, but will be read by screenreaders, and thus
+				 * must be internationalised as well).
+				 *  @namespace
+				 *  @name DataTable.defaults.language.aria
+				 */
+				"oAria": {
+					/**
+					 * ARIA label that is added to the table headers when the column may be
+					 * sorted ascending by activing the column (click or return when focused).
+					 * Note that the column header is prefixed to this string.
+					 *  @type string
+					 *  @default : activate to sort column ascending
+					 *
+					 *  @dtopt Language
+					 *  @name DataTable.defaults.language.aria.sortAscending
+					 *
+					 *  @example
+					 *    $(document).ready( function() {
+					 *      $('#example').dataTable( {
+					 *        "language": {
+					 *          "aria": {
+					 *            "sortAscending": " - click/return to sort ascending"
+					 *          }
+					 *        }
+					 *      } );
+					 *    } );
+					 */
+					"sSortAscending": ": activate to sort column ascending",
+
+					/**
+					 * ARIA label that is added to the table headers when the column may be
+					 * sorted descending by activing the column (click or return when focused).
+					 * Note that the column header is prefixed to this string.
+					 *  @type string
+					 *  @default : activate to sort column ascending
+					 *
+					 *  @dtopt Language
+					 *  @name DataTable.defaults.language.aria.sortDescending
+					 *
+					 *  @example
+					 *    $(document).ready( function() {
+					 *      $('#example').dataTable( {
+					 *        "language": {
+					 *          "aria": {
+					 *            "sortDescending": " - click/return to sort descending"
+					 *          }
+					 *        }
+					 *      } );
+					 *    } );
+					 */
+					"sSortDescending": ": activate to sort column descending"
+				},
+
+				/**
+				 * Pagination string used by DataTables for the built-in pagination
+				 * control types.
+				 *  @namespace
+				 *  @name DataTable.defaults.language.paginate
+				 */
+				"oPaginate": {
+					/**
+					 * Text to use when using the 'full_numbers' type of pagination for the
+					 * button to take the user to the first page.
+					 *  @type string
+					 *  @default First
+					 *
+					 *  @dtopt Language
+					 *  @name DataTable.defaults.language.paginate.first
+					 *
+					 *  @example
+					 *    $(document).ready( function() {
+					 *      $('#example').dataTable( {
+					 *        "language": {
+					 *          "paginate": {
+					 *            "first": "First page"
+					 *          }
+					 *        }
+					 *      } );
+					 *    } );
+					 */
+					"sFirst": "First",
+
+
+					/**
+					 * Text to use when using the 'full_numbers' type of pagination for the
+					 * button to take the user to the last page.
+					 *  @type string
+					 *  @default Last
+					 *
+					 *  @dtopt Language
+					 *  @name DataTable.defaults.language.paginate.last
+					 *
+					 *  @example
+					 *    $(document).ready( function() {
+					 *      $('#example').dataTable( {
+					 *        "language": {
+					 *          "paginate": {
+					 *            "last": "Last page"
+					 *          }
+					 *        }
+					 *      } );
+					 *    } );
+					 */
+					"sLast": "Last",
+
+
+					/**
+					 * Text to use for the 'next' pagination button (to take the user to the
+					 * next page).
+					 *  @type string
+					 *  @default Next
+					 *
+					 *  @dtopt Language
+					 *  @name DataTable.defaults.language.paginate.next
+					 *
+					 *  @example
+					 *    $(document).ready( function() {
+					 *      $('#example').dataTable( {
+					 *        "language": {
+					 *          "paginate": {
+					 *            "next": "Next page"
+					 *          }
+					 *        }
+					 *      } );
+					 *    } );
+					 */
+					"sNext": "Next",
+
+
+					/**
+					 * Text to use for the 'previous' pagination button (to take the user to
+					 * the previous page).
+					 *  @type string
+					 *  @default Previous
+					 *
+					 *  @dtopt Language
+					 *  @name DataTable.defaults.language.paginate.previous
+					 *
+					 *  @example
+					 *    $(document).ready( function() {
+					 *      $('#example').dataTable( {
+					 *        "language": {
+					 *          "paginate": {
+					 *            "previous": "Previous page"
+					 *          }
+					 *        }
+					 *      } );
+					 *    } );
+					 */
+					"sPrevious": "Previous"
+				},
+
+				/**
+				 * This string is shown in preference to `zeroRecords` when the table is
+				 * empty of data (regardless of filtering). Note that this is an optional
+				 * parameter - if it is not given, the value of `zeroRecords` will be used
+				 * instead (either the default or given value).
+				 *  @type string
+				 *  @default No data available in table
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.emptyTable
+				 *
+				 *  @example
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "emptyTable": "No data available in table"
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sEmptyTable": "No data available in table",
+
+
+				/**
+				 * This string gives information to the end user about the information
+				 * that is current on display on the page. The following tokens can be
+				 * used in the string and will be dynamically replaced as the table
+				 * display updates. This tokens can be placed anywhere in the string, or
+				 * removed as needed by the language requires:
+				 *
+				 * * `\_START\_` - Display index of the first record on the current page
+				 * * `\_END\_` - Display index of the last record on the current page
+				 * * `\_TOTAL\_` - Number of records in the table after filtering
+				 * * `\_MAX\_` - Number of records in the table without filtering
+				 * * `\_PAGE\_` - Current page number
+				 * * `\_PAGES\_` - Total number of pages of data in the table
+				 *
+				 *  @type string
+				 *  @default Showing _START_ to _END_ of _TOTAL_ entries
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.info
+				 *
+				 *  @example
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "info": "Showing page _PAGE_ of _PAGES_"
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+
+
+				/**
+				 * Display information string for when the table is empty. Typically the
+				 * format of this string should match `info`.
+				 *  @type string
+				 *  @default Showing 0 to 0 of 0 entries
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.infoEmpty
+				 *
+				 *  @example
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "infoEmpty": "No entries to show"
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+
+
+				/**
+				 * When a user filters the information in a table, this string is appended
+				 * to the information (`info`) to give an idea of how strong the filtering
+				 * is. The variable _MAX_ is dynamically updated.
+				 *  @type string
+				 *  @default (filtered from _MAX_ total entries)
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.infoFiltered
+				 *
+				 *  @example
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "infoFiltered": " - filtering from _MAX_ records"
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sInfoFiltered": "(filtered from _MAX_ total entries)",
+
+
+				/**
+				 * If can be useful to append extra information to the info string at times,
+				 * and this variable does exactly that. This information will be appended to
+				 * the `info` (`infoEmpty` and `infoFiltered` in whatever combination they are
+				 * being used) at all times.
+				 *  @type string
+				 *  @default <i>Empty string</i>
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.infoPostFix
+				 *
+				 *  @example
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "infoPostFix": "All records shown are derived from real information."
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sInfoPostFix": "",
+
+
+				/**
+				 * This decimal place operator is a little different from the other
+				 * language options since DataTables doesn't output floating point
+				 * numbers, so it won't ever use this for display of a number. Rather,
+				 * what this parameter does is modify the sort methods of the table so
+				 * that numbers which are in a format which has a character other than
+				 * a period (`.`) as a decimal place will be sorted numerically.
+				 *
+				 * Note that numbers with different decimal places cannot be shown in
+				 * the same table and still be sortable, the table must be consistent.
+				 * However, multiple different tables on the page can use different
+				 * decimal place characters.
+				 *  @type string
+				 *  @default 
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.decimal
+				 *
+				 *  @example
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "decimal": ","
+				 *          "thousands": "."
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sDecimal": "",
+
+
+				/**
+				 * DataTables has a build in number formatter (`formatNumber`) which is
+				 * used to format large numbers that are used in the table information.
+				 * By default a comma is used, but this can be trivially changed to any
+				 * character you wish with this parameter.
+				 *  @type string
+				 *  @default ,
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.thousands
+				 *
+				 *  @example
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "thousands": "'"
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sThousands": ",",
+
+
+				/**
+				 * Detail the action that will be taken when the drop down menu for the
+				 * pagination length option is changed. The '_MENU_' variable is replaced
+				 * with a default select list of 10, 25, 50 and 100, and can be replaced
+				 * with a custom select box if required.
+				 *  @type string
+				 *  @default Show _MENU_ entries
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.lengthMenu
+				 *
+				 *  @example
+				 *    // Language change only
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "lengthMenu": "Display _MENU_ records"
+				 *        }
+				 *      } );
+				 *    } );
+				 *
+				 *  @example
+				 *    // Language and options change
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "lengthMenu": 'Display <select>'+
+				 *            '<option value="10">10</option>'+
+				 *            '<option value="20">20</option>'+
+				 *            '<option value="30">30</option>'+
+				 *            '<option value="40">40</option>'+
+				 *            '<option value="50">50</option>'+
+				 *            '<option value="-1">All</option>'+
+				 *            '</select> records'
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sLengthMenu": "Show _MENU_ entries",
+
+
+				/**
+				 * When using Ajax sourced data and during the first draw when DataTables is
+				 * gathering the data, this message is shown in an empty row in the table to
+				 * indicate to the end user the the data is being loaded. Note that this
+				 * parameter is not used when loading data by server-side processing, just
+				 * Ajax sourced data with client-side processing.
+				 *  @type string
+				 *  @default Loading...
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.loadingRecords
+				 *
+				 *  @example
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "loadingRecords": "Please wait - loading..."
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sLoadingRecords": "Loading...",
+
+
+				/**
+				 * Text which is displayed when the table is processing a user action
+				 * (usually a sort command or similar).
+				 *  @type string
+				 *  @default Processing...
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.processing
+				 *
+				 *  @example
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "processing": "DataTables is currently busy"
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sProcessing": "Processing...",
+
+
+				/**
+				 * Details the actions that will be taken when the user types into the
+				 * filtering input text box. The variable "_INPUT_", if used in the string,
+				 * is replaced with the HTML text box for the filtering input allowing
+				 * control over where it appears in the string. If "_INPUT_" is not given
+				 * then the input box is appended to the string automatically.
+				 *  @type string
+				 *  @default Search:
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.search
+				 *
+				 *  @example
+				 *    // Input text box will be appended at the end automatically
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "search": "Filter records:"
+				 *        }
+				 *      } );
+				 *    } );
+				 *
+				 *  @example
+				 *    // Specify where the filter should appear
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "search": "Apply filter _INPUT_ to table"
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sSearch": "Search:",
+
+
+				/**
+				 * Assign a `placeholder` attribute to the search `input` element
+				 *  @type string
+				 *  @default 
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.searchPlaceholder
+				 */
+				"sSearchPlaceholder": "",
+
+
+				/**
+				 * All of the language information can be stored in a file on the
+				 * server-side, which DataTables will look up if this parameter is passed.
+				 * It must store the URL of the language file, which is in a JSON format,
+				 * and the object has the same properties as the oLanguage object in the
+				 * initialiser object (i.e. the above parameters). Please refer to one of
+				 * the example language files to see how this works in action.
+				 *  @type string
+				 *  @default <i>Empty string - i.e. disabled</i>
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.url
+				 *
+				 *  @example
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "url": "http://www.sprymedia.co.uk/dataTables/lang.txt"
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sUrl": "",
+
+
+				/**
+				 * Text shown inside the table records when the is no information to be
+				 * displayed after filtering. `emptyTable` is shown when there is simply no
+				 * information in the table at all (regardless of filtering).
+				 *  @type string
+				 *  @default No matching records found
+				 *
+				 *  @dtopt Language
+				 *  @name DataTable.defaults.language.zeroRecords
+				 *
+				 *  @example
+				 *    $(document).ready( function() {
+				 *      $('#example').dataTable( {
+				 *        "language": {
+				 *          "zeroRecords": "No records to display"
+				 *        }
+				 *      } );
+				 *    } );
+				 */
+				"sZeroRecords": "No matching records found"
+			},
+
+
+			/**
+			 * This parameter allows you to have define the global filtering state at
+			 * initialisation time. As an object the `search` parameter must be
+			 * defined, but all other parameters are optional. When `regex` is true,
+			 * the search string will be treated as a regular expression, when false
+			 * (default) it will be treated as a straight string. When `smart`
+			 * DataTables will use it's smart filtering methods (to word match at
+			 * any point in the data), when false this will not be done.
+			 *  @namespace
+			 *  @extends DataTable.models.oSearch
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.search
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "search": {"search": "Initial search"}
+			 *      } );
+			 *    } )
+			 */
+			"oSearch": $.extend({}, DataTable.models.oSearch),
+
+
+			/**
+			 * __Deprecated__ The functionality provided by this parameter has now been
+			 * superseded by that provided through `ajax`, which should be used instead.
+			 *
+			 * By default DataTables will look for the property `data` (or `aaData` for
+			 * compatibility with DataTables 1.9-) when obtaining data from an Ajax
+			 * source or for server-side processing - this parameter allows that
+			 * property to be changed. You can use Javascript dotted object notation to
+			 * get a data source for multiple levels of nesting.
+			 *  @type string
+			 *  @default data
+			 *
+			 *  @dtopt Options
+			 *  @dtopt Server-side
+			 *  @name DataTable.defaults.ajaxDataProp
+			 *
+			 *  @deprecated 1.10. Please use `ajax` for this functionality now.
+			 */
+			"sAjaxDataProp": "data",
+
+
+			/**
+			 * __Deprecated__ The functionality provided by this parameter has now been
+			 * superseded by that provided through `ajax`, which should be used instead.
+			 *
+			 * You can instruct DataTables to load data from an external
+			 * source using this parameter (use aData if you want to pass data in you
+			 * already have). Simply provide a url a JSON object can be obtained from.
+			 *  @type string
+			 *  @default null
+			 *
+			 *  @dtopt Options
+			 *  @dtopt Server-side
+			 *  @name DataTable.defaults.ajaxSource
+			 *
+			 *  @deprecated 1.10. Please use `ajax` for this functionality now.
+			 */
+			"sAjaxSource": null,
+
+
+			/**
+			 * This initialisation variable allows you to specify exactly where in the
+			 * DOM you want DataTables to inject the various controls it adds to the page
+			 * (for example you might want the pagination controls at the top of the
+			 * table). DIV elements (with or without a custom class) can also be added to
+			 * aid styling. The follow syntax is used:
+			 *   <ul>
+			 *     <li>The following options are allowed:
+			 *       <ul>
+			 *         <li>'l' - Length changing</li>
+			 *         <li>'f' - Filtering input</li>
+			 *         <li>'t' - The table!</li>
+			 *         <li>'i' - Information</li>
+			 *         <li>'p' - Pagination</li>
+			 *         <li>'r' - pRocessing</li>
+			 *       </ul>
+			 *     </li>
+			 *     <li>The following constants are allowed:
+			 *       <ul>
+			 *         <li>'H' - jQueryUI theme "header" classes ('fg-toolbar ui-widget-header ui-corner-tl ui-corner-tr ui-helper-clearfix')</li>
+			 *         <li>'F' - jQueryUI theme "footer" classes ('fg-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix')</li>
+			 *       </ul>
+			 *     </li>
+			 *     <li>The following syntax is expected:
+			 *       <ul>
+			 *         <li>'&lt;' and '&gt;' - div elements</li>
+			 *         <li>'&lt;"class" and '&gt;' - div with a class</li>
+			 *         <li>'&lt;"#id" and '&gt;' - div with an ID</li>
+			 *       </ul>
+			 *     </li>
+			 *     <li>Examples:
+			 *       <ul>
+			 *         <li>'&lt;"wrapper"flipt&gt;'</li>
+			 *         <li>'&lt;lf&lt;t&gt;ip&gt;'</li>
+			 *       </ul>
+			 *     </li>
+			 *   </ul>
+			 *  @type string
+			 *  @default lfrtip <i>(when `jQueryUI` is false)</i> <b>or</b>
+			 *    <"H"lfr>t<"F"ip> <i>(when `jQueryUI` is true)</i>
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.dom
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "dom": '&lt;"top"i&gt;rt&lt;"bottom"flp&gt;&lt;"clear"&gt;'
+			 *      } );
+			 *    } );
+			 */
+			"sDom": "lfrtip",
+
+
+			/**
+			 * Search delay option. This will throttle full table searches that use the
+			 * DataTables provided search input element (it does not effect calls to
+			 * `dt-api search()`, providing a delay before the search is made.
+			 *  @type integer
+			 *  @default 0
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.searchDelay
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "searchDelay": 200
+			 *      } );
+			 *    } )
+			 */
+			"searchDelay": null,
+
+
+			/**
+			 * DataTables features six different built-in options for the buttons to
+			 * display for pagination control:
+			 *
+			 * * `numbers` - Page number buttons only
+			 * * `simple` - 'Previous' and 'Next' buttons only
+			 * * 'simple_numbers` - 'Previous' and 'Next' buttons, plus page numbers
+			 * * `full` - 'First', 'Previous', 'Next' and 'Last' buttons
+			 * * `full_numbers` - 'First', 'Previous', 'Next' and 'Last' buttons, plus page numbers
+			 * * `first_last_numbers` - 'First' and 'Last' buttons, plus page numbers
+			 *  
+			 * Further methods can be added using {@link DataTable.ext.oPagination}.
+			 *  @type string
+			 *  @default simple_numbers
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.pagingType
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "pagingType": "full_numbers"
+			 *      } );
+			 *    } )
+			 */
+			"sPaginationType": "simple_numbers",
+
+
+			/**
+			 * Enable horizontal scrolling. When a table is too wide to fit into a
+			 * certain layout, or you have a large number of columns in the table, you
+			 * can enable x-scrolling to show the table in a viewport, which can be
+			 * scrolled. This property can be `true` which will allow the table to
+			 * scroll horizontally when needed, or any CSS unit, or a number (in which
+			 * case it will be treated as a pixel measurement). Setting as simply `true`
+			 * is recommended.
+			 *  @type boolean|string
+			 *  @default <i>blank string - i.e. disabled</i>
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.scrollX
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "scrollX": true,
+			 *        "scrollCollapse": true
+			 *      } );
+			 *    } );
+			 */
+			"sScrollX": "",
+
+
+			/**
+			 * This property can be used to force a DataTable to use more width than it
+			 * might otherwise do when x-scrolling is enabled. For example if you have a
+			 * table which requires to be well spaced, this parameter is useful for
+			 * "over-sizing" the table, and thus forcing scrolling. This property can by
+			 * any CSS unit, or a number (in which case it will be treated as a pixel
+			 * measurement).
+			 *  @type string
+			 *  @default <i>blank string - i.e. disabled</i>
+			 *
+			 *  @dtopt Options
+			 *  @name DataTable.defaults.scrollXInner
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "scrollX": "100%",
+			 *        "scrollXInner": "110%"
+			 *      } );
+			 *    } );
+			 */
+			"sScrollXInner": "",
+
+
+			/**
+			 * Enable vertical scrolling. Vertical scrolling will constrain the DataTable
+			 * to the given height, and enable scrolling for any data which overflows the
+			 * current viewport. This can be used as an alternative to paging to display
+			 * a lot of data in a small area (although paging and scrolling can both be
+			 * enabled at the same time). This property can be any CSS unit, or a number
+			 * (in which case it will be treated as a pixel measurement).
+			 *  @type string
+			 *  @default <i>blank string - i.e. disabled</i>
+			 *
+			 *  @dtopt Features
+			 *  @name DataTable.defaults.scrollY
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "scrollY": "200px",
+			 *        "paginate": false
+			 *      } );
+			 *    } );
+			 */
+			"sScrollY": "",
+
+
+			/**
+			 * __Deprecated__ The functionality provided by this parameter has now been
+			 * superseded by that provided through `ajax`, which should be used instead.
+			 *
+			 * Set the HTTP method that is used to make the Ajax call for server-side
+			 * processing or Ajax sourced data.
+			 *  @type string
+			 *  @default GET
+			 *
+			 *  @dtopt Options
+			 *  @dtopt Server-side
+			 *  @name DataTable.defaults.serverMethod
+			 *
+			 *  @deprecated 1.10. Please use `ajax` for this functionality now.
+			 */
+			"sServerMethod": "GET",
+
+
+			/**
+			 * DataTables makes use of renderers when displaying HTML elements for
+			 * a table. These renderers can be added or modified by plug-ins to
+			 * generate suitable mark-up for a site. For example the Bootstrap
+			 * integration plug-in for DataTables uses a paging button renderer to
+			 * display pagination buttons in the mark-up required by Bootstrap.
+			 *
+			 * For further information about the renderers available see
+			 * DataTable.ext.renderer
+			 *  @type string|object
+			 *  @default null
+			 *
+			 *  @name DataTable.defaults.renderer
+			 *
+			 */
+			"renderer": null,
+
+
+			/**
+			 * Set the data property name that DataTables should use to get a row's id
+			 * to set as the `id` property in the node.
+			 *  @type string
+			 *  @default DT_RowId
+			 *
+			 *  @name DataTable.defaults.rowId
+			 */
+			"rowId": "DT_RowId"
+		};
+
+		_fnHungarianMap(DataTable.defaults);
+
+
+
+		/*
+		 * Developer note - See note in model.defaults.js about the use of Hungarian
+		 * notation and camel case.
+		 */
+
+		/**
+		 * Column options that can be given to DataTables at initialisation time.
+		 *  @namespace
+		 */
+		DataTable.defaults.column = {
+			/**
+			 * Define which column(s) an order will occur on for this column. This
+			 * allows a column's ordering to take multiple columns into account when
+			 * doing a sort or use the data from a different column. For example first
+			 * name / last name columns make sense to do a multi-column sort over the
+			 * two columns.
+			 *  @type array|int
+			 *  @default null <i>Takes the value of the column index automatically</i>
+			 *
+			 *  @name DataTable.defaults.column.orderData
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          { "orderData": [ 0, 1 ], "targets": [ 0 ] },
+			 *          { "orderData": [ 1, 0 ], "targets": [ 1 ] },
+			 *          { "orderData": 2, "targets": [ 2 ] }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          { "orderData": [ 0, 1 ] },
+			 *          { "orderData": [ 1, 0 ] },
+			 *          { "orderData": 2 },
+			 *          null,
+			 *          null
+			 *        ]
+			 *      } );
+			 *    } );
+			 */
+			"aDataSort": null,
+			"iDataSort": -1,
+
+
+			/**
+			 * You can control the default ordering direction, and even alter the
+			 * behaviour of the sort handler (i.e. only allow ascending ordering etc)
+			 * using this parameter.
+			 *  @type array
+			 *  @default [ 'asc', 'desc' ]
+			 *
+			 *  @name DataTable.defaults.column.orderSequence
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          { "orderSequence": [ "asc" ], "targets": [ 1 ] },
+			 *          { "orderSequence": [ "desc", "asc", "asc" ], "targets": [ 2 ] },
+			 *          { "orderSequence": [ "desc" ], "targets": [ 3 ] }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          null,
+			 *          { "orderSequence": [ "asc" ] },
+			 *          { "orderSequence": [ "desc", "asc", "asc" ] },
+			 *          { "orderSequence": [ "desc" ] },
+			 *          null
+			 *        ]
+			 *      } );
+			 *    } );
+			 */
+			"asSorting": ['asc', 'desc'],
+
+
+			/**
+			 * Enable or disable filtering on the data in this column.
+			 *  @type boolean
+			 *  @default true
+			 *
+			 *  @name DataTable.defaults.column.searchable
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          { "searchable": false, "targets": [ 0 ] }
+			 *        ] } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          { "searchable": false },
+			 *          null,
+			 *          null,
+			 *          null,
+			 *          null
+			 *        ] } );
+			 *    } );
+			 */
+			"bSearchable": true,
+
+
+			/**
+			 * Enable or disable ordering on this column.
+			 *  @type boolean
+			 *  @default true
+			 *
+			 *  @name DataTable.defaults.column.orderable
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          { "orderable": false, "targets": [ 0 ] }
+			 *        ] } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          { "orderable": false },
+			 *          null,
+			 *          null,
+			 *          null,
+			 *          null
+			 *        ] } );
+			 *    } );
+			 */
+			"bSortable": true,
+
+
+			/**
+			 * Enable or disable the display of this column.
+			 *  @type boolean
+			 *  @default true
+			 *
+			 *  @name DataTable.defaults.column.visible
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          { "visible": false, "targets": [ 0 ] }
+			 *        ] } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          { "visible": false },
+			 *          null,
+			 *          null,
+			 *          null,
+			 *          null
+			 *        ] } );
+			 *    } );
+			 */
+			"bVisible": true,
+
+
+			/**
+			 * Developer definable function that is called whenever a cell is created (Ajax source,
+			 * etc) or processed for input (DOM source). This can be used as a compliment to mRender
+			 * allowing you to modify the DOM element (add background colour for example) when the
+			 * element is available.
+			 *  @type function
+			 *  @param {element} td The TD node that has been created
+			 *  @param {*} cellData The Data for the cell
+			 *  @param {array|object} rowData The data for the whole row
+			 *  @param {int} row The row index for the aoData data store
+			 *  @param {int} col The column index for aoColumns
+			 *
+			 *  @name DataTable.defaults.column.createdCell
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [ {
+			 *          "targets": [3],
+			 *          "createdCell": function (td, cellData, rowData, row, col) {
+			 *            if ( cellData == "1.7" ) {
+			 *              $(td).css('color', 'blue')
+			 *            }
+			 *          }
+			 *        } ]
+			 *      });
+			 *    } );
+			 */
+			"fnCreatedCell": null,
+
+
+			/**
+			 * This parameter has been replaced by `data` in DataTables to ensure naming
+			 * consistency. `dataProp` can still be used, as there is backwards
+			 * compatibility in DataTables for this option, but it is strongly
+			 * recommended that you use `data` in preference to `dataProp`.
+			 *  @name DataTable.defaults.column.dataProp
+			 */
+
+
+			/**
+			 * This property can be used to read data from any data source property,
+			 * including deeply nested objects / properties. `data` can be given in a
+			 * number of different ways which effect its behaviour:
+			 *
+			 * * `integer` - treated as an array index for the data source. This is the
+			 *   default that DataTables uses (incrementally increased for each column).
+			 * * `string` - read an object property from the data source. There are
+			 *   three 'special' options that can be used in the string to alter how
+			 *   DataTables reads the data from the source object:
+			 *    * `.` - Dotted Javascript notation. Just as you use a `.` in
+			 *      Javascript to read from nested objects, so to can the options
+			 *      specified in `data`. For example: `browser.version` or
+			 *      `browser.name`. If your object parameter name contains a period, use
+			 *      `\\` to escape it - i.e. `first\\.name`.
+			 *    * `[]` - Array notation. DataTables can automatically combine data
+			 *      from and array source, joining the data with the characters provided
+			 *      between the two brackets. For example: `name[, ]` would provide a
+			 *      comma-space separated list from the source array. If no characters
+			 *      are provided between the brackets, the original array source is
+			 *      returned.
+			 *    * `()` - Function notation. Adding `()` to the end of a parameter will
+			 *      execute a function of the name given. For example: `browser()` for a
+			 *      simple function on the data source, `browser.version()` for a
+			 *      function in a nested property or even `browser().version` to get an
+			 *      object property if the function called returns an object. Note that
+			 *      function notation is recommended for use in `render` rather than
+			 *      `data` as it is much simpler to use as a renderer.
+			 * * `null` - use the original data source for the row rather than plucking
+			 *   data directly from it. This action has effects on two other
+			 *   initialisation options:
+			 *    * `defaultContent` - When null is given as the `data` option and
+			 *      `defaultContent` is specified for the column, the value defined by
+			 *      `defaultContent` will be used for the cell.
+			 *    * `render` - When null is used for the `data` option and the `render`
+			 *      option is specified for the column, the whole data source for the
+			 *      row is used for the renderer.
+			 * * `function` - the function given will be executed whenever DataTables
+			 *   needs to set or get the data for a cell in the column. The function
+			 *   takes three parameters:
+			 *    * Parameters:
+			 *      * `{array|object}` The data source for the row
+			 *      * `{string}` The type call data requested - this will be 'set' when
+			 *        setting data or 'filter', 'display', 'type', 'sort' or undefined
+			 *        when gathering data. Note that when `undefined` is given for the
+			 *        type DataTables expects to get the raw data for the object back<
+			 *      * `{*}` Data to set when the second parameter is 'set'.
+			 *    * Return:
+			 *      * The return value from the function is not required when 'set' is
+			 *        the type of call, but otherwise the return is what will be used
+			 *        for the data requested.
+			 *
+			 * Note that `data` is a getter and setter option. If you just require
+			 * formatting of data for output, you will likely want to use `render` which
+			 * is simply a getter and thus simpler to use.
+			 *
+			 * Note that prior to DataTables 1.9.2 `data` was called `mDataProp`. The
+			 * name change reflects the flexibility of this property and is consistent
+			 * with the naming of mRender. If 'mDataProp' is given, then it will still
+			 * be used by DataTables, as it automatically maps the old name to the new
+			 * if required.
+			 *
+			 *  @type string|int|function|null
+			 *  @default null <i>Use automatically calculated column index</i>
+			 *
+			 *  @name DataTable.defaults.column.data
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Read table data from objects
+			 *    // JSON structure for each row:
+			 *    //   {
+			 *    //      "engine": {value},
+			 *    //      "browser": {value},
+			 *    //      "platform": {value},
+			 *    //      "version": {value},
+			 *    //      "grade": {value}
+			 *    //   }
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "ajaxSource": "sources/objects.txt",
+			 *        "columns": [
+			 *          { "data": "engine" },
+			 *          { "data": "browser" },
+			 *          { "data": "platform" },
+			 *          { "data": "version" },
+			 *          { "data": "grade" }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Read information from deeply nested objects
+			 *    // JSON structure for each row:
+			 *    //   {
+			 *    //      "engine": {value},
+			 *    //      "browser": {value},
+			 *    //      "platform": {
+			 *    //         "inner": {value}
+			 *    //      },
+			 *    //      "details": [
+			 *    //         {value}, {value}
+			 *    //      ]
+			 *    //   }
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "ajaxSource": "sources/deep.txt",
+			 *        "columns": [
+			 *          { "data": "engine" },
+			 *          { "data": "browser" },
+			 *          { "data": "platform.inner" },
+			 *          { "data": "details.0" },
+			 *          { "data": "details.1" }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `data` as a function to provide different information for
+			 *    // sorting, filtering and display. In this case, currency (price)
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [ {
+			 *          "targets": [ 0 ],
+			 *          "data": function ( source, type, val ) {
+			 *            if (type === 'set') {
+			 *              source.price = val;
+			 *              // Store the computed dislay and filter values for efficiency
+			 *              source.price_display = val=="" ? "" : "$"+numberFormat(val);
+			 *              source.price_filter  = val=="" ? "" : "$"+numberFormat(val)+" "+val;
+			 *              return;
+			 *            }
+			 *            else if (type === 'display') {
+			 *              return source.price_display;
+			 *            }
+			 *            else if (type === 'filter') {
+			 *              return source.price_filter;
+			 *            }
+			 *            // 'sort', 'type' and undefined all just use the integer
+			 *            return source.price;
+			 *          }
+			 *        } ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using default content
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [ {
+			 *          "targets": [ 0 ],
+			 *          "data": null,
+			 *          "defaultContent": "Click to edit"
+			 *        } ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using array notation - outputting a list from an array
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [ {
+			 *          "targets": [ 0 ],
+			 *          "data": "name[, ]"
+			 *        } ]
+			 *      } );
+			 *    } );
+			 *
+			 */
+			"mData": null,
+
+
+			/**
+			 * This property is the rendering partner to `data` and it is suggested that
+			 * when you want to manipulate data for display (including filtering,
+			 * sorting etc) without altering the underlying data for the table, use this
+			 * property. `render` can be considered to be the the read only companion to
+			 * `data` which is read / write (then as such more complex). Like `data`
+			 * this option can be given in a number of different ways to effect its
+			 * behaviour:
+			 *
+			 * * `integer` - treated as an array index for the data source. This is the
+			 *   default that DataTables uses (incrementally increased for each column).
+			 * * `string` - read an object property from the data source. There are
+			 *   three 'special' options that can be used in the string to alter how
+			 *   DataTables reads the data from the source object:
+			 *    * `.` - Dotted Javascript notation. Just as you use a `.` in
+			 *      Javascript to read from nested objects, so to can the options
+			 *      specified in `data`. For example: `browser.version` or
+			 *      `browser.name`. If your object parameter name contains a period, use
+			 *      `\\` to escape it - i.e. `first\\.name`.
+			 *    * `[]` - Array notation. DataTables can automatically combine data
+			 *      from and array source, joining the data with the characters provided
+			 *      between the two brackets. For example: `name[, ]` would provide a
+			 *      comma-space separated list from the source array. If no characters
+			 *      are provided between the brackets, the original array source is
+			 *      returned.
+			 *    * `()` - Function notation. Adding `()` to the end of a parameter will
+			 *      execute a function of the name given. For example: `browser()` for a
+			 *      simple function on the data source, `browser.version()` for a
+			 *      function in a nested property or even `browser().version` to get an
+			 *      object property if the function called returns an object.
+			 * * `object` - use different data for the different data types requested by
+			 *   DataTables ('filter', 'display', 'type' or 'sort'). The property names
+			 *   of the object is the data type the property refers to and the value can
+			 *   defined using an integer, string or function using the same rules as
+			 *   `render` normally does. Note that an `_` option _must_ be specified.
+			 *   This is the default value to use if you haven't specified a value for
+			 *   the data type requested by DataTables.
+			 * * `function` - the function given will be executed whenever DataTables
+			 *   needs to set or get the data for a cell in the column. The function
+			 *   takes three parameters:
+			 *    * Parameters:
+			 *      * {array|object} The data source for the row (based on `data`)
+			 *      * {string} The type call data requested - this will be 'filter',
+			 *        'display', 'type' or 'sort'.
+			 *      * {array|object} The full data source for the row (not based on
+			 *        `data`)
+			 *    * Return:
+			 *      * The return value from the function is what will be used for the
+			 *        data requested.
+			 *
+			 *  @type string|int|function|object|null
+			 *  @default null Use the data source value.
+			 *
+			 *  @name DataTable.defaults.column.render
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Create a comma separated list from an array of objects
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "ajaxSource": "sources/deep.txt",
+			 *        "columns": [
+			 *          { "data": "engine" },
+			 *          { "data": "browser" },
+			 *          {
+			 *            "data": "platform",
+			 *            "render": "[, ].name"
+			 *          }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Execute a function to obtain data
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [ {
+			 *          "targets": [ 0 ],
+			 *          "data": null, // Use the full data source object for the renderer's source
+			 *          "render": "browserName()"
+			 *        } ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // As an object, extracting different data for the different types
+			 *    // This would be used with a data source such as:
+			 *    //   { "phone": 5552368, "phone_filter": "5552368 555-2368", "phone_display": "555-2368" }
+			 *    // Here the `phone` integer is used for sorting and type detection, while `phone_filter`
+			 *    // (which has both forms) is used for filtering for if a user inputs either format, while
+			 *    // the formatted phone number is the one that is shown in the table.
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [ {
+			 *          "targets": [ 0 ],
+			 *          "data": null, // Use the full data source object for the renderer's source
+			 *          "render": {
+			 *            "_": "phone",
+			 *            "filter": "phone_filter",
+			 *            "display": "phone_display"
+			 *          }
+			 *        } ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Use as a function to create a link from the data source
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [ {
+			 *          "targets": [ 0 ],
+			 *          "data": "download_link",
+			 *          "render": function ( data, type, full ) {
+			 *            return '<a href="'+data+'">Download</a>';
+			 *          }
+			 *        } ]
+			 *      } );
+			 *    } );
+			 */
+			"mRender": null,
+
+
+			/**
+			 * Change the cell type created for the column - either TD cells or TH cells. This
+			 * can be useful as TH cells have semantic meaning in the table body, allowing them
+			 * to act as a header for a row (you may wish to add scope='row' to the TH elements).
+			 *  @type string
+			 *  @default td
+			 *
+			 *  @name DataTable.defaults.column.cellType
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Make the first column use TH cells
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [ {
+			 *          "targets": [ 0 ],
+			 *          "cellType": "th"
+			 *        } ]
+			 *      } );
+			 *    } );
+			 */
+			"sCellType": "td",
+
+
+			/**
+			 * Class to give to each cell in this column.
+			 *  @type string
+			 *  @default <i>Empty string</i>
+			 *
+			 *  @name DataTable.defaults.column.class
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          { "class": "my_class", "targets": [ 0 ] }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          { "class": "my_class" },
+			 *          null,
+			 *          null,
+			 *          null,
+			 *          null
+			 *        ]
+			 *      } );
+			 *    } );
+			 */
+			"sClass": "",
+
+			/**
+			 * When DataTables calculates the column widths to assign to each column,
+			 * it finds the longest string in each column and then constructs a
+			 * temporary table and reads the widths from that. The problem with this
+			 * is that "mmm" is much wider then "iiii", but the latter is a longer
+			 * string - thus the calculation can go wrong (doing it properly and putting
+			 * it into an DOM object and measuring that is horribly(!) slow). Thus as
+			 * a "work around" we provide this option. It will append its value to the
+			 * text that is found to be the longest string for the column - i.e. padding.
+			 * Generally you shouldn't need this!
+			 *  @type string
+			 *  @default <i>Empty string<i>
+			 *
+			 *  @name DataTable.defaults.column.contentPadding
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          null,
+			 *          null,
+			 *          null,
+			 *          {
+			 *            "contentPadding": "mmm"
+			 *          }
+			 *        ]
+			 *      } );
+			 *    } );
+			 */
+			"sContentPadding": "",
+
+
+			/**
+			 * Allows a default value to be given for a column's data, and will be used
+			 * whenever a null data source is encountered (this can be because `data`
+			 * is set to null, or because the data source itself is null).
+			 *  @type string
+			 *  @default null
+			 *
+			 *  @name DataTable.defaults.column.defaultContent
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          {
+			 *            "data": null,
+			 *            "defaultContent": "Edit",
+			 *            "targets": [ -1 ]
+			 *          }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          null,
+			 *          null,
+			 *          null,
+			 *          {
+			 *            "data": null,
+			 *            "defaultContent": "Edit"
+			 *          }
+			 *        ]
+			 *      } );
+			 *    } );
+			 */
+			"sDefaultContent": null,
+
+
+			/**
+			 * This parameter is only used in DataTables' server-side processing. It can
+			 * be exceptionally useful to know what columns are being displayed on the
+			 * client side, and to map these to database fields. When defined, the names
+			 * also allow DataTables to reorder information from the server if it comes
+			 * back in an unexpected order (i.e. if you switch your columns around on the
+			 * client-side, your server-side code does not also need updating).
+			 *  @type string
+			 *  @default <i>Empty string</i>
+			 *
+			 *  @name DataTable.defaults.column.name
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          { "name": "engine", "targets": [ 0 ] },
+			 *          { "name": "browser", "targets": [ 1 ] },
+			 *          { "name": "platform", "targets": [ 2 ] },
+			 *          { "name": "version", "targets": [ 3 ] },
+			 *          { "name": "grade", "targets": [ 4 ] }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          { "name": "engine" },
+			 *          { "name": "browser" },
+			 *          { "name": "platform" },
+			 *          { "name": "version" },
+			 *          { "name": "grade" }
+			 *        ]
+			 *      } );
+			 *    } );
+			 */
+			"sName": "",
+
+
+			/**
+			 * Defines a data source type for the ordering which can be used to read
+			 * real-time information from the table (updating the internally cached
+			 * version) prior to ordering. This allows ordering to occur on user
+			 * editable elements such as form inputs.
+			 *  @type string
+			 *  @default std
+			 *
+			 *  @name DataTable.defaults.column.orderDataType
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          { "orderDataType": "dom-text", "targets": [ 2, 3 ] },
+			 *          { "type": "numeric", "targets": [ 3 ] },
+			 *          { "orderDataType": "dom-select", "targets": [ 4 ] },
+			 *          { "orderDataType": "dom-checkbox", "targets": [ 5 ] }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          null,
+			 *          null,
+			 *          { "orderDataType": "dom-text" },
+			 *          { "orderDataType": "dom-text", "type": "numeric" },
+			 *          { "orderDataType": "dom-select" },
+			 *          { "orderDataType": "dom-checkbox" }
+			 *        ]
+			 *      } );
+			 *    } );
+			 */
+			"sSortDataType": "std",
+
+
+			/**
+			 * The title of this column.
+			 *  @type string
+			 *  @default null <i>Derived from the 'TH' value for this column in the
+			 *    original HTML table.</i>
+			 *
+			 *  @name DataTable.defaults.column.title
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          { "title": "My column title", "targets": [ 0 ] }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          { "title": "My column title" },
+			 *          null,
+			 *          null,
+			 *          null,
+			 *          null
+			 *        ]
+			 *      } );
+			 *    } );
+			 */
+			"sTitle": null,
+
+
+			/**
+			 * The type allows you to specify how the data for this column will be
+			 * ordered. Four types (string, numeric, date and html (which will strip
+			 * HTML tags before ordering)) are currently available. Note that only date
+			 * formats understood by Javascript's Date() object will be accepted as type
+			 * date. For example: "Mar 26, 2008 5:03 PM". May take the values: 'string',
+			 * 'numeric', 'date' or 'html' (by default). Further types can be adding
+			 * through plug-ins.
+			 *  @type string
+			 *  @default null <i>Auto-detected from raw data</i>
+			 *
+			 *  @name DataTable.defaults.column.type
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          { "type": "html", "targets": [ 0 ] }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          { "type": "html" },
+			 *          null,
+			 *          null,
+			 *          null,
+			 *          null
+			 *        ]
+			 *      } );
+			 *    } );
+			 */
+			"sType": null,
+
+
+			/**
+			 * Defining the width of the column, this parameter may take any CSS value
+			 * (3em, 20px etc). DataTables applies 'smart' widths to columns which have not
+			 * been given a specific width through this interface ensuring that the table
+			 * remains readable.
+			 *  @type string
+			 *  @default null <i>Automatic</i>
+			 *
+			 *  @name DataTable.defaults.column.width
+			 *  @dtopt Columns
+			 *
+			 *  @example
+			 *    // Using `columnDefs`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columnDefs": [
+			 *          { "width": "20%", "targets": [ 0 ] }
+			 *        ]
+			 *      } );
+			 *    } );
+			 *
+			 *  @example
+			 *    // Using `columns`
+			 *    $(document).ready( function() {
+			 *      $('#example').dataTable( {
+			 *        "columns": [
+			 *          { "width": "20%" },
+			 *          null,
+			 *          null,
+			 *          null,
+			 *          null
+			 *        ]
+			 *      } );
+			 *    } );
+			 */
+			"sWidth": null
+		};
+
+		_fnHungarianMap(DataTable.defaults.column);
+
+
+
+		/**
+		 * DataTables settings object - this holds all the information needed for a
+		 * given table, including configuration, data and current application of the
+		 * table options. DataTables does not have a single instance for each DataTable
+		 * with the settings attached to that instance, but rather instances of the
+		 * DataTable "class" are created on-the-fly as needed (typically by a
+		 * $().dataTable() call) and the settings object is then applied to that
+		 * instance.
+		 *
+		 * Note that this object is related to {@link DataTable.defaults} but this
+		 * one is the internal data store for DataTables's cache of columns. It should
+		 * NOT be manipulated outside of DataTables. Any configuration should be done
+		 * through the initialisation options.
+		 *  @namespace
+		 *  @todo Really should attach the settings object to individual instances so we
+		 *    don't need to create new instances on each $().dataTable() call (if the
+		 *    table already exists). It would also save passing oSettings around and
+		 *    into every single function. However, this is a very significant
+		 *    architecture change for DataTables and will almost certainly break
+		 *    backwards compatibility with older installations. This is something that
+		 *    will be done in 2.0.
+		 */
+		DataTable.models.oSettings = {
+			/**
+			 * Primary features of DataTables and their enablement state.
+			 *  @namespace
+			 */
+			"oFeatures": {
+
+				/**
+				 * Flag to say if DataTables should automatically try to calculate the
+				 * optimum table and columns widths (true) or not (false).
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bAutoWidth": null,
+
+				/**
+				 * Delay the creation of TR and TD elements until they are actually
+				 * needed by a driven page draw. This can give a significant speed
+				 * increase for Ajax source and Javascript source data, but makes no
+				 * difference at all fro DOM and server-side processing tables.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bDeferRender": null,
+
+				/**
+				 * Enable filtering on the table or not. Note that if this is disabled
+				 * then there is no filtering at all on the table, including fnFilter.
+				 * To just remove the filtering input use sDom and remove the 'f' option.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bFilter": null,
+
+				/**
+				 * Table information element (the 'Showing x of y records' div) enable
+				 * flag.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bInfo": null,
+
+				/**
+				 * Present a user control allowing the end user to change the page size
+				 * when pagination is enabled.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bLengthChange": null,
+
+				/**
+				 * Pagination enabled or not. Note that if this is disabled then length
+				 * changing must also be disabled.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bPaginate": null,
+
+				/**
+				 * Processing indicator enable flag whenever DataTables is enacting a
+				 * user request - typically an Ajax request for server-side processing.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bProcessing": null,
+
+				/**
+				 * Server-side processing enabled flag - when enabled DataTables will
+				 * get all data from the server for every draw - there is no filtering,
+				 * sorting or paging done on the client-side.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bServerSide": null,
+
+				/**
+				 * Sorting enablement flag.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bSort": null,
+
+				/**
+				 * Multi-column sorting
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bSortMulti": null,
+
+				/**
+				 * Apply a class to the columns which are being sorted to provide a
+				 * visual highlight or not. This can slow things down when enabled since
+				 * there is a lot of DOM interaction.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bSortClasses": null,
+
+				/**
+				 * State saving enablement flag.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bStateSave": null
+			},
+
+
+			/**
+			 * Scrolling settings for a table.
+			 *  @namespace
+			 */
+			"oScroll": {
+				/**
+				 * When the table is shorter in height than sScrollY, collapse the
+				 * table container down to the height of the table (when true).
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type boolean
+				 */
+				"bCollapse": null,
+
+				/**
+				 * Width of the scrollbar for the web-browser's platform. Calculated
+				 * during table initialisation.
+				 *  @type int
+				 *  @default 0
+				 */
+				"iBarWidth": 0,
+
+				/**
+				 * Viewport width for horizontal scrolling. Horizontal scrolling is
+				 * disabled if an empty string.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type string
+				 */
+				"sX": null,
+
+				/**
+				 * Width to expand the table to when using x-scrolling. Typically you
+				 * should not need to use this.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type string
+				 *  @deprecated
+				 */
+				"sXInner": null,
+
+				/**
+				 * Viewport height for vertical scrolling. Vertical scrolling is disabled
+				 * if an empty string.
+				 * Note that this parameter will be set by the initialisation routine. To
+				 * set a default use {@link DataTable.defaults}.
+				 *  @type string
+				 */
+				"sY": null
+			},
+
+			/**
+			 * Language information for the table.
+			 *  @namespace
+			 *  @extends DataTable.defaults.oLanguage
+			 */
+			"oLanguage": {
+				/**
+				 * Information callback function. See
+				 * {@link DataTable.defaults.fnInfoCallback}
+				 *  @type function
+				 *  @default null
+				 */
+				"fnInfoCallback": null
+			},
+
+			/**
+			 * Browser support parameters
+			 *  @namespace
+			 */
+			"oBrowser": {
+				/**
+				 * Indicate if the browser incorrectly calculates width:100% inside a
+				 * scrolling element (IE6/7)
+				 *  @type boolean
+				 *  @default false
+				 */
+				"bScrollOversize": false,
+
+				/**
+				 * Determine if the vertical scrollbar is on the right or left of the
+				 * scrolling container - needed for rtl language layout, although not
+				 * all browsers move the scrollbar (Safari).
+				 *  @type boolean
+				 *  @default false
+				 */
+				"bScrollbarLeft": false,
+
+				/**
+				 * Flag for if `getBoundingClientRect` is fully supported or not
+				 *  @type boolean
+				 *  @default false
+				 */
+				"bBounding": false,
+
+				/**
+				 * Browser scrollbar width
+				 *  @type integer
+				 *  @default 0
+				 */
+				"barWidth": 0
+			},
+
+
+			"ajax": null,
+
+
+			/**
+			 * Array referencing the nodes which are used for the features. The
+			 * parameters of this object match what is allowed by sDom - i.e.
+			 *   <ul>
+			 *     <li>'l' - Length changing</li>
+			 *     <li>'f' - Filtering input</li>
+			 *     <li>'t' - The table!</li>
+			 *     <li>'i' - Information</li>
+			 *     <li>'p' - Pagination</li>
+			 *     <li>'r' - pRocessing</li>
+			 *   </ul>
+			 *  @type array
+			 *  @default []
+			 */
+			"aanFeatures": [],
+
+			/**
+			 * Store data information - see {@link DataTable.models.oRow} for detailed
+			 * information.
+			 *  @type array
+			 *  @default []
+			 */
+			"aoData": [],
+
+			/**
+			 * Array of indexes which are in the current display (after filtering etc)
+			 *  @type array
+			 *  @default []
+			 */
+			"aiDisplay": [],
+
+			/**
+			 * Array of indexes for display - no filtering
+			 *  @type array
+			 *  @default []
+			 */
+			"aiDisplayMaster": [],
+
+			/**
+			 * Map of row ids to data indexes
+			 *  @type object
+			 *  @default {}
+			 */
+			"aIds": {},
+
+			/**
+			 * Store information about each column that is in use
+			 *  @type array
+			 *  @default []
+			 */
+			"aoColumns": [],
+
+			/**
+			 * Store information about the table's header
+			 *  @type array
+			 *  @default []
+			 */
+			"aoHeader": [],
+
+			/**
+			 * Store information about the table's footer
+			 *  @type array
+			 *  @default []
+			 */
+			"aoFooter": [],
+
+			/**
+			 * Store the applied global search information in case we want to force a
+			 * research or compare the old search to a new one.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @namespace
+			 *  @extends DataTable.models.oSearch
+			 */
+			"oPreviousSearch": {},
+
+			/**
+			 * Store the applied search for each column - see
+			 * {@link DataTable.models.oSearch} for the format that is used for the
+			 * filtering information for each column.
+			 *  @type array
+			 *  @default []
+			 */
+			"aoPreSearchCols": [],
+
+			/**
+			 * Sorting that is applied to the table. Note that the inner arrays are
+			 * used in the following manner:
+			 * <ul>
+			 *   <li>Index 0 - column number</li>
+			 *   <li>Index 1 - current sorting direction</li>
+			 * </ul>
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type array
+			 *  @todo These inner arrays should really be objects
+			 */
+			"aaSorting": null,
+
+			/**
+			 * Sorting that is always applied to the table (i.e. prefixed in front of
+			 * aaSorting).
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type array
+			 *  @default []
+			 */
+			"aaSortingFixed": [],
+
+			/**
+			 * Classes to use for the striping of a table.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type array
+			 *  @default []
+			 */
+			"asStripeClasses": null,
+
+			/**
+			 * If restoring a table - we should restore its striping classes as well
+			 *  @type array
+			 *  @default []
+			 */
+			"asDestroyStripes": [],
+
+			/**
+			 * If restoring a table - we should restore its width
+			 *  @type int
+			 *  @default 0
+			 */
+			"sDestroyWidth": 0,
+
+			/**
+			 * Callback functions array for every time a row is inserted (i.e. on a draw).
+			 *  @type array
+			 *  @default []
+			 */
+			"aoRowCallback": [],
+
+			/**
+			 * Callback functions for the header on each draw.
+			 *  @type array
+			 *  @default []
+			 */
+			"aoHeaderCallback": [],
+
+			/**
+			 * Callback function for the footer on each draw.
+			 *  @type array
+			 *  @default []
+			 */
+			"aoFooterCallback": [],
+
+			/**
+			 * Array of callback functions for draw callback functions
+			 *  @type array
+			 *  @default []
+			 */
+			"aoDrawCallback": [],
+
+			/**
+			 * Array of callback functions for row created function
+			 *  @type array
+			 *  @default []
+			 */
+			"aoRowCreatedCallback": [],
+
+			/**
+			 * Callback functions for just before the table is redrawn. A return of
+			 * false will be used to cancel the draw.
+			 *  @type array
+			 *  @default []
+			 */
+			"aoPreDrawCallback": [],
+
+			/**
+			 * Callback functions for when the table has been initialised.
+			 *  @type array
+			 *  @default []
+			 */
+			"aoInitComplete": [],
+
+
+			/**
+			 * Callbacks for modifying the settings to be stored for state saving, prior to
+			 * saving state.
+			 *  @type array
+			 *  @default []
+			 */
+			"aoStateSaveParams": [],
+
+			/**
+			 * Callbacks for modifying the settings that have been stored for state saving
+			 * prior to using the stored values to restore the state.
+			 *  @type array
+			 *  @default []
+			 */
+			"aoStateLoadParams": [],
+
+			/**
+			 * Callbacks for operating on the settings object once the saved state has been
+			 * loaded
+			 *  @type array
+			 *  @default []
+			 */
+			"aoStateLoaded": [],
+
+			/**
+			 * Cache the table ID for quick access
+			 *  @type string
+			 *  @default <i>Empty string</i>
+			 */
+			"sTableId": "",
+
+			/**
+			 * The TABLE node for the main table
+			 *  @type node
+			 *  @default null
+			 */
+			"nTable": null,
+
+			/**
+			 * Permanent ref to the thead element
+			 *  @type node
+			 *  @default null
+			 */
+			"nTHead": null,
+
+			/**
+			 * Permanent ref to the tfoot element - if it exists
+			 *  @type node
+			 *  @default null
+			 */
+			"nTFoot": null,
+
+			/**
+			 * Permanent ref to the tbody element
+			 *  @type node
+			 *  @default null
+			 */
+			"nTBody": null,
+
+			/**
+			 * Cache the wrapper node (contains all DataTables controlled elements)
+			 *  @type node
+			 *  @default null
+			 */
+			"nTableWrapper": null,
+
+			/**
+			 * Indicate if when using server-side processing the loading of data
+			 * should be deferred until the second draw.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type boolean
+			 *  @default false
+			 */
+			"bDeferLoading": false,
+
+			/**
+			 * Indicate if all required information has been read in
+			 *  @type boolean
+			 *  @default false
+			 */
+			"bInitialised": false,
+
+			/**
+			 * Information about open rows. Each object in the array has the parameters
+			 * 'nTr' and 'nParent'
+			 *  @type array
+			 *  @default []
+			 */
+			"aoOpenRows": [],
+
+			/**
+			 * Dictate the positioning of DataTables' control elements - see
+			 * {@link DataTable.model.oInit.sDom}.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type string
+			 *  @default null
+			 */
+			"sDom": null,
+
+			/**
+			 * Search delay (in mS)
+			 *  @type integer
+			 *  @default null
+			 */
+			"searchDelay": null,
+
+			/**
+			 * Which type of pagination should be used.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type string
+			 *  @default two_button
+			 */
+			"sPaginationType": "two_button",
+
+			/**
+			 * The state duration (for `stateSave`) in seconds.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type int
+			 *  @default 0
+			 */
+			"iStateDuration": 0,
+
+			/**
+			 * Array of callback functions for state saving. Each array element is an
+			 * object with the following parameters:
+			 *   <ul>
+			 *     <li>function:fn - function to call. Takes two parameters, oSettings
+			 *       and the JSON string to save that has been thus far created. Returns
+			 *       a JSON string to be inserted into a json object
+			 *       (i.e. '"param": [ 0, 1, 2]')</li>
+			 *     <li>string:sName - name of callback</li>
+			 *   </ul>
+			 *  @type array
+			 *  @default []
+			 */
+			"aoStateSave": [],
+
+			/**
+			 * Array of callback functions for state loading. Each array element is an
+			 * object with the following parameters:
+			 *   <ul>
+			 *     <li>function:fn - function to call. Takes two parameters, oSettings
+			 *       and the object stored. May return false to cancel state loading</li>
+			 *     <li>string:sName - name of callback</li>
+			 *   </ul>
+			 *  @type array
+			 *  @default []
+			 */
+			"aoStateLoad": [],
+
+			/**
+			 * State that was saved. Useful for back reference
+			 *  @type object
+			 *  @default null
+			 */
+			"oSavedState": null,
+
+			/**
+			 * State that was loaded. Useful for back reference
+			 *  @type object
+			 *  @default null
+			 */
+			"oLoadedState": null,
+
+			/**
+			 * Source url for AJAX data for the table.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type string
+			 *  @default null
+			 */
+			"sAjaxSource": null,
+
+			/**
+			 * Property from a given object from which to read the table data from. This
+			 * can be an empty string (when not server-side processing), in which case
+			 * it is  assumed an an array is given directly.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type string
+			 */
+			"sAjaxDataProp": null,
+
+			/**
+			 * The last jQuery XHR object that was used for server-side data gathering.
+			 * This can be used for working with the XHR information in one of the
+			 * callbacks
+			 *  @type object
+			 *  @default null
+			 */
+			"jqXHR": null,
+
+			/**
+			 * JSON returned from the server in the last Ajax request
+			 *  @type object
+			 *  @default undefined
+			 */
+			"json": undefined,
+
+			/**
+			 * Data submitted as part of the last Ajax request
+			 *  @type object
+			 *  @default undefined
+			 */
+			"oAjaxData": undefined,
+
+			/**
+			 * Function to get the server-side data.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type function
+			 */
+			"fnServerData": null,
+
+			/**
+			 * Functions which are called prior to sending an Ajax request so extra
+			 * parameters can easily be sent to the server
+			 *  @type array
+			 *  @default []
+			 */
+			"aoServerParams": [],
+
+			/**
+			 * Send the XHR HTTP method - GET or POST (could be PUT or DELETE if
+			 * required).
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type string
+			 */
+			"sServerMethod": null,
+
+			/**
+			 * Format numbers for display.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type function
+			 */
+			"fnFormatNumber": null,
+
+			/**
+			 * List of options that can be used for the user selectable length menu.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type array
+			 *  @default []
+			 */
+			"aLengthMenu": null,
+
+			/**
+			 * Counter for the draws that the table does. Also used as a tracker for
+			 * server-side processing
+			 *  @type int
+			 *  @default 0
+			 */
+			"iDraw": 0,
+
+			/**
+			 * Indicate if a redraw is being done - useful for Ajax
+			 *  @type boolean
+			 *  @default false
+			 */
+			"bDrawing": false,
+
+			/**
+			 * Draw index (iDraw) of the last error when parsing the returned data
+			 *  @type int
+			 *  @default -1
+			 */
+			"iDrawError": -1,
+
+			/**
+			 * Paging display length
+			 *  @type int
+			 *  @default 10
+			 */
+			"_iDisplayLength": 10,
+
+			/**
+			 * Paging start point - aiDisplay index
+			 *  @type int
+			 *  @default 0
+			 */
+			"_iDisplayStart": 0,
+
+			/**
+			 * Server-side processing - number of records in the result set
+			 * (i.e. before filtering), Use fnRecordsTotal rather than
+			 * this property to get the value of the number of records, regardless of
+			 * the server-side processing setting.
+			 *  @type int
+			 *  @default 0
+			 *  @private
+			 */
+			"_iRecordsTotal": 0,
+
+			/**
+			 * Server-side processing - number of records in the current display set
+			 * (i.e. after filtering). Use fnRecordsDisplay rather than
+			 * this property to get the value of the number of records, regardless of
+			 * the server-side processing setting.
+			 *  @type boolean
+			 *  @default 0
+			 *  @private
+			 */
+			"_iRecordsDisplay": 0,
+
+			/**
+			 * The classes to use for the table
+			 *  @type object
+			 *  @default {}
+			 */
+			"oClasses": {},
+
+			/**
+			 * Flag attached to the settings object so you can check in the draw
+			 * callback if filtering has been done in the draw. Deprecated in favour of
+			 * events.
+			 *  @type boolean
+			 *  @default false
+			 *  @deprecated
+			 */
+			"bFiltered": false,
+
+			/**
+			 * Flag attached to the settings object so you can check in the draw
+			 * callback if sorting has been done in the draw. Deprecated in favour of
+			 * events.
+			 *  @type boolean
+			 *  @default false
+			 *  @deprecated
+			 */
+			"bSorted": false,
+
+			/**
+			 * Indicate that if multiple rows are in the header and there is more than
+			 * one unique cell per column, if the top one (true) or bottom one (false)
+			 * should be used for sorting / title by DataTables.
+			 * Note that this parameter will be set by the initialisation routine. To
+			 * set a default use {@link DataTable.defaults}.
+			 *  @type boolean
+			 */
+			"bSortCellsTop": null,
+
+			/**
+			 * Initialisation object that is used for the table
+			 *  @type object
+			 *  @default null
+			 */
+			"oInit": null,
+
+			/**
+			 * Destroy callback functions - for plug-ins to attach themselves to the
+			 * destroy so they can clean up markup and events.
+			 *  @type array
+			 *  @default []
+			 */
+			"aoDestroyCallback": [],
+
+
+			/**
+			 * Get the number of records in the current record set, before filtering
+			 *  @type function
+			 */
+			"fnRecordsTotal": function () {
+				return _fnDataSource(this) == 'ssp' ?
+					this._iRecordsTotal * 1 :
+					this.aiDisplayMaster.length;
+			},
+
+			/**
+			 * Get the number of records in the current record set, after filtering
+			 *  @type function
+			 */
+			"fnRecordsDisplay": function () {
+				return _fnDataSource(this) == 'ssp' ?
+					this._iRecordsDisplay * 1 :
+					this.aiDisplay.length;
+			},
+
+			/**
+			 * Get the display end point - aiDisplay index
+			 *  @type function
+			 */
+			"fnDisplayEnd": function () {
+				var
+					len = this._iDisplayLength,
+					start = this._iDisplayStart,
+					calc = start + len,
+					records = this.aiDisplay.length,
+					features = this.oFeatures,
+					paginate = features.bPaginate;
+
+				if (features.bServerSide) {
+					return paginate === false || len === -1 ?
+						start + records :
+						Math.min(start + len, this._iRecordsDisplay);
+				}
+				else {
+					return !paginate || calc > records || len === -1 ?
+						records :
+						calc;
+				}
+			},
+
+			/**
+			 * The DataTables object for this table
+			 *  @type object
+			 *  @default null
+			 */
+			"oInstance": null,
+
+			/**
+			 * Unique identifier for each instance of the DataTables object. If there
+			 * is an ID on the table node, then it takes that value, otherwise an
+			 * incrementing internal counter is used.
+			 *  @type string
+			 *  @default null
+			 */
+			"sInstance": null,
+
+			/**
+			 * tabindex attribute value that is added to DataTables control elements, allowing
+			 * keyboard navigation of the table and its controls.
+			 */
+			"iTabIndex": 0,
+
+			/**
+			 * DIV container for the footer scrolling table if scrolling
+			 */
+			"nScrollHead": null,
+
+			/**
+			 * DIV container for the footer scrolling table if scrolling
+			 */
+			"nScrollFoot": null,
+
+			/**
+			 * Last applied sort
+			 *  @type array
+			 *  @default []
+			 */
+			"aLastSort": [],
+
+			/**
+			 * Stored plug-in instances
+			 *  @type object
+			 *  @default {}
+			 */
+			"oPlugins": {},
+
+			/**
+			 * Function used to get a row's id from the row's data
+			 *  @type function
+			 *  @default null
+			 */
+			"rowIdFn": null,
+
+			/**
+			 * Data location where to store a row's id
+			 *  @type string
+			 *  @default null
+			 */
+			"rowId": null
+		};
+
+		/**
+		 * Extension object for DataTables that is used to provide all extension
+		 * options.
+		 *
+		 * Note that the `DataTable.ext` object is available through
+		 * `jQuery.fn.dataTable.ext` where it may be accessed and manipulated. It is
+		 * also aliased to `jQuery.fn.dataTableExt` for historic reasons.
+		 *  @namespace
+		 *  @extends DataTable.models.ext
+		 */
+
+
+		/**
+		 * DataTables extensions
+		 * 
+		 * This namespace acts as a collection area for plug-ins that can be used to
+		 * extend DataTables capabilities. Indeed many of the build in methods
+		 * use this method to provide their own capabilities (sorting methods for
+		 * example).
+		 *
+		 * Note that this namespace is aliased to `jQuery.fn.dataTableExt` for legacy
+		 * reasons
+		 *
+		 *  @namespace
+		 */
+		DataTable.ext = _ext = {
+			/**
+			 * Buttons. For use with the Buttons extension for DataTables. This is
+			 * defined here so other extensions can define buttons regardless of load
+			 * order. It is _not_ used by DataTables core.
+			 *
+			 *  @type object
+			 *  @default {}
+			 */
+			buttons: {},
+
+
+			/**
+			 * Element class names
+			 *
+			 *  @type object
+			 *  @default {}
+			 */
+			classes: {},
+
+
+			/**
+			 * DataTables build type (expanded by the download builder)
+			 *
+			 *  @type string
+			 */
+			builder: "-source-",
+
+
+			/**
+			 * Error reporting.
+			 * 
+			 * How should DataTables report an error. Can take the value 'alert',
+			 * 'throw', 'none' or a function.
+			 *
+			 *  @type string|function
+			 *  @default alert
+			 */
+			errMode: "alert",
+
+
+			/**
+			 * Feature plug-ins.
+			 * 
+			 * This is an array of objects which describe the feature plug-ins that are
+			 * available to DataTables. These feature plug-ins are then available for
+			 * use through the `dom` initialisation option.
+			 * 
+			 * Each feature plug-in is described by an object which must have the
+			 * following properties:
+			 * 
+			 * * `fnInit` - function that is used to initialise the plug-in,
+			 * * `cFeature` - a character so the feature can be enabled by the `dom`
+			 *   instillation option. This is case sensitive.
+			 *
+			 * The `fnInit` function has the following input parameters:
+			 *
+			 * 1. `{object}` DataTables settings object: see
+			 *    {@link DataTable.models.oSettings}
+			 *
+			 * And the following return is expected:
+			 * 
+			 * * {node|null} The element which contains your feature. Note that the
+			 *   return may also be void if your plug-in does not require to inject any
+			 *   DOM elements into DataTables control (`dom`) - for example this might
+			 *   be useful when developing a plug-in which allows table control via
+			 *   keyboard entry
+			 *
+			 *  @type array
+			 *
+			 *  @example
+			 *    $.fn.dataTable.ext.features.push( {
+			 *      "fnInit": function( oSettings ) {
+			 *        return new TableTools( { "oDTSettings": oSettings } );
+			 *      },
+			 *      "cFeature": "T"
+			 *    } );
+			 */
+			feature: [],
+
+
+			/**
+			 * Row searching.
+			 * 
+			 * This method of searching is complimentary to the default type based
+			 * searching, and a lot more comprehensive as it allows you complete control
+			 * over the searching logic. Each element in this array is a function
+			 * (parameters described below) that is called for every row in the table,
+			 * and your logic decides if it should be included in the searching data set
+			 * or not.
+			 *
+			 * Searching functions have the following input parameters:
+			 *
+			 * 1. `{object}` DataTables settings object: see
+			 *    {@link DataTable.models.oSettings}
+			 * 2. `{array|object}` Data for the row to be processed (same as the
+			 *    original format that was passed in as the data source, or an array
+			 *    from a DOM data source
+			 * 3. `{int}` Row index ({@link DataTable.models.oSettings.aoData}), which
+			 *    can be useful to retrieve the `TR` element if you need DOM interaction.
+			 *
+			 * And the following return is expected:
+			 *
+			 * * {boolean} Include the row in the searched result set (true) or not
+			 *   (false)
+			 *
+			 * Note that as with the main search ability in DataTables, technically this
+			 * is "filtering", since it is subtractive. However, for consistency in
+			 * naming we call it searching here.
+			 *
+			 *  @type array
+			 *  @default []
+			 *
+			 *  @example
+			 *    // The following example shows custom search being applied to the
+			 *    // fourth column (i.e. the data[3] index) based on two input values
+			 *    // from the end-user, matching the data in a certain range.
+			 *    $.fn.dataTable.ext.search.push(
+			 *      function( settings, data, dataIndex ) {
+			 *        var min = document.getElementById('min').value * 1;
+			 *        var max = document.getElementById('max').value * 1;
+			 *        var version = data[3] == "-" ? 0 : data[3]*1;
+			 *
+			 *        if ( min == "" && max == "" ) {
+			 *          return true;
+			 *        }
+			 *        else if ( min == "" && version < max ) {
+			 *          return true;
+			 *        }
+			 *        else if ( min < version && "" == max ) {
+			 *          return true;
+			 *        }
+			 *        else if ( min < version && version < max ) {
+			 *          return true;
+			 *        }
+			 *        return false;
+			 *      }
+			 *    );
+			 */
+			search: [],
+
+
+			/**
+			 * Selector extensions
+			 *
+			 * The `selector` option can be used to extend the options available for the
+			 * selector modifier options (`selector-modifier` object data type) that
+			 * each of the three built in selector types offer (row, column and cell +
+			 * their plural counterparts). For example the Select extension uses this
+			 * mechanism to provide an option to select only rows, columns and cells
+			 * that have been marked as selected by the end user (`{selected: true}`),
+			 * which can be used in conjunction with the existing built in selector
+			 * options.
+			 *
+			 * Each property is an array to which functions can be pushed. The functions
+			 * take three attributes:
+			 *
+			 * * Settings object for the host table
+			 * * Options object (`selector-modifier` object type)
+			 * * Array of selected item indexes
+			 *
+			 * The return is an array of the resulting item indexes after the custom
+			 * selector has been applied.
+			 *
+			 *  @type object
+			 */
+			selector: {
+				cell: [],
+				column: [],
+				row: []
+			},
+
+
+			/**
+			 * Internal functions, exposed for used in plug-ins.
+			 * 
+			 * Please note that you should not need to use the internal methods for
+			 * anything other than a plug-in (and even then, try to avoid if possible).
+			 * The internal function may change between releases.
+			 *
+			 *  @type object
+			 *  @default {}
+			 */
+			internal: {},
+
+
+			/**
+			 * Legacy configuration options. Enable and disable legacy options that
+			 * are available in DataTables.
+			 *
+			 *  @type object
+			 */
+			legacy: {
+				/**
+				 * Enable / disable DataTables 1.9 compatible server-side processing
+				 * requests
+				 *
+				 *  @type boolean
+				 *  @default null
+				 */
+				ajax: null
+			},
+
+
+			/**
+			 * Pagination plug-in methods.
+			 * 
+			 * Each entry in this object is a function and defines which buttons should
+			 * be shown by the pagination rendering method that is used for the table:
+			 * {@link DataTable.ext.renderer.pageButton}. The renderer addresses how the
+			 * buttons are displayed in the document, while the functions here tell it
+			 * what buttons to display. This is done by returning an array of button
+			 * descriptions (what each button will do).
+			 *
+			 * Pagination types (the four built in options and any additional plug-in
+			 * options defined here) can be used through the `paginationType`
+			 * initialisation parameter.
+			 *
+			 * The functions defined take two parameters:
+			 *
+			 * 1. `{int} page` The current page index
+			 * 2. `{int} pages` The number of pages in the table
+			 *
+			 * Each function is expected to return an array where each element of the
+			 * array can be one of:
+			 *
+			 * * `first` - Jump to first page when activated
+			 * * `last` - Jump to last page when activated
+			 * * `previous` - Show previous page when activated
+			 * * `next` - Show next page when activated
+			 * * `{int}` - Show page of the index given
+			 * * `{array}` - A nested array containing the above elements to add a
+			 *   containing 'DIV' element (might be useful for styling).
+			 *
+			 * Note that DataTables v1.9- used this object slightly differently whereby
+			 * an object with two functions would be defined for each plug-in. That
+			 * ability is still supported by DataTables 1.10+ to provide backwards
+			 * compatibility, but this option of use is now decremented and no longer
+			 * documented in DataTables 1.10+.
+			 *
+			 *  @type object
+			 *  @default {}
+			 *
+			 *  @example
+			 *    // Show previous, next and current page buttons only
+			 *    $.fn.dataTableExt.oPagination.current = function ( page, pages ) {
+			 *      return [ 'previous', page, 'next' ];
+			 *    };
+			 */
+			pager: {},
+
+
+			renderer: {
+				pageButton: {},
+				header: {}
+			},
+
+
+			/**
+			 * Ordering plug-ins - custom data source
+			 * 
+			 * The extension options for ordering of data available here is complimentary
+			 * to the default type based ordering that DataTables typically uses. It
+			 * allows much greater control over the the data that is being used to
+			 * order a column, but is necessarily therefore more complex.
+			 * 
+			 * This type of ordering is useful if you want to do ordering based on data
+			 * live from the DOM (for example the contents of an 'input' element) rather
+			 * than just the static string that DataTables knows of.
+			 * 
+			 * The way these plug-ins work is that you create an array of the values you
+			 * wish to be ordering for the column in question and then return that
+			 * array. The data in the array much be in the index order of the rows in
+			 * the table (not the currently ordering order!). Which order data gathering
+			 * function is run here depends on the `dt-init columns.orderDataType`
+			 * parameter that is used for the column (if any).
+			 *
+			 * The functions defined take two parameters:
+			 *
+			 * 1. `{object}` DataTables settings object: see
+			 *    {@link DataTable.models.oSettings}
+			 * 2. `{int}` Target column index
+			 *
+			 * Each function is expected to return an array:
+			 *
+			 * * `{array}` Data for the column to be ordering upon
+			 *
+			 *  @type array
+			 *
+			 *  @example
+			 *    // Ordering using `input` node values
+			 *    $.fn.dataTable.ext.order['dom-text'] = function  ( settings, col )
+			 *    {
+			 *      return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+			 *        return $('input', td).val();
+			 *      } );
+			 *    }
+			 */
+			order: {},
+
+
+			/**
+			 * Type based plug-ins.
+			 *
+			 * Each column in DataTables has a type assigned to it, either by automatic
+			 * detection or by direct assignment using the `type` option for the column.
+			 * The type of a column will effect how it is ordering and search (plug-ins
+			 * can also make use of the column type if required).
+			 *
+			 * @namespace
+			 */
+			type: {
+				/**
+				 * Type detection functions.
+				 *
+				 * The functions defined in this object are used to automatically detect
+				 * a column's type, making initialisation of DataTables super easy, even
+				 * when complex data is in the table.
+				 *
+				 * The functions defined take two parameters:
+				 *
+				 *  1. `{*}` Data from the column cell to be analysed
+				 *  2. `{settings}` DataTables settings object. This can be used to
+				 *     perform context specific type detection - for example detection
+				 *     based on language settings such as using a comma for a decimal
+				 *     place. Generally speaking the options from the settings will not
+				 *     be required
+				 *
+				 * Each function is expected to return:
+				 *
+				 * * `{string|null}` Data type detected, or null if unknown (and thus
+				 *   pass it on to the other type detection functions.
+				 *
+				 *  @type array
+				 *
+				 *  @example
+				 *    // Currency type detection plug-in:
+				 *    $.fn.dataTable.ext.type.detect.push(
+				 *      function ( data, settings ) {
+				 *        // Check the numeric part
+				 *        if ( ! data.substring(1).match(/[0-9]/) ) {
+				 *          return null;
+				 *        }
+				 *
+				 *        // Check prefixed by currency
+				 *        if ( data.charAt(0) == '$' || data.charAt(0) == '&pound;' ) {
+				 *          return 'currency';
+				 *        }
+				 *        return null;
+				 *      }
+				 *    );
+				 */
+				detect: [],
+
+
+				/**
+				 * Type based search formatting.
+				 *
+				 * The type based searching functions can be used to pre-format the
+				 * data to be search on. For example, it can be used to strip HTML
+				 * tags or to de-format telephone numbers for numeric only searching.
+				 *
+				 * Note that is a search is not defined for a column of a given type,
+				 * no search formatting will be performed.
+				 * 
+				 * Pre-processing of searching data plug-ins - When you assign the sType
+				 * for a column (or have it automatically detected for you by DataTables
+				 * or a type detection plug-in), you will typically be using this for
+				 * custom sorting, but it can also be used to provide custom searching
+				 * by allowing you to pre-processing the data and returning the data in
+				 * the format that should be searched upon. This is done by adding
+				 * functions this object with a parameter name which matches the sType
+				 * for that target column. This is the corollary of <i>afnSortData</i>
+				 * for searching data.
+				 *
+				 * The functions defined take a single parameter:
+				 *
+				 *  1. `{*}` Data from the column cell to be prepared for searching
+				 *
+				 * Each function is expected to return:
+				 *
+				 * * `{string|null}` Formatted string that will be used for the searching.
+				 *
+				 *  @type object
+				 *  @default {}
+				 *
+				 *  @example
+				 *    $.fn.dataTable.ext.type.search['title-numeric'] = function ( d ) {
+				 *      return d.replace(/\n/g," ").replace( /<.*?>/g, "" );
+				 *    }
+				 */
+				search: {},
+
+
+				/**
+				 * Type based ordering.
+				 *
+				 * The column type tells DataTables what ordering to apply to the table
+				 * when a column is sorted upon. The order for each type that is defined,
+				 * is defined by the functions available in this object.
+				 *
+				 * Each ordering option can be described by three properties added to
+				 * this object:
+				 *
+				 * * `{type}-pre` - Pre-formatting function
+				 * * `{type}-asc` - Ascending order function
+				 * * `{type}-desc` - Descending order function
+				 *
+				 * All three can be used together, only `{type}-pre` or only
+				 * `{type}-asc` and `{type}-desc` together. It is generally recommended
+				 * that only `{type}-pre` is used, as this provides the optimal
+				 * implementation in terms of speed, although the others are provided
+				 * for compatibility with existing Javascript sort functions.
+				 *
+				 * `{type}-pre`: Functions defined take a single parameter:
+				 *
+				 *  1. `{*}` Data from the column cell to be prepared for ordering
+				 *
+				 * And return:
+				 *
+				 * * `{*}` Data to be sorted upon
+				 *
+				 * `{type}-asc` and `{type}-desc`: Functions are typical Javascript sort
+				 * functions, taking two parameters:
+				 *
+				 *  1. `{*}` Data to compare to the second parameter
+				 *  2. `{*}` Data to compare to the first parameter
+				 *
+				 * And returning:
+				 *
+				 * * `{*}` Ordering match: <0 if first parameter should be sorted lower
+				 *   than the second parameter, ===0 if the two parameters are equal and
+				 *   >0 if the first parameter should be sorted height than the second
+				 *   parameter.
+				 * 
+				 *  @type object
+				 *  @default {}
+				 *
+				 *  @example
+				 *    // Numeric ordering of formatted numbers with a pre-formatter
+				 *    $.extend( $.fn.dataTable.ext.type.order, {
+				 *      "string-pre": function(x) {
+				 *        a = (a === "-" || a === "") ? 0 : a.replace( /[^\d\-\.]/g, "" );
+				 *        return parseFloat( a );
+				 *      }
+				 *    } );
+				 *
+				 *  @example
+				 *    // Case-sensitive string ordering, with no pre-formatting method
+				 *    $.extend( $.fn.dataTable.ext.order, {
+				 *      "string-case-asc": function(x,y) {
+				 *        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+				 *      },
+				 *      "string-case-desc": function(x,y) {
+				 *        return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+				 *      }
+				 *    } );
+				 */
+				order: {}
+			},
+
+			/**
+			 * Unique DataTables instance counter
+			 *
+			 * @type int
+			 * @private
+			 */
+			_unique: 0,
+
+
+			//
+			// Depreciated
+			// The following properties are retained for backwards compatiblity only.
+			// The should not be used in new projects and will be removed in a future
+			// version
+			//
+
+			/**
+			 * Version check function.
+			 *  @type function
+			 *  @depreciated Since 1.10
+			 */
+			fnVersionCheck: DataTable.fnVersionCheck,
+
+
+			/**
+			 * Index for what 'this' index API functions should use
+			 *  @type int
+			 *  @deprecated Since v1.10
+			 */
+			iApiIndex: 0,
+
+
+			/**
+			 * jQuery UI class container
+			 *  @type object
+			 *  @deprecated Since v1.10
+			 */
+			oJUIClasses: {},
+
+
+			/**
+			 * Software version
+			 *  @type string
+			 *  @deprecated Since v1.10
+			 */
+			sVersion: DataTable.version
+		};
+
+
+		//
+		// Backwards compatibility. Alias to pre 1.10 Hungarian notation counter parts
+		//
+		$.extend(_ext, {
+			afnFiltering: _ext.search,
+			aTypes: _ext.type.detect,
+			ofnSearch: _ext.type.search,
+			oSort: _ext.type.order,
+			afnSortData: _ext.order,
+			aoFeatures: _ext.feature,
+			oApi: _ext.internal,
+			oStdClasses: _ext.classes,
+			oPagination: _ext.pager
+		});
+
+
+		$.extend(DataTable.ext.classes, {
+			"sTable": "dataTable",
+			"sNoFooter": "no-footer",
+
+			/* Paging buttons */
+			"sPageButton": "paginate_button",
+			"sPageButtonActive": "current",
+			"sPageButtonDisabled": "disabled",
+
+			/* Striping classes */
+			"sStripeOdd": "odd",
+			"sStripeEven": "even",
+
+			/* Empty row */
+			"sRowEmpty": "dataTables_empty",
+
+			/* Features */
+			"sWrapper": "dataTables_wrapper",
+			"sFilter": "dataTables_filter",
+			"sInfo": "dataTables_info",
+			"sPaging": "dataTables_paginate paging_", /* Note that the type is postfixed */
+			"sLength": "dataTables_length",
+			"sProcessing": "dataTables_processing",
+
+			/* Sorting */
+			"sSortAsc": "sorting_asc",
+			"sSortDesc": "sorting_desc",
+			"sSortable": "sorting", /* Sortable in both directions */
+			"sSortableAsc": "sorting_desc_disabled",
+			"sSortableDesc": "sorting_asc_disabled",
+			"sSortableNone": "sorting_disabled",
+			"sSortColumn": "sorting_", /* Note that an int is postfixed for the sorting order */
+
+			/* Filtering */
+			"sFilterInput": "",
+
+			/* Page length */
+			"sLengthSelect": "",
+
+			/* Scrolling */
+			"sScrollWrapper": "dataTables_scroll",
+			"sScrollHead": "dataTables_scrollHead",
+			"sScrollHeadInner": "dataTables_scrollHeadInner",
+			"sScrollBody": "dataTables_scrollBody",
+			"sScrollFoot": "dataTables_scrollFoot",
+			"sScrollFootInner": "dataTables_scrollFootInner",
+
+			/* Misc */
+			"sHeaderTH": "",
+			"sFooterTH": "",
+
+			// Deprecated
+			"sSortJUIAsc": "",
+			"sSortJUIDesc": "",
+			"sSortJUI": "",
+			"sSortJUIAscAllowed": "",
+			"sSortJUIDescAllowed": "",
+			"sSortJUIWrapper": "",
+			"sSortIcon": "",
+			"sJUIHeader": "",
+			"sJUIFooter": ""
+		});
+
+
+		var extPagination = DataTable.ext.pager;
+
+		function _numbers(page, pages) {
+			var
+				numbers = [],
+				buttons = extPagination.numbers_length,
+				half = Math.floor(buttons / 2),
+				i = 1;
+
+			if (pages <= buttons) {
+				numbers = _range(0, pages);
+			}
+			else if (page <= half) {
+				numbers = _range(0, buttons - 2);
+				numbers.push('ellipsis');
+				numbers.push(pages - 1);
+			}
+			else if (page >= pages - 1 - half) {
+				numbers = _range(pages - (buttons - 2), pages);
+				numbers.splice(0, 0, 'ellipsis'); // no unshift in ie6
+				numbers.splice(0, 0, 0);
+			}
+			else {
+				numbers = _range(page - half + 2, page + half - 1);
+				numbers.push('ellipsis');
+				numbers.push(pages - 1);
+				numbers.splice(0, 0, 'ellipsis');
+				numbers.splice(0, 0, 0);
+			}
+
+			numbers.DT_el = 'span';
+			return numbers;
+		}
+
+
+		$.extend(extPagination, {
+			simple: function (page, pages) {
+				return ['previous', 'next'];
+			},
+
+			full: function (page, pages) {
+				return ['first', 'previous', 'next', 'last'];
+			},
+
+			numbers: function (page, pages) {
+				return [_numbers(page, pages)];
+			},
+
+			simple_numbers: function (page, pages) {
+				return ['previous', _numbers(page, pages), 'next'];
+			},
+
+			full_numbers: function (page, pages) {
+				return ['first', 'previous', _numbers(page, pages), 'next', 'last'];
+			},
+
+			first_last_numbers: function (page, pages) {
+				return ['first', _numbers(page, pages), 'last'];
+			},
+
+			// For testing and plug-ins to use
+			_numbers: _numbers,
+
+			// Number of number buttons (including ellipsis) to show. _Must be odd!_
+			numbers_length: 7
+		});
+
+
+		$.extend(true, DataTable.ext.renderer, {
+			pageButton: {
+				_: function (settings, host, idx, buttons, page, pages) {
+					var classes = settings.oClasses;
+					var lang = settings.oLanguage.oPaginate;
+					var aria = settings.oLanguage.oAria.paginate || {};
+					var btnDisplay, btnClass, counter = 0;
+
+					var attach = function (container, buttons) {
+						var i, ien, node, button, tabIndex;
+						var disabledClass = classes.sPageButtonDisabled;
+						var clickHandler = function (e) {
+							_fnPageChange(settings, e.data.action, true);
+						};
+
+						for (i = 0, ien = buttons.length; i < ien; i++) {
+							button = buttons[i];
+
+							if (Array.isArray(button)) {
+								var inner = $('<' + (button.DT_el || 'div') + '/>')
+									.appendTo(container);
+								attach(inner, button);
+							}
+							else {
+								btnDisplay = null;
+								btnClass = button;
+								tabIndex = settings.iTabIndex;
+
+								switch (button) {
+									case 'ellipsis':
+										container.append('<span class="ellipsis">&#x2026;</span>');
+										break;
+
+									case 'first':
+										btnDisplay = lang.sFirst;
+
+										if (page === 0) {
+											tabIndex = -1;
+											btnClass += ' ' + disabledClass;
+										}
+										break;
+
+									case 'previous':
+										btnDisplay = lang.sPrevious;
+
+										if (page === 0) {
+											tabIndex = -1;
+											btnClass += ' ' + disabledClass;
+										}
+										break;
+
+									case 'next':
+										btnDisplay = lang.sNext;
+
+										if (pages === 0 || page === pages - 1) {
+											tabIndex = -1;
+											btnClass += ' ' + disabledClass;
+										}
+										break;
+
+									case 'last':
+										btnDisplay = lang.sLast;
+
+										if (pages === 0 || page === pages - 1) {
+											tabIndex = -1;
+											btnClass += ' ' + disabledClass;
+										}
+										break;
+
+									default:
+										btnDisplay = settings.fnFormatNumber(button + 1);
+										btnClass = page === button ?
+											classes.sPageButtonActive : '';
+										break;
+								}
+
+								if (btnDisplay !== null) {
+									node = $('<a>', {
+										'class': classes.sPageButton + ' ' + btnClass,
+										'aria-controls': settings.sTableId,
+										'aria-label': aria[button],
+										'data-dt-idx': counter,
+										'tabindex': tabIndex,
+										'id': idx === 0 && typeof button === 'string' ?
+											settings.sTableId + '_' + button :
+											null
+									})
+										.html(btnDisplay)
+										.appendTo(container);
+
+									_fnBindAction(
+										node, { action: button }, clickHandler
+									);
+
+									counter++;
+								}
+							}
+						}
+					};
+
+					// IE9 throws an 'unknown error' if document.activeElement is used
+					// inside an iframe or frame. Try / catch the error. Not good for
+					// accessibility, but neither are frames.
+					var activeEl;
+
+					try {
+						// Because this approach is destroying and recreating the paging
+						// elements, focus is lost on the select button which is bad for
+						// accessibility. So we want to restore focus once the draw has
+						// completed
+						activeEl = $(host).find(document.activeElement).data('dt-idx');
+					}
+					catch (e) { }
+
+					attach($(host).empty(), buttons);
+
+					if (activeEl !== undefined) {
+						$(host).find('[data-dt-idx=' + activeEl + ']').trigger('focus');
+					}
+				}
+			}
+		});
+
+
+
+		// Built in type detection. See model.ext.aTypes for information about
+		// what is required from this methods.
+		$.extend(DataTable.ext.type.detect, [
+			// Plain numbers - first since V8 detects some plain numbers as dates
+			// e.g. Date.parse('55') (but not all, e.g. Date.parse('22')...).
+			function (d, settings) {
+				var decimal = settings.oLanguage.sDecimal;
+				return _isNumber(d, decimal) ? 'num' + decimal : null;
+			},
+
+			// Dates (only those recognised by the browser's Date.parse)
+			function (d, settings) {
+				// V8 tries _very_ hard to make a string passed into `Date.parse()`
+				// valid, so we need to use a regex to restrict date formats. Use a
+				// plug-in for anything other than ISO8601 style strings
+				if (d && !(d instanceof Date) && !_re_date.test(d)) {
+					return null;
+				}
+				var parsed = Date.parse(d);
+				return (parsed !== null && !isNaN(parsed)) || _empty(d) ? 'date' : null;
+			},
+
+			// Formatted numbers
+			function (d, settings) {
+				var decimal = settings.oLanguage.sDecimal;
+				return _isNumber(d, decimal, true) ? 'num-fmt' + decimal : null;
+			},
+
+			// HTML numeric
+			function (d, settings) {
+				var decimal = settings.oLanguage.sDecimal;
+				return _htmlNumeric(d, decimal) ? 'html-num' + decimal : null;
+			},
+
+			// HTML numeric, formatted
+			function (d, settings) {
+				var decimal = settings.oLanguage.sDecimal;
+				return _htmlNumeric(d, decimal, true) ? 'html-num-fmt' + decimal : null;
+			},
+
+			// HTML (this is strict checking - there must be html)
+			function (d, settings) {
+				return _empty(d) || (typeof d === 'string' && d.indexOf('<') !== -1) ?
+					'html' : null;
+			}
+		]);
+
+
+
+		// Filter formatting functions. See model.ext.ofnSearch for information about
+		// what is required from these methods.
+		// 
+		// Note that additional search methods are added for the html numbers and
+		// html formatted numbers by `_addNumericSort()` when we know what the decimal
+		// place is
+
+
+		$.extend(DataTable.ext.type.search, {
+			html: function (data) {
+				return _empty(data) ?
+					data :
+					typeof data === 'string' ?
+						data
+							.replace(_re_new_lines, " ")
+							.replace(_re_html, "") :
+						'';
+			},
+
+			string: function (data) {
+				return _empty(data) ?
+					data :
+					typeof data === 'string' ?
+						data.replace(_re_new_lines, " ") :
+						data;
+			}
+		});
+
+
+
+		var __numericReplace = function (d, decimalPlace, re1, re2) {
+			if (d !== 0 && (!d || d === '-')) {
+				return -Infinity;
+			}
+
+			// If a decimal place other than `.` is used, it needs to be given to the
+			// function so we can detect it and replace with a `.` which is the only
+			// decimal place Javascript recognises - it is not locale aware.
+			if (decimalPlace) {
+				d = _numToDecimal(d, decimalPlace);
+			}
+
+			if (d.replace) {
+				if (re1) {
+					d = d.replace(re1, '');
+				}
+
+				if (re2) {
+					d = d.replace(re2, '');
+				}
+			}
+
+			return d * 1;
+		};
+
+
+		// Add the numeric 'deformatting' functions for sorting and search. This is done
+		// in a function to provide an easy ability for the language options to add
+		// additional methods if a non-period decimal place is used.
+		function _addNumericSort(decimalPlace) {
+			$.each(
+				{
+					// Plain numbers
+					"num": function (d) {
+						return __numericReplace(d, decimalPlace);
+					},
+
+					// Formatted numbers
+					"num-fmt": function (d) {
+						return __numericReplace(d, decimalPlace, _re_formatted_numeric);
+					},
+
+					// HTML numeric
+					"html-num": function (d) {
+						return __numericReplace(d, decimalPlace, _re_html);
+					},
+
+					// HTML numeric, formatted
+					"html-num-fmt": function (d) {
+						return __numericReplace(d, decimalPlace, _re_html, _re_formatted_numeric);
+					}
+				},
+				function (key, fn) {
+					// Add the ordering method
+					_ext.type.order[key + decimalPlace + '-pre'] = fn;
+
+					// For HTML types add a search formatter that will strip the HTML
+					if (key.match(/^html\-/)) {
+						_ext.type.search[key + decimalPlace] = _ext.type.search.html;
+					}
+				}
+			);
+		}
+
+
+		// Default sort methods
+		$.extend(_ext.type.order, {
+			// Dates
+			"date-pre": function (d) {
+				var ts = Date.parse(d);
+				return isNaN(ts) ? -Infinity : ts;
+			},
+
+			// html
+			"html-pre": function (a) {
+				return _empty(a) ?
+					'' :
+					a.replace ?
+						a.replace(/<.*?>/g, "").toLowerCase() :
+						a + '';
+			},
+
+			// string
+			"string-pre": function (a) {
+				// This is a little complex, but faster than always calling toString,
+				// http://jsperf.com/tostring-v-check
+				return _empty(a) ?
+					'' :
+					typeof a === 'string' ?
+						a.toLowerCase() :
+						!a.toString ?
+							'' :
+							a.toString();
+			},
+
+			// string-asc and -desc are retained only for compatibility with the old
+			// sort methods
+			"string-asc": function (x, y) {
+				return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+			},
+
+			"string-desc": function (x, y) {
+				return ((x < y) ? 1 : ((x > y) ? -1 : 0));
+			}
+		});
+
+
+		// Numeric sorting types - order doesn't matter here
+		_addNumericSort('');
+
+
+		$.extend(true, DataTable.ext.renderer, {
+			header: {
+				_: function (settings, cell, column, classes) {
+					// No additional mark-up required
+					// Attach a sort listener to update on sort - note that using the
+					// `DT` namespace will allow the event to be removed automatically
+					// on destroy, while the `dt` namespaced event is the one we are
+					// listening for
+					$(settings.nTable).on('order.dt.DT', function (e, ctx, sorting, columns) {
+						if (settings !== ctx) { // need to check this this is the host
+							return;               // table, not a nested one
+						}
+
+						var colIdx = column.idx;
+
+						cell
+							.removeClass(
+								classes.sSortAsc + ' ' +
+								classes.sSortDesc
+							)
+							.addClass(columns[colIdx] == 'asc' ?
+								classes.sSortAsc : columns[colIdx] == 'desc' ?
+									classes.sSortDesc :
+									column.sSortingClass
+							);
+					});
+				},
+
+				jqueryui: function (settings, cell, column, classes) {
+					$('<div/>')
+						.addClass(classes.sSortJUIWrapper)
+						.append(cell.contents())
+						.append($('<span/>')
+							.addClass(classes.sSortIcon + ' ' + column.sSortingClassJUI)
+						)
+						.appendTo(cell);
+
+					// Attach a sort listener to update on sort
+					$(settings.nTable).on('order.dt.DT', function (e, ctx, sorting, columns) {
+						if (settings !== ctx) {
+							return;
+						}
+
+						var colIdx = column.idx;
+
+						cell
+							.removeClass(classes.sSortAsc + " " + classes.sSortDesc)
+							.addClass(columns[colIdx] == 'asc' ?
+								classes.sSortAsc : columns[colIdx] == 'desc' ?
+									classes.sSortDesc :
+									column.sSortingClass
+							);
+
+						cell
+							.find('span.' + classes.sSortIcon)
+							.removeClass(
+								classes.sSortJUIAsc + " " +
+								classes.sSortJUIDesc + " " +
+								classes.sSortJUI + " " +
+								classes.sSortJUIAscAllowed + " " +
+								classes.sSortJUIDescAllowed
+							)
+							.addClass(columns[colIdx] == 'asc' ?
+								classes.sSortJUIAsc : columns[colIdx] == 'desc' ?
+									classes.sSortJUIDesc :
+									column.sSortingClassJUI
+							);
+					});
+				}
+			}
+		});
+
+		/*
+		 * Public helper functions. These aren't used internally by DataTables, or
+		 * called by any of the options passed into DataTables, but they can be used
+		 * externally by developers working with DataTables. They are helper functions
+		 * to make working with DataTables a little bit easier.
+		 */
+
+		var __htmlEscapeEntities = function (d) {
+			return typeof d === 'string' ?
+				d
+					.replace(/&/g, '&amp;')
+					.replace(/</g, '&lt;')
+					.replace(/>/g, '&gt;')
+					.replace(/"/g, '&quot;') :
+				d;
+		};
+
+		/**
+		 * Helpers for `columns.render`.
+		 *
+		 * The options defined here can be used with the `columns.render` initialisation
+		 * option to provide a display renderer. The following functions are defined:
+		 *
+		 * * `number` - Will format numeric data (defined by `columns.data`) for
+		 *   display, retaining the original unformatted data for sorting and filtering.
+		 *   It takes 5 parameters:
+		 *   * `string` - Thousands grouping separator
+		 *   * `string` - Decimal point indicator
+		 *   * `integer` - Number of decimal points to show
+		 *   * `string` (optional) - Prefix.
+		 *   * `string` (optional) - Postfix (/suffix).
+		 * * `text` - Escape HTML to help prevent XSS attacks. It has no optional
+		 *   parameters.
+		 *
+		 * @example
+		 *   // Column definition using the number renderer
+		 *   {
+		 *     data: "salary",
+		 *     render: $.fn.dataTable.render.number( '\'', '.', 0, '$' )
+		 *   }
+		 *
+		 * @namespace
+		 */
+		DataTable.render = {
+			number: function (thousands, decimal, precision, prefix, postfix) {
+				return {
+					display: function (d) {
+						if (typeof d !== 'number' && typeof d !== 'string') {
+							return d;
+						}
+
+						var negative = d < 0 ? '-' : '';
+						var flo = parseFloat(d);
+
+						// If NaN then there isn't much formatting that we can do - just
+						// return immediately, escaping any HTML (this was supposed to
+						// be a number after all)
+						if (isNaN(flo)) {
+							return __htmlEscapeEntities(d);
+						}
+
+						flo = flo.toFixed(precision);
+						d = Math.abs(flo);
+
+						var intPart = parseInt(d, 10);
+						var floatPart = precision ?
+							decimal + (d - intPart).toFixed(precision).substring(2) :
+							'';
+
+						// If zero, then can't have a negative prefix
+						if (intPart === 0 && parseFloat(floatPart) === 0) {
+							negative = '';
+						}
+
+						return negative + (prefix || '') +
+							intPart.toString().replace(
+								/\B(?=(\d{3})+(?!\d))/g, thousands
+							) +
+							floatPart +
+							(postfix || '');
+					}
+				};
+			},
+
+			text: function () {
+				return {
+					display: __htmlEscapeEntities,
+					filter: __htmlEscapeEntities
+				};
+			}
+		};
+
+
+		/*
+		 * This is really a good bit rubbish this method of exposing the internal methods
+		 * publicly... - To be fixed in 2.0 using methods on the prototype
+		 */
+
+
+		/**
+		 * Create a wrapper function for exporting an internal functions to an external API.
+		 *  @param {string} fn API function name
+		 *  @returns {function} wrapped function
+		 *  @memberof DataTable#internal
+		 */
+		function _fnExternApiFunc(fn) {
+			return function () {
+				var args = [_fnSettingsFromNode(this[DataTable.ext.iApiIndex])].concat(
+					Array.prototype.slice.call(arguments)
+				);
+				return DataTable.ext.internal[fn].apply(this, args);
+			};
+		}
+
+
+		/**
+		 * Reference to internal functions for use by plug-in developers. Note that
+		 * these methods are references to internal functions and are considered to be
+		 * private. If you use these methods, be aware that they are liable to change
+		 * between versions.
+		 *  @namespace
+		 */
+		$.extend(DataTable.ext.internal, {
+			_fnExternApiFunc: _fnExternApiFunc,
+			_fnBuildAjax: _fnBuildAjax,
+			_fnAjaxUpdate: _fnAjaxUpdate,
+			_fnAjaxParameters: _fnAjaxParameters,
+			_fnAjaxUpdateDraw: _fnAjaxUpdateDraw,
+			_fnAjaxDataSrc: _fnAjaxDataSrc,
+			_fnAddColumn: _fnAddColumn,
+			_fnColumnOptions: _fnColumnOptions,
+			_fnAdjustColumnSizing: _fnAdjustColumnSizing,
+			_fnVisibleToColumnIndex: _fnVisibleToColumnIndex,
+			_fnColumnIndexToVisible: _fnColumnIndexToVisible,
+			_fnVisbleColumns: _fnVisbleColumns,
+			_fnGetColumns: _fnGetColumns,
+			_fnColumnTypes: _fnColumnTypes,
+			_fnApplyColumnDefs: _fnApplyColumnDefs,
+			_fnHungarianMap: _fnHungarianMap,
+			_fnCamelToHungarian: _fnCamelToHungarian,
+			_fnLanguageCompat: _fnLanguageCompat,
+			_fnBrowserDetect: _fnBrowserDetect,
+			_fnAddData: _fnAddData,
+			_fnAddTr: _fnAddTr,
+			_fnNodeToDataIndex: _fnNodeToDataIndex,
+			_fnNodeToColumnIndex: _fnNodeToColumnIndex,
+			_fnGetCellData: _fnGetCellData,
+			_fnSetCellData: _fnSetCellData,
+			_fnSplitObjNotation: _fnSplitObjNotation,
+			_fnGetObjectDataFn: _fnGetObjectDataFn,
+			_fnSetObjectDataFn: _fnSetObjectDataFn,
+			_fnGetDataMaster: _fnGetDataMaster,
+			_fnClearTable: _fnClearTable,
+			_fnDeleteIndex: _fnDeleteIndex,
+			_fnInvalidate: _fnInvalidate,
+			_fnGetRowElements: _fnGetRowElements,
+			_fnCreateTr: _fnCreateTr,
+			_fnBuildHead: _fnBuildHead,
+			_fnDrawHead: _fnDrawHead,
+			_fnDraw: _fnDraw,
+			_fnReDraw: _fnReDraw,
+			_fnAddOptionsHtml: _fnAddOptionsHtml,
+			_fnDetectHeader: _fnDetectHeader,
+			_fnGetUniqueThs: _fnGetUniqueThs,
+			_fnFeatureHtmlFilter: _fnFeatureHtmlFilter,
+			_fnFilterComplete: _fnFilterComplete,
+			_fnFilterCustom: _fnFilterCustom,
+			_fnFilterColumn: _fnFilterColumn,
+			_fnFilter: _fnFilter,
+			_fnFilterCreateSearch: _fnFilterCreateSearch,
+			_fnEscapeRegex: _fnEscapeRegex,
+			_fnFilterData: _fnFilterData,
+			_fnFeatureHtmlInfo: _fnFeatureHtmlInfo,
+			_fnUpdateInfo: _fnUpdateInfo,
+			_fnInfoMacros: _fnInfoMacros,
+			_fnInitialise: _fnInitialise,
+			_fnInitComplete: _fnInitComplete,
+			_fnLengthChange: _fnLengthChange,
+			_fnFeatureHtmlLength: _fnFeatureHtmlLength,
+			_fnFeatureHtmlPaginate: _fnFeatureHtmlPaginate,
+			_fnPageChange: _fnPageChange,
+			_fnFeatureHtmlProcessing: _fnFeatureHtmlProcessing,
+			_fnProcessingDisplay: _fnProcessingDisplay,
+			_fnFeatureHtmlTable: _fnFeatureHtmlTable,
+			_fnScrollDraw: _fnScrollDraw,
+			_fnApplyToChildren: _fnApplyToChildren,
+			_fnCalculateColumnWidths: _fnCalculateColumnWidths,
+			_fnThrottle: _fnThrottle,
+			_fnConvertToWidth: _fnConvertToWidth,
+			_fnGetWidestNode: _fnGetWidestNode,
+			_fnGetMaxLenString: _fnGetMaxLenString,
+			_fnStringToCss: _fnStringToCss,
+			_fnSortFlatten: _fnSortFlatten,
+			_fnSort: _fnSort,
+			_fnSortAria: _fnSortAria,
+			_fnSortListener: _fnSortListener,
+			_fnSortAttachListener: _fnSortAttachListener,
+			_fnSortingClasses: _fnSortingClasses,
+			_fnSortData: _fnSortData,
+			_fnSaveState: _fnSaveState,
+			_fnLoadState: _fnLoadState,
+			_fnSettingsFromNode: _fnSettingsFromNode,
+			_fnLog: _fnLog,
+			_fnMap: _fnMap,
+			_fnBindAction: _fnBindAction,
+			_fnCallbackReg: _fnCallbackReg,
+			_fnCallbackFire: _fnCallbackFire,
+			_fnLengthOverflow: _fnLengthOverflow,
+			_fnRenderer: _fnRenderer,
+			_fnDataSource: _fnDataSource,
+			_fnRowAttributes: _fnRowAttributes,
+			_fnExtend: _fnExtend,
+			_fnCalculateEnd: function () { } // Used by a lot of plug-ins, but redundant
+			// in 1.10, so this dead-end function is
+			// added to prevent errors
+		});
+
+
+		// jQuery access
+		$.fn.dataTable = DataTable;
+
+		// Provide access to the host jQuery object (circular reference)
+		DataTable.$ = $;
+
+		// Legacy aliases
+		$.fn.dataTableSettings = DataTable.settings;
+		$.fn.dataTableExt = DataTable.ext;
+
+		// With a capital `D` we return a DataTables API instance rather than a
+		// jQuery object
+		$.fn.DataTable = function (opts) {
+			return $(this).dataTable(opts).api();
+		};
+
+		// All properties that are available to $.fn.dataTable should also be
+		// available on $.fn.DataTable
+		$.each(DataTable, function (prop, val) {
+			$.fn.DataTable[prop] = val;
+		});
+
+
+		// Information about events fired by DataTables - for documentation.
+		/**
+		 * Draw event, fired whenever the table is redrawn on the page, at the same
+		 * point as fnDrawCallback. This may be useful for binding events or
+		 * performing calculations when the table is altered at all.
+		 *  @name DataTable#draw.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}
+		 */
+
+		/**
+		 * Search event, fired when the searching applied to the table (using the
+		 * built-in global search, or column filters) is altered.
+		 *  @name DataTable#search.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}
+		 */
+
+		/**
+		 * Page change event, fired when the paging of the table is altered.
+		 *  @name DataTable#page.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}
+		 */
+
+		/**
+		 * Order event, fired when the ordering applied to the table is altered.
+		 *  @name DataTable#order.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}
+		 */
+
+		/**
+		 * DataTables initialisation complete event, fired when the table is fully
+		 * drawn, including Ajax data loaded, if Ajax data is required.
+		 *  @name DataTable#init.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} oSettings DataTables settings object
+		 *  @param {object} json The JSON object request from the server - only
+		 *    present if client-side Ajax sourced data is used</li></ol>
+		 */
+
+		/**
+		 * State save event, fired when the table has changed state a new state save
+		 * is required. This event allows modification of the state saving object
+		 * prior to actually doing the save, including addition or other state
+		 * properties (for plug-ins) or modification of a DataTables core property.
+		 *  @name DataTable#stateSaveParams.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} oSettings DataTables settings object
+		 *  @param {object} json The state information to be saved
+		 */
+
+		/**
+		 * State load event, fired when the table is loading state from the stored
+		 * data, but prior to the settings object being modified by the saved state
+		 * - allowing modification of the saved state is required or loading of
+		 * state for a plug-in.
+		 *  @name DataTable#stateLoadParams.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} oSettings DataTables settings object
+		 *  @param {object} json The saved state information
+		 */
+
+		/**
+		 * State loaded event, fired when state has been loaded from stored data and
+		 * the settings object has been modified by the loaded data.
+		 *  @name DataTable#stateLoaded.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} oSettings DataTables settings object
+		 *  @param {object} json The saved state information
+		 */
+
+		/**
+		 * Processing event, fired when DataTables is doing some kind of processing
+		 * (be it, order, search or anything else). It can be used to indicate to
+		 * the end user that there is something happening, or that something has
+		 * finished.
+		 *  @name DataTable#processing.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} oSettings DataTables settings object
+		 *  @param {boolean} bShow Flag for if DataTables is doing processing or not
+		 */
+
+		/**
+		 * Ajax (XHR) event, fired whenever an Ajax request is completed from a
+		 * request to made to the server for new data. This event is called before
+		 * DataTables processed the returned data, so it can also be used to pre-
+		 * process the data returned from the server, if needed.
+		 *
+		 * Note that this trigger is called in `fnServerData`, if you override
+		 * `fnServerData` and which to use this event, you need to trigger it in you
+		 * success function.
+		 *  @name DataTable#xhr.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}
+		 *  @param {object} json JSON returned from the server
+		 *
+		 *  @example
+		 *     // Use a custom property returned from the server in another DOM element
+		 *     $('#table').dataTable().on('xhr.dt', function (e, settings, json) {
+		 *       $('#status').html( json.status );
+		 *     } );
+		 *
+		 *  @example
+		 *     // Pre-process the data returned from the server
+		 *     $('#table').dataTable().on('xhr.dt', function (e, settings, json) {
+		 *       for ( var i=0, ien=json.aaData.length ; i<ien ; i++ ) {
+		 *         json.aaData[i].sum = json.aaData[i].one + json.aaData[i].two;
+		 *       }
+		 *       // Note no return - manipulate the data directly in the JSON object.
+		 *     } );
+		 */
+
+		/**
+		 * Destroy event, fired when the DataTable is destroyed by calling fnDestroy
+		 * or passing the bDestroy:true parameter in the initialisation object. This
+		 * can be used to remove bound events, added DOM nodes, etc.
+		 *  @name DataTable#destroy.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}
+		 */
+
+		/**
+		 * Page length change event, fired when number of records to show on each
+		 * page (the length) is changed.
+		 *  @name DataTable#length.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}
+		 *  @param {integer} len New length
+		 */
+
+		/**
+		 * Column sizing has changed.
+		 *  @name DataTable#column-sizing.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}
+		 */
+
+		/**
+		 * Column visibility has changed.
+		 *  @name DataTable#column-visibility.dt
+		 *  @event
+		 *  @param {event} e jQuery event object
+		 *  @param {object} o DataTables settings object {@link DataTable.models.oSettings}
+		 *  @param {int} column Column index
+		 *  @param {bool} vis `false` if column now hidden, or `true` if visible
+		 */
+
+		return $.fn.dataTable;
+	}));
