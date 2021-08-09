@@ -51,9 +51,6 @@
                                                 <a class="button" asp-action="Edit" asp-route-id="@item.Id">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <a class="button" asp-action="Details" asp-route-id="@item.Id">
-                                                    <i class="material-icons">plagiarism</i>
-                                                </a>
                                                 <a class="button" asp-action="Delete" asp-route-id="@item.Id">
                                                     <i class="material-icons">delete</i>
                                                 </a>
@@ -74,6 +71,7 @@
     <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
     <script type="text/javascript">
         $("document").ready(function () {
+            $(".loadingWrapper").hide();
             $("#tblIndex").DataTable({
                 responsive: true,
                 searching: true,

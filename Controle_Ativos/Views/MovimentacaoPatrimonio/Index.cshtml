@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">Tabela Movimentação Patrimonio</h4>
+                        <h4 class="card-title ">Tabela Empréstimos</h4>
                         <p>
                             <a type="button" class="btn btn-primary" asp-action="Create">Novo Registro</a>
                         </p>
@@ -80,9 +80,6 @@
                                             <td>
                                                 <a class="button" data-toggle="modal" data-target="#modal-edit-container--@i" asp-action="Edit" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">edit</i>
-                                                </a>
-                                                <a class="button" data-toggle="modal" data-target="#modal-details-container--@i" asp-action="Details" asp-route-id="@Model.ElementAt(i).Id">
-                                                    <i class="material-icons">plagiarism</i>
                                                 </a>
                                                 <a class="button" data-toggle="modal" data-target="#modal-delete-container--@i" asp-action="Delete" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">delete</i>
@@ -143,11 +140,24 @@
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="@Model.ElementAt(i).Id" class="control-label"></label>
-                                <input asp-for="@Model.ElementAt(i).Id" class="form-control" />
-                                <span asp-validation-for="@Model.ElementAt(i).Id" class="text-danger"></span>
+                                <label asp-for="@Model.ElementAt(i).DataFechamento" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).DataFechamento" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).DataFechamento" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).Observacao" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).Observacao" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).Observacao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).TipoMovimentoId" class="control-label"></label>
+                                <select asp-for="@Model.ElementAt(i).TipoMovimentoId" class="form-control" asp-items="@(new SelectList(@Model.ElementAt(i).TipoMovimentacoes, "Id", "Descricao"))">
+                                    <option></option>
+                                </select>
                             </div>
                             <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
+                            <input type="hidden" asp-for="@Model.ElementAt(i).ColaboradorId" />
+                            <input type="hidden" asp-for="@Model.ElementAt(i).PatrimonioId" />
                             <div class="form-group">
                                 <input type="submit" value="Save" class="btn btn-primary" />
                             </div>
@@ -198,6 +208,7 @@
     <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
     <script type="text/javascript">
         $("document").ready(function () {
+            $(".loadingWrapper").hide();
             $("#tblIndex").DataTable({
                 responsive: true,
                 searching: true,

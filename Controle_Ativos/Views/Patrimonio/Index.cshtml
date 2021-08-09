@@ -89,9 +89,6 @@
                                                 <a class="button" data-toggle="modal" data-target="#modal-edit-container--@i" asp-action="Edit" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <a class="button" data-toggle="modal" data-target="#modal-details-container--@i" asp-action="Details" asp-route-id="@Model.ElementAt(i).Id">
-                                                    <i class="material-icons">plagiarism</i>
-                                                </a>
                                                 <a class="button" data-toggle="modal" data-target="#modal-delete-container--@i" asp-action="Delete" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">delete</i>
                                                 </a>
@@ -152,13 +149,38 @@
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="@Model.ElementAt(i).Id" class="control-label"></label>
-                                <input asp-for="@Model.ElementAt(i).Id" class="form-control" />
-                                <span asp-validation-for="@Model.ElementAt(i).Id" class="text-danger"></span>
+                                <label asp-for="@Model.ElementAt(i).Descricao" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).Descricao" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).Descricao" class="text-danger"></span>
                             </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).DataAquisicao" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).DataAquisicao" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).DataAquisicao" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).DataSaida" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).DataSaida" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).DataSaida" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).NumeroPatrimonio" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).NumeroPatrimonio" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).NumeroPatrimonio" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@Model.ElementAt(i).Valor" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).Valor" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).Valor" class="text-danger"></span>
+                            </div>
+                            <div class="form-group form-check">
+                                <label asp-for="@Model.ElementAt(i).Ativo" class="control-label"></label>
+                                <input class="form-check-input" asp-for="@Model.ElementAt(i).Ativo" />@Html.CheckBoxFor(x => x.FirstOrDefault().Ativo ,new { @checked = "checked" })
+                            </div>
+                            <input type="hidden" asp-for="@Model.ElementAt(i).TipoPatrimonioId" />
                             <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
                             <div class="form-group">
-                                <input type="submit" value="Save" class="btn btn-primary" />
+                                <input type="submit" value="Salvar" class="btn btn-primary" />
                             </div>
                         </form>
 
@@ -178,7 +200,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Delete</h5>
+                        <h5 class="modal-title">Tem certeza que quer deletar isto?</h5>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>x</span>
                         </button>
@@ -188,29 +210,21 @@
 
                         <form asp-action="Delete">
                             <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
-                            <input type="submit" value="Delete" class="btn btn-danger" />
+                            <input type="submit" value="Deletar" class="btn btn-danger" />
                         </form>
 
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="../assets/js/core/jquery.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
-    <script type="text/javascript">
-        $("document").ready(function () {
-            $("#tblIndex").DataTable({
-                responsive: true,
-                searching: true,
-                ordering: true,
-                "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
-                "language": {
-                    url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
-                }
-            });
-        });
-    </script>
-</body>
+    }
+
+        <script src="../assets/js/core/jquery.min.js"></script>
+        <script src="../assets/js/core/popper.min.js"></script>
+        <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
+    </body>

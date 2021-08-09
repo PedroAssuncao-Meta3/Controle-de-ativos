@@ -26,9 +26,6 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title ">Tabela AtributoXPatrimonio</h4>
-                        <p>
-                            <a type="button" class="btn btn-primary" asp-action="Create">Novo Registro</a>
-                        </p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -63,9 +60,6 @@
                                             <td>
                                                 <a class="button" data-toggle="modal" data-target="#modal-edit-container--@i" asp-action="Edit" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">edit</i>
-                                                </a>
-                                                <a class="button" data-toggle="modal" data-target="#modal-details-container--@i" asp-action="Details" asp-route-id="@Model.ElementAt(i).Id">
-                                                    <i class="material-icons">plagiarism</i>
                                                 </a>
                                                 <a class="button" data-toggle="modal" data-target="#modal-delete-container--@i" asp-action="Delete" asp-route-id="@Model.ElementAt(i).Id">
                                                     <i class="material-icons">delete</i>
@@ -127,11 +121,13 @@
                         <form asp-action="Edit">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="form-group">
-                                <label asp-for="@Model.ElementAt(i).Id" class="control-label"></label>
-                                <input asp-for="@Model.ElementAt(i).Id" class="form-control" />
-                                <span asp-validation-for="@Model.ElementAt(i).Id" class="text-danger"></span>
+                                <label asp-for="@Model.ElementAt(i).Conteudo" class="control-label"></label>
+                                <input asp-for="@Model.ElementAt(i).Conteudo" class="form-control" />
+                                <span asp-validation-for="@Model.ElementAt(i).Conteudo" class="text-danger"></span>
                             </div>
                             <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
+                            <input type="hidden" asp-for="@Model.ElementAt(i).PatrimonioId" />
+                            <input type="hidden" asp-for="@Model.ElementAt(i).AtributoId" />
                             <div class="form-group">
                                 <input type="submit" value="Save" class="btn btn-primary" />
                             </div>
@@ -153,7 +149,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Delete</h5>
+                        <h5 class="modal-title">Tem certeza que quer deletar isto?</h5>
                         <button type="button" class="close" data-dismiss="modal">
                             <span>x</span>
                         </button>
@@ -163,7 +159,7 @@
 
                         <form asp-action="Delete">
                             <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
-                            <input type="submit" value="Delete" class="btn btn-danger" />
+                            <input type="submit" value="Deletar" class="btn btn-danger" />
                         </form>
 
                     </div>
@@ -182,6 +178,7 @@
     <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
     <script type="text/javascript">
         $("document").ready(function () {
+            $(".loadingWrapper").hide();
             $("#tblIndex").DataTable({
                 responsive: true,
                 searching: true,
