@@ -3,9 +3,12 @@
 @{
     ViewData["Title"] = "Lista de Colaboradores";
 }
-
 <link href="~/css/jquery.dataTables.css" rel="stylesheet" />
+@section Scripts{
+    @*<script src="~/js/Datagrid/datatables.bundle.js"></script>*@
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
+}
 <head>
     <title>
         Lista Colaboradores
@@ -62,16 +65,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 @for (int i = 0; i < Model.Count(); i++)
-                                 {
+                                    @for (int i = 0; i < Model.Count(); i++)
+                                    {
 
                                         <tr>
                                             <td>
                                                 @Html.DisplayFor(modelItem => @Model.ElementAt(i).Nome)
                                             </td>
                                             @*<td>
-                    @Html.DisplayFor(modelItem => item.CPF)
-                </td>*@
+                                                    @Html.DisplayFor(modelItem => item.CPF)
+                                                </td>*@
                                             <td>
                                                 @Html.DisplayFor(modelItem => @Model.ElementAt(i).Cargo)
                                             </td>
@@ -79,14 +82,14 @@
                                                 @Html.DisplayFor(modelItem => @Model.ElementAt(i).Email)
                                             </td>
                                             @*<td>
-                    @Html.DisplayFor(modelItem => item.DataNascimento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Celular)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Endereço)
-                </td>*@
+                                                    @Html.DisplayFor(modelItem => item.DataNascimento)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Celular)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Endereço)
+                                                </td>*@
                                             <td>
                                                 @Html.DisplayFor(modelItem => @Model.ElementAt(i).Telefone)
                                             </td>
@@ -130,12 +133,12 @@
                     </div>
 
                     <div class="modal-body">
-                      Nome:  <span>@Model.ElementAt(i).Nome</span><br />
-                      Email:  <span>@Model.ElementAt(i).Email</span><br />
-                      Cargo: <span>@Model.ElementAt(i).Cargo</span><br />
-                      CPF: <span>@Model.ElementAt(i).CPF</span><br />
-                      Celular: <span>@Model.ElementAt(i).Celular</span><br />
-                      Telefone: <span>@Model.ElementAt(i).Telefone</span><br />
+                        Nome:  <span>@Model.ElementAt(i).Nome</span><br />
+                        Email:  <span>@Model.ElementAt(i).Email</span><br />
+                        Cargo: <span>@Model.ElementAt(i).Cargo</span><br />
+                        CPF: <span>@Model.ElementAt(i).CPF</span><br />
+                        Celular: <span>@Model.ElementAt(i).Celular</span><br />
+                        Telefone: <span>@Model.ElementAt(i).Telefone</span><br />
                     </div>
 
                     <div class="modal-footer">
@@ -212,22 +215,22 @@
         </div>
     }
 
-        <script src="../assets/js/core/jquery.min.js"></script>
-        <script src="../assets/js/core/popper.min.js"></script>
-        <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-        <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
-        <script type="text/javascript">
-            $("document").ready(function () {
-                $("#tblIndex").DataTable({
-                    responsive: true,
-                    searching: true,
-                    ordering: true,
-                    "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
-                    "language": {
-                        url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
-                    }
-                });
+    <script src="../assets/js/core/jquery.min.js"></script>
+    <script src="../assets/js/core/popper.min.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
+    <script type="text/javascript">
+        $("document").ready(function () {
+            $("#tblIndex").DataTable({
+                responsive: true,
+                searching: true,
+                ordering: true,
+                "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
+                "language": {
+                    url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
+                }
             });
-        </script>
+        });
+    </script>
 </body>
 
