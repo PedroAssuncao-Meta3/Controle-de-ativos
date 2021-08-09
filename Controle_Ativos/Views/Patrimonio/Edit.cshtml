@@ -1,7 +1,7 @@
 ﻿@model Controle_Ativos.ViewModel.PatrimonioViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
 <h1>Edit</h1>
@@ -41,13 +41,6 @@
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
                 </label>
-            </div>
-            //Não deveria ser possível editar o tipo do patrimonio
-            <div class="form-group">
-                <label asp-for="TipoPatrimonioId" class="control-label"></label>
-                <select asp-for="TipoPatrimonioId" class="form-control" asp-items="@(new SelectList(Model.TipoPatrimonios, "Id", "Descricao"))">
-                    <option></option>
-                </select>
             </div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">

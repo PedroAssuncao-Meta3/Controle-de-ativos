@@ -6,12 +6,17 @@
 
   <ItemGroup>
     <Compile Remove="Controllers\NovaPasta\**" />
+    <Compile Remove="Controllers\Relatorios - Cópia\**" />
     <Content Remove="Controllers\NovaPasta\**" />
+    <Content Remove="Controllers\Relatorios - Cópia\**" />
     <EmbeddedResource Remove="Controllers\NovaPasta\**" />
+    <EmbeddedResource Remove="Controllers\Relatorios - Cópia\**" />
     <None Remove="Controllers\NovaPasta\**" />
+    <None Remove="Controllers\Relatorios - Cópia\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Atributo\Pode apagar Create.cshtml" />
     <Content Remove="Views\Colaborador\.cshtml" />
     <Content Remove="Views\Home\Model.cshtml" />
     <Content Remove="Views\Home\Template.cshtml" />
