@@ -115,7 +115,7 @@
                                 <input asp-for="@Model.ElementAt(i).Descricao" class="form-control" />
                                 <span asp-validation-for="@Model.ElementAt(i).Descricao" class="text-danger"></span>
                             </div>
-                            <input type="hidden" asp-for="@Model.ElementAt(i).Descricao" />
+                            <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
                             <div class="form-group">
                                 <input type="submit" value="Save" class="btn btn-primary" />
                             </div>
