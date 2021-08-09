@@ -1,6 +1,7 @@
 ﻿using Controle_Ativos.BLL.Interfaces;
 using Controle_Ativos.BLL.Models;
 using Controle_Ativos.Data.Contexto;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,15 @@ namespace Controle_Ativos.Data.Repositorio
             return Db.Patrimonios.ToList();
         }
 
-        
+        public override List<MovimentacaoPatrimonio> ObterTodos()
+        {
+            return Db.MovimentacoesPatrimonios.Include(x => x.Colaborador).Include(x => x.Patrimonio).Include(x => x.TipoMovimento).ToList() ;
+        }
+
+        public override MovimentacaoPatrimonio ObterPorId(Guid id)
+        {
+            return Db.MovimentacoesPatrimonios.Where(x => x.Id == id).Include(x => x.Colaborador).Include(x => x.Patrimonio).Include(x => x.TipoMovimento).FirstOrDefault();
+        }
+
     }
 }

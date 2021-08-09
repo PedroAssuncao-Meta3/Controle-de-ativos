@@ -132,6 +132,8 @@
                                 <span asp-validation-for="@Model.ElementAt(i).Conteudo" class="text-danger"></span>
                             </div>
                             <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
+                            <input type="hidden" asp-for="@Model.ElementAt(i).PatrimonioId" />
+                            <input type="hidden" asp-for="@Model.ElementAt(i).AtributoId" />
                             <div class="form-group">
                                 <input type="submit" value="Save" class="btn btn-primary" />
                             </div>

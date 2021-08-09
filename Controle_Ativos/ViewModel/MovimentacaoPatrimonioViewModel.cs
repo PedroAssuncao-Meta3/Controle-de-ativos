@@ -30,7 +30,7 @@ namespace Controle_Ativos.ViewModel
         public PatrimonioViewModel Patrimonio { get; set; }
         
         [Display(Name = "Tipo de Movimentação:")]
-        public Guid TipoMovimentacaoId { get; set; }
+        public Guid TipoMovimentoId { get; set; }
         public TipoMovimentoViewModel TipoMovimento { get; set; }
         #endregion
         
