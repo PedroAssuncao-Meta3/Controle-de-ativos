@@ -1,10 +1,12 @@
-﻿@model Controle_Ativos.ViewModel.TipoPatrimonioViewModel
+﻿@model Controle_Ativos.ViewModel.TipoMovimentoViewModel
 
 @{
-    ViewData["Title"] = "Editar";
+    ViewData["Title"] = "Create";
 }
 
-<h4>Tipo Patrimonio</h4>
+<h1>Create</h1>
+
+<h4>TipoMovimento</h4>
 <hr />
 <div class="row">
     <div class="col-md-8">
@@ -12,24 +14,25 @@
             <div class="card-header card-header-primary">
             </div>
             <div class="card-body">
-                <form asp-action="Edit">
+                <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Descricao" class="control-label"></label>
                         <input asp-for="Descricao" class="form-control" />
                         <span asp-validation-for="Descricao" class="text-danger"></span>
                     </div>
-                    <input type="hidden" asp-for="Id" />
                     <div class="form-group">
-                        <a asp-action="Index">Voltar</a>
-                        <input type="submit" value="Salvar" class="btn btn-primary" />
+                        <input type="submit" value="Create" class="btn btn-primary" />
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

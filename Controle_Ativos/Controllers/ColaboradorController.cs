@@ -14,10 +14,12 @@ namespace Controle_Ativos.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IColaboradorRepositorio _repositorio;
+        private readonly IClienteRepositorio _repositorioCli;
 
-        public ColaboradorController(IMapper mapper, IColaboradorRepositorio repositorio)
+        public ColaboradorController(IMapper mapper, IColaboradorRepositorio repositorio, IClienteRepositorio repositorioCli)
         {
             _repositorio = repositorio;
+            _repositorioCli = repositorioCli;
             _mapper = mapper;
         }
 
@@ -25,6 +27,7 @@ namespace Controle_Ativos.Controllers
         public async Task<IActionResult> Index()
         {
             var registros = _mapper.Map<List<ColaboradorViewModel>>(_repositorio.ObterTodos());
+            registros.ForEach(x => x.Clientes = _mapper.Map<List<ClienteViewModel>>(_repositorioCli.ObterTodos()));
             return View(registros);
         }
 

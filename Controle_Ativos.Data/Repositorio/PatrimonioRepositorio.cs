@@ -29,7 +29,7 @@ namespace Controle_Ativos.Data.Repositorio
 
         public override Patrimonio ObterPorId(Guid id)
         {
-            return Db.Patrimonios.Where(x => x.Id == id).Include(x => x.TipoPatrimonio).FirstOrDefault();
+            return Db.Patrimonios.Where(x => x.Id == id).Include(x => x.TipoPatrimonio).Include(x => x.Ativo).FirstOrDefault();
         }
     }
 }

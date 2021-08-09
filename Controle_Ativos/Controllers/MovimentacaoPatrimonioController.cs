@@ -14,10 +14,12 @@ namespace Controle_Ativos.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IMovimentacaoPatrimonioRepositorio _repositorio;
+        private readonly ITipoMovimentacaoRepositorio _repositorioTP;
 
-        public MovimentacaoPatrimonioController(IMapper mapper, IMovimentacaoPatrimonioRepositorio repositorio)
+        public MovimentacaoPatrimonioController(IMapper mapper, IMovimentacaoPatrimonioRepositorio repositorio, ITipoMovimentacaoRepositorio repositorioTP)
         {
             _repositorio = repositorio;
+            _repositorioTP = repositorioTP;
             _mapper = mapper;
         }
 
@@ -25,6 +27,7 @@ namespace Controle_Ativos.Controllers
         public async Task<IActionResult> Index()
         {
             var registros = _mapper.Map<List<MovimentacaoPatrimonioViewModel>>(_repositorio.ObterTodos());
+            registros.ForEach(x => x.TipoMovimentacoes = _mapper.Map<List<TipoMovimentoViewModel>>(_repositorioTP.ObterTodos()));
             return View(registros);
         }
 
