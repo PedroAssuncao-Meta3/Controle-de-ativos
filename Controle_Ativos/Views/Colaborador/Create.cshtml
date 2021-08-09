@@ -21,6 +21,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label asp-for="DataNascimento" class="control-label"></label>
+                                <input asp-for="DataNascimento" class="form-control" />
+                                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label asp-for="ClienteId" class="control-label"></label>
                                 <select asp-for="ClienteId" class="form-control" asp-items="@(new SelectList(Model.Clientes, "Id", "Nome"))">
                                     <option></option>
@@ -68,41 +75,7 @@
                     <div class="clearfix"></div>
                 </form>
             </div>
-<<<<<<< HEAD
-            <div class="form-group">
-                <label asp-for="DataNascimento" class="control-label"></label>
-                <input asp-for="DataNascimento" class="form-control" />
-                <span asp-validation-for="DataNascimento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cargo" class="control-label"></label>
-                <input asp-for="Cargo" class="form-control" />
-                <span asp-validation-for="Cargo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefone" class="control-label"></label>
-                <input asp-for="Telefone" class="form-control" />
-                <span asp-validation-for="Telefone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ClienteId" class="control-label"></label>
-                <select asp-for="ClienteId" class="form-control" asp-items="@(new SelectList(Model.Clientes, "Id", "Nome"))">
-                    <option></option>
-                </select>
-                <span asp-validation-for="ClienteId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Criar" class="btn btn-primary" />
-            </div>
-        </form>
-=======
         </div>
->>>>>>> origin/Gabriel
     </div>
 </div>
 
