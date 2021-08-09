@@ -5,53 +5,56 @@
 }
 
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="DataIncio" class="control-label"></label>
-                <input asp-for="DataIncio" class="form-control" />
-                <span asp-validation-for="DataIncio" class="text-danger"></span>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header card-header-primary">
             </div>
-            <div class="form-group">
-                <label asp-for="DataFechamento" class="control-label"></label>
-                <input asp-for="DataFechamento" class="form-control" />
-                <span asp-validation-for="DataFechamento" class="text-danger"></span>
+            <div class="card-body">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="DataIncio" class="control-label"></label>
+                        <input asp-for="DataIncio" class="form-control" />
+                        <span asp-validation-for="DataIncio" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DataFechamento" class="control-label"></label>
+                        <input asp-for="DataFechamento" class="form-control" />
+                        <span asp-validation-for="DataFechamento" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Observacao" class="control-label"></label>
+                        <input asp-for="Observacao" class="form-control" />
+                        <span asp-validation-for="Observacao" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ColaboradorId" class="control-label"></label>
+                        <select asp-for="ColaboradorId" class="form-control" asp-items="@(new SelectList(Model.Colaboradores, "Id", "Nome"))">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PatrimonioId" class="control-label"></label>
+                        <select asp-for="PatrimonioId" class="form-control" asp-items="@(new SelectList(Model.Patrimonios, "Id", "Descricao"))">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TipoMovimentoId" class="control-label"></label>
+                        <select asp-for="TipoMovimentoId" class="form-control" asp-items="@(new SelectList(Model.TipoMovimentacoes, "Id", "Descricao"))">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <a asp-action="Index">Voltar</a>
+                        <input type="submit" value="Criar" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Observacao" class="control-label"></label>
-                <input asp-for="Observacao" class="form-control" />
-                <span asp-validation-for="Observacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ColaboradorId" class="control-label"></label>
-                <select asp-for="ColaboradorId" class="form-control" asp-items="@(new SelectList(Model.Colaboradores, "Id", "Nome"))">
-                    <option></option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="PatrimonioId" class="control-label"></label>
-                <select asp-for="PatrimonioId" class="form-control" asp-items="@(new SelectList(Model.Patrimonios, "Id", "Descricao"))">
-                    <option></option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="TipoMovimentoId" class="control-label"></label>
-                <select asp-for="TipoMovimentoId" class="form-control" asp-items="@(new SelectList(Model.TipoMovimentacoes, "Id", "Descricao"))">
-                    <option></option>
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        </div>
+   </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
- @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

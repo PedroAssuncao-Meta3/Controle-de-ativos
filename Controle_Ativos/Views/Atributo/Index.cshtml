@@ -26,9 +26,6 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title ">Tabela Atributo</h4>
-                        <p>
-                            <a type="button" class="btn btn-primary" asp-action="Create">Novo Registro</a>
-                        </p>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -146,7 +143,7 @@
                     <div class="modal-body">
 
                         <form asp-action="Delete">
-                            <input type="hidden" asp-for="@Model.ElementAt(i).Descricao" />
+                            <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
                             <input type="submit" value="Deletar" class="btn btn-danger" />
                         </form>
 
