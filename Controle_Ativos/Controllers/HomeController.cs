@@ -1,4 +1,5 @@
-﻿using Controle_Ativos.Models;
+﻿using Controle_Ativos.Data.Contexto;
+using Controle_Ativos.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -17,7 +18,6 @@ namespace Controle_Ativos.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             return View();
@@ -34,6 +34,11 @@ namespace Controle_Ativos.Controllers
         {
             return View();
         }
+        public IActionResult Error404()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -42,3 +47,6 @@ namespace Controle_Ativos.Controllers
         }
     }
 }
+   
+    
+
