@@ -54,6 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ControleAtivos.Config\Controle_Ativos.Config.csproj" />
     <ProjectReference Include="..\Controle_Ativos.BLL\Controle_Ativos.BLL.csproj" />
     <ProjectReference Include="..\Controle_Ativos.Data\Controle_Ativos.Data.csproj" />
   </ItemGroup>

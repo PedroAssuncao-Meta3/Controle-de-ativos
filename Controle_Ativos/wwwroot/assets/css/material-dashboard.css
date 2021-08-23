@@ -16918,12 +16918,20 @@ a .material-icons {
   vertical-align: middle;
 }
 
-.form-check,
-label {
-  font-size: 14px;
-  line-height: 1.42857;
-  color: #AAAAAA;
-  font-weight: 400;
+.dark-edition label, .dark-edition *[name="dark_light"] p{
+    color: white;
+}
+
+.dark-edition *[name="dark_light"]:hover p {
+    color: #16181b;
+    transition: all 370ms linear;
+}
+
+.form-check, label {
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #000;
+    font-weight: 400;
 }
 
 /*           Animations              */
@@ -17479,7 +17487,8 @@ label {
 }
 
 .card {
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    min-height: 125px;
 }
 
 .card .table tr:first-child td {
@@ -17810,7 +17819,8 @@ label {
 
 .card-stats .card-header.card-header-icon,
 .card-stats .card-header.card-header-text {
-  text-align: right;
+    text-align: right;
+    flex-grow: 1;
 }
 
 .card-stats .card-header .card-icon+.card-title,
