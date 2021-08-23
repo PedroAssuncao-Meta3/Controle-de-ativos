@@ -209,6 +209,8 @@
                     <div class="modal-body">
 
                         <form asp-action="Delete">
+                            <span>@Model.ElementAt(i).Id</span>
+                            <br />
                             <input type="hidden" asp-for="@Model.ElementAt(i).Id" />
                             <input type="submit" value="Deletar" class="btn btn-danger" />
                         </form>

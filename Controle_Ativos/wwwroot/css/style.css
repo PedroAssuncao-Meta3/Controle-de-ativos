@@ -1,3 +1,67 @@
-﻿.dark-edition .form-control{
+﻿td > a.button > i {
+    color: #9c27b0;
+}
+
+td > a.button > i:hover{
+    cursor: pointer;
+}
+
+.dark-edition .form-control{
     color: black !important;
+}
+
+.custom-modal-container {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: none;
+    z-index: 999;
+}
+
+.custom-modal-container > .modal-background {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: rgba(60, 72, 88, 0.3);
+    z-index: 999;
+}
+
+.custom-modal-container.active {
+    display: flex;
+}
+
+.custom-modal-container.active > .content {
+    width: 400px;
+    height: 80vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 999;
+    animation: roadRunnerIn 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes roadRunnerIn {
+    0% {
+        transform: translate(-1500px, -50%) skewX(30deg) scaleX(1.3);
+    }
+
+    70% {
+        transform: translate(30px, -50%) skewX(0deg) scaleX(0.9);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) skewX(0deg) scaleX(1);
+    }
 }
