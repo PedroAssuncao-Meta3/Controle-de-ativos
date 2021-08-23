@@ -13,7 +13,7 @@ namespace Controle_Ativos.Data.Repositorio
     {
         public PatrimonioRepositorio(DBContexto context) : base(context) { }
 
-        public AtributoXPatrimonio ObterPrimeiroPatrimonio (Guid id)
+        public AtributoXPatrimonio ObterPrimeiroPatrimonio(Guid id)
         {
             return Db.AtributosXPatrimonios.Where(x => x.PatrimonioId == id).FirstOrDefault();
         }
@@ -30,6 +30,21 @@ namespace Controle_Ativos.Data.Repositorio
         public override Patrimonio ObterPorId(Guid id)
         {
             return Db.Patrimonios.Where(x => x.Id == id).Include(x => x.TipoPatrimonio).Include(x => x.Ativo).FirstOrDefault();
+        }
+
+        public double ValorTotal()
+        {
+            var objPatGroup = from pat in Db.Patrimonios
+                              group pat by 1 into patGroup
+                              select new
+                              {
+                                  Total = patGroup.Sum(item => item.Valor)
+                              };
+            return objPatGroup.FirstOrDefault().Total;
+        }
+        public int QtdePatrimonios()
+        {
+            return Db.Patrimonios.Count();
         }
     }
 }

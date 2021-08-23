@@ -1,17 +1,21 @@
-using Controle_Ativos.BLL.Interfaces;
 using Controle_Ativos.Config;
 using Controle_Ativos.Config.Global;
-using Controle_Ativos.Data;
 using Controle_Ativos.Data.Contexto;
-using Controle_Ativos.Data.Repositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Controle_Ativos
+namespace Controle_Ativos.WebAPI
 {
     public class Startup
     {
@@ -25,8 +29,7 @@ namespace Controle_Ativos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
+            services.AddControllers();
 
 
             services.AddDbContext<DBContexto>(options => options.UseSqlServer(
@@ -34,12 +37,6 @@ namespace Controle_Ativos
                                                         sqlServerOptions => sqlServerOptions.CommandTimeout(120)));
 
             services.ResolveDependencias();
-
-
-            services.AddAutoMapper(typeof(Startup));
-
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,17 +46,10 @@ namespace Controle_Ativos
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
 
             app.ConfiguracaoGlobalizao();
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
             app.UseRouting();
 
@@ -67,9 +57,7 @@ namespace Controle_Ativos
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
         }
     }

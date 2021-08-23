@@ -36,6 +36,9 @@ namespace Controle_Ativos.Data.Repositorio
         {
             return Db.MovimentacoesPatrimonios.Where(x => x.Id == id).Include(x => x.Colaborador).Include(x => x.Patrimonio).Include(x => x.TipoMovimento).FirstOrDefault();
         }
-
+        public int QtdeEmprestimos()
+        {
+            return Db.MovimentacoesPatrimonios.Count();
+        }
     }
 }

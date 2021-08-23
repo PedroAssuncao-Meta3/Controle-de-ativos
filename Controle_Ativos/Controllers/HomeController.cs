@@ -1,25 +1,33 @@
-﻿using Controle_Ativos.Data.Contexto;
+﻿using Controle_Ativos.BLL.Interfaces;
 using Controle_Ativos.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Controle_Ativos.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IColaboradorRepositorio _colaboradorRepositorio;
+        private readonly IPatrimonioRepositorio _patrimonioRepositorio;
+        private readonly IMovimentacaoPatrimonioRepositorio _movimentacaoPatrimonioRepositorio;
+        public HomeController(ILogger<HomeController> logger,
+                              IColaboradorRepositorio colaboradorRepositorio,
+                              IPatrimonioRepositorio patrimonioRepositorio, 
+                              IMovimentacaoPatrimonioRepositorio movimentacaoPatrimonioRepositorio)
         {
+            _patrimonioRepositorio = patrimonioRepositorio;
+            _colaboradorRepositorio = colaboradorRepositorio;
+            _movimentacaoPatrimonioRepositorio = movimentacaoPatrimonioRepositorio;
             _logger = logger;
         }
         public IActionResult Index()
         {
+            ViewBag.QtdeFuncionarios = _colaboradorRepositorio.QtdeColaboradores();
+            ViewBag.ValorTotalPat = _patrimonioRepositorio.ValorTotal();
+            ViewBag.QtdePatrimonios = _patrimonioRepositorio.QtdePatrimonios();
+            ViewBag.QtdeEmprestimos = _movimentacaoPatrimonioRepositorio.QtdeEmprestimos();
             return View();
         }
         public IActionResult User()
@@ -39,7 +47,6 @@ namespace Controle_Ativos.Controllers
             return View();
         }
 
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -47,6 +54,3 @@ namespace Controle_Ativos.Controllers
         }
     }
 }
-   
-    
-
