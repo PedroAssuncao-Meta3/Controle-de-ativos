@@ -1,6 +1,4 @@
 using Controle_Ativos.BLL.Interfaces;
-using Controle_Ativos.Config;
-using Controle_Ativos.Config.Global;
 using Controle_Ativos.Data;
 using Controle_Ativos.Data.Contexto;
 using Controle_Ativos.Data.Repositorio;
@@ -33,8 +31,15 @@ namespace Controle_Ativos
                                                         Configuration.GetConnectionString("DefaultConnection"),
                                                         sqlServerOptions => sqlServerOptions.CommandTimeout(120)));
 
-            services.ResolveDependencias();
-
+            services.AddScoped<IColaboradorRepositorio, ColaboradorRepositorio>();
+            services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
+            services.AddScoped<IAtributoRepositorio, AtributoRepositorio>();
+            services.AddScoped<ITipoPatrimonioRepositorio, TipoPatrimonioRepositorio>();
+            services.AddScoped<IAtributoXTipoPatrimonioRepositorio, AtributoXTipoPatrimonioRepositorio>();
+            services.AddScoped<IAtributoXPatrimonioRepositorio, AtributoXPatrimonioRepositorio>();
+            services.AddScoped<IPatrimonioRepositorio, PatrimonioRepositorio>();
+            services.AddScoped<IMovimentacaoPatrimonioRepositorio, MovimentacaoPatrimonioRepositorio>();
+            services.AddScoped<ITipoMovimentacaoRepositorio, TipoMovimentacaoRepositorio>();
 
             services.AddAutoMapper(typeof(Startup));
 
@@ -55,9 +60,6 @@ namespace Controle_Ativos
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-            app.ConfiguracaoGlobalizao();
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

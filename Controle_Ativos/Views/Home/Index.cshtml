@@ -20,24 +20,8 @@
                         </div>
                         <p class="card-category">Funcionários</p>
                         <h3 class="card-title">
-                            <label style="font-size:larger">@ViewBag.QtdeFuncionarios</label>
-                        </h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="fa fa-pie-chart"></i>
-                        </div>
-                        <p class="card-category">Patrimonios</p>
-                        <h3 class="card-title">
-                            <label style="font-size:larger">@ViewBag.QtdePatrimonios</label>
+                            50
+                            <small></small>
                         </h3>
                     </div>
                     <div class="card-footer">
@@ -53,9 +37,7 @@
                             <i class="material-icons">store</i>
                         </div>
                         <p class="card-category">Valor Total</p>
-                        <h3 class="card-title">
-                            <label style="font-size:larger">R$ @ViewBag.ValorTotalPat</label>
-                        </h3>
+                        <h3 class="card-title">$34,245</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -70,9 +52,7 @@
                             <i class="material-icons">info_outline</i>
                         </div>
                         <p class="card-category">Emprestimos</p>
-                        <h3 class="card-title">
-                            <label style="font-size:larger">@ViewBag.QtdeEmprestimos</label>
-                        </h3>
+                        <h3 class="card-title">75</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -80,7 +60,21 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="fa fa-wrench"></i>
+                        </div>
+                        <p class="card-category">Manutenção</p>
+                        <h3 class="card-title">10</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-4">
@@ -106,7 +100,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Relatório de Inventario</h4>
                         <p class="card-category">
-                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioTipoPatXAtributo" asp-action="Index">Gerar Relatório</a>
+                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioTipoPatXAtributo" asp-action="Index">Em Breve</a>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -122,7 +116,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Relatório Emprestimos</h4>
                         <p class="card-category">
-                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioTipoPatXAtributo" asp-action="Index">Gerar Relatório</a>
+                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioTipoPatXAtributo" asp-action="Index">Em breve</a>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -140,7 +134,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Relatórios de Ativos na Sede</h4>
                         <p class="card-category">
-                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioTipoPatXAtributo" asp-action="Index">Gerar Relatório</a>
+                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="RelatorioTipoPatXAtributo" asp-action="Index">Em Breve</a>
                         </p>
                     </div>
                     <div class="card-footer">
@@ -192,7 +186,6 @@
     <script type="text/javascript">
 
         $("document").ready(function () {
-
             $(".loadingWrapper").hide();
         });
     </script>

@@ -28,10 +28,6 @@ namespace Controle_Ativos.Data.Repositorio
             return Db.Colaboradores.Where(c => c.Id == id).Include(c => c.Cliente).FirstOrDefault();
         }
 
-        public int QtdeColaboradores()
-        {
-            return Db.Colaboradores.Count();
-        }
 
     }
 }

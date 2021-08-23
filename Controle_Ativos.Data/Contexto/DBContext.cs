@@ -26,6 +26,12 @@ namespace Controle_Ativos.Data.Contexto
 
         public DbSet<AtributoXTipoPatrimonio> AtributosXTiposPatrimonio { get; set; }
 
+
+
+
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Força o tamanho especifico para colunas mão mapeadas

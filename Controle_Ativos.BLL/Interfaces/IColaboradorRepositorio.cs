@@ -7,7 +7,6 @@ namespace Controle_Ativos.BLL.Interfaces
 {
     public interface IColaboradorRepositorio : IRepositorio<Colaborador>
     {
-        int QtdeColaboradores();
         List<Cliente> RecuperaListaCliente();
     }
 }

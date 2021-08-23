@@ -10,7 +10,5 @@ namespace Controle_Ativos.BLL.Interfaces
         List<TipoPatrimonio> RecuperaListaTipoPatrimonio();
 
         public AtributoXPatrimonio ObterPrimeiroPatrimonio(Guid id);
-        double ValorTotal();
-        int QtdePatrimonios();
     }
 }
