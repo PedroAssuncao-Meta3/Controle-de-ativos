@@ -138,6 +138,39 @@ namespace Controle_Ativos.Migrations
                     b.ToTable("Colaboradores");
                 });
 
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.Login.Usuario", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Admin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuarios");
+                });
+
             modelBuilder.Entity("Controle_Ativos.BLL.Models.MovimentacaoPatrimonio", b =>
                 {
                     b.Property<Guid>("Id")
@@ -209,7 +242,7 @@ namespace Controle_Ativos.Migrations
                     b.ToTable("Patrimonio");
                 });
 
-            modelBuilder.Entity("Controle_Ativos.BLL.Models.TipoMovimento", b =>
+            modelBuilder.Entity("Controle_Ativos.BLL.Models.TipoMovimentacao", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -285,7 +318,7 @@ namespace Controle_Ativos.Migrations
                         .HasForeignKey("PatrimonioId")
                         .IsRequired();
 
-                    b.HasOne("Controle_Ativos.BLL.Models.TipoMovimento", "TipoMovimento")
+                    b.HasOne("Controle_Ativos.BLL.Models.TipoMovimentacao", "TipoMovimento")
                         .WithMany("MovimentacaoPatrimonios")
                         .HasForeignKey("TipoMovimentoId")
                         .IsRequired();

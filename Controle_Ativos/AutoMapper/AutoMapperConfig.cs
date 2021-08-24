@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using Controle_Ativos.BLL.Models;
+using Controle_Ativos.BLL.Models.Login;
+using Controle_Ativos.BLL.Models.Negocio;
 using Controle_Ativos.ViewModel;
+using Controle_Ativos.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +30,9 @@ namespace Controle_Ativos.AutoMapper
             CreateMap<AtributoXTipoPatrimonio, AtributoXTipoPatrimonioViewModel>().ReverseMap();
             CreateMap<MovimentacaoPatrimonio, MovimentacaoPatrimonioViewModel>().ReverseMap();
             CreateMap<TipoMovimentacao, TipoMovimentoViewModel>().ReverseMap();
+            CreateMap<Login, LoginViewModel>().ReverseMap();
+            CreateMap<Usuario, UsuarioViewModel>().ReverseMap();
+
         }
     }
 }

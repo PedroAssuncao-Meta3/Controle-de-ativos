@@ -1,0 +1,107 @@
+﻿@model IEnumerable<UsuarioViewModel>
+
+@{
+    ViewData["Title"] = "Usuario";
+}
+
+<div class="col-xl-12">
+    <div class="card border mb-g">
+        <div class="card-header bg-gray-100 pr-3 d-flex align-items-center flex-wrap">
+            <div class="card-title">
+                Usuarios
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <table id="tblIndex" class="table table-bordered" style="width:100%">
+                        <thead style="text-align:center; font-weight:bold">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Ativo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Admin)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Nome)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Login)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    Ação
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(modelItem => item.Ativo)
+                                </td>
+                                <td style="text-align:center">
+                                    @Html.DisplayFor(modelItem => item.Admin)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nome)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Login)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td style="text-align:center">
+                                    <a href="#"><span class="fal fa-edit mr-1" id="edit" onclick="location.href='@Url.Action("Edit", "Usuarios", new { id = item.Id })'"></span></a>
+                                    |
+                                    <a href="#"><span class="fal fa-times mr-1" id="delete" onclick="location.href='@Url.Action("Delete", "Usuarios", new { id = item.Id })'"></span></a>
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group group row">
+                        <div class="col-md-12 text-right">
+                            <button id="Create" onclick="location.href='@Url.Action("Create", "Usuarios")'" class="btn btn-primary">
+                                Novo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="~/lib/d3/d3.js"></script>
+
+    <script type="text/javascript">
+        $("#itemCadUsuario").addClass("active open");
+       
+        $("document").ready(function () {
+            $(".loadingWrapper").hide();
+            $('#tblIndex').dataTable(
+                {
+                    responsive: true,
+                    "language": {
+                    url: "@Url.Content("~/lib/datatables/locale/pt-BR.json")"
+                    },
+                });
+            $("#tblIndex").DataTable();
+        });
+        
+    </script>
+}

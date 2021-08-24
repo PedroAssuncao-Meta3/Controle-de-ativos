@@ -1,0 +1,121 @@
+﻿<div class="modal fade" id="modalAlteraSenha" tabindex="-1" role="dialog" aria-hidden="true">
+    <div id="dialogModalInfo" class="modal-dialog" style="max-width: 30%;" role="document">
+        <div class="modal-content">
+            <div class="card">
+                <div class="card-header bg-gray-100 pr-3 d-flex align-items-center flex-wrap" style="cursor: all-scroll">
+                    <div id="modalInfoTitulo" class="card-title">Alteração de senha - @Context.User.Claims.SingleOrDefault(u => u.Type == "NomeUsuario")?.Value</div>
+                    <a id="btnExpandCollapse" class="btn btn-sm btn-default ml-auto" data-dismiss="modal">
+                        <span>X</span>
+                    </a>
+                </div>
+
+                <div class="card-body p-6 border-top-left-radius-0 border-top-right-radius-0">
+
+                    <div class="form-group">
+                        <div class="col-md-12 login-input">
+                            <label class="control-label">Senha Atual</label>
+                            <input id="SenhaAtual" class="form-control" type="password" maxlength="30" placeholder="Senha Atual" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 login-input">
+                            <label class="control-label">Nova Senha</label>
+                            <input id="NovaSenha" class="form-control" type="password" placeholder="Nova Senha" maxlength="30" onkeyup="VerificaSenhaIgual()" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12 login-input">
+                            <label class="control-label">Confirmar Senha</label>
+                            <input id="ConfimarSenha" class="form-control" type="password" placeholder="Confirmar Senha" maxlength="30" onkeyup="VerificaSenhaIgual()" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-12 text-right">
+                                    <button id="AlteraSenha" onclick="AlterarSenha()" disabled class="btn btn-secondary">Alterar Senha</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function abreModal(modalNome) {
+
+        $("#NovaSenha").val("");
+        $("#ConfimarSenha").val("");
+        $("#SenhaAtual").val("");
+
+        $("#" + modalNome).draggable({
+            handle: ".card-header"
+        });
+        $('#' + modalNome).modal('show');
+    };
+
+    function VerificaSenhaIgual() {
+        var senhanova = $("#NovaSenha").val();
+        var repitaSenha = $("#ConfimarSenha").val();
+
+        var tamanhoMinimoSenhaNova = senhanova.length > 0;
+        var tamanhoMinimorepitaSenha = repitaSenha.length > 0;
+
+        if (senhanova == repitaSenha && tamanhoMinimorepitaSenha && tamanhoMinimoSenhaNova)
+            $("#AlteraSenha").removeAttr("disabled");
+        else
+            $("#AlteraSenha").attr("disabled", "disabled");
+    }
+
+    function AlterarSenha() {
+        var urlMetodo ='@Url.Action("AlteraSenha", "Autenticacao")';
+
+            $(".loadingWrapper").show();
+
+            $.ajax({
+                url: urlMetodo,
+                data: { senha: $("#SenhaAtual").val(), novaSenha:  $("#NovaSenha").val()},
+                type: "get",
+                success: function (result) {
+                    $(".loadingWrapper").hide();
+                    $("#NovaSenha").val("");
+                    $("#ConfimarSenha").val("");
+                    $("#SenhaAtual").val("");
+                    if (result.senhaValidada == true) {
+                        bootbox.alert(
+                            {
+                                title: "<i class='fal fa-check-circle text-success mr-2'></i> <span class='text-success fw-500'>Alteração bem sucedida</span>",
+                                message: "<span>" + result.erroSenha + "!</span>",
+                                centerVertical: true,
+                                className: "modal-alert",
+                                closeButton: false
+                            });
+
+                        setTimeout(function () {
+                            $('#modalAlteraSenha').modal('hide');
+                        }, 2000);
+                    }
+                    else
+                    {
+                        bootbox.alert(
+                            {
+                                title: "<i class='fal fa-ban text-warning mr-2'></i> <span class='text-warning fw-500'>Falha na alteração</span>",
+                                message: "<span>" + result.erroSenha + "!</span>",
+                                centerVertical: true,
+                                className: "modal-alert",
+                                closeButton: false
+                            });
+                    }
+
+                }
+            });
+        }
+</script>

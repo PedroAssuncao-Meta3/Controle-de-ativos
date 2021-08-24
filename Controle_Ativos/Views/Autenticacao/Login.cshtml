@@ -1,0 +1,103 @@
+﻿@model LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        Login
+    </title>
+    <meta name="description" content="Login">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+    <!-- Call App Mode on ios devices -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- Remove Tap Highlight on Windows Phone IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <link rel="stylesheet" media="screen, print" href="~/css/vendors.bundle.css">
+    <link rel="stylesheet" media="screen, print" href="~/css/app.bundle.css">
+
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" sizes="180x180" href="~/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/img/favicon/favicon_ai.png">
+    <link rel="mask-icon" href="~/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" media="screen, print" href="~/css/miscellaneous/reactions/reactions.css">
+    <link rel="stylesheet" media="screen, print" href="~/css/miscellaneous/fullcalendar/fullcalendar.bundle.css">
+    <link rel="stylesheet" media="screen, print" href="~/css/miscellaneous/jqvmap/jqvmap.bundle.css">
+    <link href="~/css/loading/loading.css" rel="stylesheet" />
+    <link rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme.css" id="mytheme" />
+    <link href="~/css/page-login.css" rel="stylesheet" />
+    </head>
+<body style="background-color: transparent;
+        background-image: url(../img/backgrounds/whitebg.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    ">
+    <div class="blankpage-form-field">
+
+        <div class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-6">
+            <img src="~/img/logMeta3AI.png">
+        </div>
+
+        <div class="card p-6 border-top-left-radius-0 border-top-right-radius-0">
+
+            <form asp-action="Login">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="NomeUsuario" class="control-label"></label>
+                    <input asp-for="NomeUsuario" class="form-control" type="text" placeholder="nome do usuário" />
+                    <span asp-validation-for="NomeUsuario" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Senha" class="control-label"></label>
+                    <input asp-for="Senha" class="form-control" type="password" placeholder="senha" />
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="display:none">
+                    <label asp-for="UrlRetorno" class="control-label"></label>
+                    <input asp-for="UrlRetorno" class="form-control" />
+                    <span asp-validation-for="UrlRetorno" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    @*<button type="submit" class="btn btn-default float-right">Login</button>*@
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                </div>
+                <div class="text-danger">
+                    @if (Model.Mensagem != null)
+                    {
+                        <span style="color:red;">
+                            @Html.DisplayFor(model => model.Mensagem)
+                        </span>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts{
+    @*<partial name="_ValidationScriptsPartial" />*@
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/vendors.bundle.js"></script>
+    <script src="~/js/app.bundle.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <script type="text/javascript">
+        $("#itemMenuLogin").addClass("active open");
+
+
+        $("document").ready(function () {
+            $(".loadingWrapper").hide();
+        });
+    </script>
+}

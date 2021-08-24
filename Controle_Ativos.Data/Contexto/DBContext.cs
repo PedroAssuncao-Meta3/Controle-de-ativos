@@ -1,4 +1,5 @@
 ﻿using Controle_Ativos.BLL.Models;
+using Controle_Ativos.BLL.Models.Login;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -25,6 +26,8 @@ namespace Controle_Ativos.Data.Contexto
         public DbSet<AtributoXPatrimonio> AtributosXPatrimonios { get; set; }
 
         public DbSet<AtributoXTipoPatrimonio> AtributosXTiposPatrimonio { get; set; }
+
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

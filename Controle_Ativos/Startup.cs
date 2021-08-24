@@ -4,6 +4,7 @@ using Controle_Ativos.Config.Global;
 using Controle_Ativos.Data;
 using Controle_Ativos.Data.Contexto;
 using Controle_Ativos.Data.Repositorio;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +28,11 @@ namespace Controle_Ativos
         {
             services.AddControllersWithViews();
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+              .AddCookie(options => options.LoginPath = "/Autenticacao/Login");
 
+            services.AddSession();
+            services.AddRazorPages();
 
             services.AddDbContext<DBContexto>(options => options.UseSqlServer(
                                                         Configuration.GetConnectionString("DefaultConnection"),
@@ -63,14 +68,30 @@ namespace Controle_Ativos
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                     name: "default",
+                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "Login",
+                    pattern: "{controller=Autenticacao}/{action=Login}/{id?}");
+
+                endpoints.MapRazorPages();
             });
+
+            app.UseCookiePolicy();
+
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
     }
 }

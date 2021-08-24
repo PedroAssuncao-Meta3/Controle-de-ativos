@@ -1,0 +1,86 @@
+﻿@model UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Exclusão de Usuarios";
+}
+
+<div class="col-xl-4">
+    <div class="card border mb-g">
+        <div class="card-header bg-gray-100 pr-3 d-flex align-items-center flex-wrap">
+            <div class="card-title">
+                Excluir
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <dl>
+                        <div class="form-group">
+                        <dt class="col-sm-12" style="vertical-align:middle">
+                            @Html.DisplayFor(model => model.Ativo)
+                            @Html.DisplayNameFor(model => model.Admin)
+                        </dt>
+                        </div>
+                        <div class="form-group">
+                            <dt class="col-sm-12">
+                                @Html.DisplayNameFor(model => model.Login)
+                            </dt>
+                            <dd class="col-sm-12">
+                                <input disabled asp-for="Login" class="form-control" />
+                            </dd>
+                        </div>
+                        <div class="form-group">
+                            <dt class="col-sm-12">
+                                @Html.DisplayNameFor(model => model.Nome)
+                            </dt>
+                            <dd class="col-sm-12">
+                                <input disabled asp-for="Nome" class="form-control" />
+                            </dd>
+                        </div>
+                        <div class="form-group">
+                            <dt class="col-sm-12">
+                                @Html.DisplayNameFor(model => model.Email)
+                            </dt>
+                            <dd class="col-sm-12">
+                                <input disabled asp-for="Email" class="form-control" />
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group group row">
+                        <div class="col-md-12 text-left">
+                            <button onclick="location.href='@Url.Action("DeleteConfirmed", "Usuarios", new {id= Model.Id })'" class="btn btn-primary" id="Deletar">
+                                Excluir
+                            </button>
+                            <button onclick="location.href='@Url.Action("Index", "Usuarios")'" class="btn btn-light" id="Voltar">
+                                Voltar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="~/lib/d3/d3.js"></script>
+
+    <script type="text/javascript">
+        $("#itemMenuUsuarios").addClass("active open");
+        $("#rodarScan").on("click", function () {
+            $(".loadingWrapper").show();
+        })
+
+        $("document").ready(function () {
+            $(".loadingWrapper").hide();
+            $("table").DataTable();
+        });
+    </script>
+}

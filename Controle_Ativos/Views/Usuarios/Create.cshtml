@@ -1,0 +1,134 @@
+﻿@model UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Cadastro de Usuario";
+}
+
+<div class="col-xl-4">
+    <div class="card border mb-g">
+        <div class="card-header bg-gray-100 pr-3 d-flex align-items-center flex-wrap">
+            <div class="card-title">
+                Cadastro de Usuario
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <form id="formCreate" asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Ativo" />  @Html.DisplayNameFor(model => model.Ativo)
+                            </label>
+                        </div>
+
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Admin" />  @Html.DisplayNameFor(model => model.Admin)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input id="Email" asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Login" class="control-label"></label>
+                            <div style="display:flex; margin-bottom: 5px">
+                                <input id="Login" asp-for="Login" class="form-control" />
+                                <a id="btnLocaliza" class="btn btn-sm btn-default"
+                                   title="Validar Login"
+                                   style="display: inline-flex;
+                                          justify-content: center;
+                                          margin-left: 2px;
+                                          align-items: center;
+                                          height: 36px;
+                                          width: 36px;" onclick="ValidaLogin()">
+                                    <i class="material-icons-outlined">person_search</i>
+                                </a>
+                            </div>
+
+                            <span asp-validation-for="Login" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Nome" class="control-label"></label>
+                            <input id="Nome" asp-for="Nome" class="form-control" />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Senha" class="control-label"></label>
+                            <input id="Senha" asp-for="Senha" type="password" class="form-control" />
+                            <span asp-validation-for="Senha" class="text-danger"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group group row">
+                        <div class="col-md-12 text-left">
+                            <button type="submit" class="btn btn-primary" id="Atualizar">
+                                Salvar
+                            </button>
+                            <button onclick="location.href='@Url.Action("Index", "Usuarios")'" class="btn btn-light" id="Voltar">
+                                Voltar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="~/lib/d3/d3.js"></script>
+    <script src="~/js/Meta3AIUtils/mensagens/lib.js"></script>
+
+    <script type="text/javascript">
+        $("#itemMenuUsuario").addClass("active open");
+
+        function ValidaLogin(sucesso = true) {
+            var login = $('#Login').val();
+
+            if (login !== undefined && login.length > 0) {
+                $(".loadingWrapper").show();
+                $.ajax({
+                    url: '@Url.Action("ValidaLogin", "Usuarios")',
+                    data: { login: login },
+                    type: "get",
+                    success: function (result) {
+                        $(".loadingWrapper").hide();
+                        if (result === false) {
+                            mensagemSucesso("Login está disponivel para uso", "Login Válido.");
+                        }
+                        else if (result === true) {
+                            mensagemFalha("Login já existente em nossa base de dados", "Login Inválido");
+                        }
+                    }
+                });
+            }
+            else {
+                mensagemAtencao("Favor informar o login que deseja validar", "Login Inválido");
+            }
+        }
+
+        $('#Atualizar').click(function (e) {
+            document.getElementById("formCreate").submit();
+        });
+
+        $("document").ready(function () {
+            $(".loadingWrapper").hide();
+            $("table").DataTable();
+        });
+
+    </script>
+}

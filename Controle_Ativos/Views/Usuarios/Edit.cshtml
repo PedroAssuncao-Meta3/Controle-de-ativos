@@ -1,0 +1,171 @@
+﻿@model UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Atualização de Usuarios";
+}
+
+<div class="col-xl-12">
+    <div class="card border mb-g">
+        <div class="card-header bg-gray-100 pr-3 d-flex align-items-center flex-wrap">
+            <div class="card-title">
+                Atualizar
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <form id="formEdit" asp-action="Edit">
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Ativo" /> @Html.DisplayNameFor(model => model.Ativo)
+                            </label>
+                        </div>
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Admin" />  @Html.DisplayNameFor(model => model.Admin)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Nome" class="control-label"></label>
+                            <input asp-for="Nome" class="form-control" />
+                            <span asp-validation-for="Nome" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Login" class="control-label"></label>
+                            <input asp-for="Login" class="form-control" />
+                            <span asp-validation-for="Login" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Hidden("Senha", Model.Senha)
+                        </div>
+
+                        <div class="form-group">
+                            <div class="modal fade" id="modalAlteraSenhaUsuario" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div id="dialogModalInfo" class="modal-dialog" style="max-width: 30%;" role="document">
+                                    <div class="modal-content">
+                                        <div class="card">
+                                            <div class="card-header bg-gray-100 pr-3 d-flex align-items-center flex-wrap" style="cursor: all-scroll">
+                                                <div id="modalInfoTitulo" class="card-title">Alteração de senha</div>
+                                                <a id="btnExpandCollapse" class="btn btn-sm btn-default ml-auto" data-dismiss="modal">
+                                                    <span>X</span>
+                                                </a>
+                                            </div>
+
+                                            <div class="card-body p-6 border-top-left-radius-0 border-top-right-radius-0">
+
+                                                <div class="form-group">
+                                                    <div class="col-md-12 login-input">
+                                                        <label class="control-label">Nova Senha</label>
+                                                        <input id="NovaSenhaUsuario" class="form-control" type="password" placeholder="Nova Senha" maxlength="30" onkeyup="VerificaSenhaUsuario()" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-md-12 login-input">
+                                                        <label class="control-label">Confirmar Senha</label>
+                                                        <input id="ConfimarSenhaUsuario" class="form-control" type="password" placeholder="Confirmar Senha" maxlength="30" onkeyup="VerificaSenhaUsuario()" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="col-md-12 text-right">
+                                                                <button id="AlteraSenhaUsuario" disabled data-dismiss="modal" class="btn btn-primary">Confirmar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div>
+                        <button onclick="abreModal()" class="btn btn-success">
+                           Editar Senha
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group group row">
+                        <div class="col-md-12 text-right">
+                            <button onclick="submitEdit()" type="submit" class="btn btn-primary" id="Atualizar">
+                                Salvar
+                            </button>
+                            <button onclick="location.href='@Url.Action("Index", "Usuarios")'" class="btn btn-secondary btn-light" id="Voltar">
+                                Voltar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $("#itemMenuUsuario").addClass("active open");
+
+        $("document").ready(function () {
+            $(".loadingWrapper").hide();
+            $("table").DataTable();
+        });
+
+        function submitEdit() {
+            document.getElementById("formEdit").submit();
+        }
+
+        function abreModal() {
+
+            $("#NovaSenhaUsuario").val("");
+            $("#ConfimarSenhaUsuario").val("");
+
+            $("#modalAlteraSenhaUsuario").draggable({
+                handle: ".card-header"
+            });
+            $('#modalAlteraSenhaUsuario').modal('show');
+        };
+
+        $("#modalAlteraSenhaUsuario").on("hidden.bs.modal", function () {
+
+            var senha = $("#NovaSenhaUsuario").val();
+            if (senha !== undefined && senha.length > 0) {
+                $("#Senha").val(senha);
+            }
+        });
+
+        function VerificaSenhaUsuario() {
+            var senhanova = $("#NovaSenhaUsuario").val();
+            var repitaSenha = $("#ConfimarSenhaUsuario").val();
+
+            var tamanhoMinimoSenhaNova = senhanova.length > 0;
+            var tamanhoMinimorepitaSenha = repitaSenha.length > 0;
+
+            if (senhanova == repitaSenha && tamanhoMinimorepitaSenha && tamanhoMinimoSenhaNova)
+                $("#AlteraSenhaUsuario").removeAttr("disabled");
+            else
+                $("#AlteraSenhaUsuario").attr("disabled", "disabled");
+        }
+
+
+    </script>
+}
