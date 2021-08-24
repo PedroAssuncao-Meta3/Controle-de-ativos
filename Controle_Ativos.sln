@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controle_Ativos.Service", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Controle_Ativos.Config", "ControleAtivos.Config\Controle_Ativos.Config.csproj", "{2C84BEBB-8E5C-4242-943D-BF2E2C5F3985}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUI", "WebUI", "{4442A3A7-0630-40DF-B171-B494545E13D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C86F6E9A-531F-4D18-AC31-0CFBD2A38353} = {4442A3A7-0630-40DF-B171-B494545E13D0}
+		{F49419A2-08F1-4F2E-A11E-632E9FD1A40E} = {4442A3A7-0630-40DF-B171-B494545E13D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {35CA4F0B-C9A7-4F08-ACFB-8767A1CD57D2}
